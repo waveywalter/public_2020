@@ -28,8 +28,7 @@
 <ul class="nav navbar-top-links navbar-right pull-right">
   <li class="dropdown">
     <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="https://2020i.site"> <i class=" icon-logout"></i>
-    <span> LOGOUT</span>
-
+    <router-link to='/login'>Logout</router-link>
     </a>
   </li>
   <li class="dropdown">

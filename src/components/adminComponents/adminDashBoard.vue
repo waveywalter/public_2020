@@ -7,6 +7,7 @@
         <div id="page-wrapper">
             <CreateAdmin></CreateAdmin>
             
+            
         </div>
     </div>
     
@@ -24,11 +25,9 @@ import CreateAdmin from '../adminComponents/createAdmin';
         components: {
             AdminTopHeader,
             AdminSideBar,
-            CreateAdmin,
-            
+            CreateAdmin
         }
     }
 </script>
-
 <style scoped>
 </style>

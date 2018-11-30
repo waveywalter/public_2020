@@ -51,10 +51,13 @@ const mutations = {
     loginRequest(state, user) {
         state.status = { loggingIn: true };
         state.user = user;
+
     },
     loginSuccess(state, user) {
         state.status = { loggedIn: true };
         state.user = user;
+        window.location.replace("/admindashboard");
+
     },
     loginFailure(state) {
         state.status = {};
