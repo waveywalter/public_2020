@@ -1,2 +1,2 @@
-# vue-tut-master
-#Run with node .
+
+#Run with npm start
