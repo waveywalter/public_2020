@@ -1,3 +1,4 @@
+
 <template>
     <div>
         <AdminTopHeader></AdminTopHeader>
@@ -19,10 +20,11 @@
                 <span v-else-if="user.deleteError" class="text-danger"> - ERROR: {{user.deleteError}}</span>
                 <span v-else > - <a @click="update(user.id); toggle = !toggle" class="text-danger">Update Password</a></span>
 
-                  <div class="form-group " v-show='toggle'>
+                  <form ref="form" @submit.prevent="form_m" class="form-group " v-show='toggle'>
                     <label for="exampleInputPassword1">New Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                </div>
+                    <input type="text" class="form-controls" id="exampleInputPassword1" placeholder="Password">
+                    <input type="submit">
+                </form>
 
             </li>
         </ul>
@@ -62,8 +64,19 @@ export default {
         ...mapActions('users', {
             getAllUsers: 'getAll',
             deleteUser: 'delete',
-            update: 'update'
-                    })
+            update: 'update',
+        form_m(){
+        var vm =this,
+        formData= new FormData(vm.$refs.form)
+        let jsonObject = {};
+
+        for (const [key, value] of formData.entries()){
+            jsonObject[key] = value;
+        };
+        console.log(jsonObject)
     }
+
+        })
+    },
 };
 </script>
