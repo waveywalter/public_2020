@@ -17,7 +17,13 @@
 
                 <span v-if="user.deleting"><em> - Updating...</em></span>
                 <span v-else-if="user.deleteError" class="text-danger"> - ERROR: {{user.deleteError}}</span>
-                <span v-else> - <a @click="update(user.id)" class="text-danger">Update</a></span>
+                <span v-else > - <a @click="update(user.id); toggle = !toggle" class="text-danger">Update Password</a></span>
+
+                  <div class="form-group " v-show='toggle'>
+                    <label for="exampleInputPassword1">New Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                </div>
+
             </li>
         </ul>
         <p>
@@ -33,6 +39,11 @@ import AdminSideBar from '../components/layoutComponents/adminSideBar';
 import { mapState, mapActions } from 'vuex'
 
 export default {
+    data(){
+ return {
+     toggle:false
+ }
+    },
         name: "HomePage",
         components: {
             AdminTopHeader,
@@ -52,7 +63,7 @@ export default {
             getAllUsers: 'getAll',
             deleteUser: 'delete',
             update: 'update'
-        })
+                    })
     }
 };
 </script>
