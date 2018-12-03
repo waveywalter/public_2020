@@ -1,7 +1,6 @@
 <template>
 
     <div>
-
         <AdminTopHeader></AdminTopHeader>
         <AdminSideBar></AdminSideBar>
         <div id="page-wrapper">
