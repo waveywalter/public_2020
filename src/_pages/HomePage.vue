@@ -17,9 +17,7 @@
                 <span v-else-if="user.deleteError" class="text-danger"> - ERROR: {{user.deleteError}}</span>
                 <span v-else> - <a @click="deleteUser(user.id)" class="text-danger">Delete</a></span>
 
-                <span v-if="user.deleting"><em> - Updating...</em></span>
-                <span v-else-if="user.deleteError" class="text-danger"> - ERROR: {{user.deleteError}}</span>
-                <span v-else > - <a @click="update(user.id); toggle = !toggle" class="text-danger">Update Password</a></span>
+                <span> - <a @click="update(user.id); toggle = !toggle" class="text-danger">Edit User</a></span>
 
                   <!-- <form ref="form" @submit.prevent="form_m" class="form-group " v-show='toggle'>
                     <label for="exampleInputPassword1">New Password</label>
@@ -27,7 +25,7 @@
                     <input type="submit">
                 </form> -->
 
-<div id="app">
+<div id="app" v-show="toggle">
   <form ref="form" @submit.prevent="form_m">
     <input placeholder="First Name" type="text" name="firstname"> <br>
     <input placeholder="Last Name" type="text" name="lastname"> <br>
