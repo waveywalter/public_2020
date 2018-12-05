@@ -17,6 +17,7 @@ export default {
         })
     },
     methods: {
+        
         ...mapActions({
             clearAlert: 'alert/clear' 
         })
