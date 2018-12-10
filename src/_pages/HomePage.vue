@@ -17,7 +17,8 @@
                 <span v-else-if="user.deleteError" class="text-danger"> - ERROR: {{user.deleteError}}</span>
                 <span v-else> - <a @click="deleteUser(user.id)" class="text-danger">Delete</a></span>
 
-                <span> - <a @click="update(user.id); toggle = !toggle" class="text-danger">Edit User</a></span>
+                <span> - <a @click="update(user.id); userInfo = !userInfo" class="text-danger">Edit User Information</a></span>
+                <span> - <a @click="update(user.id); userPassword = !userPassword" class="text-danger">Change Password</a></span>
 
                   <!-- <form ref="form" @submit.prevent="form_m" class="form-group " v-show='toggle'>
                     <label for="exampleInputPassword1">New Password</label>
@@ -25,11 +26,19 @@
                     <input type="submit">
                 </form> -->
 
-<div id="app" v-show="toggle">
+<div id="app" v-show="userInfo">
   <form ref="form" @submit.prevent="form_m">
     <input placeholder="First Name" type="text" name="firstname"> <br>
     <input placeholder="Last Name" type="text" name="lastname"> <br>
-    <input placeholder="Email" type="text" name="email">
+    <input placeholder="Email" type="text" name="email"> <br />
+    <input type="submit">
+  </form>
+</div>
+
+<div id="app" v-show="userPassword">
+  <form ref="form" @submit.prevent="password_m">
+    <input placeholder="Old Password" type="text" name="oldPassword"> <br />
+        <input placeholder="New Password" type="text" name="newpassword"> <br>
     <input type="submit">
   </form>
 </div>
@@ -51,11 +60,12 @@ import AdminTopHeader from '../components/layoutComponents/adminTopHeader';
 import AdminSideBar from '../components/layoutComponents/adminSideBar';
 import { mapState, mapActions } from 'vuex'
 
-
+console.log( user )
 export default {
     data(){
  return {
-     toggle:false
+     userInfo:false,
+     userPassword:false
  }
     },
         name: "HomePage",
@@ -78,11 +88,11 @@ export default {
         formData= new FormData(vm.$refs.form[0])
       let jsonObject = {};
       formData.append('key','value')
-       
       for (const [key, value]  of formData.entries()) {
         jsonObject[key] = value;
+
       }
-       fetch(`http://localhost:3000/api/wsers/${user.userId}`,{method:'PATCH',
+       fetch(`http://localhost:3000/api/users/${user.userId}`,{method:'PATCH',
        body:JSON.stringify(jsonObject),
      headers: {
             "Content-Type": "application/json; charset=utf-8",
@@ -91,8 +101,25 @@ export default {
         },
        
        })
-
-
+    },
+    password_m(){
+      var vm = this,
+        formData= new FormData(vm.$refs.form[1])
+      let jsonObject = {};
+      formData.append('key','value')
+      for (const [key, value]  of formData.entries()) {
+        jsonObject[key] = value;
+        console.log(vm.$refs.form[1]);
+      }
+       fetch(`http://localhost:3000/api/users/change-password?access_token=5c092851d42d793ffc0b85ab`,
+       {method:'POST',body:JSON.stringify(jsonObject),
+     headers: {
+               "Content-Type": "application/x-www-form-urlencoded",
+            // "Content-Type": "application/json; charset=utf-8",
+            //"Accept":"application/json; charset=utf-8",
+            // "Content-Type": "application/x-www-form-urlencoded",
+        },
+       })
     //    console.log({lastname:"Johnson"})
     //    console.log(jsonObject)
     // console.log(JSON.stringify(jsonObject))
