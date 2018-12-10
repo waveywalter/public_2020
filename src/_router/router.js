@@ -39,14 +39,11 @@ router.beforeEach((to, from, next) => {
   const publicPages = ['/','/login', '/register',];
   const authRequired = !publicPages.includes(to.path);
   const loggedIn = localStorage.getItem('user');
-  const userRole = (user.user.role);
-  console.log(userRole);
+
   // const affiliateUsers = localStorage.getItem('user.role' === 'affiliate');
   if (authRequired && !loggedIn) {
     return next('/login');
   }
   next();
-  else if(loggedIn && userRole === "affiliate") {
-    return next ('/affiliatepage')
-  }
+
 })

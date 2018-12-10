@@ -92,7 +92,7 @@ export default {
         jsonObject[key] = value;
 
       }
-       fetch(`http://localhost:3000/api/users/${user.userId}`,{method:'PATCH',
+       fetch(`http://localhost:3000/api/wsers/${user.userId}`,{method:'PATCH',
        body:JSON.stringify(jsonObject),
      headers: {
             "Content-Type": "application/json; charset=utf-8",
@@ -111,7 +111,7 @@ export default {
         jsonObject[key] = value;
         console.log(vm.$refs.form[1]);
       }
-       fetch(`http://localhost:3000/api/users/change-password?access_token=5c092851d42d793ffc0b85ab`,
+       fetch(`http://localhost:3000/api/wsers/change-password?access_token=5c092851d42d793ffc0b85ab`,
        {method:'POST',body:JSON.stringify(jsonObject),
      headers: {
                "Content-Type": "application/x-www-form-urlencoded",
