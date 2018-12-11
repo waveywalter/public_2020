@@ -111,7 +111,7 @@ export default {
         jsonObject[key] = value;
         console.log(vm.$refs.form[1]);
       }
-       fetch(`http://localhost:3000/api/wsers/change-password?access_token=5c092851d42d793ffc0b85ab`,
+       fetch(`http://localhost:3000/api/wsers/change-password`,
        {method:'POST',body:JSON.stringify(jsonObject),
      headers: {
                "Content-Type": "application/x-www-form-urlencoded",

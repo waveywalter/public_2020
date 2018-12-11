@@ -27,7 +27,7 @@
 <!--END This is left top logo -->
 <ul class="nav navbar-top-links navbar-right pull-right">
   <li class="dropdown">
-    <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="https://2020i.site"> <i class=" icon-logout"></i>
+    <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="https://2020i.site" @click="logout()"> <i class=" icon-logout"></i>
     <router-link to='/login'>Logout</router-link>
     </a>
   </li>
@@ -76,8 +76,14 @@
 </template>
 
 <script>
+    import { userService } from '../../_services';
     export default {
-        name: "adminTopHeader"
+        name: "adminTopHeader",
+        methods: {
+          logout() {
+            userService.logout()
+          }
+        }
     }
 </script>
 

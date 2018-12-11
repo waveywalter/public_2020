@@ -21,7 +21,7 @@ function login(username, password) {
     };
 
 
-    return fetch(`http://localhost:3000/api/users/login?include=User`, requestOptions)
+    return fetch(`http://localhost:3000/api/wsers/login?include=User`, requestOptions)
         .then(handleResponse)
         .then(user => {
             // login successful if there's a jwt token in the response
@@ -46,7 +46,7 @@ function register(user) {
         body: JSON.stringify(user)
     };
 
-    return fetch(`http://localhost:3000/api/users/`, requestOptions).then(handleResponse);
+    return fetch(`http://localhost:3000/api/wsers/`, requestOptions).then(handleResponse);
 }
 
 function getAll() {
@@ -55,7 +55,7 @@ function getAll() {
         headers: authHeader()
     };
 
-    return fetch(`http://localhost:3000/api/users/`, requestOptions).then(handleResponse);
+    return fetch(`http://localhost:3000/api/wsers/?access_token=${user.id}`, requestOptions).then(handleResponse);
 }
 
 
@@ -65,7 +65,7 @@ function getById(id) {
         headers: authHeader()
     };
 
-    return fetch(`http://localhost:3000/api/users`, requestOptions).then(handleResponse);
+    return fetch(`http://localhost:3000/api/wsers`, requestOptions).then(handleResponse);
 }
 
 function update(user) {
@@ -75,7 +75,7 @@ function update(user) {
         body: JSON.stringify(user)
     };
 
-    return fetch(`http://localhost:3000/api/users/reset-password`, requestOptions).then(handleResponse);
+    return fetch(`http://localhost:3000/api/wsers/reset-password`, requestOptions).then(handleResponse);
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
@@ -85,7 +85,7 @@ function _delete(id) {
         headers: authHeader()
     };
 
-    return fetch(`http://localhost:3000/api/users/${id}`, requestOptions).then(handleResponse);
+    return fetch(`http://localhost:3000/api/wsers/${id}`, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
