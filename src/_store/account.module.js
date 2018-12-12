@@ -14,7 +14,8 @@ const actions = {
             .then(
                 user => {
                     commit('loginSuccess', user);
-                    router.push('/admindashboard');
+                    //router.push('/admindashboard');
+                    window.location.href = "/admindashboard";
                 },
                 error => {
                     commit('loginFailure', error);
@@ -56,8 +57,6 @@ const mutations = {
     loginSuccess(state, user) {
         state.status = { loggedIn: true };
         state.user = user;
-        //window.location.replace("/admindashboard");
-
     },
     loginFailure(state) {
         state.status = {};

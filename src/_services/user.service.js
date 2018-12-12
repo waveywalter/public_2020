@@ -49,7 +49,7 @@ function register(user) {
     return fetch(`http://localhost:3000/api/wsers/`, requestOptions).then(handleResponse);
 }
 
-function getAll() {
+function getAll(user) {
     const requestOptions = {
         method: 'GET',
         headers: authHeader()
