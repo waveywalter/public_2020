@@ -13,6 +13,8 @@ export const userService = {
     delete: _delete
 };
 
+const baseURL="http://localhost:3000/api";
+
 function login(username, password) {
     const requestOptions = {
         method: 'POST',
@@ -21,7 +23,7 @@ function login(username, password) {
     };
 
 
-    return fetch(`http://localhost:3000/api/wsers/login?include=User`, requestOptions)
+    return fetch(baseURL+'/wsers/login?include=User', requestOptions)
         .then(handleResponse)
         .then(user => {
             // login successful if there's a jwt token in the response
@@ -34,8 +36,12 @@ function login(username, password) {
         });
 }
 
-function logout() {
-    // remove user from local storage to log user out
+function logout(user) {
+    // const requestOptions = {
+    //     method: 'DELETE',
+    //     body: authHeader()
+    // };
+    // fetch(baseURL+'/wtokens/${user.id}/?access_token=${user.id}', requestOptions).then(handleResponse);
     localStorage.removeItem('user');
 }
 
@@ -45,8 +51,19 @@ function register(user) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(user)
     };
-
-    return fetch(`http://localhost:3000/api/wsers/`, requestOptions).then(handleResponse);
+    var rolemapRegister = {
+        "principalType": "USER",
+        "principalId": user,
+        "roleId": "5c1161ee3c9f4b14bcd44b3c"
+    }
+    const requestOptionsRole = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(rolemapRegister)
+    };
+    msg1 = fetch(baseURL+'/wsers/', requestOptions).then(handleResponse);
+    // msg2 = fetch(baseURL+'/wsers/', requestOptionsRole).then(handleResponse);
+    return msg1;
 }
 
 function getAll(user) {
@@ -55,7 +72,7 @@ function getAll(user) {
         headers: authHeader()
     };
 
-    return fetch(`http://localhost:3000/api/wsers/?access_token=${user.id}`, requestOptions).then(handleResponse);
+    return fetch(baseURL+'/wsers/?access_token=${user.id}', requestOptions).then(handleResponse);
 }
 
 
@@ -65,7 +82,7 @@ function getById(id) {
         headers: authHeader()
     };
 
-    return fetch(`http://localhost:3000/api/wsers`, requestOptions).then(handleResponse);
+    return fetch(baseURL+'/wsers', requestOptions).then(handleResponse);
 }
 
 function update(user) {
@@ -75,7 +92,7 @@ function update(user) {
         body: JSON.stringify(user)
     };
 
-    return fetch(`http://localhost:3000/api/wsers/reset-password`, requestOptions).then(handleResponse);
+    return fetch(baseURL+'/wsers/reset-password', requestOptions).then(handleResponse);
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
@@ -85,7 +102,7 @@ function _delete(id) {
         headers: authHeader()
     };
 
-    return fetch(`http://localhost:3000/api/wsers/${id}`, requestOptions).then(handleResponse);
+    return fetch(baseURL+'/wsers/${id}', requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
@@ -95,11 +112,12 @@ function handleResponse(response) {
         if (!response.ok) {
             if (response.status === 401) {
                 // auto logout if 401 response returned from api
-                logout();
-                location.reload(true);
+                //logout();
+                //location.reload(true);
             }
 
             const error = (data && data.message) || response.statusText;
+            console.log(error);
             return Promise.reject(error);
         }
 // console.log(data);

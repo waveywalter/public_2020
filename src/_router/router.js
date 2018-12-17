@@ -34,12 +34,17 @@ export const router = new Router({
 
 router.beforeEach((to, from, next) => {
   // redirect to login page if not logged in and trying to access a restricted page
-  let user = JSON.parse(localStorage.getItem('user'));
-
+  // let user = JSON.parse(localStorage.getItem('user'));
+  // var timenow = new Date().getTime();
+  // if(user) {
+  // var createtime = new Date(user.created)
+  // var storeTime = (timenow - createtime)/1000;
+  // if (storeTime > 30) localStorage.removeItem('user');
+  // }
   const publicPages = ['/','/login', '/register',];
   const authRequired = !publicPages.includes(to.path);
   const loggedIn = localStorage.getItem('user');
-
+ 
   // const affiliateUsers = localStorage.getItem('user.role' === 'affiliate');
   if (authRequired && !loggedIn) {
     return next('/login');
