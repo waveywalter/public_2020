@@ -51,28 +51,16 @@ function register(user) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(user)
     };
-    var rolemapRegister = {
-        "principalType": "USER",
-        "principalId": user,
-        "roleId": "5c1161ee3c9f4b14bcd44b3c"
-    }
-    const requestOptionsRole = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(rolemapRegister)
-    };
-    msg1 = fetch(baseURL+'/wsers/', requestOptions).then(handleResponse);
-    // msg2 = fetch(baseURL+'/wsers/', requestOptionsRole).then(handleResponse);
-    return msg1;
+
+    return fetch(baseURL+'/wsers/', requestOptions).then(handleResponse);
 }
 
-function getAll(user) {
+function getAll( ) {
     const requestOptions = {
         method: 'GET',
         headers: authHeader()
     };
-
-    return fetch(baseURL+'/wsers/?access_token=${user.id}', requestOptions).then(handleResponse);
+    return fetch(baseURL+'/wsers', requestOptions).then(handleResponse);
 }
 
 
@@ -120,7 +108,7 @@ function handleResponse(response) {
             console.log(error);
             return Promise.reject(error);
         }
-// console.log(data);
+        console.log(data);
         return data;
     });
 
