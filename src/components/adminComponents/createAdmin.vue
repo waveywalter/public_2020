@@ -6,15 +6,33 @@
           <h3 class="box-title m-b-5">Sample Forms with Right icon</h3>
           <div class="row">
             <div class="col-sm-12 col-xs-12">
+<<<<<<< HEAD
               <form ref="form" @submit.prevent="form_m">
                 <div class="form-group mt-5">
                   <label for="exampleInputuname">First Name</label>
                   <div class="input-group">
                     <input v-model="reg.firstname" type="text" class="form-control" placeholder="First Name" name="firstname">
+=======
+              <form ref="form" @submit.prevent="handleSubmit">
+                <div class="form-group mt-5">
+                  <label for="exampleInputuname">First Name</label>
+
+                  <div class="input-group">
+                    <input
+                      v-model="reg.firstname"
+                      type="text"
+                      v-validate="'required'"
+                      class="form-control"
+                      placeholder="First Name"
+                      name="firstname"
+                      v-on:change="clearAlert"
+                    >
+>>>>>>> 8fd0dcd28acd103e3bfd3109f53da11256cdb6ae
                     <div class="input-group-addon">
                       <i class="ti-user"></i>
                     </div>
                   </div>
+<<<<<<< HEAD
                 </div>
                 <div class="form-group mt-5">
                   <label for="exampleInputuname">Last Name</label>
@@ -63,10 +81,102 @@
                   <label for="exampleInputpwd1">Password</label>
                   <div class="input-group">
                     <input v-model="reg.password" type="text" class="form-control" placeholder="Enter password" name="password">
+=======
+                  <span>{{ errors.first("firstname")}}</span>
+                </div>
+                <div class="form-group mt-5">
+                  <label for="exampleInputuname">Last Name</label>
+                  <div class="input-group">
+                    <input
+                      v-model="reg.lastname"
+                      type="text"
+                      v-validate="'required'"
+                      class="form-control"
+                      placeholder="Last Name"
+                      name="lastname"
+                    >
+                    <div class="input-group-addon">
+                      <i class="ti-user"></i>
+                    </div>
+                  </div>
+                  <span>{{ errors.first("lastname")}}</span>
+                </div>
+                <div class="form-group mt-5">
+                  <label for="exampleInputuname">User Name</label>
+                  <div class="input-group">
+                    <input
+                      v-model="reg.username"
+                      type="text"
+                      v-validate="'required'"
+                      class="form-control"
+                      placeholder="Username"
+                      name="username"
+                      v-on:change="clearAlert"
+                    >
+                    <div class="input-group-addon">
+                      <i class="ti-user"></i>
+                    </div>
+                  </div>
+                  <span>{{ errors.first("username")}}</span>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1" type="text" name="role">Role</label>
+                  <div class="input-group">
+                    <select
+                      v-model="reg.role"
+                      v-validate="'required'"
+                      name="list"
+                      class="form-control"
+                    >
+                      <option value="admin">Admin</option>
+                      <option value="owner">Owner</option>
+                      <option value="exdir">Executive Director</option>
+                      <option value="nursdir">Director of Nursing</option>
+                      <option value="nurse1">Nurse1</option>
+                    </select>
+                    <div class="input-group-addon">
+                      <i class="ti-shield"></i>
+                    </div>
+                  </div>
+                  <span>{{ errors.first("role")}}</span>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1">Email address</label>
+                  <div class="input-group">
+                    <input
+                      v-model="reg.email"
+                      type="text"
+                      v-validate="'required|email'"
+                      class="form-control"
+                      placeholder="Enter email"
+                      name="email"
+                    >
+                    <div class="input-group-addon">
+                      <i class="ti-email"></i>
+                    </div>
+                  </div>
+                  <span>{{ errors.first('email') }}</span>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputpwd1">Password</label>
+                  <div class="input-group">
+                    <input
+                      v-model="reg.password"
+                      type="password"
+                      v-validate.continues="'required|min:6'"
+                      class="form-control"
+                      placeholder="Enter password"
+                      name="password"
+                    >
+>>>>>>> 8fd0dcd28acd103e3bfd3109f53da11256cdb6ae
                     <div class="input-group-addon">
                       <i class="ti-lock"></i>
                     </div>
                   </div>
+<<<<<<< HEAD
+=======
+                  <span>{{ errors.first('password') }}</span>
+>>>>>>> 8fd0dcd28acd103e3bfd3109f53da11256cdb6ae
                 </div>
                 <div class="text-right">
                   <button
@@ -75,6 +185,10 @@
                   >Submit</button>
                 </div>
               </form>
+<<<<<<< HEAD
+=======
+              <p v-show="message">{{message}}</p>
+>>>>>>> 8fd0dcd28acd103e3bfd3109f53da11256cdb6ae
             </div>
           </div>
         </div>
@@ -84,6 +198,11 @@
 </template>
 
 <script>
+<<<<<<< HEAD
+=======
+import { mapState, mapActions } from "vuex";
+import VeeValidate from "vee-validate";
+>>>>>>> 8fd0dcd28acd103e3bfd3109f53da11256cdb6ae
 
 export default {
   name: "CreateAdmin",
@@ -97,6 +216,7 @@ export default {
         username: "",
         role: "",
         email: "",
+<<<<<<< HEAD
         password: "",
         submited: false
       }
@@ -141,6 +261,38 @@ export default {
   }
 }
 }
+=======
+        password: ""
+      },
+      submitted: false
+    };
+  },
+  computed: {
+    ...mapState("alert", ["message", "type"])
+  },
+  methods: {
+    ...mapActions("account", ["register"]),
+    ...mapActions({ clearAlert: "alert/clear" }),
+    handleSubmit(e) {
+      this.submitted = true;
+      this.$validator.validate().then(valid => {
+        if (valid) {
+          this.register(this.reg);
+          this.reg = {
+            firstname: "",
+            lastname: "",
+            username: "",
+            role: "",
+            email: "",
+            password: ""
+          };
+          this.$validator.reset();
+        }
+      });
+    }
+  }
+};
+>>>>>>> 8fd0dcd28acd103e3bfd3109f53da11256cdb6ae
 </script>
 
 <style scoped>

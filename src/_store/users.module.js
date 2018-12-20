@@ -7,8 +7,8 @@ const state = {
 const actions = {
     getAll({ commit }) {
         commit('getAllRequest');
-        const user = JSON.parse(localStorage.getItem('user'));
-        userService.getAll(user)
+        
+        userService.getAll()
             .then(
                 users => commit('getAllSuccess', users),
                 error => commit('getAllFailure', error)

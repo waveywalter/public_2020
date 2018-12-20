@@ -3,9 +3,15 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: 'development',
+    entry:path.join(__dirname, 'src', 'index.js'),
     resolve: {
         extensions: ['.js', '.vue',]
     },
+    output: {
+        path: path.join(__dirname, 'src'),
+        publicPath: '/',
+		filename: "main.js"
+      },
     module: {
         rules: [
             {
