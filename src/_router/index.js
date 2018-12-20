@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import { userService } from '../_services';
 
 import LandingPage from '../components/LandingPage';
 import HomePage from '../_pages/HomePage'
@@ -33,11 +34,12 @@ export const router = new Router({
       { path: 'test2', component: testpage2 },
     ], 
     beforeEnter: (to,from,next) => {
-      if(user.user.role == 'owner'){
+      console.log(userService.checkrole() + "123");
+      if(userService.checkrole()){
         next();
       }else {
-                alert("owner only")
-                history.back()
+        alert("owner only")
+        history.back()
       }
     }
    },

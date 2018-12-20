@@ -5,6 +5,7 @@ import { authHeader } from '../_helpers';
 
 export const userService = {
     login,
+    checkrole,
     logout,
     register,
     getAll,
@@ -73,6 +74,22 @@ function getById(id) {
     return fetch(baseURL+'/wsers', requestOptions).then(handleResponse);
 }
 
+function checkrole() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
+    return fetch(baseURL+'/wsers/username/'+user.user.username+'/roles/'+user.user.role, requestOptions).then(handleResponse).then(roleMapping => {
+        // login successful if there's a jwt token in the response
+        if (roleMapping.id) {
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+             return true
+        }
+        return false;
+    });
+}
+
 function update(user) {
     const requestOptions = {
         method: 'PUT',
@@ -97,7 +114,9 @@ function handleResponse(response) {
     return response.text().then(text => {
         const data = text && JSON.parse(text);
         // console.log(data)
+        // console.log(response);
         if (!response.ok) {
+            
             if (response.status === 401) {
                 // auto logout if 401 response returned from api
                 //logout();
@@ -105,10 +124,9 @@ function handleResponse(response) {
             }
 
             const error = (data && data.message) || response.statusText;
-            console.log(error);
             return Promise.reject(error);
         }
-        console.log(data);
+        // console.log(data);
         return data;
     });
 
