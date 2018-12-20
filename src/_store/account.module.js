@@ -24,7 +24,7 @@ const actions = {
             );
     },
     logout({ commit }) {
-        userService.logout();
+        userService.logout(user);
         commit('logout');
     },
     register({ dispatch, commit }, user) {
@@ -34,7 +34,7 @@ const actions = {
             .then(
                 user => {
                     commit('registerSuccess', user);
-                    router.push('/login');
+                    // router.go();
                     setTimeout(() => {
                         // display success message after route change completes
                         dispatch('alert/success', 'Registration successful', { root: true });

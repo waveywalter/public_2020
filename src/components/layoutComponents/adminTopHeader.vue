@@ -81,7 +81,8 @@
         name: "adminTopHeader",
         methods: {
           logout() {
-            userService.logout()
+            const user = JSON.parse(localStorage.getItem('user')); 
+            userService.logout(user);
           }
         }
     }

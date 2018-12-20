@@ -1,11 +1,11 @@
 <template>
  <div>
-     <h1>Hello World3!</h1>
+     <h1>testpage 2</h1>
      </div>
 </template>
 <script>
 export default {
-    name: 'affiliatePage'
+    name: 'testpage2'
 }
 
 </script>
