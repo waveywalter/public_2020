@@ -25,10 +25,19 @@ export const router = new Router({
     { path: '/', component: LandingPage },
     { path: '/homepage', component:HomePage},
     { path: '/UserProfiles', component: UserProfiles },
-    { path: '/login', component: LoginPage },
+    { path: '/login', component: LoginPage
+    // ,beforeEnter:(to,from,next) => {
+    //     if(loggedIn = true){
+    //       history.back()
+    //     }
+    //   }
+    },
     { path: '/register', component: RegisterPage },
-    { path: '/admindashboard', component: AdminDashBoard},
-    { path: '/createadmin', component: CreateAdmin,},
+    { path: '/admindashboard', component: AdminDashBoard,
+    children: [
+      {path:'createadmin', component: CreateAdmin}
+    ]
+  },
     { path: '/affiliatepage', component: affiliatePage,
     children: [
       { path: 'test1', component: Testpage },
