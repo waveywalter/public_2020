@@ -10,6 +10,8 @@ import AdminDashBoard from '../components/adminComponents/adminDashBoard'
 import CreateAdmin from '../components/adminComponents/createAdmin'
 import HrDashBoard from '../components/hrComponents/HrDashBoard'
 import hrcreateform from '../components/hrComponents/hrcreateform'
+import SalesDashBoard from '../components/salesComponents/SalesDashBoard'
+import NewAffiliateform from '../components/salesComponents/NewAffiliateform'
 import affiliatePage from '../_pages/affiliatepage'
 import testpage2 from '../_pages/testpage2'
 import HomePage from '../_pages/HomePage'
@@ -17,6 +19,7 @@ import HomePage from '../_pages/HomePage'
 
 Vue.use(Router);
 let user = JSON.parse(localStorage.getItem('user'));
+
 let affiliateRoutes = []
 affiliateRoutes = affiliateRoutes.concat(Testpage,testpage2)
 const affiliate = affiliateRoutes
@@ -27,21 +30,26 @@ export const router = new Router({
     { path: '/', component: LandingPage },
     { path: '/homepage', component:HomePage},
     { path: '/UserProfiles', component: UserProfiles },
-    { path: '/login', component: LoginPage
-    // ,beforeEnter:(to,from,next) => {
-    //     if(loggedIn = true){
-    //       history.back()
-    //     }
-    //   }
-    },
+    { path: '/login', component: LoginPage},
     { path: '/register', component: RegisterPage },
-
+    { path: '/salesdashboard', component:SalesDashBoard,
+    children: [
+      {path: 'NewAffiliateform', component:NewAffiliateform}
+     ],
+     beforeEnter: (to,from,next) => {
+       if(user.user.role == 'sales'){
+         next();
+       }else {
+         alert("sales only")
+        history.back()
+       }
+     }
+    },
     { path: '/HrDashBoard', component: HrDashBoard,
     children: [
       {path:'hrcreateform', component: hrcreateform}
     ]
   },
-
     { path: '/admindashboard', component: AdminDashBoard,
     children: [
       {path:'createadmin', component: CreateAdmin}
