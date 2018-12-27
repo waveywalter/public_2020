@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Router from 'vue-router';
 
 import LandingPage from '../components/LandingPage';
-import HomePage from '../_pages/HomePage'
+import UserProfiles from '../_pages/UserProfiles'
 import LoginPage from '../_pages/LoginPage'
 import RegisterPage from '../_pages/RegisterPage'
 import Testpage from '../_pages/Testpage'
@@ -10,6 +10,7 @@ import AdminDashBoard from '../components/adminComponents/adminDashBoard'
 import CreateAdmin from '../components/adminComponents/createAdmin'
 import affiliatePage from '../_pages/affiliatepage'
 import testpage2 from '../_pages/testpage2'
+import HomePage from '../_pages/HomePage'
 
 
 Vue.use(Router);
@@ -22,7 +23,8 @@ export const router = new Router({
   mode: 'history',
   routes: [
     { path: '/', component: LandingPage },
-    { path: '/homepage', component: HomePage },
+    { path: '/homepage', component:HomePage},
+    { path: '/UserProfiles', component: UserProfiles },
     { path: '/login', component: LoginPage },
     { path: '/register', component: RegisterPage },
     { path: '/admindashboard', component: AdminDashBoard},

@@ -15,7 +15,7 @@ const actions = {
                 user => {
                     commit('loginSuccess', user);
                     //router.push('/admindashboard');
-                    window.location.href = "/admindashboard";
+                    window.location.href = "/homepage";
                 },
                 error => {
                     commit('loginFailure', error);
