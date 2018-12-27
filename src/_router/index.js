@@ -8,6 +8,8 @@ import RegisterPage from '../_pages/RegisterPage'
 import Testpage from '../_pages/Testpage'
 import AdminDashBoard from '../components/adminComponents/adminDashBoard'
 import CreateAdmin from '../components/adminComponents/createAdmin'
+import HrDashBoard from '../components/hrComponents/HrDashBoard'
+import hrcreateform from '../components/hrComponents/hrcreateform'
 import affiliatePage from '../_pages/affiliatepage'
 import testpage2 from '../_pages/testpage2'
 import HomePage from '../_pages/HomePage'
@@ -33,6 +35,13 @@ export const router = new Router({
     //   }
     },
     { path: '/register', component: RegisterPage },
+
+    { path: '/HrDashBoard', component: HrDashBoard,
+    children: [
+      {path:'hrcreateform', component: hrcreateform}
+    ]
+  },
+
     { path: '/admindashboard', component: AdminDashBoard,
     children: [
       {path:'createadmin', component: CreateAdmin}
