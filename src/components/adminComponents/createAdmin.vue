@@ -75,6 +75,8 @@
                       <option value="exdir">Executive Director</option>
                       <option value="nursdir">Director of Nursing</option>
                       <option value="nurse1">Nurse1</option>
+                      <option value="sales">Sales</option>
+
                     </select>
                     <div class="input-group-addon">
                       <i class="ti-shield"></i>
