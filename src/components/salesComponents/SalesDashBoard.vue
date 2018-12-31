@@ -8,9 +8,9 @@
              <h4 class="col-lg-3 col-md-4 col-sm-4 col-xs-12">Sales DashBoard</h4>
             <section>
         <div class="sttabs tabs-style-bar">
-            <nav>
+            <nav class="col-md-5">
                 <ul>
-                    <li><a v-on:click="components = 'NewAffiliateform' " href="#section-bar-1" class="sticon ti-home"><span>New Form</span></a></li>
+                    <li><a v-on:click="components = 'NewAffiliateform' " href="#section-bar-1" class="sticon ti-home "><span>New Form</span></a></li>
                     <li><a v-on:click="components = 'Userinformation' " href="#section-bar-2" class="sticon ti-trash"><span>User Info</span></a></li>
                     <!-- <button v-on:click="components = 'NewAffiliateform' ">Show Form</button>
                     <button v-on:click="components = 'Userinformation' ">Show Info</button> -->
