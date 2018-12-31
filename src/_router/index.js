@@ -21,8 +21,8 @@ Vue.use(Router);
 let user = JSON.parse(localStorage.getItem('user'));
 
 let affiliateRoutes = []
-affiliateRoutes = affiliateRoutes.concat(Testpage,testpage2)
-const affiliate = affiliateRoutes
+//affiliateRoutes = affiliateRoutes.concat(Testpage,testpage2)
+//const affiliate = affiliateRoutes
 
 export const router = new Router({
   mode: 'history',
