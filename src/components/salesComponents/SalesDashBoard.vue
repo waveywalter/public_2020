@@ -39,7 +39,7 @@ import Userinformation from '../layoutComponents/UserInformation'
 
 
     export default {
-        name: "adminDashBoard",
+        name: "SalesDashBoard",
         data(){
             return{
                 components:"NewAffiliateform"
