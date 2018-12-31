@@ -28,7 +28,15 @@ export const router = new Router({
   mode: 'history',
   routes: [
     { path: '/', component: LandingPage },
-    { path: '/homepage', component:HomePage},
+    { path: '/homepage', component:HomePage,
+    beforeEnter: (to,from,next) => {
+      if(user.user.role == 'sales'){
+        next ('/salesdashboard');
+      } else {
+        next();
+      }
+    }
+  },
     { path: '/UserProfiles', component: UserProfiles },
     { path: '/login', component: LoginPage},
     { path: '/register', component: RegisterPage },

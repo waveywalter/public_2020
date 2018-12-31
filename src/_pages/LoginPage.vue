@@ -34,7 +34,7 @@
                                 <div class="form-group m-b-0">
                         <div class="col-sm-12 text-center">
                             <p>If you are here you know where this goes!</p>
-                            <p>{{status}}</p>
+                            <!-- <p>{{status}}</p> -->
                         </div>
                     </div>
         </form>

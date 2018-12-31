@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-md-6 col-lg-4 col-sm-12">
         <div class="white-box mt-5 ml-5">
-          <h3 class="box-title m-b-5">Sample Forms with Right icon</h3>
+          <h3 class="box-title m-b-5">Create new User Form</h3>
           <div class="row">
             <div class="col-sm-12 col-xs-12">
               <form ref="form" @submit.prevent="handleSubmit">
