@@ -4,8 +4,11 @@
         <AdminTopHeader></AdminTopHeader>
         <AdminSideBar></AdminSideBar>
         <div id="page-wrapper">
-            <div class="white-box">            
-             <h4 class="col-lg-3 col-md-4 col-sm-4 col-xs-12">Sales DashBoard</h4>
+            <div class="col-lg">
+             <h4 class="row bg-title">Sales DashBoard</h4>
+             </div>
+             <div class="col-lg-6 col-sm-6 col-xs-12">
+             <div class="white-box">
             <section>
         <div class="sttabs tabs-style-bar">
             <nav class="col-md-5">
@@ -20,13 +23,16 @@
         </div>
         <!-- /tabs -->
     </section>
+    <div class="tab-content">
             <keep-alive>
             <component v-bind:is="components"></component>
             </keep-alive>
             </div>
+            </div>
+            </div>
+        </div>
         </div>
 
-    </div>
     
 </template>
 

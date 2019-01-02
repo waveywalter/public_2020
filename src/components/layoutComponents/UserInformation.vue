@@ -1,7 +1,6 @@
 
 <template>
     <div>
-                <div class="white-box">
 
         <h1>Hi {{account.user.user.firstname +" "+ account.user.user.role}} ! </h1>
         <p> Your email is {{account.user.user.email}}</p>
@@ -19,7 +18,6 @@
         <input type="file" @change="onFileChanged">
 
         <!-- <h3>Users from secure api end point:</h3> -->
-        </div>
     </div>
         <!-- <em v-if="users.loading">Loading users...</em> -->
         <!-- <span v-if="users.error" class="text-danger">ERROR: {{users.error}}</span> -->

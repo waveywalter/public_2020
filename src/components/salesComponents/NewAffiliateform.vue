@@ -1,8 +1,7 @@
 <template>
   <div>
     <div class="row">
-      <div class="col-md-6 col-lg-4 col-sm-12">
-        <div class="white-box">
+      <div class="col-md-7 ">
           <h3 class="box-title m-b-5">New Affiliate Form</h3>
           <div class="row">
             <div class="col-sm-12 col-xs-12">
@@ -129,7 +128,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>
