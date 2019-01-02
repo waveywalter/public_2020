@@ -1,14 +1,19 @@
 <template>
-
     <div>
         <AdminTopHeader></AdminTopHeader>
         <AdminSideBar></AdminSideBar>
         <div id="page-wrapper">
-            <div class="white-box">            
-             <h4 class="col-lg-3 col-md-4 col-sm-4 col-xs-12">Human Resource DashBoard</h4>
+            <div class="container-fluid">
+            <div class="col-lg">
+                <div class="row bg-title">
+             <h4 class="page-title">Human Resources DashBoard</h4>
+             </div>
+            </div>
+             <div class="col-lg-6 col-sm-6 col-xs-12">
+             <div class="white-box">
             <section>
         <div class="sttabs tabs-style-bar">
-            <nav class="col-md-5">
+            <nav>
                 <ul>
                     <li><a v-on:click="components = 'hrcreateform' " href="#section-bar-1" class="sticon ti-home "><span>New Form</span></a></li>
                     <li><a v-on:click="components = 'UserInformation' " href="#section-bar-2" class="sticon ti-trash"><span>User Info</span></a></li>
@@ -20,14 +25,16 @@
         </div>
         <!-- /tabs -->
     </section>
+    <div class="tab-content">
             <keep-alive>
             <component v-bind:is="components"></component>
             </keep-alive>
             </div>
+            </div>
+            </div>
         </div>
-
-    </div>
-    
+        </div>
+        </div>
 </template>
 
 <script>
