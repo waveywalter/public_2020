@@ -2,6 +2,7 @@
  <div>
     <AdminTopHeader></AdminTopHeader>
     <AdminSideBar></AdminSideBar>
+    
         <div id="page-wrapper">            
             <h1> New Homepage </h1>
             </div>     
@@ -16,7 +17,7 @@ export default {
     name: 'HomePage',
     components:{
         AdminTopHeader,
-        AdminSideBar
+        AdminSideBar,
     }
 }
 

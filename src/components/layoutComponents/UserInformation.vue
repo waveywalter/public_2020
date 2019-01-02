@@ -1,21 +1,32 @@
 
 <template>
     <div>
-        <AdminTopHeader></AdminTopHeader>
-        <AdminSideBar></AdminSideBar>
-        
-        <div id="page-wrapper">
-        <h1>Hi {{account.user.user.username}}!</h1>
-        <p>You're logged in with Vue + Vuex & JWT!!</p>
-        <h3>Users from secure api end point:</h3>
-        <em v-if="users.loading">Loading users...</em>
-        <span v-if="users.error" class="text-danger">ERROR: {{users.error}}</span>
-        <ul id="userList" v-if="users.items">
-            <li v-for="wser in users.items" :key="wser.id">
-                {{wser.username + ' ' + wser.email}}
-                <span v-if="wser.deleting"><em> - Deleting...</em></span>
-                <span v-else-if="wser.deleteError" class="text-danger"> - ERROR: {{wser.deleteError}}</span>
-                <span v-else> - <a @click="deleteUser(wser.id)" class="text-danger">Delete</a></span>
+
+        <h1>Hi {{account.user.user.firstname +" "+ account.user.user.role}} ! </h1>
+        <p> Your email is {{account.user.user.email}}</p>
+        <p> {{account.user.user.firstname+ " "+ account.user.user.lastname}}</p>
+        <div id="app">
+            
+  <form ref="form" @submit.prevent="form_m">
+    <input placeholder="First Name" type="text" name="firstname"> <br>
+    <input placeholder="Last Name" type="text" name="lastname"> <br>
+    <input placeholder="Email" type="text" name="email"> <br />
+    <input type="submit">
+  </form>
+</div>
+
+        <input type="file" @change="onFileChanged">
+
+        <!-- <h3>Users from secure api end point:</h3> -->
+    </div>
+        <!-- <em v-if="users.loading">Loading users...</em> -->
+        <!-- <span v-if="users.error" class="text-danger">ERROR: {{users.error}}</span> -->
+        <!-- <ul id="userList" v-if="users.items"> -->
+            <!-- <li v-for="wser in users.items" :key="wser.id"> -->
+                <!-- {{wser.username + ' ' + wser.email}} -->
+                <!-- <span v-if="wser.deleting"><em> - Deleting...</em></span> -->
+                <!-- <span v-else-if="wser.deleteError" class="text-danger"> - ERROR: {{wser.deleteError}}</span> -->
+                <!-- <span v-else> - <a @click="deleteUser(wser.id)" class="text-danger">Delete</a></span> -->
                 <!-- <span> - <a @click="update(wser.id); userPassword = !userPassword" class="text-danger">Change Password</a></span> -->
 
                   <!-- <form ref="form" @submit.prevent="form_m" class="form-group " v-show='toggle'>
@@ -23,8 +34,9 @@
                     <input type="text" name="name" class="form-controls" id="exampleInputPassword1" placeholder="Password">
                     <input type="submit">
                 </form> -->
-                <span> - <a @click="update(wser.id); userInfo = !userInfo" class="text-danger">Edit User Information</a></span>
-
+                <!-- <span> - <a @click="update(wser.id); userInfo = !userInfo" class="text-danger">Edit User Information</a></span> -->
+            <!-- </li>
+        </ul>
 <div id="app" v-show="userInfo">
   <form ref="form" @submit.prevent="form_m">
     <input placeholder="First Name" type="text" name="firstname"> <br>
@@ -40,19 +52,16 @@
         <input placeholder="New Password" type="text" name="newpassword"> <br>
     <input type="submit">
   </form>
-</div>
-            </li>
-        </ul>
-        </div>
-    </div>
+</div> -->
+
 </template>
 
 <script>
 //let user = JSON.parse(localStorage.getItem('user')).user;
 
-import { authHeader } from '../_helpers';
-import AdminTopHeader from '../components/layoutComponents/adminTopHeader';
-import AdminSideBar from '../components/layoutComponents/adminSideBar';
+// import { authHeader } from '../_helpers';
+import AdminTopHeader from './adminTopHeader';
+import AdminSideBar from './adminSideBar';
 import { mapState, mapActions } from 'vuex'
 
 //console.log(user)
@@ -63,7 +72,7 @@ export default {
      userPassword:false
  }
     },
-        name: "UserProfiles",
+        name: "UserInformation",
         components: {
             AdminTopHeader,
             AdminSideBar,
@@ -79,7 +88,6 @@ export default {
     },
     methods: {
         update:function(){
-            
         },
     form_m(){
       var vm = this,
@@ -88,16 +96,12 @@ export default {
       formData.append('key','value')
       for (const [key, value]  of formData.entries()) {
         jsonObject[key] = value;
-
       }
        fetch(`http://localhost:3000/api/wsers/${user.userId}`,{method:'PATCH',
        body:JSON.stringify(jsonObject),
      headers: {
             "Content-Type": "application/json; charset=utf-8",
-            //"Accept":"application/json; charset=utf-8",
-            // "Content-Type": "application/x-www-form-urlencoded",
         },
-       
        })
     },
     password_m(){
@@ -113,14 +117,8 @@ export default {
        {method:'POST',body:JSON.stringify(jsonObject),
      headers: {
                "Content-Type": "application/x-www-form-urlencoded",
-            // "Content-Type": "application/json; charset=utf-8",
-            //"Accept":"application/json; charset=utf-8",
-            // "Content-Type": "application/x-www-form-urlencoded",
         },
        })
-    //    console.log({lastname:"Johnson"})
-    //    console.log(jsonObject)
-    // console.log(JSON.stringify(jsonObject))
     },
         ...mapActions('users', {
             getAllUsers: 'getAll',
@@ -128,11 +126,5 @@ export default {
             update: 'update',
         })
     }
-    // mounted (){
-    //     form
-    //     axios.patch (`http://localhost:3000/api/wsers/${user.userId}`, {
-    //         'lastname':vm.$refs.form[0],
-    //     })
-    // }
 };
 </script>
