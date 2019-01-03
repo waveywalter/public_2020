@@ -16,6 +16,7 @@ import affiliatePage from '../_pages/affiliatepage'
 import testpage2 from '../_pages/testpage2'
 import HomePage from '../_pages/HomePage'
 import forbiddenerror from '../_pages/forbiddenerror'
+import affiliatedashboard from '../components/affiliateComponents/affiliateDashboard'
 
 
 Vue.use(Router);
@@ -43,8 +44,8 @@ export const router = new Router({
     beforeEnter: (to,from,next) => {
       if(user.user.role == 'sales'){
         next ('/salesdashboard');
-      } else {
-        next();
+      } else if (user.user.role == 'affiliate'){
+        next('/affiliatedashboard');
       }
     }
   },
@@ -81,44 +82,20 @@ export const router = new Router({
       {path:'createadmin', component: CreateAdmin}
     ]
   },
-    { path: '/affiliatepage', component: affiliatePage,
-    children: [
-      { path: 'test1', component: Testpage },
-      { path: 'test2', component: testpage2 },
-    ], 
-    beforeEnter: (to,from,next) => {
-      if(user.user.role == 'owner'){
-        next();
-      }else {
-                alert("owner only")
-                history.back()
-      }
-    }
-   },
+  { path: '/affiliatedashboard', component: affiliatedashboard},
 
-  //   { path: '/testpage', component: Testpage,
-  //    beforeEnter: (to,from,next) => {
-  //      if(user.user.role == 'exdir'){
-  //        next();
-  //       } else {
-  //         alert("Not Authrized")
-  //         history.back()
+  //   { path: '/affiliatepage', component: affiliatePage,
+  //   children: [
+  //     { path: 'test1', component: Testpage },
+  //     { path: 'test2', component: testpage2 },
+  //   ], 
+  //   // beforeEnter: (to,from,next) => {
+  //   //   if(user.user.role == 'affiliate'){
+  //   //     next();
+  //   //   }
+  //   // }
+  //  },
 
-  //       }
-  //     }
-  //   },
-  //   { path: '/testpage2', component: testpage2, 
-  //   beforeEnter: (to,from,next) => {
-  //     if(user.user.role == 'exdir'){
-  //       next();
-  //     } else {
-  //       alert("Not Authrized")
-  //       history.back()
-  //     }
-  //   }
-  // },
-    // children: [{path: 'profile',component: Userprofile}]
-    
 
 
     // otherwise redirect to home
