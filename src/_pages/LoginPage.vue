@@ -33,6 +33,7 @@
             </div>
                                 <div class="form-group m-b-0">
                         <div class="col-sm-12 text-center">
+                            <p class="error-msg"></p>
                             <p>If you are here you know where this goes!</p>
                         </div>
                     </div>
@@ -45,9 +46,12 @@
 </template>
 
 <script>
-
+ 
 import { mapState, mapActions } from 'vuex'
-
+import * as Cookie from 'js-cookie';
+$( document ).ready(function() {
+    $('p.error-msg').text(Cookie.get('sessionMsg'));
+});
 export default {
     data () {
         return {
@@ -57,7 +61,8 @@ export default {
         }
     },
     computed: {
-        ...mapState('account', ['status'])
+        ...mapState('account', ['status']),
+        ...mapState('alert', ['message'])
     },
     created () {
         // reset login status

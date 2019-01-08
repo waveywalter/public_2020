@@ -16,7 +16,7 @@ export const store = new Vuex.Store({
         users
     },
     plugins: [createPersistedState({
-        paths: ['account.user'],
+        paths: ['alert.message'],
         getState: (key) => Cookie.getJSON(key), 
         setState: (key, state) => Cookie.set(key, state, { expires: 1, secure: false })
     })]

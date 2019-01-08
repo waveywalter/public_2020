@@ -1,8 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import { account } from '../_store/account.module';
-import {store} from '../_store';
 import { userService } from '../_services';
+import * as Cookie from 'js-cookie';
 
 import LandingPage from '../components/LandingPage';
 import UserProfiles from '../_pages/UserProfiles'
@@ -20,7 +19,6 @@ import testpage2 from '../_pages/testpage2'
 import HomePage from '../_pages/HomePage'
 import forbiddenerror from '../_pages/forbiddenerror'
 import affiliatedashboard from '../components/affiliateComponents/affiliateDashboard'
-
 
 Vue.use(Router);
 let user = JSON.parse(localStorage.getItem('user'));
@@ -101,7 +99,7 @@ export const router = new Router({
             if ((user.user.role == "owner") && roleMapping.id) {
               next();
             }else {
-              alert("owner only")
+              //alert("owner only")
               history.back()
             }
         });
@@ -116,9 +114,27 @@ export const router = new Router({
 router.beforeEach((to, from, next) => {
   // redirect to login page if not logged in and trying to access a restricted page
   let user = JSON.parse(localStorage.getItem('user'));
-  //console.log(user)
-
-  // let role = user.user.role;
+  // auto logout for 15s
+  function idleTimer() {
+    var tt, tp;
+    //window.onload = resetTimer;
+    window.onmousemove = resetTimer; // catches mouse movements
+    window.onmousedown = resetTimer; // catches mouse movements
+    window.onclick = resetTimer;     // catches mouse clicks
+    window.onscroll = resetTimer;    // catches scrolling
+    window.onkeypress = resetTimer;  //catches keyboard actions
+ 
+   function resetTimer() {
+        console.log("re");
+        clearTimeout(tp);
+        clearTimeout(tt);
+        if (user) {
+          tp = setTimeout(function (){alert("idle for 10s, close in 10s"); }, 10000);
+          tt = setTimeout(function (){Cookie.set("sessionMsg", "Auto Logout", { expires: 1, secure: false });userService.logout(); }, 15000);
+        }
+    }
+  }
+  idleTimer();
 
   const publicPages = ['/','/login', '/register',];
   const authRequired = !publicPages.includes(to.path);

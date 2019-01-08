@@ -10,12 +10,14 @@ import App from './app/App';
 
 
 Vue.use(VeeValidate);
-
+Vue.component('modal', {
+    template: '#modal-template'
+  })
 
 new Vue({
-    el: '#app',
+    //el: '#app',
     router,
     store,
     render: h => h(App)
-});
+}).mount('#app');
 

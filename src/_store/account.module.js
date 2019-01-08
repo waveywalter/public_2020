@@ -1,5 +1,6 @@
 import { userService } from '../_services';
 import { router } from '../_helpers';
+import * as Cookie from 'js-cookie';
 
 const user = JSON.parse(localStorage.getItem('user'));
 const state = user
@@ -8,6 +9,7 @@ const state = user
 
 const actions = {
     login({ dispatch, commit }, { username, password }) {
+        Cookie.remove("sessionMsg");
         commit('loginRequest', { username });
     
         userService.login(username, password)
@@ -24,7 +26,7 @@ const actions = {
             );
     },
     logout({ commit }) {
-        userService.logout(user);
+        userService.logout();
         commit('logout');
     },
     register({ dispatch, commit }, user) {
