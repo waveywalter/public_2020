@@ -12,7 +12,7 @@ import HrDashBoard from '../components/hrComponents/HrDashBoard'
 import hrcreateform from '../components/hrComponents/hrcreateform'
 import SalesDashBoard from '../components/salesComponents/SalesDashBoard'
 import NewAffiliateform from '../components/salesComponents/NewAffiliateform'
-import affiliatePage from '../_pages/affiliatepage'
+// import affiliatePage from '../_pages/affiliatepage'
 import testpage2 from '../_pages/testpage2'
 import HomePage from '../_pages/HomePage'
 import forbiddenerror from '../_pages/forbiddenerror'
@@ -33,10 +33,10 @@ export const router = new Router({
 
     { path: '/', component: LandingPage,
     beforeEnter: (to,from,next) => {
-      if(user = true){
-        history.back()
-      } else {
-        next ('/login')
+      if(user == null){
+          next('/login')
+      } else{
+        next('/homepage')
       }
     }  
   },
@@ -44,8 +44,14 @@ export const router = new Router({
     beforeEnter: (to,from,next) => {
       if(user.user.role == 'sales'){
         next ('/salesdashboard');
-      } else if (user.user.role == 'affiliate'){
+      } else if (user.user.role == "affiliate"){
         next('/affiliatedashboard');
+      } else if (user.user.role == "hr"){
+        next('/hrdashboard');
+      } else if (user.user.role == "admin"){
+        next('/admindashboard');
+      } else{
+        next();
       }
     }
   },

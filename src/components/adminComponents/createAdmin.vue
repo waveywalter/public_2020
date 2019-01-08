@@ -71,7 +71,7 @@
                     >
                       <option value="admin">Admin</option>
                       <option value="owner">Sales</option>
-                      <option value="exdir">Affiliate</option>
+                      <option value="affiliate">Affiliate</option>
                       <option value="nursdir">Director of Nursing</option>
                       <option value="nurse1">Nurse1</option>
                     </select>

@@ -72,7 +72,7 @@ export default {
  return {
      userInfo:false,
      userPassword:false
- }
+      }
     },
         name: "UserInformation",
         components: {
@@ -90,6 +90,13 @@ export default {
     },
     methods: {
         update:function(){
+        },
+        onFileSelected(event){
+            this.selectedFile = event.target.files[0]
+            console.log(event);
+        },
+        onUpload(){
+
         },
     form_m(){
       var vm = this,
