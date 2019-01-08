@@ -37,13 +37,13 @@ function login(username, password) {
         });
 }
 
-function logout(user) {
-    // const requestOptions = {
-    //     method: 'DELETE',
-    //     body: authHeader()
-    // };
-    // fetch(baseURL+'/wtokens/${user.id}/?access_token=${user.id}', requestOptions).then(handleResponse);
+function logout() {
+    const requestOptions = {
+        method: 'POST',
+        headers: authHeader()
+     };
     localStorage.removeItem('user');
+    return fetch(baseURL+'/wsers/logout', requestOptions).then(handleResponse);
 }
 
 function register(user) {
@@ -80,14 +80,8 @@ function checkrole() {
         method: 'GET',
         headers: authHeader()
     };
-    return fetch(baseURL+'/wsers/username/'+user.user.username+'/roles/'+user.user.role, requestOptions).then(handleResponse).then(roleMapping => {
-        // login successful if there's a jwt token in the response
-        if (roleMapping.id) {
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
-             return true
-        }
-        return false;
-    });
+    
+    return fetch(baseURL+'/wsers/username/'+user.userId+'/roles/'+user.user.role, requestOptions); 
 }
 
 function update(user) {

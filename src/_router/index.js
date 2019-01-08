@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import { account } from '../_store/account.module';
+import {store} from '../_store';
 import { userService } from '../_services';
 
 import LandingPage from '../components/LandingPage';
@@ -34,6 +36,7 @@ export const router = new Router({
       if(user.user.role == 'sales'){
         next ('/salesdashboard');
       } else {
+        console.log(account.state.role+"456");
         next();
       }
     }
@@ -70,13 +73,14 @@ export const router = new Router({
       { path: 'test2', component: testpage2 },
     ], 
     beforeEnter: (to,from,next) => {
-      console.log(userService.checkrole() + "123");
-      if(userService.checkrole()){
-        next();
-      }else {
-        alert("owner only")
-        history.back()
-      }
+      userService.checkrole().then(res => res.json()).then(roleMapping => {
+            if ((user.user.role == "owner") && roleMapping.id) {
+              next();
+            }else {
+              alert("owner only")
+              history.back()
+            }
+        });
     }
    },
   //   { path: '/testpage', component: Testpage,
@@ -112,7 +116,7 @@ export const router = new Router({
 router.beforeEach((to, from, next) => {
   // redirect to login page if not logged in and trying to access a restricted page
   let user = JSON.parse(localStorage.getItem('user'));
-  console.log(user)
+  //console.log(user)
 
   // let role = user.user.role;
 
