@@ -71,6 +71,7 @@ export default {
             if (username && password) {
                 this.login({ username, password })
             }
+
         }
     }
 };

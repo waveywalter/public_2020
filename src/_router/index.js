@@ -15,9 +15,11 @@ import HrDashBoard from '../components/hrComponents/HrDashBoard'
 import hrcreateform from '../components/hrComponents/hrcreateform'
 import SalesDashBoard from '../components/salesComponents/SalesDashBoard'
 import NewAffiliateform from '../components/salesComponents/NewAffiliateform'
-import affiliatePage from '../_pages/affiliatepage'
+// import affiliatePage from '../_pages/affiliatepage'
 import testpage2 from '../_pages/testpage2'
 import HomePage from '../_pages/HomePage'
+import forbiddenerror from '../_pages/forbiddenerror'
+import affiliatedashboard from '../components/affiliateComponents/affiliateDashboard'
 
 
 Vue.use(Router);
@@ -30,19 +32,42 @@ const affiliate = affiliateRoutes
 export const router = new Router({
   mode: 'history',
   routes: [
-    { path: '/', component: LandingPage },
+    { path: '/forbidden', component:forbiddenerror},
+
+    { path: '/', component: LandingPage,
+    beforeEnter: (to,from,next) => {
+      if(user == null){
+          next('/login')
+      } else{
+        next('/homepage')
+      }
+    }  
+  },
     { path: '/homepage', component:HomePage,
     beforeEnter: (to,from,next) => {
       if(user.user.role == 'sales'){
         next ('/salesdashboard');
-      } else {
-        console.log(account.state.role+"456");
+      } else if (user.user.role == "affiliate"){
+        next('/affiliatedashboard');
+      } else if (user.user.role == "hr"){
+        next('/hrdashboard');
+      } else if (user.user.role == "admin"){
+        next('/admindashboard');
+      } else{
         next();
       }
     }
   },
     { path: '/UserProfiles', component: UserProfiles },
-    { path: '/login', component: LoginPage},
+    { path: '/login', component: LoginPage,
+    beforeEnter: (to,from,next) => {
+      if (localStorage.getItem(user) === user) {
+        next()
+      }else{
+        history.back()
+      }
+    }
+  },
     { path: '/register', component: RegisterPage },
     { path: '/salesdashboard', component:SalesDashBoard,
     children: [
@@ -52,8 +77,7 @@ export const router = new Router({
        if(user.user.role == 'sales'){
          next();
        }else {
-         alert("sales only")
-        history.back()
+         next("/forbidden")
        }
      }
     },
@@ -67,7 +91,7 @@ export const router = new Router({
       {path:'createadmin', component: CreateAdmin}
     ]
   },
-    { path: '/affiliatepage', component: affiliatePage,
+    { path: '/affiliatedashboard', component: affiliatedashboard,
     children: [
       { path: 'test1', component: Testpage },
       { path: 'test2', component: testpage2 },
@@ -83,30 +107,6 @@ export const router = new Router({
         });
     }
    },
-  //   { path: '/testpage', component: Testpage,
-  //    beforeEnter: (to,from,next) => {
-  //      if(user.user.role == 'exdir'){
-  //        next();
-  //       } else {
-  //         alert("Not Authrized")
-  //         history.back()
-
-  //       }
-  //     }
-  //   },
-  //   { path: '/testpage2', component: testpage2, 
-  //   beforeEnter: (to,from,next) => {
-  //     if(user.user.role == 'exdir'){
-  //       next();
-  //     } else {
-  //       alert("Not Authrized")
-  //       history.back()
-  //     }
-  //   }
-  // },
-    // children: [{path: 'profile',component: Userprofile}]
-    
-
 
     // otherwise redirect to home
     { path: '*', redirect: '/' }

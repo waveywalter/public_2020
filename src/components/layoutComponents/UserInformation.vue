@@ -2,23 +2,25 @@
 <template>
     <div>
 
-        <h1>Hi {{account.user.user.firstname +" "+ account.user.user.role}} ! </h1>
-        <p> Your email is {{account.user.user.email}}</p>
-        <p> {{account.user.user.firstname+ " "+ account.user.user.lastname}}</p>
+
+
+        <h3>{{account.user.user.firstname +" "+ account.user.user.lastname}}</h3>
+        <h4>{{ account.user.user.role}}</h4>
+        <small>{{account.user.user.email}}</small>
         <div id="app">
             
   <form ref="form" @submit.prevent="form_m">
     <input placeholder="First Name" type="text" name="firstname"> <br>
     <input placeholder="Last Name" type="text" name="lastname"> <br>
-    <input placeholder="Email" type="text" name="email"> <br />
+    <!-- <input placeholder="Email" type="text" name="email"> <br /> -->
     <input type="submit">
   </form>
 </div>
-
-        <input type="file" @change="onFileChanged">
+    </div>
+        <!-- <input type="file" @change="onFileChanged"> -->
 
         <!-- <h3>Users from secure api end point:</h3> -->
-    </div>
+
         <!-- <em v-if="users.loading">Loading users...</em> -->
         <!-- <span v-if="users.error" class="text-danger">ERROR: {{users.error}}</span> -->
         <!-- <ul id="userList" v-if="users.items"> -->
@@ -57,7 +59,7 @@
 </template>
 
 <script>
-//let user = JSON.parse(localStorage.getItem('user')).user;
+let user = JSON.parse(localStorage.getItem('user'));
 
 // import { authHeader } from '../_helpers';
 import AdminTopHeader from './adminTopHeader';
@@ -70,7 +72,7 @@ export default {
  return {
      userInfo:false,
      userPassword:false
- }
+      }
     },
         name: "UserInformation",
         components: {
@@ -88,6 +90,13 @@ export default {
     },
     methods: {
         update:function(){
+        },
+        onFileSelected(event){
+            this.selectedFile = event.target.files[0]
+            console.log(event);
+        },
+        onUpload(){
+
         },
     form_m(){
       var vm = this,

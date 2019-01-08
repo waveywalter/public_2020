@@ -1,17 +1,19 @@
 <template>
-
     <div>
         <AdminTopHeader></AdminTopHeader>
         <AdminSideBar></AdminSideBar>
         <div id="page-wrapper">
+            <div class="container-fluid">
             <div class="col-lg">
-             <h4 class="row bg-title">Sales DashBoard</h4>
+                <div class="row bg-title">
+             <h4 class="page-title">Sales DashBoard</h4>
              </div>
+            </div>
              <div class="col-lg-6 col-sm-6 col-xs-12">
              <div class="white-box">
             <section>
         <div class="sttabs tabs-style-bar">
-            <nav class="col-md-5">
+            <nav>
                 <ul>
                     <li><a v-on:click="components = 'NewAffiliateform' " href="#section-bar-1" class="sticon ti-home "><span>New Form</span></a></li>
                     <li><a v-on:click="components = 'Userinformation' " href="#section-bar-2" class="sticon ti-trash"><span>User Info</span></a></li>
@@ -32,8 +34,7 @@
             </div>
         </div>
         </div>
-
-    
+        </div>
 </template>
 
 <script>
