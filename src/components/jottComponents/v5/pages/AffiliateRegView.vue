@@ -563,6 +563,7 @@ const axios = axiosApi.create();
 
 export default {
   //mixins:[VueTimers],
+  name:"AffiliateRegView",
   timers:{
     log:{time:1000,autostart:true}
   },
@@ -1716,7 +1717,7 @@ export default {
             open=false;
             break;
 
-}         console.log(open)
+ }         console.log(open)
           if(open){
           fetch('https://jott.thewaveint.com/api/create/contracts/'+id,{method:"POST",
               headers:{"Content-Type": "application/json; charset=utf-8","accept": "*/*"},body:JSON.stringify(this.$store.state)}).then(response=>{
@@ -1755,8 +1756,8 @@ export default {
         this.clock = setInterval(this.checkContractStatus,7000);
         }
         else if(!open){
-//this.clock = setInterval(this.checkContractStatus,7000);
- this.$store.commit('increment')
+ //this.clock = setInterval(this.checkContractStatus,7000);
+  this.$store.commit('increment')
         }
         else{
           this.$store.commit('increment')

@@ -1,9 +1,14 @@
+<style scoped>
+.col-md-6.col-lg-4.col-sm-12 {
+    flex: 1  1 100%;max-width:100%;
+}
+</style>
 <template>
   <div>
     <div class="row">
       <div class="col-md-6 col-lg-4 col-sm-12">
         <div class="white-box mt-5 ml-5">
-          <h3 class="box-title m-b-5">Sales</h3>
+          <h3 class="box-title m-b-5">New Affiliate Applicant</h3>
           <div class="row">
             <div class="col-sm-12 col-xs-12">
               <form ref="form" @submit.prevent="handleSubmit">
@@ -12,7 +17,7 @@
 
                   <div class="input-group">
                     <input
-                      v-model="reg.firstname"
+                      v-model="app.firstname"
                       type="text"
                       v-validate="'required'"
                       class="form-control"
@@ -30,7 +35,7 @@
                   <label for="exampleInputuname">Last Name</label>
                   <div class="input-group">
                     <input
-                      v-model="reg.lastname"
+                      v-model="app.lastname"
                       type="text"
                       v-validate="'required'"
                       class="form-control"
@@ -43,50 +48,50 @@
                   </div>
                   <span>{{ errors.first("lastname")}}</span>
                 </div>
+                <div class="form-group">
+                  <label for="exampleInputEmail1" type="text" name="type">Type</label>
+                  <div class="input-group">
+                    <select
+                      v-model="app.type"
+                      v-validate="'required'"
+                      name="list"
+                      class="form-control"
+                    >
+                      <option value="admin">MSC</option>
+                      <option value="owner">LFTV</option>
+                      <option value="exdir">MSPOM</option>
+                      <option value="nursdir">LMBD</option>
+                      <option value="nurse1">PGLOI</option>
+                    </select>
+                    <div class="input-group-addon">
+                      <i class="ti-shield"></i>
+                    </div>
+                  </div>
+                
+                </div>
                 <div class="form-group mt-5">
-                  <label for="exampleInputuname">User Name</label>
+                  <label for="exampleInputuname">Phone</label>
                   <div class="input-group">
                     <input
-                      v-model="reg.username"
+                      v-model="app.phone"
                       type="text"
                       v-validate="'required'"
                       class="form-control"
-                      placeholder="Username"
-                      name="username"
+                      placeholder="phone"
+                      name="phone"
                       v-on:change="clearAlert"
                     >
                     <div class="input-group-addon">
                       <i class="ti-user"></i>
                     </div>
                   </div>
-                  <span>{{ errors.first("username")}}</span>
-                </div>
-                <div class="form-group">
-                  <label for="exampleInputEmail1" type="text" name="role">Role</label>
-                  <div class="input-group">
-                    <select
-                      v-model="reg.role"
-                      v-validate="'required'"
-                      name="list"
-                      class="form-control"
-                    >
-                      <option value="admin">Admin</option>
-                      <option value="owner">Owner</option>
-                      <option value="exdir">Executive Director</option>
-                      <option value="nursdir">Director of Nursing</option>
-                      <option value="nurse1">Nurse1</option>
-                    </select>
-                    <div class="input-group-addon">
-                      <i class="ti-shield"></i>
-                    </div>
-                  </div>
-                  <span>{{ errors.first("role")}}</span>
+                  <span>{{ errors.first("phone")}}</span>
                 </div>
                 <div class="form-group">
                   <label for="exampleInputEmail1">Email address</label>
                   <div class="input-group">
                     <input
-                      v-model="reg.email"
+                      v-model="app.email"
                       type="text"
                       v-validate="'required|email'"
                       class="form-control"
@@ -100,21 +105,21 @@
                   <span>{{ errors.first('email') }}</span>
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputpwd1">Password</label>
+                  <label for="exampleInputpwd1">Address</label>
                   <div class="input-group">
                     <input
-                      v-model="reg.password"
-                      type="password"
-                      v-validate.continues="'required|min:6'"
+                      v-model="app.address"
+                      type="text"
+                      
                       class="form-control"
-                      placeholder="Enter password"
-                      name="password"
+                      placeholder="Address"
+                      name="address"
                     >
                     <div class="input-group-addon">
                       <i class="ti-lock"></i>
                     </div>
                   </div>
-                  <span>{{ errors.first('password') }}</span>
+                  
                 </div>
                 <div class="text-right">
                   <button
@@ -142,13 +147,13 @@ export default {
   data() {
     return {
       // errors: [],
-      reg: {
+      app: {
         firstname: "",
         lastname: "",
-        username: "",
-        role: "",
+        phone: "",
+        type: "",
         email: "",
-        password: ""
+
       },
       submitted: false
     };
@@ -163,21 +168,49 @@ export default {
       this.submitted = true;
       this.$validator.validate().then(valid => {
         if (valid) {
-          this.register(this.reg);
-          this.reg = {
-            firstname: "",
-            lastname: "",
-            username: "",
-            role: "",
-            email: "",
-            password: ""
-          };
-          this.$validator.reset();
-        }
-      });
-    }
+            // register applicant in with email
+            console.log('Send Application to api')
+            this.newApp();
+      }
+    })
+    },
+   newApp(){     
+        let data = this.app
+          fetch('https://jott.thewaveint.com/api/register',{method:"POST",headers:{"Content-Type": "application/json; charset=utf-8",},body:JSON.stringify(this.app)}).then(response=>{
+        
+          response.text().then(text=>{
+                  let application = JSON.parse(text);
+
+         
+          fetch('https://jott.thewaveint.com/api/containers',{
+            method:"POST",headers:{"Content-Type": "application/json; charset=utf-8"},
+            body:JSON.stringify({
+              "provider": "filesystem",
+              "root": "./server/storage",
+              "nameConflict": "makeUnique",
+              "name":this.$store.state.apps.application.id
+            }) 
+          }).then(response=>{console.log(response)})
+        console.log(this)
+              this.app.firstname ='';
+              this.app.lastname ='';
+              this.app.type ='';
+              this.app.phone ='';
+              this.app.email ='';
+              this.app.address ='';
+               this.$nextTick(() => {
+                this.$validator.reset()
+              })
+         
+          })
+          
+
+
+          }) 
+        
+   }
   }
-};
+}
 </script>
 
 <style scoped>

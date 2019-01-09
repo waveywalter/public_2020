@@ -33,7 +33,7 @@
             </div>
                                 <div class="form-group m-b-0">
                         <div class="col-sm-12 text-center">
-                            <p>If you are here you know where this goes!</p>
+                            <p>If you are here you know where this goes! Wally World</p>
                             <p>{{status}}</p>
                         </div>
                     </div>
@@ -65,11 +65,14 @@ export default {
         // this.logout();
     },
     methods: {
-        ...mapActions('account', ['login', 'logout']),
+        ...mapActions('account', ['login', 'logout',"loco"]),
         handleSubmit (e) {
+            console.log(this)
             this.submitted = true;
             const { username, password } = this;
             if (username && password) {
+                console.log("STAGE 1")
+                console.log(this)
                 this.login({ username, password })
             }
         }

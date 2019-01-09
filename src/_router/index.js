@@ -5,7 +5,7 @@ import LandingPage from '../components/LandingPage';
 import UserProfiles from '../_pages/UserProfiles'
 import LoginPage from '../_pages/LoginPage'
 import RegisterPage from '../_pages/RegisterPage'
-import Testpage from '../_pages/Testpage'
+import Testpage from '../_pages/TestPage'
 import AdminDashBoard from '../components/adminComponents/adminDashBoard'
 import CreateAdmin from '../components/adminComponents/createAdmin'
 import HrDashBoard from '../components/hrComponents/HrDashBoard'
@@ -15,24 +15,52 @@ import NewAffiliateform from '../components/salesComponents/NewAffiliateform'
 import affiliatePage from '../_pages/affiliatepage'
 import testpage2 from '../_pages/testpage2'
 import HomePage from '../_pages/HomePage'
+//import forbiddenerror from '../_pages/forbiddenerror'
+import affiliatedashboard from '../components/affiliateComponents/affiliateDashboard'
 
 
 Vue.use(Router);
 let user = JSON.parse(localStorage.getItem('user'));
 
 let affiliateRoutes = []
-//affiliateRoutes = affiliateRoutes.concat(Testpage,testpage2)
-//const affiliate = affiliateRoutes
+affiliateRoutes = affiliateRoutes.concat(Testpage,testpage2)
+const affiliate = affiliateRoutes
 
 export const router = new Router({
   mode: 'history',
   routes: [
-    { path: '/', component: LandingPage },
-    { path: '/homepage', component:HomePage},
+  //  { path: '/forbidden', component:forbiddenerror},
+
+    { path: '/', component: LandingPage,
+    beforeEnter: (to,from,next) => {
+      if(user = true){
+        history.back()
+      } else {
+        next ('/login')
+      }
+    }  
+  },
+    { path: '/homepage', component:HomePage,
+    beforeEnter: (to,from,next) => {
+      if(user.user.role == 'sales'){
+        next ('/salesdashboard');
+      } else if (user.user.role == 'affiliate'){
+        next('/affiliatedashboard');
+      }
+    }
+  },
     { path: '/UserProfiles', component: UserProfiles },
-    { path: '/login', component: LoginPage},
+    { path: '/login', component: LoginPage,
+    beforeEnter: (to,from,next) => {
+      if (localStorage.getItem(user) === user) {
+        next()
+      }else{
+        history.back()
+      }
+    }
+  },
     { path: '/register', component: RegisterPage },
-    { path: '/salesdashboard', component:SalesDashBoard,
+    { path: '/salesdashboard/:id?', component:SalesDashBoard,
     children: [
       {path: 'NewAffiliateform', component:NewAffiliateform}
      ],
@@ -40,8 +68,7 @@ export const router = new Router({
        if(user.user.role == 'sales'){
          next();
        }else {
-         alert("sales only")
-        history.back()
+         next("/forbidden")
        }
      }
     },
@@ -55,43 +82,20 @@ export const router = new Router({
       {path:'createadmin', component: CreateAdmin}
     ]
   },
-    { path: '/affiliatepage', component: affiliatePage,
-    children: [
-      { path: 'test1', component: Testpage },
-      { path: 'test2', component: testpage2 },
-    ], 
-    beforeEnter: (to,from,next) => {
-      if(user.user.role == 'owner'){
-        next();
-      }else {
-                alert("owner only")
-                history.back()
-      }
-    }
-   },
-  //   { path: '/testpage', component: Testpage,
-  //    beforeEnter: (to,from,next) => {
-  //      if(user.user.role == 'exdir'){
-  //        next();
-  //       } else {
-  //         alert("Not Authrized")
-  //         history.back()
+  { path: '/affiliatedashboard', component: affiliatedashboard},
 
-  //       }
-  //     }
-  //   },
-  //   { path: '/testpage2', component: testpage2, 
-  //   beforeEnter: (to,from,next) => {
-  //     if(user.user.role == 'exdir'){
-  //       next();
-  //     } else {
-  //       alert("Not Authrized")
-  //       history.back()
-  //     }
-  //   }
-  // },
-    // children: [{path: 'profile',component: Userprofile}]
-    
+  //   { path: '/affiliatepage', component: affiliatePage,
+  //   children: [
+  //     { path: 'test1', component: Testpage },
+  //     { path: 'test2', component: testpage2 },
+  //   ], 
+  //   // beforeEnter: (to,from,next) => {
+  //   //   if(user.user.role == 'affiliate'){
+  //   //     next();
+  //   //   }
+  //   // }
+  //  },
+
 
 
     // otherwise redirect to home
