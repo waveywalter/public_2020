@@ -112,29 +112,6 @@ export const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-  // redirect to login page if not logged in and trying to access a restricted page
-  let user = JSON.parse(localStorage.getItem('user'));
-  // auto logout for 15s
-  function idleTimer() {
-    var tt, tp;
-    //window.onload = resetTimer;
-    window.onmousemove = resetTimer; // catches mouse movements
-    window.onmousedown = resetTimer; // catches mouse movements
-    window.onclick = resetTimer;     // catches mouse clicks
-    window.onscroll = resetTimer;    // catches scrolling
-    window.onkeypress = resetTimer;  //catches keyboard actions
- 
-   function resetTimer() {
-        console.log("re");
-        clearTimeout(tp);
-        clearTimeout(tt);
-        if (user) {
-          tp = setTimeout(function (){alert("idle for 10s, close in 10s"); }, 10000);
-          tt = setTimeout(function (){Cookie.set("sessionMsg", "Auto Logout", { expires: 1, secure: false });userService.logout(); }, 15000);
-        }
-    }
-  }
-  idleTimer();
 
   const publicPages = ['/','/login', '/register',];
   const authRequired = !publicPages.includes(to.path);
