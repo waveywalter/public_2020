@@ -8,7 +8,7 @@
     <div class="row">
       <div class="col-md-6 col-lg-4 col-sm-12">
         <div class="white-box mt-5 ml-5">
-          <h3 class="box-title m-b-5">New Affiliate Applicant</h3>
+          <h3 class="box-title m-b-5">New Affiliate Applicant Boy</h3>
           <div class="row">
             <div class="col-sm-12 col-xs-12">
               <form ref="form" @submit.prevent="handleSubmit">
