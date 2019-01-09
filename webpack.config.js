@@ -5,18 +5,18 @@ module.exports = {
     mode: 'development',
     entry:path.join(__dirname, 'src', 'index.js'),
     resolve: {
-        extensions: ['.js', '.vue',]
+        extensions: ['.js', '.vue','styl']
     },
     output: {
         path: path.join(__dirname, 'src'),
         publicPath: '/',
 		filename: "main.js"
       },
-    module: {
+    module: { 
         rules: [
             {
                 test: /\.vue?$/,
-                exclude: /(node_modules)/,
+                //exclude: /(node_modules)/,
                 use: 'vue-loader'
             },
             {
@@ -26,7 +26,12 @@ module.exports = {
             },
             {
                 test: /\.css/,
-                use: ['vue-style-loader', 'css-loader'] // BOTH are needed!
+                use: ['vue-style-loader', 'css-loader'] ,// BOTH are needed!
+                include:[path.resolve(__dirname,'public/assets/')]
+              },
+              {
+                test: /\.styl$/,
+                use:['css-loader','stylus-loader']
               }
         ]
     },
@@ -35,7 +40,7 @@ module.exports = {
     })],
     devServer: {
         historyApiFallback: true,
-        host:'0.0.0.0',
+        host:'localhost',
         disableHostCheck:true,
      //   https:true
     },

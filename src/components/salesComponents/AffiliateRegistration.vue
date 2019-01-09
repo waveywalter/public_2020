@@ -218,20 +218,9 @@ iframe{
         </div>
     <div v-if="this.$root._route.params.id">
                     <div class="meter max6">
-                     <div><span>Register</span> <i class="ti-check" v-if="progress>1"></i><br></div>
-                     <div><span>Accident Reporting Procedure</span>   <i class="ti-check" v-if="cs1==1"></i><br></div>
-                     <div><span>Background Screen</span>  <i class="ti-check" v-if="cs2==1"></i><br></div>
-                     <div><span>CDC Fact Sheet</span>  <i class="ti-check" v-if="cs3==1"></i><br></div>
-                     <div><span>Confidentiality Agreement</span><i class="ti-check" v-if="cs4==1"></i><br></div>
-                     <div><span>Part Time Per Diem</span> <i class="ti-check" v-if="cs5==1"></i><br></div>
-                     <div><span>Professional Ethics</span> <i class="ti-check" v-if="cs6==1"></i><br></div>
-                     <div><span>Sexual Harassment</span> <i class="ti-check" v-if="cs7==1"></i><br></div>
-                     <div><span>TB</span> <i class="ti-check" v-if="cs8==1"></i><br></div>
+ 
                      <div><span>Admission Agreement</span> <i class="ti-check" v-if="cs9==1"></i><br></div>       
-                     <div><span>Resume </span> <i class="ti-check" v-if="cresume==1"></i><br></div>
-                     <div><span>License </span> <i class="ti-check" v-if="clicense==1"></i><br></div>
-                     <div><span>Insurance</span> <i class="ti-check" v-if="cliability==1"></i><br></div>
-                     <div><span>CES</span> <i class="ti-check" v-if="cces==1"></i><br></div>
+
                     </div>               
         </div> 
 
@@ -252,13 +241,15 @@ export default {
     },
     data(){
         return {
-            signature:[["Accident Reporting Procedure",1,1],['Authorization-Background Screening',1,0],['CDCFactSheet VaccineInfoSign Sheet',1,0],
-                ['Confidentiality Statement-Contractor',1,0],['Part-Time-PerDiemStaffOrientationPacket',1,0],
-                ['Profl Code of Ethics & Standards of Conduct',1,0],['Sexual Harrassment Policy- Contractors',1,0],['TB Status Review',1,0],['Admission Agreement',1,0]],
+          //  signature:[["Accident Reporting Procedure",1,1],['Authorization-Background Screening',1,0],['CDCFactSheet VaccineInfoSign Sheet',1,0],
+          //      ['Confidentiality Statement-Contractor',1,0],['Part-Time-PerDiemStaffOrientationPacket',1,0],
+          //      ['Profl Code of Ethics & Standards of Conduct',1,0],['Sexual Harrassment Policy- Contractors',1,0],['TB Status Review',1,0],['Admission Agreement',1,0]],
+            signature:[['Admission Agreement',1,0]],
             list:[],
             appfilter:'',
             //sections:["Profile Details","Signed Documents","Uploaded Documents","Emergency Contacts"],
-            sections:["Profile Details","Signed Documents","Uploaded Documents"],
+            //sections:["Profile Details","Signed Documents","Uploaded Documents"],
+            sections:["Profile Details","Signed Documents"],
             upload:[['Resume',0,2],['License',0,0],['Liability',0,0],['CES',0,0]],
           //  test:'My Life'
         }
@@ -782,14 +773,14 @@ computed:{
       progress :  { 
         
                 get:function(e){
-        console.log('get cs8');
+        console.log('get progress');
         console.log(e);
         console.log(this)
         return this.$store.state.apps.application.progress
         },
         set:function(e){
           console.log(e)
-          console.log('set cs8');
+          console.log('set progress');
           this.$store.state.apps.application.progress = e;
           return 'Set Resume'
             } 
@@ -818,10 +809,10 @@ methods:{
             return true
         }
         return false
-    },
+     },
     documentUpload(doctitle,n){
             console.log("Upload Docs to Document API and Update Application",doctitle,n)
-    },
+     },
     rejectUpload(doctitle,n){
         console.log("REJCT DOWNLAOD",doctitle,n)
         let flag = 'resume';
@@ -852,7 +843,7 @@ methods:{
             method:"DELETE",}
         )
       
-    },
+     },
     uploadshow(n,notch){
         console.log("show "+notch)
         let flag = 'resume';
@@ -877,7 +868,7 @@ methods:{
         else{
             return false
         }
-    },
+     },
     sendShow(n){
         let m = n+1;
         let r = 'sign'+m;
@@ -892,7 +883,7 @@ methods:{
             if((this.$store.state.apps.application[r]=='' || this.$store.state.apps.application[r]==undefined) && this.$store.state.apps.application[s]==0){return true} 
         }
         return false
-    },
+     },
     waitingHide(n){
         let r = 's'+(n+1);
         let p  = 'sign'+(n+1)
@@ -904,7 +895,7 @@ methods:{
             let r = 'sign'+n;
             if(this.$store.state.apps.application[r]=='' ){return true}   
             return false 
-    },
+     },
     sendDocs(n){
         console.log('SENDOCSSSSSSSSSSSSSSS')
         console.log(n)
@@ -989,13 +980,13 @@ methods:{
         }
 
         }
-    },
+     },
     iframeShow(n){
             let l = n+1;
             let r = 's'+l;
             if(this.$store.state.apps.application[r]==1){return true}
             return false
-    },
+      },
     iframeShowNext(n){
             let l = n+2;
             let k = n+1;
@@ -1007,7 +998,7 @@ methods:{
             console.log(this.$store.state.apps.application[p],this.$store.state.apps.application[p],this.$store.state.apps.application[signnext])
             if(l<=this.signature.length && this.$store.state.apps.application[p]==1 && this.$store.state.apps.application[r]==0 &&  !this.$store.state.apps.application[signnext]){return true}
             return false
-    },
+      },
     buttonHide(n){
         let r = n+1;
         let k = 's'+r;
@@ -1021,7 +1012,7 @@ methods:{
         //if(this.$store.state.apps.application[k]==0 && this.$store.state.apps.application[j].length>0){return true}
         //if(this.$store.state.apps.application[k]==1 && this.$store.state.apps.application[j].length==0){return false}
         return true
-    },
+      },
     testRejection(num){
         if(num==0){if (this.cresume==0){ return false }}
         if(num==1){if (this.clicense==0){ return false }}
@@ -1032,21 +1023,21 @@ methods:{
     isActive(boo){
         if(boo<1){return true}
         return false
-    },
+      },
     test(){return 'Chester'},
     changetoprofile(){
       this.$store.state.apps.application.progress=1
       clearInterval(this.clock)
-    },
+      },
     changetosign(){
       this.$store.state.apps.application.progress = 2;
       clearInterval(this.clock)
       this.clock = setInterval(this.checkContractStatus,7000);
-    },
+      },
     changetoupload(){
       this.$store.state.apps.application.progress = 10;
       clearInterval(this.clock)
-    },
+      },
     goToProgress(){},
     update(){
       //update application with new profile details
@@ -1063,7 +1054,7 @@ methods:{
       console.log(JSON.stringify(this.$store.state.apps.application))
      fetch("/api/applications/"+this.$store.state.apps.application.id,{method:"PATCH",headers:{"Content-Type": "application/json; charset=utf-8",},body:JSON.stringify(this.$store.state.apps.application)}).then()
       
-    },
+      },
     resumeApp(){
       if(this.progress==0){ 
           
@@ -1203,7 +1194,7 @@ methods:{
         //this.$store.commit('increment')
         window.sessionStorage.progress = this.progress; 
         } 
-    },
+      },
     rejectApp(mode,n){
       let dt = this.$store.state.apps.application;
       dt.approved='0';
@@ -1235,13 +1226,13 @@ methods:{
           dt[sid]='';
           dt[sign]='';
       }
-    this.update();
-    },
+      this.update();
+      },
     approvalCheck(){
       if(this.checkbox13==true &&  this.checkbox12==true && this.checkbox11==true && this.checkbox10==true && this.checkbox9==true && this.checkbox2==true && this.checkbox3==true && this.checkbox4==true && this.checkbox5==true && this.checkbox6==true && this.checkbox7==true && this.checkbox8==true){
         return true
       }
-    },
+      },
     filterApp(txt){
             console.log('filterApp2');
       
@@ -1259,7 +1250,7 @@ methods:{
           )
           console.log(this.list)
         })
-    },
+      },
     getApps(){
         fetch('https://jott.thewaveint.com/api/applications').then(response=>response.json()).then(json=>{console.log(json)
         
@@ -1276,7 +1267,7 @@ methods:{
       else{
         this.crole='admin'
       }
-    },
+      },
     sign(n){
       let link = 'csign'+n
       return this[link]
@@ -1424,7 +1415,7 @@ methods:{
       if(this.cresume==1 && this.cliability==1 && this.cces==1 && this.clicense==1){return "success"}
       return "error"
         },
-        bon(){
+    bon(){
           console.log('BONNNNNNNNNNNNNNNNNNNNNNNNNNNN')
           console.log(this.cresume,this.cliability,this.cces,this.clicense)
       if(this.cresume==1 && this.cliability==1 && this.cces==1 && this.clicense==1){return false}
@@ -1593,6 +1584,7 @@ methods:{
             if(this.cs8==0 && this.csign8!=undefined){open=false};
             if(this.cs8==1 && this.csign9!=''){open=false};
             break;
+
 
      }           console.log(open)
           if(open){
