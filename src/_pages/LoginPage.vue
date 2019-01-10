@@ -48,9 +48,8 @@
 <script>
  
 import { mapState, mapActions } from 'vuex'
-import * as Cookie from 'js-cookie';
 $( document ).ready(function() {
-    $('p.error-msg').text(Cookie.get('sessionMsg'));
+    $('p.error-msg').text(localStorage.getItem('sessionMsg'));
 });
 export default {
     data () {

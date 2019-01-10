@@ -86,12 +86,24 @@ function checkrole() {
 
 function update(user) {
     const requestOptions = {
-        method: 'PUT',
+        method: 'PATCH',
         headers: { ...authHeader(), 'Content-Type': 'application/json' },
         body: JSON.stringify(user)
     };
 
-    return fetch(baseURL+'/wsers/reset-password', requestOptions).then(handleResponse);
+    return fetch(baseURL+'/wsers/'+user.userId, requestOptions).then(handleResponse)
+    .then(user => {
+        // login successful if there's a jwt token in the response
+        if (user.userId) {
+            var userold = JSON.parse(localStorage.getItem('user'));
+            userold.user = user
+
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+             localStorage.setItem('user', JSON.stringify(userold));
+        }
+
+        return user;
+    });
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript

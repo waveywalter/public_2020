@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <logoutWarning></logoutWarning>
+        <!-- <logoutWarning></logoutWarning> -->
         <router-view></router-view>
     </div>
 </template>

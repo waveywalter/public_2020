@@ -9,7 +9,7 @@ const state = user
 
 const actions = {
     login({ dispatch, commit }, { username, password }) {
-        Cookie.remove("sessionMsg");
+        localStorage.removeItem('sessionMsg');
         commit('loginRequest', { username });
     
         userService.login(username, password)
@@ -18,6 +18,21 @@ const actions = {
                     commit('loginSuccess', user);
                     //router.push('/admindashboard');
                     window.location.href = "/homepage";
+                },
+                error => {
+                    commit('loginFailure', error);
+                    dispatch('alert/error', error, { root: true });
+                }
+            );
+    },
+    update({ dispatch, commit }, userInfo ) {
+    
+        userService.update(userInfo)
+            .then(
+                user => {
+                    commit('updateSuccess', user);
+                    dispatch('alert/success', 'Update successfully', { root: true });
+                    router.go();
                 },
                 error => {
                     commit('loginFailure', error);
@@ -54,11 +69,14 @@ const mutations = {
     loginRequest(state, user) {
         state.status = { loggingIn: true };
         state.user = user;
-
     },
     loginSuccess(state, user) {
         state.status = { loggedIn: true };
         state.user = user;
+    },
+    updateSuccess(state, user) {
+        state.status = { loggedIn: true };
+        state.user.user = user;
     },
     loginFailure(state) {
         state.status = {};

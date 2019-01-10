@@ -4,17 +4,17 @@
       <div class="modal-wrapper">
         <div class="modal-container">
           <div class="modal-header">
-            <slot name="header">Logout Warning</slot>
+            <h3>Session Timeout</h3>
           </div>
 
           <div class="modal-body">
-            <slot name="body">Logout in {{logoutTime}} s</slot>
+              <p>You're being timed out due to inactivity. Would you like to remain logged in?</p>
+              <p>Time remaining: {{logoutTime}}</p>
           </div>
 
           <div class="modal-footer">
-            <slot name="footer">
-              <button class="modal-default-button" @click="logoutPop = false">Back</button>
-            </slot>
+              <button class="modal-default-button" @click="logoutPop = false">Yes</button>
+              <button class="modal-default-button" @click="logout()">No</button>
           </div>
         </div>
       </div>
@@ -25,7 +25,6 @@
 
 <script>
 import { userService } from "../_services";
-import * as Cookie from "js-cookie";
 export default {
   name: "logoutWarning",
   mounted() {
@@ -34,7 +33,7 @@ export default {
   data() {
     return {
       logoutPop: false,
-      logoutTime: 10,
+      logoutTime: "02:00",
       user: JSON.parse(localStorage.getItem("user"))
     };
   },
@@ -47,31 +46,37 @@ export default {
       window.onclick = resetTimer; 
       window.onscroll = resetTimer; 
       window.onkeypress = resetTimer; 
-      var self = this;
+      var self = this, timer, minutes, seconds;
 
       function resetTimer() {
+        
         if (self.user && !self.logoutPop) {
           clearTimeout(tp);
           clearTimeout(tt);
-
           tp = setTimeout(function() {
             self.logoutPop = true;
-            self.logoutTime = 10;
+            self.logoutTime = "02:00";
+            timer = 60;
             var logoutTimer = setInterval(function(){
-                self.logoutTime--;
-                if(self.logoutTime <= 0)
+                timer--;
+                minutes = parseInt(timer / 60, 10)
+                seconds = parseInt(timer % 60, 10);
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+                self.logoutTime = minutes + ":" + seconds;
+                if(timer <= 0 || !self.logoutPop)
                 clearInterval(logoutTimer);
             },1000);
           }, 900000);
           tt = setTimeout(function() {
-            Cookie.set("sessionMsg", "Auto Logout", {
-              expires: 1,
-              secure: false
-            });
+            localStorage.setItem('sessionMsg', 'Session Expired');
             userService.logout();
-          }, 910000);
+          }, 1020000);
         }
       }
+    },
+    logout() {
+            userService.logout();
     }
   }
 };
