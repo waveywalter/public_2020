@@ -41,16 +41,10 @@ module.exports = {
     })],
     devServer: {
         historyApiFallback: true,
-<<<<<<< HEAD
         proxy:{
             "/upload":"http://localhost:3344"
 
         }
-=======
-        host:'localhost',
-        disableHostCheck:true,
-     //   https:true
->>>>>>> origin/master
     },
     externals: {
         // global app config object

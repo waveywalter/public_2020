@@ -14,6 +14,7 @@
             <AffiliateRegistration></AffiliateRegistration>
             </div>
         </div>
+    </div>
 </template>
 
 <script>
