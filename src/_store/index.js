@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import createPersistedState from 'vuex-persistedstate';
 
 import { alert } from './alert.module';
 import { account } from './account.module';
@@ -14,5 +15,10 @@ export const store = new Vuex.Store({
         account,
         users,
         apps
-    }
+    },
+    plugins: [createPersistedState({
+        paths: ['alert.message'],
+        getState: (key) => JSON.parse(localStorage.getItem(key)), 
+        setState: (key, state) => localStorage.setItem(key, JSON.stringify(state))
+    })]
 });

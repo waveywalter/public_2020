@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import { userService } from '../_services';
+import * as Cookie from 'js-cookie';
 
 import LandingPage from '../components/LandingPage';
 import UserProfiles from '../_pages/UserProfiles'
@@ -19,13 +21,12 @@ import forbiddenerror from '../_pages/forbiddenerror'
 import affiliatedashboard from '../components/affiliateComponents/affiliateDashboard'
 import RTFdashboard from '../components/RTFComponents/RTFdashboard'
 
-
 Vue.use(Router);
 let user = JSON.parse(localStorage.getItem('user'));
 
-let affiliateRoutes = []
-affiliateRoutes = affiliateRoutes.concat(Testpage,testpage2)
-const affiliate = affiliateRoutes
+//let affiliateRoutes = []
+//affiliateRoutes = affiliateRoutes.concat(Testpage,testpage2)
+//const affiliate = affiliateRoutes
 
 export const router = new Router({
   mode: 'history',
@@ -90,21 +91,22 @@ export const router = new Router({
       {path:'createadmin', component: CreateAdmin}
     ]
   },
-  { path: '/affiliatedashboard', component: affiliatedashboard},
-
-  //   { path: '/affiliatepage', component: affiliatePage,
-  //   children: [
-  //     { path: 'test1', component: Testpage },
-  //     { path: 'test2', component: testpage2 },
-  //   ], 
-  //   // beforeEnter: (to,from,next) => {
-  //   //   if(user.user.role == 'affiliate'){
-  //   //     next();
-  //   //   }
-  //   // }
-  //  },
-
-
+    { path: '/affiliatedashboard', component: affiliatedashboard,
+    children: [
+      { path: 'test1', component: Testpage },
+      { path: 'test2', component: testpage2 },
+    ], 
+    beforeEnter: (to,from,next) => {
+      userService.checkrole().then(res => res.json()).then(roleMapping => {
+            if ((user.user.role == "owner") && roleMapping.id) {
+              next();
+            }else {
+              //alert("owner only")
+              history.back()
+            }
+        });
+    }
+   },
 
     // otherwise redirect to home
     { path: '*', redirect: '/' }
@@ -112,11 +114,6 @@ export const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-  // redirect to login page if not logged in and trying to access a restricted page
-  let user = JSON.parse(localStorage.getItem('user'));
-  console.log(user)
-
-  // let role = user.user.role;
 
   const publicPages = ['/','/login', '/register',];
   const authRequired = !publicPages.includes(to.path);

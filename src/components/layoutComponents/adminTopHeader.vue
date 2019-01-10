@@ -27,11 +27,7 @@
 <!--END This is left top logo -->
 <ul class="nav navbar-top-links navbar-right pull-right">
   <li class="dropdown">
-    <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="https://2020i.site" > <i class=" icon-logout"></i>
-    <!-- <router-link to='/login'>Logout</router-link> -->
-    <a @click="logout()" href="#logout"><span>Logout</span></a>
-
-    </a>
+    <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#" @click.prevent="logout()"> <i class=" icon-logout"></i> Logout</a>
   </li>
   <li class="dropdown">
     <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#"><i class="icon-user-following"></i>
@@ -83,14 +79,12 @@
         name: "adminTopHeader",
         methods: {
           logout() {
-            const user = JSON.parse(localStorage.getItem('user')); 
-            // userService.logout(user);
-            localStorage.removeItem("user");
-            window.location.href = "http://localhost:8080/";
+            userService.logout();
           }
         }
     }
 </script>
 
 <style scoped>
+
 </style>

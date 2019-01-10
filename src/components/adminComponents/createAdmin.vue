@@ -70,7 +70,7 @@
                       class="form-control"
                     >
                       <option value="admin">Admin</option>
-                      <option value="owner">Sales</option>
+                      <option value="sales">Sales</option>
                       <option value="affiliate">Affiliate</option>
                       <option value="nursdir">Director of Nursing</option>
                       <option value="nurse1">Nurse1</option>

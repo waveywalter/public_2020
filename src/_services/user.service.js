@@ -5,6 +5,7 @@ import { authHeader } from '../_helpers';
 
 export const userService = {
     login,
+    checkrole,
     logout,
     register,
     getAll,
@@ -41,13 +42,13 @@ function login(username, password) {
          });
 }
 
-function logout(user) {
-    // const requestOptions = {
-    //     method: 'DELETE',
-    //     body: authHeader()
-    // };
-    // fetch(baseURL+'/wtokens/${user.id}/?access_token=${user.id}', requestOptions).then(handleResponse);
+function logout() {
+    const requestOptions = {
+        method: 'POST',
+        headers: authHeader()
+     };
     localStorage.removeItem('user');
+    return fetch(baseURL+'/wsers/logout', requestOptions).then(handleLogoutResponse);
 }
 
 function register(user) {
@@ -78,14 +79,36 @@ function getById(id) {
     return fetch(baseURL+'/wsers', requestOptions).then(handleResponse);
 }
 
+function checkrole() {
+    const user = JSON.parse(localStorage.getItem('user'));
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
+    
+    return fetch(baseURL+'/wsers/username/'+user.userId+'/roles/'+user.user.role, requestOptions); 
+}
+
 function update(user) {
     const requestOptions = {
-        method: 'PUT',
+        method: 'PATCH',
         headers: { ...authHeader(), 'Content-Type': 'application/json' },
         body: JSON.stringify(user)
     };
 
-    return fetch(baseURL+'/wsers/reset-password', requestOptions).then(handleResponse);
+    return fetch(baseURL+'/wsers/'+user.userId, requestOptions).then(handleResponse)
+    .then(user => {
+        // login successful if there's a jwt token in the response
+        if (user.userId) {
+            var userold = JSON.parse(localStorage.getItem('user'));
+            userold.user = user
+
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+             localStorage.setItem('user', JSON.stringify(userold));
+        }
+
+        return user;
+    });
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
@@ -102,19 +125,28 @@ function handleResponse(response) {
     console.log(response)
     return response.text().then(text => {
         const data = text && JSON.parse(text);
-        // console.log(data)
         if (!response.ok) {
+            
             if (response.status === 401) {
-                // auto logout if 401 response returned from api
-                //logout();
-                //location.reload(true);
+                alert("Permission Error.");
             }
-
             const error = (data && data.message) || response.statusText;
-            console.log(error);
             return Promise.reject(error);
         }
-        console.log(data);
+        return data;
+    });
+
+}
+
+function handleLogoutResponse(response) {
+    return response.text().then(text => {
+        const data = text && JSON.parse(text);
+        if (!response.ok) {
+            const error = (data && data.message) || response.statusText;
+            window.location.href = "/";
+            return Promise.reject(error);
+        }
+        window.location.href = "/";
         return data;
     });
 
