@@ -5,7 +5,7 @@ import LandingPage from '../components/LandingPage';
 import UserProfiles from '../_pages/UserProfiles'
 import LoginPage from '../_pages/LoginPage'
 import RegisterPage from '../_pages/RegisterPage'
-import Testpage from '../_pages/Testpage'
+import Testpage from '../_pages/TestPage'
 import AdminDashBoard from '../components/adminComponents/adminDashBoard'
 import CreateAdmin from '../components/adminComponents/createAdmin'
 import HrDashBoard from '../components/hrComponents/HrDashBoard'
@@ -68,7 +68,7 @@ export const router = new Router({
     }
   },
     { path: '/register', component: RegisterPage },
-    { path: '/salesdashboard', component:SalesDashBoard,
+    { path: '/salesdashboard/:id?', component:SalesDashBoard,
     children: [
       {path: 'NewAffiliateform', component:NewAffiliateform}
      ],

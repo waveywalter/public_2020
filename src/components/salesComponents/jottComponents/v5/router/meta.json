@@ -1,0 +1,28 @@
+{
+  "/": {
+    "title": "Administrative Homepage",
+    "description": "2020 baby",
+    "keywords": "The Wave International"
+  },
+  "/forms": {
+    "title": "Fill Something Out",
+    "description": "",
+    "keywords": ""
+  
+  },
+  "/policies": {
+    "title": "Company Policies",
+    "description": "All Company Policies",
+    "keywords": ""
+  },
+  "/sign-in": {
+    "title": "Sign In",
+    "description": "Authenticate",
+    "keywords": ""
+  },
+  "/affiliate-registration": {
+    "title": "Affiliate Registration",
+    "description": "Authenication required in form of token",
+    "keywords": ""
+  }
+}

@@ -7,9 +7,11 @@ const state = user
     : { status: {}, user: null };
 
 const actions = {
+    loco(){console.log("LOCOOOOOOOOOOOOOOO9")},
     login({ dispatch, commit }, { username, password }) {
+        console.log("ACCOUNT")
         commit('loginRequest', { username });
-    
+        console.log("LOGINNNNNNNNNNNNNNNNNN")
         userService.login(username, password)
             .then(
                 user => {

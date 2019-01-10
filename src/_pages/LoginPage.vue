@@ -65,11 +65,14 @@ export default {
         // this.logout();
     },
     methods: {
-        ...mapActions('account', ['login', 'logout']),
+        ...mapActions('account', ['login', 'logout',"loco"]),
         handleSubmit (e) {
+            console.log(this)
             this.submitted = true;
             const { username, password } = this;
             if (username && password) {
+                console.log("STAGE 1")
+                console.log(this)
                 this.login({ username, password })
             }
 
