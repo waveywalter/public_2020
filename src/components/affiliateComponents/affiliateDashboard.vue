@@ -11,19 +11,15 @@
             </div>
              <div class="col-lg-6 col-sm-6 col-xs-12">
              <div class="white-box">
-
             </div>
             </div>
         </div>
         </div>
         </div>
 </template>
-
 <script>
 import AdminTopHeader from '../layoutComponents/adminTopHeader';
 import AdminSideBar from '../layoutComponents/adminSideBar';
-
-
     export default {
         name: "AffiliateDashboard",
                 data(){
