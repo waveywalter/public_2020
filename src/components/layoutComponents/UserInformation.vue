@@ -16,6 +16,8 @@
     <input type="submit">
   </form>
 </div>
+      <imageUpload></imageUpload>
+
     </div>
         <!-- <input type="file" @change="onFileChanged"> -->
 
@@ -64,6 +66,7 @@ let user = JSON.parse(localStorage.getItem('user'));
 // import { authHeader } from '../_helpers';
 import AdminTopHeader from './adminTopHeader';
 import AdminSideBar from './adminSideBar';
+import imageUpload from './imageUpload'
 import { mapState, mapActions } from 'vuex'
 
 //console.log(user)
@@ -71,13 +74,14 @@ export default {
     data(){
  return {
      userInfo:false,
-     userPassword:false
+     userPassword:false,
       }
     },
         name: "UserInformation",
         components: {
             AdminTopHeader,
             AdminSideBar,
+            imageUpload
         },
     computed: {
         ...mapState({
@@ -134,6 +138,9 @@ export default {
             deleteUser: 'delete',
             update: 'update',
         })
-    }
+    },
+    selectFile (){
+        this.file = this.$refs.file.files[0]
+    },
 };
 </script>

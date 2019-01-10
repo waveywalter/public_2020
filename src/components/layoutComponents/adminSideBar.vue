@@ -3,7 +3,7 @@
             <div class="sidebar-nav navbar-collapse slimscrollsidebar">
               <div class="user-profile">
                     <div class="dropdown user-pro-body">
-                        <div><img src="/public/assets/plugins/images/users/varun.jpg" alt="user-img" class="img-circle"></div> <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Director of Nursing<span class="caret"></span></a>
+                        <div><img v-bind:src=imagepath alt="user-img" class="img-circle"></div> <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Director of Nursing<span class="caret"></span></a>
                         <ul class="dropdown-menu animated flipInY">
                             <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
                             <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
@@ -109,8 +109,14 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
     export default {
-        name: "adminSideBar"
+        name: "adminSideBar",
+        data(){
+            return{
+                imagepath: "/public/uploads/" + this.$store.state.account.user.userId + ".png"
+            }
+        }
     }
 </script>
 

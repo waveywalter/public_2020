@@ -3,6 +3,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     mode: 'development',
+    entry: ['babel-polyfill', './src/app'],
     entry:path.join(__dirname, 'src', 'index.js'),
     resolve: {
         extensions: ['.js', '.vue',]
@@ -34,7 +35,11 @@ module.exports = {
         template: './src/index.html'
     })],
     devServer: {
-        historyApiFallback: true
+        historyApiFallback: true,
+        proxy:{
+            "/upload":"http://localhost:3344"
+
+        }
     },
     externals: {
         // global app config object

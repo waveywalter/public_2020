@@ -17,6 +17,7 @@ import testpage2 from '../_pages/testpage2'
 import HomePage from '../_pages/HomePage'
 import forbiddenerror from '../_pages/forbiddenerror'
 import affiliatedashboard from '../components/affiliateComponents/affiliateDashboard'
+import RTFdashboard from '../components/RTFComponents/RTFdashboard'
 
 
 Vue.use(Router);
@@ -56,6 +57,7 @@ export const router = new Router({
     }
   },
     { path: '/UserProfiles', component: UserProfiles },
+    {path: '/rtfdashboard',component: RTFdashboard},
     { path: '/login', component: LoginPage,
     beforeEnter: (to,from,next) => {
       if (localStorage.getItem(user) === user) {
