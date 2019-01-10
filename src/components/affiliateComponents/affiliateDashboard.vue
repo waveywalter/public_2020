@@ -24,7 +24,6 @@ import AdminSideBar from '../layoutComponents/adminSideBar';
         name: "AffiliateDashboard",
                 data(){
             return{
-                components:"hrcreateform"
             }
         },
         components: {

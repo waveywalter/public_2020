@@ -2,9 +2,16 @@
  <div>
     <AdminTopHeader></AdminTopHeader>
     <AdminSideBar></AdminSideBar>
-        <div id="page-wrapper">            
-            <h1> New Homepage </h1>
-            </div>     
+    
+        <div id="page-wrapper">
+            <div class="container-fluid">
+<div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">Dashboard</h4> </div>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+        </div>
         </div>
 </template>
 
@@ -16,7 +23,7 @@ export default {
     name: 'HomePage',
     components:{
         AdminTopHeader,
-        AdminSideBar
+        AdminSideBar,
     }
 }
 

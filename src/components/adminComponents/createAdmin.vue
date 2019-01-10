@@ -1,9 +1,8 @@
 <template>
   <div>
     <div class="row">
-      <div class="col-md-6 col-lg-4 col-sm-12">
-        <div class="white-box mt-5 ml-5">
-          <h3 class="box-title m-b-5">Sample Forms with Right icon</h3>
+      <div class="col-md-7 ">
+          <h3 class="box-title m-b-5">Create new User</h3>
           <div class="row">
             <div class="col-sm-12 col-xs-12">
               <form ref="form" @submit.prevent="handleSubmit">
@@ -71,12 +70,10 @@
                       class="form-control"
                     >
                       <option value="admin">Admin</option>
-                      <option value="owner">Owner</option>
-                      <option value="exdir">Executive Director</option>
+                      <option value="owner">Sales</option>
+                      <option value="affiliate">Affiliate</option>
                       <option value="nursdir">Director of Nursing</option>
                       <option value="nurse1">Nurse1</option>
-                      <option value="sales">Sales</option>
-
                     </select>
                     <div class="input-group-addon">
                       <i class="ti-shield"></i>
@@ -131,7 +128,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>

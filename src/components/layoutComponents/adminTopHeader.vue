@@ -27,8 +27,10 @@
 <!--END This is left top logo -->
 <ul class="nav navbar-top-links navbar-right pull-right">
   <li class="dropdown">
-    <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="https://2020i.site" @click="logout()"> <i class=" icon-logout"></i>
-    <router-link to='/login'>Logout</router-link>
+    <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="https://2020i.site" > <i class=" icon-logout"></i>
+    <!-- <router-link to='/login'>Logout</router-link> -->
+    <a @click="logout()" href="#logout"><span>Logout</span></a>
+
     </a>
   </li>
   <li class="dropdown">
@@ -82,12 +84,13 @@
         methods: {
           logout() {
             const user = JSON.parse(localStorage.getItem('user')); 
-            userService.logout(user);
+            // userService.logout(user);
+            localStorage.removeItem("user");
+            window.location.href = "http://localhost:8080/";
           }
         }
     }
 </script>
 
 <style scoped>
-
 </style>

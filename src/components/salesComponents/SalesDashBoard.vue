@@ -5,7 +5,6 @@
 #flexor{display:flex;}
 </style>
 <template>
-
     <div>
         <AdminTopHeader></AdminTopHeader>
         <AdminSideBar></AdminSideBar>
@@ -15,8 +14,6 @@
             <AffiliateRegistration></AffiliateRegistration>
             </div>
         </div>
-    </div>
-    
 </template>
 
 <script>
@@ -28,7 +25,12 @@ import AffiliateRegistration from '../salesComponents/AffiliateRegistration';
 
 
     export default {
-        name: "adminDashBoard",
+        name: "SalesDashBoard",
+        data(){
+            return{
+                components:"NewAffiliateform"
+            }
+        },
         components: {
             AdminTopHeader,
             AdminSideBar,
