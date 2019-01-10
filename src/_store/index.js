@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
-import * as Cookie from 'js-cookie';
 
 import { alert } from './alert.module';
 import { account } from './account.module';
@@ -16,8 +15,8 @@ export const store = new Vuex.Store({
         users
     },
     plugins: [createPersistedState({
-        paths: ['account.user'],
-        getState: (key) => Cookie.getJSON(key), 
-        setState: (key, state) => Cookie.set(key, state, { expires: 1, secure: false })
+        paths: ['alert.message'],
+        getState: (key) => JSON.parse(localStorage.getItem(key)), 
+        setState: (key, state) => localStorage.setItem(key, JSON.stringify(state))
     })]
 });

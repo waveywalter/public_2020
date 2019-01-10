@@ -1,8 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import { account } from '../_store/account.module';
-import {store} from '../_store';
 import { userService } from '../_services';
+import * as Cookie from 'js-cookie';
 
 import LandingPage from '../components/LandingPage';
 import UserProfiles from '../_pages/UserProfiles'
@@ -21,13 +20,12 @@ import HomePage from '../_pages/HomePage'
 import forbiddenerror from '../_pages/forbiddenerror'
 import affiliatedashboard from '../components/affiliateComponents/affiliateDashboard'
 
-
 Vue.use(Router);
 let user = JSON.parse(localStorage.getItem('user'));
 
-let affiliateRoutes = []
-affiliateRoutes = affiliateRoutes.concat(Testpage,testpage2)
-const affiliate = affiliateRoutes
+//let affiliateRoutes = []
+//affiliateRoutes = affiliateRoutes.concat(Testpage,testpage2)
+//const affiliate = affiliateRoutes
 
 export const router = new Router({
   mode: 'history',
@@ -101,7 +99,7 @@ export const router = new Router({
             if ((user.user.role == "owner") && roleMapping.id) {
               next();
             }else {
-              alert("owner only")
+              //alert("owner only")
               history.back()
             }
         });
@@ -114,11 +112,6 @@ export const router = new Router({
 });
 
 router.beforeEach((to, from, next) => {
-  // redirect to login page if not logged in and trying to access a restricted page
-  let user = JSON.parse(localStorage.getItem('user'));
-  //console.log(user)
-
-  // let role = user.user.role;
 
   const publicPages = ['/','/login', '/register',];
   const authRequired = !publicPages.includes(to.path);

@@ -1,5 +1,6 @@
 import { userService } from '../_services';
 import { router } from '../_helpers';
+import * as Cookie from 'js-cookie';
 
 const user = JSON.parse(localStorage.getItem('user'));
 const state = user
@@ -8,6 +9,7 @@ const state = user
 
 const actions = {
     login({ dispatch, commit }, { username, password }) {
+        localStorage.removeItem('sessionMsg');
         commit('loginRequest', { username });
     
         userService.login(username, password)
@@ -23,8 +25,23 @@ const actions = {
                 }
             );
     },
+    update({ dispatch, commit }, userInfo ) {
+    
+        userService.update(userInfo)
+            .then(
+                user => {
+                    commit('updateSuccess', user);
+                    dispatch('alert/success', 'Update successfully', { root: true });
+                    router.go();
+                },
+                error => {
+                    commit('loginFailure', error);
+                    dispatch('alert/error', error, { root: true });
+                }
+            );
+    },
     logout({ commit }) {
-        userService.logout(user);
+        userService.logout();
         commit('logout');
     },
     register({ dispatch, commit }, user) {
@@ -52,11 +69,14 @@ const mutations = {
     loginRequest(state, user) {
         state.status = { loggingIn: true };
         state.user = user;
-
     },
     loginSuccess(state, user) {
         state.status = { loggedIn: true };
         state.user = user;
+    },
+    updateSuccess(state, user) {
+        state.status = { loggedIn: true };
+        state.user.user = user;
     },
     loginFailure(state) {
         state.status = {};

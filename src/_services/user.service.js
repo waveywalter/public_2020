@@ -43,7 +43,7 @@ function logout() {
         headers: authHeader()
      };
     localStorage.removeItem('user');
-    return fetch(baseURL+'/wsers/logout', requestOptions).then(handleResponse);
+    return fetch(baseURL+'/wsers/logout', requestOptions).then(handleLogoutResponse);
 }
 
 function register(user) {
@@ -86,12 +86,24 @@ function checkrole() {
 
 function update(user) {
     const requestOptions = {
-        method: 'PUT',
+        method: 'PATCH',
         headers: { ...authHeader(), 'Content-Type': 'application/json' },
         body: JSON.stringify(user)
     };
 
-    return fetch(baseURL+'/wsers/reset-password', requestOptions).then(handleResponse);
+    return fetch(baseURL+'/wsers/'+user.userId, requestOptions).then(handleResponse)
+    .then(user => {
+        // login successful if there's a jwt token in the response
+        if (user.userId) {
+            var userold = JSON.parse(localStorage.getItem('user'));
+            userold.user = user
+
+            // store user details and jwt token in local storage to keep user logged in between page refreshes
+             localStorage.setItem('user', JSON.stringify(userold));
+        }
+
+        return user;
+    });
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
@@ -107,20 +119,28 @@ function _delete(id) {
 function handleResponse(response) {
     return response.text().then(text => {
         const data = text && JSON.parse(text);
-        // console.log(data)
-        // console.log(response);
         if (!response.ok) {
             
             if (response.status === 401) {
-                // auto logout if 401 response returned from api
-                //logout();
-                //location.reload(true);
+                alert("Permission Error.");
             }
-
             const error = (data && data.message) || response.statusText;
             return Promise.reject(error);
         }
-        // console.log(data);
+        return data;
+    });
+
+}
+
+function handleLogoutResponse(response) {
+    return response.text().then(text => {
+        const data = text && JSON.parse(text);
+        if (!response.ok) {
+            const error = (data && data.message) || response.statusText;
+            window.location.href = "/";
+            return Promise.reject(error);
+        }
+        window.location.href = "/";
         return data;
     });
 
