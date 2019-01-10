@@ -7,7 +7,7 @@ import LandingPage from '../components/LandingPage';
 import UserProfiles from '../_pages/UserProfiles'
 import LoginPage from '../_pages/LoginPage'
 import RegisterPage from '../_pages/RegisterPage'
-import Testpage from '../_pages/Testpage'
+import Testpage from '../_pages/TestPage'
 import AdminDashBoard from '../components/adminComponents/adminDashBoard'
 import CreateAdmin from '../components/adminComponents/createAdmin'
 import HrDashBoard from '../components/hrComponents/HrDashBoard'
@@ -19,6 +19,7 @@ import testpage2 from '../_pages/testpage2'
 import HomePage from '../_pages/HomePage'
 import forbiddenerror from '../_pages/forbiddenerror'
 import affiliatedashboard from '../components/affiliateComponents/affiliateDashboard'
+import RTFdashboard from '../components/RTFComponents/RTFdashboard'
 
 Vue.use(Router);
 let user = JSON.parse(localStorage.getItem('user'));
@@ -57,6 +58,7 @@ export const router = new Router({
     }
   },
     { path: '/UserProfiles', component: UserProfiles },
+    {path: '/rtfdashboard',component: RTFdashboard},
     { path: '/login', component: LoginPage,
     beforeEnter: (to,from,next) => {
       if (localStorage.getItem(user) === user) {
@@ -67,7 +69,7 @@ export const router = new Router({
     }
   },
     { path: '/register', component: RegisterPage },
-    { path: '/salesdashboard', component:SalesDashBoard,
+    { path: '/salesdashboard/:id?', component:SalesDashBoard,
     children: [
       {path: 'NewAffiliateform', component:NewAffiliateform}
      ],

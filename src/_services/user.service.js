@@ -11,30 +11,35 @@ export const userService = {
     getAll,
     getById,
     update,
-    delete: _delete
+    delete: _delete,
+    loco
 };
-
-const baseURL="http://localhost:3000/api";
-
+//const baseURL="http://localhost:3000/api";
+const baseURL="https://jott.thewaveint.com/api";
+//const baseURL = 'https://google.com'
+function loco(){
+    console.log('loco')
+}
 function login(username, password) {
+    console.log("HERE WE GOOOOOOOOOOO")
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
     };
 
+        console.log("LOGINNNNNNNNNNNNNNNNNN")
+     return fetch(baseURL+'/wsers/login?include=User', requestOptions)
+         .then(handleResponse)
+         .then(user => {
+             // login successful if there's a jwt token in the response
+             if (user.id) {
+                 // store user details and jwt token in local storage to keep user logged in between page refreshes
+                  localStorage.setItem('user', JSON.stringify(user));
+             }
 
-    return fetch(baseURL+'/wsers/login?include=User', requestOptions)
-        .then(handleResponse)
-        .then(user => {
-            // login successful if there's a jwt token in the response
-            if (user.id) {
-                // store user details and jwt token in local storage to keep user logged in between page refreshes
-                 localStorage.setItem('user', JSON.stringify(user));
-            }
-
-            return user;
-        });
+             return user;
+         });
 }
 
 function logout() {
@@ -117,6 +122,7 @@ function _delete(id) {
 }
 
 function handleResponse(response) {
+    console.log(response)
     return response.text().then(text => {
         const data = text && JSON.parse(text);
         if (!response.ok) {

@@ -18,6 +18,7 @@
         <input type="submit">
       </form>
     </div>
+    <imageUpload></imageUpload>
   </div>
   <!-- <input type="file" @change="onFileChanged"> -->
   <!-- <h3>Users from secure api end point:</h3> -->
@@ -63,8 +64,8 @@ let user = JSON.parse(localStorage.getItem("user"));
 import AdminTopHeader from "./adminTopHeader";
 import AdminSideBar from "./adminSideBar";
 import { mapState, mapActions } from "vuex";
-//import { userService } from "../../_services";
 import { store } from '../../_store';
+import imageUpload from './imageUpload'
 
 //console.log(user)
 export default {
@@ -82,7 +83,8 @@ export default {
   name: "UserInformation",
   components: {
     AdminTopHeader,
-    AdminSideBar
+    AdminSideBar,
+    imageUpload
   },
   computed: {
     ...mapState("account", ["user"]),
@@ -119,10 +121,10 @@ export default {
         }
       });
     },
-    ...mapActions("users", {
-      getAllUsers: "getAll",
-      deleteUser: "delete"
-    })
-  }
+        ...mapActions('users', {
+            getAllUsers: 'getAll',
+            deleteUser: 'delete'
+        })
+    }
 };
 </script>
