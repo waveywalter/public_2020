@@ -34,7 +34,7 @@ export const router = new Router({
     { path: '/', component: LandingPage,
     beforeEnter: (to,from,next) => {
       if(user = true){
-        history.back()
+        next ('/salesdashboard')
       } else {
         next ('/login')
       }
