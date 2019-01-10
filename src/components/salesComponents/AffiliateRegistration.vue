@@ -1,4 +1,35 @@
 <style scoped>
+ .list-group-item.router-link-active, .list-group .list-group-item.router-link-active:hover {
+    background: #fb9678;
+    border-color: #fb9678;
+}
+.btn-link, a {
+    color: #ffffff;
+    text-decoration: none;
+}
+.list-group-item:first-child {
+    border-top-left-radius: 0.25rem;
+    border-top-right-radius: 0.25rem;
+}
+.list-group-item:last-child {
+    margin-bottom: 0;
+    border-bottom-right-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+}
+.ti-check:before {
+    content: "\e64c";
+    color: #00c292;
+    vertical-align: middle;
+    margin-left: 5px;
+    border: thin solid;
+    border-radius: 10px;
+}
+#Signed .tab-content {
+    background-color: white;
+}
+li {
+    list-style: none;
+}
 .vtabs .tab-content{width:100%}
 #Signed .nav-tabs > li,#Upload .nav-tabs > li {
      float: none; 
@@ -10,7 +41,7 @@ img{max-width:100%}
 .thumbs{padding:10px;}
 iframe{
   border:none;
- min-width: 700px;
+ min-width: 600px;
 }
 .contract_holder{
   padding:20px;
@@ -55,8 +86,7 @@ iframe{
 }
 .display-1{font-size:23px;}
 .meter > div * {
-    flex-basis: 0;
-    flex-grow: 1;
+
 }
 .meter > div {
     display: flex;
@@ -75,7 +105,10 @@ iframe{
 }
 .white{color:white;}
 .profile-details > div > span {
-    flex-basis: 100px;
+    flex-basis: 200px;
+}
+.profile-details > div > span:first-child {
+    flex-basis: 75px;
 }
 .flexor {
     display: flex;
@@ -83,13 +116,13 @@ iframe{
     
 }
 .flexor > div:first-child {
-    width:80%;
+    width:70%;
     margin-right:20px
     
 }
 .flexor > div:nth-child(2) {
-    width:20%;
-    max-width:150px;
+    width:30%;
+    max-width:250px;
 }
 .meter > div {
     margin-bottom:15px;
@@ -119,7 +152,7 @@ iframe{
                     
                     <ul class="nav nav-pills m-t-30 m-b-30" role="tablist">
  
-                                    <li v-bind:class="{active:isActive(m)}" class="nav-item" v-for="(title,m) in sections"> <a :href="'#'+title.split(' ')[0].substring(0,6)" class="nav-link " data-toggle="tab" aria-expanded="true">{{title}}</a> </li>
+                                    <li  class="nav-item" v-for="(title,m) in sections"> <a :href="'#'+title.split(' ')[0].substring(0,6)" v-bind:class="{active:isActive(m)}" class="nav-link " data-toggle="tab" aria-expanded="true">{{title}}</a> </li>
 
                                     
                      </ul>
@@ -130,17 +163,16 @@ iframe{
                                             <div class="col-md-12">
                                                     <div class="">
                                                         <div class="profile-details">
-                                                            <div><span class="white">Name?</span><span>{{cname}}</span></div>
+                                                            <div><span class="white">Name</span><span>{{cname}}</span></div>
                                                             <div><span class="white">Email</span><span>{{cemail}}</span></div>
                                                             <div><span class="white">Phone</span><span>{{cphone}}</span></div>
-                                                            <div><span class="white">Type</span><span>{{ctherapist_type}}</span></div>
-                                                            <div><span class="white">Practice Type</span><span>{{cpractice_type}}</span></div>
-                                                            <div><span class="white">SSN</span><span>{{cssn}}</span></div>
-                                                            <div>Need Additional Fields to Collect</div>
+             
+
                                                             </div>
                                                         </div>
                                                  </div>
                                         </div>
+                                        
                                     </div>
                             <div id="Signed" class="tab-pane">
                                 <div class="vtabs">
@@ -154,11 +186,11 @@ iframe{
                                                 <div class="tab-pane" v-bind:class="{active:isActive(n)}" :id="''+docs[0].split(' ')[0]" role="tabpanel"  v-for="(docs,n) in signature">
                                             <div class="p-20">
                                                
-                                            <div v-if="!waitingHide(n)">Waiting for document to be signed. Add resend email button.</div> 
-                                           <iframe v-if="iframeShow(n)"  name="esignatures-io-iframe" width=100% height=600 :src="sign(n+1)"/>
-                                           <button v-if="iframeShow(n)"  class="btn waves-effect waves-light btn-danger" v-on:click="rejectApp('Signed',n)">Reject {{docs[0]}}</button>
+                                            <div v-if="false">Waiting for document to be signed. Add resend email button.</div> 
+                                           <iframe  v-if="iframeShow(n)" name="esignatures-io-iframe" width=100% height=600 :src="sign(n+1)"/>
+                                       <!--    <button v-if="iframeShow(n)"  class="btn waves-effect waves-light btn-danger" v-on:click="rejectApp('Signed',n)">Reject {{docs[0]}}</button>
                                            <button v-if="sendShow(n)"  class="btn waves-effect waves-light btn-danger" v-on:click="sendDocs(n,'current')">Send {{docs[0]}}</button>
-                                           <button v-if="iframeShowNext(n) && n<signature.length"  class="btn waves-effect waves-light btn-danger" v-on:click="sendDocs(n+1,'next')">Send {{signature[(n+1)][0]}}</button>
+                                           <button v-if="iframeShowNext(n) && n<signature.length"  class="btn waves-effect waves-light btn-danger" v-on:click="sendDocs(n+1,'next')">Send {{signature[(n+1)][0]}}</button> -->
                                           
                                                                                       
                                            </div>
@@ -198,28 +230,41 @@ iframe{
                         </div>
                     </div>
                 </div>
-    <div id="app-wrapper" v-if="!this.$root._route.params.id">
+    <div id="app-wrapper" v-if="!this.$root._route.params.id" :key="listkey">
             <div >
             <div class="row" >
              <div class="col-xl-12">
               <div class="form-group">
+               
                 <label for="exampleInputEmail1">Filter Applications</label>
                 <input type="text" v-model='appfilter' v-on:blur='filterApp(appfilter)' class="form-control" id="exampleInputEmail1" placeholder="Enter Email Address">
                </div>
               </div>
              </div>
-                <div   v-for="apps in list">
-                  
-                <router-link tag="li" :to="'/salesdashboard/'+apps.id" @click.native="updateId(apps.id)">
-                <a>{{apps.firstname}} {{apps.lastname}}</a>
+             <div class="col-md-4 col-sm-4 mt-4">
+                                        <h4 class="card-title">Applications</h4>
+                                        <div class="collapse mt-3 well" id="pgr2" aria-expanded="true">
+                                            <pre class="language-html scrollable">                                                <code>
+                                                    <div class="list-group"><br>
+                <router-link v-for="apps in cfilterlist" tag="li" :to="'/salesdashboard/'+apps.id" @click.native="updateId(apps.id)">
+                <a class="list-group-item ">{{apps.firstname}} {{apps.lastname}}</a>
                 </router-link>
-                </div>
+                                                    </div>
+                                                </code> 
+                                            </pre></div>
+                                        <div class="list-group">
+                 <router-link class="list-group-item "   v-for="apps in cfilterlist" tag="li" :to="'/salesdashboard/'+apps.id" @click.native="updateId(apps.id)">
+                <a>{{apps.firstname}} {{apps.lastname}}</a>
+                </router-link>                                         
+                                       </div>
+                                    </div>
+  
             </div>
         </div>
     <div v-if="this.$root._route.params.id">
                     <div class="meter max6">
  
-                     <div><span>Admission Agreement</span> <i class="ti-check" v-if="cs9==1"></i><br></div>       
+                     <div><span>Admission Agreement</span> <i class="ti-check" v-if="cs1==1"></i><br></div>       
 
                     </div>               
         </div> 
@@ -251,10 +296,28 @@ export default {
             //sections:["Profile Details","Signed Documents","Uploaded Documents"],
             sections:["Profile Details","Signed Documents"],
             upload:[['Resume',0,2],['License',0,0],['Liability',0,0],['CES',0,0]],
+            listkey:0,
           //  test:'My Life'
         }
     },
 computed:{
+    clist:{
+                get:function(e){
+            return this.$store.state.apps.wholelist
+        },
+        set:function(list){
+          this.$store.state.apps.wholelist  = list
+        }
+    },
+      cfilterlist:{
+        get:function(e){
+            return this.$store.state.apps.list
+        },
+        set:function(list){
+          this.$store.state.apps.list  = list
+        }
+        
+      },
       checkboxErrors () {
         const errors = []
         if (!this.$v.checkbox.$dirty) return errors
@@ -263,10 +326,10 @@ computed:{
           },
       listlength:function(){
          if(this.appfilter!=""){
-         let ar = this.list.filter(item=>{ return item.email==this.appfilter });
+         let ar = this.$store.state.apps.list.filter(item=>{console.log("ITEMMMSSSSSSSSSS");console.log(item); return item.email==this.appfilter });
          return ar.length
          }
-         return this.list.length
+         return this.$store.state.apps.list.length
        },
       capproved:{
         get:function(e){
@@ -788,22 +851,15 @@ computed:{
     },
   
 methods:{
+    frender(){
+      this.listkey +=1;
+    },
     check(){
         // if all things satisfied return true else tretun false
         if(
-            this.cces==1 &&
-            this.cliability==1 &&
-            this.clicense==1 &&
-            this.cresume==1 &&
+
             this.cs1==1 &&
-            this.cs2==1 &&
-            this.cs3==1 &&
-            this.cs4==1 &&
-            this.cs5==1 &&
-            this.cs6==1 &&
-            this.cs7==1 &&
-            this.cs8==1 &&
-            this.cs9==1 &&
+
             this.capproved==0
         ){
             return true
@@ -908,7 +964,7 @@ methods:{
             console.log("Empty .. Please create and send")
             let data  = this.$store.state.apps.application;
             // dont email link - create docs with send through emailas yes - may require new API route
-          fetch('https://jott.thewaveint.com/api/sendandcreate/contracts/'+this.cid,{
+          fetch('https://jott.thewaveint.com/api/create/newcontract/'+this.cid,{
               method:"POST",
               headers:{"Content-Type": "application/json; charset=utf-8","accept": "*/*"
               },
@@ -984,8 +1040,8 @@ methods:{
     iframeShow(n){
             let l = n+1;
             let r = 's'+l;
-            if(this.$store.state.apps.application[r]==1){return true}
-            return false
+            
+            return true
       },
     iframeShowNext(n){
             let l = n+2;
@@ -1150,7 +1206,7 @@ methods:{
              
           //data.sign1 = this.csign1;
           //data.links = this.clinks;
-          fetch('https://jott.thewaveint.com/api/create/contracts/'+id,{method:"POST",
+          fetch('https://jott.thewaveint.com/api/createnew/contracts/'+id,{method:"POST",
               headers:{"Content-Type": "application/json; charset=utf-8","accept": "*/*"},body:JSON.stringify(data)}).then(response=>{
               console.log(response);
               response.text().then(text=>{
@@ -1164,15 +1220,15 @@ methods:{
             //attach code to app
               //window.sessionStorage.accessToken = text;
              //this.$store.commit('increment') 
-            this.csign1 = app.sign1;
-        this.csign2 = app.sign2;
-        this.csign3 = app.sign3;
-        this.csign4 = app.sign4;
-        this.csign5 = app.sign5;
-        this.csign6 = app.sign6;
-        this.csign7 = app.sign7;
-        this.csign8 = app.sign8;
-        this.csign9 = app.sign9;
+           this.csign1 = app.sign1;
+        // this.csign2 = app.sign2;
+        // this.csign3 = app.sign3;
+        // this.csign4 = app.sign4;
+        // this.csign5 = app.sign5;
+        // this.csign6 = app.sign6;
+        // this.csign7 = app.sign7;
+        // this.csign8 = app.sign8;
+        // this.csign9 = app.sign9;
         this.progress = app.progress;
         })
         
@@ -1235,11 +1291,11 @@ methods:{
       },
     filterApp(txt){
             console.log('filterApp2');
-      
+        if(txt!=""){
         fetch('https://jott.thewaveint.com/api/applications').then(response=>response.json()).then(json=>{console.log(json)
         
-          this.list =[];
-          this.list = json.map(item=>{ 
+         // this.$store.state.app.application.list =[];
+          let list = json.filter(item=>{ 
             console.log(item)
             if(item){
             let em = item.email;
@@ -1248,17 +1304,23 @@ methods:{
           }
           }
           )
-          console.log(this.list)
+          this.$store.state.apps.list = list;
+          console.log(this.$store.state.apps.list)
         })
-      },
-    getApps(){
+        }
+         else{
+           console.log("NO TXT FILTERRRRRRRRRRRRR")
         fetch('https://jott.thewaveint.com/api/applications').then(response=>response.json()).then(json=>{console.log(json)
         
-          this.list =[];
-          this.list = json.map(item=>{ if(true)return{lastname:item.lastname,firstname:item.firstname,email:item.email,id:item.id}})
-
-          }
-          )
+         // this.$store.state.app.application.list =[];
+          let list = json;
+          this.cfilterlist = list;
+          console.log(this.$store.state.apps.list)
+        })
+        }
+      },
+    getApps(){
+       this.$store.commit('apps/getApps')
       },
     switchRole(){
       if(this.crole=='admin'){
@@ -1300,36 +1362,27 @@ methods:{
         fetch('/api/applications/'+i).then(response=>{
               console.log(response);
               response.text().then(text=>{
-              console.log(text)
+              
 
               let a = JSON.parse(text);
-              if(this.progress>1){
-                let s = 's'+(a.progress-1);
+              
+                let s = 's1';
                 let t = a[s];
-                console.log("EQUALLLLLLLLLLLLLLLLLLLLLLLLL")
-                console.log(s);
-                console.log(this.$store.state[s])
+                console.log(this.$store.state.apps.application[s])
                 console.log(a[s]);
+                this.$store.state.apps.application
+
+                if(a[s]!=this.$store.state.apps.application[s] ){
+                  
+                  clearInterval(this.clock)
+                  //if they are not equal then document has been signed .
                 
-                if(this.progress==10){
-                  //this.clock = setInterval(this.checkContractStatus,7000);
-                  clearInterval(this.clock)
+                this.$store.state.apps.application = a;
+               
                 }
-                if(a[s]!=this.$store.state[s] ){
-                  this.register();
-                  clearInterval(this.clock)
-                  console.log('CHECKKKKKKKKKKKKKKKKKKKKKKKKKKKKK')
-                  if(this.progress<=9){
-                    console.log('INNDER PROGRESSSSSSSSSSSSSSS')
-                    
-                 this.clock = setInterval(this.checkContractStatus,7000);
-                }
-                }
-                else{
+   
 
-                }
-
-              }
+              
               })
         })
       },
@@ -1364,46 +1417,24 @@ methods:{
       return false},
     getrecord(id){
       console.log('RECORDSSSSSSSSSSSSSSSSSSSSSSS')
-      window.sessionStorage.id = id;
+     // window.sessionStorage.id = id;
       this.cid = id;
       if(id!=undefined){
        fetch('https://jott.thewaveint.com/api/applications/'+id,{method:"GET",headers:{"Content-Type": "application/json; charset=utf-8",}}).then(response=>response.json()).then(json=>{console.log(json)
-        this.$store.state.apps.application.email = json.email;
-        this.$store.state.apps.application.name = json.name;
-          this.$store.state.apps.application.phone = json.phone;
-        this.$store.state.apps.application.ssn = json.ssn;
-        this.$store.state.apps.application.therapist_type = json.type;
-        this.$store.state.apps.application.practice_type = json.practice_type;
-        this.$store.state.apps.application.address = json.address;
-          this.$store.state.apps.application.sign1 = json.sign1;
-        this.$store.state.apps.application.sign2 = json.sign2;
-        this.$store.state.apps.application.sign3 = json.sign3;
-        this.$store.state.apps.application.sign4 = json.sign4;
-        this.$store.state.apps.application.sign5 = json.sign5;
-        this.$store.state.apps.application.sign6 = json.sign6;
-        this.$store.state.apps.application.sign7 = json.sign7;
-        this.$store.state.apps.application.sign8 = json.sign8;
-        this.$store.state.apps.application.sign9 = json.sign9;
-          this.$store.state.apps.application.s1 = json.s1;
-        this.$store.state.apps.application.s2 = json.s2;
-        this.$store.state.apps.application.s3 = json.s3;
-        this.$store.state.apps.application.s4 = json.s4;
-        this.$store.state.apps.application.s5 = json.s5;
-        this.$store.state.apps.application.s6 = json.s6;
-        this.$store.state.apps.application.s7 = json.s7;
-        this.$store.state.apps.application.s8 = json.s8;
-        this.$store.state.apps.application.s9 = json.s9;
-        this.$store.state.apps.application.id = json.id;
-        this.$store.state.apps.application.resume = json.resume;
-        this.$store.state.apps.application.firstname = json.firstname;
-        this.$store.state.apps.application.lastname = json.lastname;
-        this.$store.state.apps.application.name = json.name;
-        this.$store.state.apps.application.ces = json.ces;
-        this.$store.state.apps.application.license = json.license;
-        this.$store.state.apps.application.liability = json.liability;
-        this.$store.state.apps.application.progress = json.progress;
-        this.$store.state.apps.application.visible = this.visible(1);
+ 
+        this.$store.state.apps.application = json;
+        //this.$store.state.apps.application.visible = this.visible(1);
+      if(json.s1==0){
+          console.log("Not Signed")
+          //check to see if signed start interval check
+          this.clock = setInterval(this.checkContractStatus,7000);
 
+        }
+        else{
+          console.log("Signed")
+          //update ui
+          clearInterval(this.clock)
+        }
       console.log(this)
       }
         )
@@ -1522,7 +1553,7 @@ methods:{
           })
         
         //this.$store.commit('increment')
-        window.sessionStorage.progress = this.progress;
+       // window.sessionStorage.progress = this.progress;
         
        
             
@@ -1586,24 +1617,21 @@ methods:{
             html ='<input type="text" placeholder="'+edata.capitalize()+'"/>'
           }
           return html
-        }
+        },
+    appsubmitted(){console.log('appsubmitted');this.getApps()}
 },
 mounted :function(){
     console.log(this)
-   // events.$on('filterApp',this.filterApp())
+    
       $("iframe").on("load",function(){console.log('IFRAME LOADED')})
       console.log("MOUNTED bbbbbbbbbbbbbbbbbb IDDDDDDDDDDDDD")
       let id;
       console.log(this)
       console.log(this.$route)
-      if(this.$route.params.id==undefined){
-        console.log('UNDEFINEDDDDDDDDDD nnnnnnnnnnnnnnnnnn')
-            id=window.sessionStorage.id;
-      }
-      else{
+  
         console.log("DEFINEDDDDDD ..............")
          id=this.$route.params.id;
-      }
+      
      
       let vp = this;
       console.log(id)
@@ -1617,8 +1645,8 @@ mounted :function(){
       fetch('https://jott.thewaveint.com/api/applications/'+id,{method:"GET",headers:{"Content-Type": "application/json; charset=utf-8",}}).then(response=>response.json()).then(json=>{console.log(json)
         this.$store.state.apps.application = json ;
 
-     if(json.progress>0 && json.progress<10 && this.$store.state.apps.application.role=='affiliate'){
-       clearInterval(this.clock)
+     if(this.$store.state.apps.application.s1==0){
+       
        this.clock = setInterval(this.checkContractStatus,7000);
      }
       //this.$state.store = json;
@@ -1627,20 +1655,6 @@ mounted :function(){
         )
       }
 
-      if(window.sessionStorage.progress==undefined){
-          //init to zero
-      console.log("INIT PROGRESS")
-     
-      }
-      else{
-          // get session storage
-          console.log("RESTORE PROGRESS")
-     this.$store.commit('getProgress',window.sessionStorage.progress)
-       //this.$store.state.apps.application.email = "WalterJohnson";
-       //this.email = "SMALTERJohnosn"
-      //  this.$store.commit('getProgress',window.sessionStorage.progress)
-      }
-      //this.$store.commit('getProgress',window.sessionStorage.progress)
 
 
       },
