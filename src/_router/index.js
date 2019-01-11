@@ -48,17 +48,23 @@ export const router = new Router({
         next ('/salesdashboard');
       } else if (user.user.role == "affiliate"){
         next('/affiliatedashboard');
-      } else if (user.user.role == "hr"){
+      } else if (user.user.role == "humanr"){
         next('/hrdashboard');
-      } else if (user.user.role == "admin"){
+      } else if (user.user.role == "admin" || "owner" ){
         next('/admindashboard');
       } else{
         next();
       }
     }
   },
+  {path: '/rtfdashboard',component: RTFdashboard,
+  beforeEnter: (to,from,next) =>{
+    if(user.user.role == 'rtf'){
+      next ('/rtfdashboard')
+    }
+  }
+},
     { path: '/UserProfiles', component: UserProfiles },
-    {path: '/rtfdashboard',component: RTFdashboard},
     { path: '/login', component: LoginPage,
     beforeEnter: (to,from,next) => {
       if (localStorage.getItem(user) === user) {

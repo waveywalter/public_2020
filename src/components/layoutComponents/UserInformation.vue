@@ -1,25 +1,33 @@
 
 <template>
-  <div>
-    <h3>{{user.user.firstname +" "+ user.user.lastname}}</h3>
-    <h4>{{ user.user.role}}</h4>
-    <small>{{user.user.email}}</small>
-    <div id="app">
-      <form ref="form" @submit.prevent="form_m">
-        <input placeholder="First Name" type="text" v-on:change="clearAlert" v-model="updateInfo.firstname"  name="firstname">
-        <br>
-        <input placeholder="Last Name" type="text" v-on:change="clearAlert" v-model="updateInfo.lastname"  name="lastname">
-        <br>
-        <input placeholder="User ID" type="hidden" v-model="updateInfo.userId" name="userId">
-        <br>
-        <p>{{message}}</p>
-        <br>
-        <!-- <input placeholder="Email" type="text" name="email"> <br /> -->
-        <input type="submit">
-      </form>
+    <div class="row">
+<div class="">
+        <div class="white-box">
+            <div class="user-bg"> <img width="100%" alt="user" src="/public/uploads/img1.jpg"> </div>
+            <div class="user-btm-box">
+                <!-- .row -->
+                <div class="row text-center m-t-10">
+                    <div class="col-md-6 b-r"><strong>Name</strong>
+                        <p>{{user.user.firstname +" "+ user.user.lastname}}</p>
+                    </div>
+                    <div class="col-md-6"><strong>Role</strong>
+                        <p>{{ user.user.role}}</p>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <hr>
+                <!-- .row -->
+                <div class="row text-center m-t-10">
+                    <div class="col-md b-r"><strong>Email ID</strong>
+                        <p>{{user.user.email}}</p>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <hr>
+            </div>
+        </div>
     </div>
-    <imageUpload></imageUpload>
-  </div>
+</div>
   <!-- <input type="file" @change="onFileChanged"> -->
   <!-- <h3>Users from secure api end point:</h3> -->
   <!-- <em v-if="users.loading">Loading users...</em> -->

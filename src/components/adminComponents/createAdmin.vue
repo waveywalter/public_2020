@@ -8,7 +8,6 @@
               <form ref="form" @submit.prevent="handleSubmit">
                 <div class="form-group mt-5">
                   <label for="exampleInputuname">First Name</label>
-
                   <div class="input-group">
                     <input
                       v-model="reg.firstname"
@@ -70,10 +69,10 @@
                       class="form-control"
                     >
                       <option value="admin">Admin</option>
-                      <option value="sales">Sales</option>
-                      <option value="affiliate">Affiliate</option>
-                      <option value="nursdir">Director of Nursing</option>
-                      <option value="nurse1">Nurse1</option>
+                      <option value="sales">Sales Director</option>
+                      <option value="owner">Owner</option>
+                      <option value="humanResource">Human Resource Director</option>
+                      <option value="rtf">RTF Manager</option>
                     </select>
                     <div class="input-group-addon">
                       <i class="ti-shield"></i>
@@ -129,14 +128,11 @@
       </div>
     </div>
 </template>
-
 <script>
 import { mapState, mapActions } from "vuex";
 import VeeValidate from "vee-validate";
-
 export default {
   name: "CreateAdmin",
-
   data() {
     return {
       // errors: [],
@@ -177,6 +173,5 @@ export default {
   }
 };
 </script>
-
 <style scoped>
 </style>
