@@ -70,10 +70,10 @@
                       class="form-control"
                     >
                       <option value="admin">Admin</option>
-                      <option value="sales">Sales</option>
-                      <option value="affiliate">Affiliate</option>
-                      <option value="nursdir">Director of Nursing</option>
-                      <option value="nurse1">Nurse1</option>
+                      <option value="sales">Sales Director</option>
+                      <option value="owner">Owner</option>
+                      <option value="humanResource">Human Resource Director</option>
+                      <option value="rtf">RTF Manager</option>
                     </select>
                     <div class="input-group-addon">
                       <i class="ti-shield"></i>
