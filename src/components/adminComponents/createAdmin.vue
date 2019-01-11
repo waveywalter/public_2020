@@ -8,7 +8,6 @@
               <form ref="form" @submit.prevent="handleSubmit">
                 <div class="form-group mt-5">
                   <label for="exampleInputuname">First Name</label>
-
                   <div class="input-group">
                     <input
                       v-model="reg.firstname"
@@ -129,14 +128,11 @@
       </div>
     </div>
 </template>
-
 <script>
 import { mapState, mapActions } from "vuex";
 import VeeValidate from "vee-validate";
-
 export default {
   name: "CreateAdmin",
-
   data() {
     return {
       // errors: [],
@@ -177,6 +173,5 @@ export default {
   }
 };
 </script>
-
 <style scoped>
 </style>
