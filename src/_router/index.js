@@ -33,7 +33,15 @@ export const router = new Router({
   mode: 'history',
   routes: [
     { path: '/forbidden', component:forbiddenerror},
-    {path: '/ownerdashboard', component:OwnerDashboard},
+    {path: '/ownerdashboard', component:OwnerDashboard,
+    beforeEnter: (to,from,next) =>{
+      if(user.user.role == "owner" ){
+        next();
+      }else {
+        next("/forbidden")
+      }
+    }
+  },
 
     { path: '/', component: LandingPage,
     beforeEnter: (to,from,next) => {
@@ -52,9 +60,11 @@ export const router = new Router({
         next('/rtfdashboard');
       } else if (user.user.role == "humanResource"){
         next('/hrdashboard');
-      } else if (user.user.role == "admin" || user.user.role == "owner" ){
+      } else if (user.user.role == "admin"){
         next('/admindashboard');
-      } else{
+      } else if (user.user.role == "owner" ){
+        next('/ownerdashboard');
+      }else{
         next();
       }
     }
@@ -108,7 +118,7 @@ export const router = new Router({
       {path:'createadmin', component: CreateAdmin}
     ],
     beforeEnter: (to,from,next) =>{
-      if(user.user.role == 'admin' || user.user.role == "owner" ){
+      if(user.user.role == 'admin' ){
         next();
       }else {
         next("/forbidden")
