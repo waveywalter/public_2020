@@ -1,25 +1,61 @@
 
 <template>
-  <div>
-    <h3>{{user.user.firstname +" "+ user.user.lastname}}</h3>
-    <h4>{{ user.user.role}}</h4>
-    <small>{{user.user.email}}</small>
-    <div id="app">
-      <form ref="form" @submit.prevent="form_m">
-        <input placeholder="First Name" type="text" v-on:change="clearAlert" v-model="updateInfo.firstname"  name="firstname">
-        <br>
-        <input placeholder="Last Name" type="text" v-on:change="clearAlert" v-model="updateInfo.lastname"  name="lastname">
-        <br>
-        <input placeholder="User ID" type="hidden" v-model="updateInfo.userId" name="userId">
-        <br>
-        <p>{{message}}</p>
-        <br>
-        <!-- <input placeholder="Email" type="text" name="email"> <br /> -->
-        <input type="submit">
-      </form>
+<div class="container">
+    <div class="row">
+<div class="col-6">
+        <div class="white-box">
+        <!-- <div class="user-bg"> <img width="100%" v-bind:src=imagepath alt="user-img"> </div> -->
+<div class="row">
+<div class="col-md-12">
+
+
+<form ref="form" @submit.prevent="form_m" class="form-horizontal form-material">
+    <div class="form-group">
+        <label class="col-md-12">First Name</label>
+        <div class="col-md-12">
+        <input placeholder="First Name" type="text" v-on:change="clearAlert" v-model="updateInfo.firstname"  name="firstname"><span class="highlight"></span> <span class="bar"></span>
     </div>
-    <imageUpload></imageUpload>
-  </div>
+    </div>
+        <div class="form-group">
+        <label class="col-md-12">Last Name</label>
+        <div class="col-md-12">
+            <input placeholder="Last Name" type="text" v-on:change="clearAlert" v-model="updateInfo.lastname"  name="lastname"> <span class="bar"></span>
+    </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-12">
+            <button class="btn btn-success">Update Profile</button>
+        </div>
+    </div>
+</form>
+</div>
+</div>
+</div>
+    </div>
+<div class="col-6 col row el-element-overlay m-b-40">
+<div>
+    <div class="white-box">
+        <div class="el-card-item">
+            <div class="el-card-avatar el-overlay-1"> <img v-bind:src=imagepath>
+                <div class="el-overlay">
+                    <ul class="el-info">
+                        <!-- <li><a class="btn default btn-outline image-popup-vertical-fit" href="/public/uploads/img1.jpg"><i class="icon-magnifier"></i></a></li> -->
+                        <!-- <li><a class="btn default btn-outline" href="javascript:void(0);"><i class="icon-link"></i></a></li> -->
+                    </ul>
+                </div>
+            </div>
+            <div class="el-card-content">
+                <h3 class="box-title">{{user.user.firstname + " " + user.user.lastname}}</h3> <small>{{user.user.role}}</small>
+                <br> 
+                </div>
+                    <imageUpload></imageUpload>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
+
   <!-- <input type="file" @change="onFileChanged"> -->
   <!-- <h3>Users from secure api end point:</h3> -->
   <!-- <em v-if="users.loading">Loading users...</em> -->
@@ -71,6 +107,7 @@ import imageUpload from './imageUpload'
 export default {
   data() {
     return {
+      imagepath: "/public/uploads/" + this.$store.state.account.user.userId + ".png",
       userInfo: false,
       userPassword: false,
       updateInfo: {

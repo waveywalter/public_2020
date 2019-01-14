@@ -20,6 +20,7 @@ import HomePage from '../_pages/HomePage'
 import forbiddenerror from '../_pages/forbiddenerror'
 import affiliatedashboard from '../components/affiliateComponents/affiliateDashboard'
 import RTFdashboard from '../components/RTFComponents/RTFdashboard'
+import OwnerDashboard from '../components/ownerComponents/OwnerDashboard'
 
 Vue.use(Router);
 let user = JSON.parse(localStorage.getItem('user'));
@@ -32,6 +33,15 @@ export const router = new Router({
   mode: 'history',
   routes: [
     { path: '/forbidden', component:forbiddenerror},
+    {path: '/ownerdashboard', component:OwnerDashboard,
+    beforeEnter: (to,from,next) =>{
+      if(user.user.role == "owner" ){
+        next();
+      }else {
+        next("/forbidden")
+      }
+    }
+  },
 
     { path: '/', component: LandingPage,
     beforeEnter: (to,from,next) => {
@@ -46,19 +56,29 @@ export const router = new Router({
     beforeEnter: (to,from,next) => {
       if(user.user.role == 'sales'){
         next ('/salesdashboard');
-      } else if (user.user.role == "affiliate"){
-        next('/affiliatedashboard');
-      } else if (user.user.role == "hr"){
+      } else if (user.user.role == "rtf"){
+        next('/rtfdashboard');
+      } else if (user.user.role == "humanResource"){
         next('/hrdashboard');
       } else if (user.user.role == "admin"){
         next('/admindashboard');
-      } else{
+      } else if (user.user.role == "owner" ){
+        next('/ownerdashboard');
+      }else{
         next();
       }
     }
   },
+  {path: '/rtfdashboard',component: RTFdashboard,
+  beforeEnter: (to,from,next) =>{
+    if(user.user.role == 'rtf'){
+      next();
+    }else {
+      next("/forbidden")
+    }
+  }
+},
     { path: '/UserProfiles', component: UserProfiles },
-    {path: '/rtfdashboard',component: RTFdashboard},
     { path: '/login', component: LoginPage,
     beforeEnter: (to,from,next) => {
       if (localStorage.getItem(user) === user) {
@@ -84,12 +104,26 @@ export const router = new Router({
     { path: '/HrDashBoard', component: HrDashBoard,
     children: [
       {path:'hrcreateform', component: hrcreateform}
-    ]
+    ],
+    beforeEnter: (to,from,next) =>{
+      if(user.user.role == 'humanResource'){
+        next();
+      }else {
+        next("/forbidden")
+      }
+    }
   },
     { path: '/admindashboard', component: AdminDashBoard,
     children: [
       {path:'createadmin', component: CreateAdmin}
-    ]
+    ],
+    beforeEnter: (to,from,next) =>{
+      if(user.user.role == 'admin' ){
+        next();
+      }else {
+        next("/forbidden")
+      }
+    }
   },
     { path: '/affiliatedashboard', component: affiliatedashboard,
     children: [
@@ -118,15 +152,9 @@ router.beforeEach((to, from, next) => {
   const publicPages = ['/','/login', '/register',];
   const authRequired = !publicPages.includes(to.path);
   const loggedIn = localStorage.getItem('user');
-//  let roles = {"affiliate":"/affiliatepage/", "exdir":"/testpage/"};
-
 
   if (authRequired && !loggedIn) {
     return next('/login');
   }
   next();
-// if (loggedIn){
-//  // return next('/affiliatepage')
-//  return next(roles[user.user.role]);
-// }
 })

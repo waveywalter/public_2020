@@ -2,12 +2,13 @@
   <div>
     <div class="row">
       <div class="col-md-7 ">
-          <h3 class="box-title m-b-5">Create new User</h3>
+          <h3 class="box-title m-b-5">New Form</h3>
           <div class="row">
             <div class="col-sm-12 col-xs-12">
               <form ref="form" @submit.prevent="handleSubmit">
                 <div class="form-group mt-5">
                   <label for="exampleInputuname">First Name</label>
+
                   <div class="input-group">
                     <input
                       v-model="reg.firstname"
@@ -69,10 +70,10 @@
                       class="form-control"
                     >
                       <option value="admin">Admin</option>
-                      <option value="sales">Sales Director</option>
                       <option value="owner">Owner</option>
-                      <option value="humanResource">Human Resource Director</option>
-                      <option value="rtf">RTF Manager</option>
+                      <option value="exdir">Executive Director</option>
+                      <option value="nursdir">Director of Nursing</option>
+                      <option value="nurse1">Nurse1</option>
                     </select>
                     <div class="input-group-addon">
                       <i class="ti-shield"></i>
@@ -128,11 +129,14 @@
       </div>
     </div>
 </template>
+
 <script>
 import { mapState, mapActions } from "vuex";
 import VeeValidate from "vee-validate";
+
 export default {
-  name: "CreateAdmin",
+  name: "hrcreateform",
+
   data() {
     return {
       // errors: [],
@@ -173,5 +177,6 @@ export default {
   }
 };
 </script>
+
 <style scoped>
 </style>
