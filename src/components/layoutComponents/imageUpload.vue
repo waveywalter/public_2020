@@ -3,13 +3,13 @@
 <div v-if="message" :class="`message $error ? 'is-danger':'is-success'}`">
     <div class="message-body">{{message}}</div>
 </div>
-<div>
-    <label for="file" class="label">Upload File</label>
-    <input type="file" ref="file" @change="selectFile"/>
+<div class="col-sm-3">
+    <label for="file" class="label" >Change Profile Image</label>
+    <input type="file" ref="file" style="width: 100px" @change="selectFile"/>
+            <button class="">Upload</button>
+
+
     </div>
-    <div>
-        <button class="button is-info">Send</button>
-        </div>
 </form>
 </template>
 
