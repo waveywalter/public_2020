@@ -3,20 +3,23 @@
 <div v-if="message" :class="`message $error ? 'is-danger':'is-success'}`">
     <div class="message-body">{{message}}</div>
 </div>
-<div>
-    <label for="file" class="label">Upload File</label>
-    <input type="file" ref="file" @change="selectFile"/>
+<div class="col-sm-3">
+    <label for="file" class="label" >Change Profile Image</label>
+    <input type="file" ref="file" style="width: 100px" @change="selectFile"/>
+            <button class="">Upload</button>
+
+
     </div>
-    <div>
-        <button class="button is-info">Send</button>
-        </div>
 </form>
 </template>
 
 <script>
 
 import { router } from '../../_helpers';
-import axios from 'axios'
+import axios from 'axios';
+import { mapState, mapActions } from "vuex";
+
+let user = JSON.parse(localStorage.getItem('user'));
 export default {
     name:"ImageUpload",
     data(){
@@ -27,19 +30,15 @@ export default {
                         }
     },
     methods: {
+        ...mapActions("account", ["update"]),
         selectFile(){
             const file = this.$refs.file.files[0];
-            let userData = JSON.parse(localStorage.getItem('user'));
-
-            console.log(userData.user.id)
-
             const allowedTypes = ["image/jpeg","image/png", "image/gif"];
             const MAX_SIZE = 200000;
             const tooLarge = file.size > MAX_SIZE;
             if (allowedTypes.includes(file.type) && !tooLarge) {
             this.file = file;
             this.error = false;
-            this.userData = userData.user.id;
             this.message = "";
             }else {
                 this.error = true;
@@ -48,9 +47,19 @@ export default {
         },
         async sendFile(){
             const formData = new FormData();
-            formData.append('file',this.file,this.userData);   
+            var self = this;
+            var fileName = user.user.username+'_avatar';
+            formData.append('file',this.file,fileName);    
         try{
-          await axios.post('/upload', formData);
+          await axios.post('/upload', formData).then(function (response) {
+            var userId = user.userId;
+            var avatarName = response.data.file.filename;
+            var updateInfo={
+                "userId": userId,
+                "avatarName": avatarName
+            };
+            self.update(updateInfo);
+          });
           this.message = "File has been uploaded";
           this.file = ""
           this.userData = ""
@@ -61,7 +70,6 @@ export default {
             this.message = err.response.data.error;
             this.error = true;
             }
-        router.go()
         }
     }
 }
