@@ -243,17 +243,9 @@ iframe{
              </div>
              <div class="col-md-4 col-sm-4 mt-4">
                                         <h4 class="card-title">Applications</h4>
-                                        <div class="collapse mt-3 well" id="pgr2" aria-expanded="true">
-                                            <pre class="language-html scrollable">                                                <code>
-                                                    <div class="list-group"><br>
-                <router-link v-for="apps in cfilterlist" tag="li" :to="'/salesdashboard/'+apps.id" @click.native="updateId(apps.id)">
-                <a class="list-group-item ">{{apps.firstname}} {{apps.lastname}}</a>
-                </router-link>
-                                                    </div>
-                                                </code> 
-                                            </pre></div>
+         
                                         <div class="list-group">
-                 <router-link class="list-group-item "   v-for="apps in cfilterlist" tag="li" :to="'/salesdashboard/'+apps.id" @click.native="updateId(apps.id)">
+                 <router-link class="list-group-item " :key="apps.id"  v-for="apps in cfilterlist" tag="li" :to="'/salesdashboard/'+apps.id" @click.native="updateId(apps.id)">
                 <a>{{apps.firstname}} {{apps.lastname}}</a>
                 </router-link>                                         
                                        </div>

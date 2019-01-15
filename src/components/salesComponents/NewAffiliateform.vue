@@ -116,17 +116,9 @@ li {
             <div class="col-sm-12 col-xs-12" v-if="this.$root._route.params.id">
             <div class="">
                                         <h4 class="card-title">Applications </h4>
-                                        <div class="collapse mt-3 well" id="pgr2" aria-expanded="true">
-                                            <pre class="language-html scrollable">                                                <code>
-                                                    <div class="list-group"><br>
-                <router-link v-for="apps in clist" tag="li" :to="'/salesdashboard/'+apps.id" @click.native="updateId(apps.id)">
-                <a>{{apps.firstname}} {{apps.lastname}}</a>
-                </router-link>
-                                                    </div>
-                                                </code> 
-                                            </pre></div>
+                         
                                         <div class="list-group">
-                 <router-link class="list-group-item" v-for="apps in clist" tag="li" :to="'/salesdashboard/'+apps.id" @click.native="updateId(apps.id)">
+                 <router-link class="list-group-item" v-for="apps in clist" :key="app.id" tag="li" :to="'/salesdashboard/'+apps.id" @click.native="updateId(apps.id)">
                 <a >{{apps.firstname}} {{apps.lastname}}</a>
                 </router-link>                                         
                                        </div>
@@ -181,7 +173,7 @@ export default {
      // window.sessionStorage.id = id;
       
       if(id!=undefined){
-       fetch('https://jott.thewaveint.com/api/applications/'+id,{method:"GET",headers:{"Content-Type": "application/json; charset=utf-8",}}).then(response=>response.json()).then(json=>{console.log(json)
+       fetch('https://2020i.site/api/applications/'+id,{method:"GET",headers:{"Content-Type": "application/json; charset=utf-8",}}).then(response=>response.json()).then(json=>{console.log(json)
  
         
         this.$store.state.apps.application = json;
@@ -259,13 +251,13 @@ export default {
     },
    newApp(){     
         let data = this.app
-          fetch('https://jott.thewaveint.com/api/register',{method:"POST",headers:{"Content-Type": "application/json; charset=utf-8",},body:JSON.stringify(this.app)}).then(response=>{
+          fetch('https://2020i.site/api/register',{method:"POST",headers:{"Content-Type": "application/json; charset=utf-8",},body:JSON.stringify(this.app)}).then(response=>{
         
           response.text().then(text=>{
                   let application = JSON.parse(text);
 
                 console.log(application)
-          fetch('https://jott.thewaveint.com/api/containers',{
+          fetch('https://2020i.site/api/containers',{
             method:"POST",headers:{"Content-Type": "application/json; charset=utf-8"},
             body:JSON.stringify({
               "provider": "filesystem",
@@ -289,7 +281,7 @@ export default {
               
           //data.sign1 = this.csign1;
           //data.links = this.clinks;
-          fetch('https://jott.thewaveint.com/api/create/newcontract/'+application.id,{method:"POST",
+          fetch('https://2020i.site/api/create/newcontract/'+application.id,{method:"POST",
               headers:{"Content-Type": "application/json; charset=utf-8","accept": "*/*"},body:JSON.stringify(application)}).then(response=>{
               console.log(response);
               response.text().then(text=>{

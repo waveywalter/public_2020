@@ -1,0 +1,112 @@
+{
+    "dir": "ltr",
+    "lang": "en",
+    "name": "2020i",
+    "scope": "/",
+    "display": "browser",
+    "start_url": "https://2020i.site/",
+    "short_name": "twi",
+    "theme_color": "transparent",
+    "description": "The Wave International",
+    "orientation": "any",
+    "background_color": "transparent",
+    "related_applications": [],
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "/public/images/44e8fcfb-5925-a795-e046-0903271ce166.webPlatform.png",
+            "sizes": "44x44",
+            "type": "image/png"
+        },
+        {
+            "src": "/public/images/f03aa570-c1ce-4950-d3df-8f3af6834573.webPlatform.png",
+            "sizes": "48x48",
+            "type": "image/png"
+        },
+        {
+            "src": "/public/images/86587f5e-0826-9700-0cb3-cdc6fb537914.webPlatform.png",
+            "sizes": "1240x600",
+            "type": "image/png"
+        },
+        {
+            "src": "/public/images/de0844d2-aced-63c0-64c5-d77ef1929ec4.webPlatform.png",
+            "sizes": "300x300",
+            "type": "image/png"
+        },
+        {
+            "src": "/public/images/bb715110-71ec-59ab-ded6-254145229be7.webPlatform.png",
+            "sizes": "150x150",
+            "type": "image/png"
+        },
+        {
+            "src": "/public/images/825a65be-3c51-baca-d9d2-85294bd75c83.webPlatform.png",
+            "sizes": "88x88",
+            "type": "image/png"
+        },
+        {
+            "src": "/public/images/87e67f54-7bcd-31c0-f9e0-0aa9674fc0a4.webPlatform.png",
+            "sizes": "24x24",
+            "type": "image/png"
+        },
+        {
+            "src": "/public/images/8c62e55d-c77c-56e8-9833-abbb410c7bf0.webPlatform.png",
+            "sizes": "50x50",
+            "type": "image/png"
+        },
+        {
+            "src": "/public/images/e1f8f1fe-1d9f-e479-3e28-97e2d705b4df.webPlatform.png",
+            "sizes": "620x300",
+            "type": "image/png"
+        },
+        {
+            "src": "/public/images/a3ddd133-fd13-6ce7-39c9-7b15eb8b1abc.webPlatform.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/public/images/50e85e54-3b8b-f94b-2192-41615a3707f2.webPlatform.png",
+            "sizes": "144x144",
+            "type": "image/png"
+        },
+        {
+            "src": "/public/images/b440ea65-18dc-4674-3e55-ae8466b78e42.webPlatform.png",
+            "sizes": "96x96",
+            "type": "image/png"
+        },
+        {
+            "src": "/public/images/106f84b1-b4ce-f3b7-e407-c980f6dacd18.webPlatform.png",
+            "sizes": "72x72",
+            "type": "image/png"
+        },
+        {
+            "src": "/public/images/8eb746e9-71b7-0546-07ec-51eb53d8c592.webPlatform.png",
+            "sizes": "36x36",
+            "type": "image/png"
+        },
+        {
+            "src": "/public/images/9fd09e97-eca1-3c50-ca32-5af6c0173c1b.webPlatform.png",
+            "sizes": "1024x1024",
+            "type": "image/png"
+        },
+        {
+            "src": "/public/images/33a3d993-0383-df7f-74ba-57898bd865e8.webPlatform.png",
+            "sizes": "180x180",
+            "type": "image/png"
+        },
+        {
+            "src": "/public/images/9acf3f4f-fa0c-d16b-aaff-2983e4056560.webPlatform.png",
+            "sizes": "152x152",
+            "type": "image/png"
+        },
+        {
+            "src": "/public/images/1c3355dc-c555-f6e0-f3f3-59ff025f42f9.webPlatform.png",
+            "sizes": "120x120",
+            "type": "image/png"
+        },
+        {
+            "src": "/public/images/209c781e-de74-b71d-9a07-f1e786e641dc.webPlatform.png",
+            "sizes": "76x76",
+            "type": "image/png"
+        }
+    ]
+}
