@@ -17,8 +17,6 @@
                 <ul>
                     <li><a v-on:click="currentTab.tabname = 'CreateAdmin' " href="#CreateAdmin" class="sticon ti-home "><span>New Form</span></a></li>
                     <li><a v-on:click="currentTab.tabname = 'UserInformation' " href="#UserInformation" class="sticon ti-trash"><span>User Info</span></a></li>
-                    <!-- <button v-on:click="components = 'NewAffiliateform' ">Show Form</button>
-                    <button v-on:click="components = 'Userinformation' ">Show Info</button> -->
                 </ul>
             </nav>
             <!-- /content -->
@@ -48,11 +46,13 @@ import Vue from 'vue';
         name: "adminDashBoard",
         data(){
             return{
-                components:"CreateAdmin",
                 currentTab: {
                     tabname: ""
                 }
             }
+        },
+         mounted(){
+            this.opentab();
         },
         methods: {
             opentab(){
@@ -66,10 +66,8 @@ import Vue from 'vue';
             AdminSideBar,
             CreateAdmin,
             UserInformation,
-        },
-        mounted(){
-            this.opentab();
         }
+       
     }
 </script>
 <style scoped>

@@ -110,11 +110,13 @@
 
 <script>
 import { mapState, mapActions } from "vuex";
+let user = JSON.parse(localStorage.getItem('user'));
+
     export default {
         name: "adminSideBar",
         data(){
             return{
-                imagepath: "/public/uploads/" + this.$store.state.account.user.userId + ".png"
+                imagepath: "/public/uploads/" + user.user.username +'/'+user.user.avatarName,
             }
         }
     }

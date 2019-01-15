@@ -2,7 +2,7 @@
 <template>
 <div class="container">
     <div class="row">
-<div class="col-6">
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 el-element-overlay">
         <div class="white-box">
         <!-- <div class="user-bg"> <img width="100%" v-bind:src=imagepath alt="user-img"> </div> -->
 <div class="row">
@@ -32,7 +32,7 @@
 </div>
 </div>
     </div>
-<div class="col-6 col row el-element-overlay m-b-40">
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 el-element-overlay">
 <div>
     <div class="white-box">
         <div class="el-card-item">
@@ -107,7 +107,7 @@ import imageUpload from './imageUpload'
 export default {
   data() {
     return {
-      imagepath: "/public/uploads/" + this.$store.state.account.user.userId + ".png",
+      imagepath: "/public/uploads/" + user.user.username +'/'+user.user.avatarName,
       userInfo: false,
       userPassword: false,
       updateInfo: {
@@ -126,9 +126,6 @@ export default {
   computed: {
     ...mapState("account", ["user"]),
     ...mapState("alert", ["message"])
-  },
-  created() {
-    this.getAllUsers();
   },
   methods: {
     ...mapActions("account", ["update"]),
@@ -157,11 +154,7 @@ export default {
           "Content-Type": "application/x-www-form-urlencoded"
         }
       });
-    },
-        ...mapActions('users', {
-            getAllUsers: 'getAll',
-            deleteUser: 'delete'
-        })
+    }
     }
 };
 </script>

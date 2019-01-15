@@ -15,10 +15,8 @@
         <div class="sttabs tabs-style-bar">
             <nav>
                 <ul>
-                    <li><a v-on:click="components = 'hrcreateform' " href="#section-bar-1" class="sticon ti-home "><span>New Form</span></a></li>
-                    <li><a v-on:click="components = 'UserInformation' " href="#section-bar-2" class="sticon ti-trash"><span>User Info</span></a></li>
-                    <!-- <button v-on:click="components = 'NewAffiliateform' ">Show Form</button>
-                    <button v-on:click="components = 'Userinformation' ">Show Info</button> -->
+                    <li><a v-on:click="currentTab.tabname = 'hrcreateform' " href="#hrcreateform" class="sticon ti-home "><span>New Form</span></a></li>
+                    <li><a v-on:click="currentTab.tabname = 'UserInformation' " href="#UserInformation" class="sticon ti-trash"><span>User Info</span></a></li>
                 </ul>
             </nav>
             <!-- /content -->
@@ -27,7 +25,7 @@
     </section>
     <div class="tab-content">
             <keep-alive>
-            <component v-bind:is="components"></component>
+            <component v-bind:is="currentTab.tabname"></component>
             </keep-alive>
             </div>
             </div>
@@ -41,14 +39,27 @@
 import AdminTopHeader from '../layoutComponents/adminTopHeader';
 import AdminSideBar from '../layoutComponents/adminSideBar';
 import hrcreateform from '../hrComponents/hrcreateform';
-import UserInformation from '../layoutComponents/UserInformation'
+import UserInformation from '../layoutComponents/UserInformation';
+import Vue from 'vue';
 
 
     export default {
         name: "RTF",
-                data(){
+         data(){
             return{
-                components:"hrcreateform"
+                currentTab: {
+                    tabname: ""
+                }
+            }
+        },
+         mounted(){
+            this.opentab();
+        },
+        methods: {
+            opentab(){
+                var url = window.location.href.split("#");
+                var ctab = url[1] ? url[1] : "hrcreateform";
+                Vue.set(this.currentTab, "tabname", ctab);
             }
         },
         components: {
