@@ -14,7 +14,6 @@ import HrDashBoard from '../components/hrComponents/HrDashBoard'
 import hrcreateform from '../components/hrComponents/hrcreateform'
 import SalesDashBoard from '../components/salesComponents/SalesDashBoard'
 import NewAffiliateform from '../components/salesComponents/NewAffiliateform'
-// import affiliatePage from '../_pages/affiliatepage'
 import testpage2 from '../_pages/testpage2'
 import HomePage from '../_pages/HomePage'
 import forbiddenerror from '../_pages/forbiddenerror'
@@ -64,6 +63,8 @@ export const router = new Router({
         next('/admindashboard');
       } else if (user.user.role == "owner" ){
         next('/ownerdashboard');
+      }else if (user.user.role == "affiliate" ){
+        next('/affiliatedashboard');
       }else{
         next();
       }
@@ -77,6 +78,15 @@ export const router = new Router({
       next("/forbidden")
     }
   }
+},
+{path: '/affiliatedashboard',component: affiliatedashboard,
+beforeEnter: (to,from,next) =>{
+  if(user.user.role == 'affiliate'){
+    next();
+  }else {
+    next("/forbidden")
+  }
+}
 },
     { path: '/UserProfiles', component: UserProfiles },
     { path: '/login', component: LoginPage,
@@ -125,22 +135,22 @@ export const router = new Router({
       }
     }
   },
-    { path: '/affiliatedashboard', component: affiliatedashboard,
-    children: [
-      { path: 'test1', component: Testpage },
-      { path: 'test2', component: testpage2 },
-    ], 
-    beforeEnter: (to,from,next) => {
-      userService.checkrole().then(res => res.json()).then(roleMapping => {
-            if ((user.user.role == "owner") && roleMapping.id) {
-              next();
-            }else {
-              //alert("owner only")
-              history.back()
-            }
-        });
-    }
-   },
+  //   { path: '/affiliatedashboard', component: affiliatedashboard,
+  //   children: [
+  //     { path: 'test1', component: Testpage },
+  //     { path: 'test2', component: testpage2 },
+  //   ], 
+  //   beforeEnter: (to,from,next) => {
+  //     userService.checkrole().then(res => res.json()).then(roleMapping => {
+  //           if ((user.user.role == "owner") && roleMapping.id) {
+  //             next();
+  //           }else {
+  //             //alert("owner only")
+  //             history.back()
+  //           }
+  //       });
+  //   }
+  //  },
 
     // otherwise redirect to home
     { path: '*', redirect: '/' }
