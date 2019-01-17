@@ -1,4 +1,9 @@
 <style scoped>
+.apps .list-group-item {
+    display: flex;
+    justify-content: space-between;
+}
+.apps i {cursor:pointer}
  .list-group-item.router-link-active, .list-group .list-group-item.router-link-active:hover {
     background: #fb9678;
     border-color: #fb9678;
@@ -241,13 +246,20 @@ iframe{
                </div>
               </div>
              </div>
-             <div class="col-md-4 col-sm-4 mt-4">
+             <div class="col-md-6 col-sm-6 mt-6 apps">
                                         <h4 class="card-title">Applications</h4>
          
                                         <div class="list-group">
-                 <router-link class="list-group-item " :key="apps.id"  v-for="apps in cfilterlist" tag="li" :to="'/salesdashboard/'+apps.id" @click.native="updateId(apps.id)">
-                <a>{{apps.firstname}} {{apps.lastname}}</a>
-                </router-link>                                         
+                                          <div class="list-group-item " v-for="apps in cfilterlist">
+                 <router-link @click.native="updateId(apps.id)"  :key="apps.id"   tag="li" :to="'/salesdashboard/'+apps.id" >
+                <a >{{apps.firstname}} {{apps.lastname}}</a>
+
+                </router-link>
+                    <i class="icon-docs" v-on:click="sendDocstoApplicant(apps.id)"></i>
+                      <i class="icon-reload" v-on:click="resendCode(apps.id)"></i>
+                      <i class="icon-close" v-on:click="deleteApp(apps.id)"></i>  
+                </div>
+ 
                                        </div>
                                     </div>
   
@@ -843,6 +855,12 @@ computed:{
     },
   
 methods:{
+    deleteApp(id){
+      fetch('/api/applications/'+id,{method:"DELETE"}).then(()=>{this.getApps()})
+
+    },
+    resendCode(){},
+    sendDocstoApplicant(){},
     frender(){
       this.listkey +=1;
     },
@@ -1330,14 +1348,41 @@ methods:{
       console.log('HIT API and APPROVE APPLICATION')
         let st = this.$store.state.apps.application
        st.approved=boo;
-      if(this.cs1==true &&  this.cs2==true && this.cs3==true && this.cs4==true && this.cs5==true && this.cs6==true && this.cs7==true && this.cs8==true && this.cs9==true )
+            
+            let d = Object.entries(st);
+            let e = d.map((datar)=>{
+            //console.log(datar)
+            if(datar[1]==null){
+                if(datar[0]=='links' || datar[0]=='contacts'){
+                    this.$store.state.apps.application[datar[0]] = [];
+                    return [] 
+                }
+                else{
+                    this.$store.state.apps.application[datar[0]] ='';
+                    return ''
+                }
+                
+            }
+            return datar[1] 
+            })
+            console.log(this.cs1,st.approved)
+      if(this.cs1==true && st.approved==true)
          {
+           let req ={};
+           req.approved='1';
+           req.email = this.cemail;
+           req.firstname = this.cname.split(' ')[0];
+           req.lastname = this.cname.split(' ')[1];
+           req.password = "2020affiliate";
+           req.username = "affiliate"+req.firstname;
+           req.role = "affiliate"
+           console.log("SIGNEDDDDDDDDDDDDDDD")
          fetch('/api/applications/approve/'+this.$store.state.apps.application.id,{
           method:"POST",headers:{"Content-Type": "application/json; charset=utf-8",},
           body:JSON.stringify(st)})
          }
         else {
-         fetch('/api/applications/approve/'+this.$store.state.apps.application.id,{
+         fetch('/api/applications/disapprove/'+this.$store.state.apps.application.id,{
           method:"POST",headers:{"Content-Type": "application/json; charset=utf-8",},
           body:JSON.stringify(st)})
         }

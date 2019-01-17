@@ -1,8 +1,9 @@
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-
+const {GenerateSW} = require('workbox-webpack-plugin');
+console.log("PRODUCTIONNNNNNNNNNNN")
 module.exports = {
-    mode: 'development',
+    mode: 'production',
     entry: ['babel-polyfill', './src/app'],
     entry:path.join(__dirname, 'src', 'index.js'),
     resolve: {
@@ -38,12 +39,16 @@ module.exports = {
     },
     plugins: [new HtmlWebpackPlugin({
         template: './src/index.html'
-    })],
+    }),
+    new GenerateSW()
+    ],
     devServer: {
         historyApiFallback: true,
         proxy:{
             "/upload":"http://localhost:3344"
 
+        },headers:{
+            'Service-Worker-Allowed': true
         }
     },
     externals: {

@@ -24,10 +24,10 @@ self.addEventListener('install', function(event) {
 //Maybe this should be limited to HTML documents?
 self.addEventListener('fetch', function(event) {
   console.log(event.request)
-  console.log("FETCHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH")
+  //console.log("FETCHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH")
   event.respondWith(
     fetch(event.request).catch(function(error) {
-      console.error( '[PWA Builder] Network request Failed. Serving offline page ' + error );
+     // console.error( '[PWA Builder] Network request Failed. Serving offline page ' + error );
       return caches.open('pwabuilder-offline').then(function(cache) {
         return cache.match('offline.html');
       });

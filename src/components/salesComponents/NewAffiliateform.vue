@@ -104,7 +104,7 @@ li {
                   </div>
                   <span>{{ errors.first('email') }}</span>
                 </div>
-
+<input type="file" class="hidden" accept="image/*">
                 <div class="text-right">
                   <button
                     type="submit"
@@ -144,9 +144,9 @@ export default {
     return {
       // errors: [],
       app: {
-        firstname: "Walter",
-        lastname: "Johnson",
-        phone: "3219486950",
+        firstname: "",
+        lastname: "",
+        phone: "",
         type: "",
         email: "walterj@thewaveint.com",
 
