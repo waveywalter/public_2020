@@ -73,6 +73,8 @@
                       <option value="owner">Owner</option>
                       <option value="humanResource">Human Resource Director</option>
                       <option value="rtf">RTF Manager</option>
+                      <option value="affiliate">Affiliate</option>
+
                     </select>
                     <div class="input-group-addon">
                       <i class="ti-shield"></i>
