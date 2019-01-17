@@ -25,6 +25,7 @@ import AffiliateRegistration from '../salesComponents/AffiliateRegistration';
 
 
 
+
     export default {
         name: "SalesDashBoard",
         data(){
@@ -36,7 +37,7 @@ import AffiliateRegistration from '../salesComponents/AffiliateRegistration';
             AdminTopHeader,
             AdminSideBar,
             NewAffiliateform,
-            AffiliateRegistration
+            AffiliateRegistration,
         },
         methods:{
          filterApp(){
