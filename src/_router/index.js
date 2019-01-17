@@ -117,12 +117,14 @@ export const router = new Router({
     children: [
       {path:'createadmin', component: CreateAdmin}
     ],
-    beforeEnter: (to,from,next) =>{
-      if(user.user.role == 'admin' ){
-        next();
-      }else {
-        next("/forbidden")
-      }
+    beforeEnter: (to,from,next) => {
+      userService.checkrole().then(res => res.json()).then(roleMapping => {
+            if ((user.user.role == "admin") && roleMapping.id) {
+              next();
+            }else {
+              next("/forbidden")
+            }
+        });
     }
   },
     { path: '/affiliatedashboard', component: affiliatedashboard,
@@ -135,8 +137,7 @@ export const router = new Router({
             if ((user.user.role == "owner") && roleMapping.id) {
               next();
             }else {
-              //alert("owner only")
-              history.back()
+              next("/forbidden")
             }
         });
     }

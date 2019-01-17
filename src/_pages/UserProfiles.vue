@@ -50,7 +50,7 @@
 <script>
 //let user = JSON.parse(localStorage.getItem('user')).user;
 
-import { authHeader } from '../_helpers';
+//import { authHeader } from '../_helpers';
 import AdminTopHeader from '../components/layoutComponents/adminTopHeader';
 import AdminSideBar from '../components/layoutComponents/adminSideBar';
 import { mapState, mapActions } from 'vuex'

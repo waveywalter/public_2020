@@ -1,5 +1,5 @@
 import { userService } from '../_services';
-import { router } from '../_helpers';
+import { router } from '../_router';
 import * as Cookie from 'js-cookie';
 
 const user = JSON.parse(localStorage.getItem('user'));
