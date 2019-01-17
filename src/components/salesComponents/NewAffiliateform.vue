@@ -116,12 +116,7 @@ li {
             <div class="col-sm-12 col-xs-12" v-if="this.$root._route.params.id">
             <div class="">
                                         <h4 class="card-title">Applications </h4>
-                         
-                                        <div class="list-group">
-                 <router-link class="list-group-item" v-for="apps in clist" :key="app.id" tag="li" :to="'/salesdashboard/'+apps.id" @click.native="updateId(apps.id)">
-                <a >{{apps.firstname}} {{apps.lastname}}</a>
-                </router-link>                                         
-                                       </div>
+                                        <applicationslist></applicationslist>
                                     </div>
  
             </div>
@@ -136,6 +131,7 @@ li {
 <script>
 import { mapState, mapActions } from "vuex";
 import VeeValidate from "vee-validate";
+import applicationslist from '../salesComponents/applicationslist'
 
 export default {
   name: "NewAffiliateform",
@@ -153,6 +149,9 @@ export default {
       },
       submitted: false
     };
+  },
+  components:{
+    applicationslist,
   },
   computed: {
        clist:{
@@ -309,19 +308,13 @@ export default {
         })
         
        // this.$store.commit('increment')
-        
-        
+
         })
     //this.$store.state.apps.application = application;
          this.$store.commit('apps/getApps') 
           })
-          
-
-
           }) 
-         
-        
-   }
+ }
   }
 }
 </script>

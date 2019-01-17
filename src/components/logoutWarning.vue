@@ -56,7 +56,7 @@ export default {
           tp = setTimeout(function() {
             self.logoutPop = true;
             self.logoutTime = "02:00";
-            timer = 60;
+            timer = 120;
             var logoutTimer = setInterval(function(){
                 timer--;
                 minutes = parseInt(timer / 60, 10)

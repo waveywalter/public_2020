@@ -18,7 +18,7 @@
                 <ul class="nav" id="side-menu">
                     <li class="nav-small-cap m-t-10">--- Main Menu</li>
                     <li>
-                      <a href="dashboard.php" class="waves-effect active">
+                      <a href="#" class="waves-effect active">
                         <i class="linea-icon linea-basic fa-fw" data-icon="E"></i>
                         <span class="hide-menu">Dashboard</span>
                       </a>

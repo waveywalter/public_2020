@@ -248,21 +248,8 @@ iframe{
              </div>
              <div class="col-md-6 col-sm-6 mt-6 apps">
                                         <h4 class="card-title">Applications</h4>
-         
-                                        <div class="list-group">
-                                          <div class="list-group-item " v-for="apps in cfilterlist">
-                 <router-link @click.native="updateId(apps.id)"  :key="apps.id"   tag="li" :to="'/salesdashboard/'+apps.id" >
-                <a >{{apps.firstname}} {{apps.lastname}}</a>
-
-                </router-link>
-                    <i class="icon-docs" v-on:click="sendDocstoApplicant(apps.id)"></i>
-                      <i class="icon-reload" v-on:click="resendCode(apps.id)"></i>
-                      <i class="icon-close" v-on:click="deleteApp(apps.id)"></i>  
-                </div>
- 
-                                       </div>
+                                        <applicationslist></applicationslist>
                                     </div>
-  
             </div>
         </div>
     <div v-if="this.$root._route.params.id">
@@ -280,14 +267,14 @@ iframe{
 <script>
 
 import axiosApi from 'axios';
-import  $ from 'jquery'
+import  $ from 'jquery';
+import applicationslist from './applicationslist';
+import imageupload from "../layoutComponents/imageUpload"
+
 //import AffiliateRegView from '../salesComponents/jottComponents/v5/pages/AffiliateRegView.vue';
 
 
 export default {
-    components :{
-
-    },
     data(){
         return {
           //  signature:[["Accident Reporting Procedure",1,1],['Authorization-Background Screening',1,0],['CDCFactSheet VaccineInfoSign Sheet',1,0],
@@ -1699,7 +1686,7 @@ mounted :function(){
 
         name: "AffiliateRegistration",
         components: {
-               
+               applicationslist
         }
     
     
