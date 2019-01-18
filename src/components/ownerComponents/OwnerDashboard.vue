@@ -2,7 +2,7 @@
     <div>
         <AdminTopHeader></AdminTopHeader>
         <AdminSideBar></AdminSideBar>
-        <div id="page-wrapper">
+        <div id="page-wrapper" >
             <div class="container-fluid">
             <div class="col-lg">
                 <div class="row bg-title">
@@ -70,4 +70,9 @@ import Vue from 'vue';
     }
 </script>
 <style scoped>
+
+#page-wrapper{
+    display: flex;
+}
+
 </style>

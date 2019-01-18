@@ -3,7 +3,7 @@
             <div class="sidebar-nav navbar-collapse slimscrollsidebar">
               <div class="user-profile">
                     <div class="dropdown user-pro-body">
-                        <div><img v-bind:src=imagepath alt="user-img" class="img-circle"></div> <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Director of Nursing<span class="caret"></span></a>
+                        <div><img v-bind:src=imagepath alt="user-img" class="img-circle"></div> <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.user.role}}<span class="caret"></span></a>
                         <ul class="dropdown-menu animated flipInY">
                             <li><a href="#"><i class="ti-user"></i> My Profile</a></li>
                             <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
@@ -111,12 +111,15 @@
 <script>
 import { mapState, mapActions } from "vuex";
 let user = JSON.parse(localStorage.getItem('user'));
+console.log(user)
 
     export default {
         name: "adminSideBar",
         data(){
             return{
                 imagepath: "/public/uploads/" + user.user.username +'/'+user.user.avatarName,
+                user: user,
+                role: user.user.role,
             }
         }
     }
