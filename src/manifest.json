@@ -4,7 +4,7 @@
     "name": "2020i",
     "scope": "/",
     "display": "browser",
-    "start_url": "https://2020i.site/",
+    "start_url": "/",
     "short_name": "twi",
     "theme_color": "transparent",
     "description": "The Wave International",

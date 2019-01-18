@@ -1,10 +1,12 @@
 {
     "dir": "ltr",
     "lang": "en",
-    "name": "2020i",
+    "name": "2020i.SITE",
     "scope": "/",
-    "display": "browser",
-    "start_url": "https://2020i.site/",
+  
+    "start_url": "/index.html",
+    "display": "standalone",
+    
     "short_name": "twi",
     "theme_color": "transparent",
     "description": "The Wave International",
