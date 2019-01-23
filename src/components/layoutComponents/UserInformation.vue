@@ -8,7 +8,6 @@
 <div class="row">
 <div class="col-md-12">
 
-
 <form ref="form" @submit.prevent="form_m" class="form-horizontal form-material">
     <div class="form-group">
         <label class="col-md-12">First Name</label>
@@ -20,6 +19,12 @@
         <label class="col-md-12">Last Name</label>
         <div class="col-md-12">
             <input placeholder="Last Name" type="text" v-on:change="clearAlert" v-model="updateInfo.lastname"  name="lastname"> <span class="bar"></span>
+    </div>
+    </div>
+        <div class="form-group">
+        <label class="col-md-12">Role</label>
+        <div class="col-md-12">
+            <p>{{updateInfo.role}}</p> <span class="bar"></span>
     </div>
     </div>
     <div class="form-group">
@@ -36,7 +41,9 @@
 <div>
     <div class="white-box">
         <div class="el-card-item">
-            <div class="el-card-avatar el-overlay-1"> <img v-bind:src=imagepath>
+            <div class="el-card-avatar el-overlay-1"> 
+                <p>My current avatar</p>
+                <img v-bind:src=imagepath>
                 <div class="el-overlay">
                     <ul class="el-info">
                         <!-- <li><a class="btn default btn-outline image-popup-vertical-fit" href="/public/uploads/img1.jpg"><i class="icon-magnifier"></i></a></li> -->
@@ -45,8 +52,6 @@
                 </div>
             </div>
             <div class="el-card-content">
-                <h3 class="box-title">{{user.user.firstname + " " + user.user.lastname}}</h3> <small>{{user.user.role}}</small>
-                <br> 
                 </div>
                     <imageUpload></imageUpload>
         </div>
@@ -79,6 +84,7 @@ export default {
       updateInfo: {
         firstname: user.user.firstname,
         lastname: user.user.lastname,
+        role: user.user.role,
         userId: user.userId,
       },
     };

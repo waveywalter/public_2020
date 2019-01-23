@@ -113,15 +113,16 @@ beforeEnter: (to,from,next) =>{
     },
     { path: '/HrDashBoard', component: HrDashBoard,
     children: [
-      {path:'hrcreateform', component: hrcreateform}
-    ],
-    beforeEnter: (to,from,next) =>{
-      if(user.user.role == 'humanResource'){
-        next();
-      }else {
-        next("/forbidden")
-      }
-    }
+          { path: 'test1', component: Testpage },
+          { path: 'test2', component: testpage2 }
+        ]
+    // beforeEnter: (to,from,next) =>{
+    //   if(user.user.role == 'humanResource'){
+    //     next();
+    //   }else {
+    //     next("/forbidden")
+    //   }
+    // }
   },
     { path: '/admindashboard', component: AdminDashBoard,
     children: [
