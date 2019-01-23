@@ -6,8 +6,8 @@
 </style>
 <template>
     <div>
-        <AdminTopHeader></AdminTopHeader>
-        <AdminSideBar></AdminSideBar>
+        <TopHeader></TopHeader>
+        <SideBar></SideBar>
         <!-- <div id="page-wrapper">
             <div id="flexor">
             <NewAffiliateform></NewAffiliateform>
@@ -59,8 +59,8 @@
 </template>
 
 <script>
-import AdminTopHeader from '../layoutComponents/adminTopHeader';
-import AdminSideBar from '../layoutComponents/adminSideBar';
+import TopHeader from '../layoutComponents/TopHeader';
+import SideBar from '../layoutComponents/SideBar';
 import NewAffiliateform from '../salesComponents/NewAffiliateform';
 import AffiliateRegistration from '../salesComponents/AffiliateRegistration';
 import UserInformation from '../layoutComponents/UserInformation';
@@ -85,8 +85,8 @@ import Vue from 'vue';
             this.opentab();
         },
         components: {
-            AdminTopHeader,
-            AdminSideBar,
+            TopHeader,
+            SideBar,
             NewAffiliateform,
             AffiliateRegistration,
             UserInformation

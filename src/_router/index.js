@@ -20,6 +20,7 @@ import forbiddenerror from '../_pages/forbiddenerror'
 import affiliatedashboard from '../components/affiliateComponents/affiliateDashboard'
 import RTFdashboard from '../components/RTFComponents/RTFdashboard'
 import OwnerDashboard from '../components/ownerComponents/OwnerDashboard'
+import MyProfile from  '../_pages/MyProfile'
 
 Vue.use(Router);
 let user = JSON.parse(localStorage.getItem('user'));
@@ -51,6 +52,13 @@ export const router = new Router({
       }
     }  
   },
+  // { path: '/myprofile', component: MyProfile,
+  //   beforeRouteEnter: (to,from,next) => {
+  //     if(localStorage.getItem(user) === user){
+  //         next();
+  //     }
+  //   }  
+  // },
     { path: '/homepage', component:HomePage,
     beforeEnter: (to,from,next) => {
       if(user.user.role == 'sales'){
@@ -79,7 +87,13 @@ export const router = new Router({
     }
   }
 },
-{path: '/affiliatedashboard',component: affiliatedashboard,
+{path: '/affiliatedashboard',
+component: affiliatedashboard,
+children: [
+  { path: 'MyProfile', 
+  component: MyProfile 
+    },
+  ],
 beforeEnter: (to,from,next) =>{
   if(user.user.role == 'affiliate'){
     next();
@@ -101,7 +115,8 @@ beforeEnter: (to,from,next) =>{
     { path: '/register', component: RegisterPage },
     { path: '/salesdashboard/:id?', component:SalesDashBoard,
     children: [
-      {path: 'NewAffiliateform', component:NewAffiliateform}
+      // {path: 'NewAffiliateform', component:NewAffiliateform},
+      { path: 'MyProfile', component: MyProfile },
      ],
      beforeEnter: (to,from,next) => {
        if(user.user.role == 'sales'){

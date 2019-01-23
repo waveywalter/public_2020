@@ -1,7 +1,7 @@
 <template>
     <div>
-        <AdminTopHeader></AdminTopHeader>
-        <AdminSideBar></AdminSideBar>
+        <TopHeader></TopHeader>
+        <SideBar></SideBar>
         <div id="page-wrapper" >
             <div class="container-fluid">
             <div class="col-lg">
@@ -36,8 +36,8 @@
 </template>
 
 <script>
-import AdminTopHeader from '../layoutComponents/adminTopHeader';
-import AdminSideBar from '../layoutComponents/adminSideBar';
+import TopHeader from '../layoutComponents/TopHeader';
+import SideBar from '../layoutComponents/SideBar';
 import ownerform from  '../ownerComponents/ownerform';
 import UserInformation from '../layoutComponents/UserInformation';
 import Vue from 'vue';
@@ -62,8 +62,8 @@ import Vue from 'vue';
             }
         },
         components: {
-            AdminTopHeader,
-            AdminSideBar,
+            TopHeader,
+            SideBar,
             ownerform,
             UserInformation,
         }

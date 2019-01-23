@@ -5,20 +5,16 @@
 </div>
 <div class="col-sm-3">
     <label for="file" class="label" >Change Profile Image</label>
-    <input type="file" ref="file" style="width: 100px" @change="selectFile"/>
+    <label class="btn btn-block btn-info btn-rounded upload-botton" for="user_image_uploader_button">Choose File</label>
+    <input type="file" ref="file" id="user_image_uploader_button" style="width: 100px" @change="selectFile"/>
             <button class="">Upload</button>
-
-
     </div>
 </form>
 </template>
-
 <script>
-
-import { router } from '../../_helpers';
+//import { router } from '../../_helpers';
 import axios from 'axios';
 import { mapState, mapActions } from "vuex";
-
 let user = JSON.parse(localStorage.getItem('user'));
 export default {
     name:"ImageUpload",
@@ -74,3 +70,12 @@ export default {
     }
 }
 </script>
+<style scoped>
+#user_image_uploader_button{
+  display:none;
+}
+.upload-botton{
+    display: inline-table;
+    cursor: pointer;
+}
+</style>
