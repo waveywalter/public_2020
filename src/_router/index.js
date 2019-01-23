@@ -7,6 +7,7 @@ import LandingPage from '../components/LandingPage';
 import UserProfiles from '../_pages/UserProfiles'
 import LoginPage from '../_pages/LoginPage'
 import RegisterPage from '../_pages/RegisterPage'
+import adminHome from '../_pages/adminHome'
 import Testpage from '../_pages/TestPage'
 import AdminDashBoard from '../components/adminComponents/adminDashBoard'
 import CreateAdmin from '../components/adminComponents/createAdmin'
@@ -68,7 +69,7 @@ export const router = new Router({
       } else if (user.user.role == "humanResource"){
         next('/hrdashboard');
       } else if (user.user.role == "admin"){
-        next('/admindashboard');
+        next('/admin');
       } else if (user.user.role == "owner" ){
         next('/ownerdashboard');
       }else if (user.user.role == "affiliate" ){
@@ -116,7 +117,7 @@ beforeEnter: (to,from,next) =>{
     { path: '/salesdashboard/:id?', component:SalesDashBoard,
     children: [
       // {path: 'NewAffiliateform', component:NewAffiliateform},
-      { path: 'MyProfile', component: MyProfile },
+      { path: 'myprofile', component: MyProfile },
      ],
      beforeEnter: (to,from,next) => {
        if(user.user.role == 'sales'){
@@ -139,9 +140,10 @@ beforeEnter: (to,from,next) =>{
     //   }
     // }
   },
-    { path: '/admindashboard', component: AdminDashBoard,
+    { path: '/admin', component: adminHome,
     children: [
-      {path:'createadmin', component: CreateAdmin}
+      {path:'', component: AdminDashBoard},
+      { path: 'MyProfile', component: MyProfile }
     ],
     beforeEnter: (to,from,next) => {
       userService.checkrole().then(res => res.json()).then(roleMapping => {
