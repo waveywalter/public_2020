@@ -1,8 +1,8 @@
 
 <template>
     <div>
-        <AdminTopHeader></AdminTopHeader>
-        <AdminSideBar></AdminSideBar>
+        <TopHeader></TopHeader>
+        <SideBar></SideBar>
         
         <div id="page-wrapper">
         <h1>Hi {{account.user.user.username}}!</h1>
@@ -50,9 +50,9 @@
 <script>
 //let user = JSON.parse(localStorage.getItem('user')).user;
 
-//import { authHeader } from '../_helpers';
-import AdminTopHeader from '../components/layoutComponents/adminTopHeader';
-import AdminSideBar from '../components/layoutComponents/adminSideBar';
+import { authHeader } from '../_helpers';
+import TopHeader from '../components/layoutComponents/TopHeader';
+import SideBar from '../components/layoutComponents/SideBar';
 import { mapState, mapActions } from 'vuex'
 
 //console.log(user)
@@ -65,8 +65,8 @@ export default {
     },
         name: "UserProfiles",
         components: {
-            AdminTopHeader,
-            AdminSideBar,
+            TopHeader,
+            SideBar,
         },
     computed: {
         ...mapState({

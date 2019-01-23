@@ -21,12 +21,10 @@
     </div>
   </div>
 </template>
-
 <script>
 //import { router } from '../../_helpers';
 import axios from "axios";
 import { mapState, mapActions } from "vuex";
-
 let user = JSON.parse(localStorage.getItem("user"));
 export default {
   name: "ImageUpload",

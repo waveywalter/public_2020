@@ -20,7 +20,7 @@
                     <li>
                       <a href="#" class="waves-effect active">
                         <i class="linea-icon linea-basic fa-fw" data-icon="E"></i>
-                        <span class="hide-menu">Dashboard</span>
+                        <span class="hide-menu">Admin Dashboard</span>
                       </a>
                     </li>
                     <li> <a href="javascript:void(0);" class="waves-effect"><i class="linea-icon linea-basic fa-fw " data-icon="7"></i> <span class="hide-menu "> Components <span class="fa arrow"></span></span></a>

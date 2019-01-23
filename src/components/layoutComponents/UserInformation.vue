@@ -68,8 +68,8 @@
 let user = JSON.parse(localStorage.getItem("user"));
 
 // import { authHeader } from '../_helpers';
-import AdminTopHeader from "./adminTopHeader";
-import AdminSideBar from "./adminSideBar";
+import TopHeader from "./TopHeader";
+import SideBar from "./SideBar";
 import { mapState, mapActions } from "vuex";
 import { store } from '../../_store';
 import imageUpload from './imageUpload'
@@ -91,8 +91,8 @@ export default {
   },
   name: "UserInformation",
   components: {
-    AdminTopHeader,
-    AdminSideBar,
+    TopHeader,
+    SideBar,
     imageUpload
   },
   computed: {
