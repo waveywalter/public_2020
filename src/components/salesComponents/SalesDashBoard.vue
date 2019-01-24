@@ -6,8 +6,6 @@
 </style>
 <template>
     <div>
-        <TopHeader></TopHeader>
-        <SideBar></SideBar>
         <!-- <div id="page-wrapper">
             <div id="flexor">
             <NewAffiliateform></NewAffiliateform>
@@ -32,9 +30,7 @@
                     <nav>
                     <ul>
                     <li><a v-on:click="currentTab.tabname = 'NewAffiliateform' " href="#ownerform" class="sticon ti-home "><span>New Form</span></a></li>
-                    <li><a v-on:click="currentTab.tabname = 'UserInformation' " href="#UserInformation" class="sticon ti-trash"><span>User Info</span></a></li>
-                    <!-- <button v-on:click="components = 'NewAffiliateform' ">Show Form</button>
-                    <button v-on:click="components = 'Userinformation' ">Show Info</button> -->
+                    <!-- <li><a v-on:click="currentTab.tabname = 'UserInformation' " href="#UserInformation" class="sticon ti-trash"><span>User Info</span></a></li> -->
                      </ul>
                     </nav>
                 </div>

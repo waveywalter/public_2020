@@ -1,6 +1,6 @@
 <template>
 <div class="list-group">
-                 <router-link class="list-group-item " :key="apps.id"  v-for="apps in cfilterlist" tag="li" :to="'/salesdashboard/'+apps.id" @click.native="updateId(apps.id)">
+                 <router-link class="list-group-item " :key="apps.id"  v-for="apps in cfilterlist" tag="li" :to="'/sales/'+apps.id" @click.native="updateId(apps.id)">
                 <a>{{apps.firstname}} {{apps.lastname}}</a>
                 </router-link>                                         
                                        </div>

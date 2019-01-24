@@ -40,7 +40,7 @@ export default {
     $('.dropify').dropify({
     tpl: {
         message:         '',
-        preview:         '<div class="dropify-preview"><span class="dropify-render"></span><div class="dropify-infos"><div class="dropify-infos-inner"><p class="dropify-infos-message">Drag and drop or click to <br>change avatar</p></div></div></div>',
+        preview:         '<div class="dropify-preview"><span class="dropify-render"></span><div class="dropify-infos"><div class="dropify-infos-inner"><p class="dropify-infos-message">Drag and drop <br>or click to <br>change avatar</p></div></div></div>',
         filename:        '',
         clearButton:     '',
         errorLine:       '',
@@ -120,7 +120,7 @@ export default {
 }
 .dropify-wrapper .dropify-preview .dropify-infos .dropify-infos-inner p.dropify-infos-message{
     opacity: 1;
-    font-size: 16px;
+    font-size: 14px;
     padding: 0;
     margin: 0;
 }

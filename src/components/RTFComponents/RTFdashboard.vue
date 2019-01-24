@@ -1,7 +1,5 @@
 <template>
     <div>
-        <TopHeader></TopHeader>
-        <SideBar></SideBar>
         <div id="page-wrapper">
             <div class="container-fluid">
             <div class="col-lg">
@@ -16,7 +14,7 @@
             <nav>
                 <ul>
                     <li><a v-on:click="currentTab.tabname = 'hrcreateform' " href="#hrcreateform" class="sticon ti-home "><span>New Form</span></a></li>
-                    <li><a v-on:click="currentTab.tabname = 'UserInformation' " href="#UserInformation" class="sticon ti-trash"><span>User Info</span></a></li>
+                    <!-- <li><a v-on:click="currentTab.tabname = 'UserInformation' " href="#UserInformation" class="sticon ti-trash"><span>User Info</span></a></li> -->
                 </ul>
             </nav>
             <!-- /content -->
@@ -36,8 +34,6 @@
 </template>
 
 <script>
-import TopHeader from '../layoutComponents/TopHeader';
-import SideBar from '../layoutComponents/SideBar';
 import hrcreateform from '../hrComponents/hrcreateform';
 import UserInformation from '../layoutComponents/UserInformation';
 import Vue from 'vue';
@@ -63,8 +59,6 @@ import Vue from 'vue';
             }
         },
         components: {
-            TopHeader,
-            SideBar,
             hrcreateform,
             UserInformation,
         }

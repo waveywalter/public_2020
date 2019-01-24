@@ -8,6 +8,11 @@ import UserProfiles from '../_pages/UserProfiles'
 import LoginPage from '../_pages/LoginPage'
 import RegisterPage from '../_pages/RegisterPage'
 import adminHome from '../_pages/adminHome'
+import humanresourceHome from '../_pages/humanresourceHome'
+import salesHome from '../_pages/salesHome'
+import rtfHome from '../_pages/rtfHome'
+import ownerHome from '../_pages/ownerHome'
+import affiliateHome from '../_pages/affiliateHome'
 import Testpage from '../_pages/TestPage'
 import AdminDashBoard from '../components/adminComponents/adminDashBoard'
 import CreateAdmin from '../components/adminComponents/createAdmin'
@@ -34,7 +39,11 @@ export const router = new Router({
   mode: 'history',
   routes: [
     { path: '/forbidden', component:forbiddenerror},
-    {path: '/ownerdashboard', component:OwnerDashboard,
+    {path: '/owner', component:ownerHome,
+    children: [
+      { path: '', component: OwnerDashboard },
+      { path: 'myprofile', component: MyProfile }
+    ],
     beforeEnter: (to,from,next) =>{
       if(user.user.role == "owner" ){
         next();
@@ -63,23 +72,27 @@ export const router = new Router({
     { path: '/homepage', component:HomePage,
     beforeEnter: (to,from,next) => {
       if(user.user.role == 'sales'){
-        next ('/salesdashboard');
+        next ('/sales');
       } else if (user.user.role == "rtf"){
-        next('/rtfdashboard');
+        next('/rtf');
       } else if (user.user.role == "humanResource"){
-        next('/hrdashboard');
+        next('/humanresource');
       } else if (user.user.role == "admin"){
         next('/admin');
       } else if (user.user.role == "owner" ){
-        next('/ownerdashboard');
+        next('/owner');
       }else if (user.user.role == "affiliate" ){
-        next('/affiliatedashboard');
+        next('/affiliate');
       }else{
         next();
       }
     }
   },
-  {path: '/rtfdashboard',component: RTFdashboard,
+  {path: '/rtf',component: rtfHome,
+  children: [
+    { path: '', component: RTFdashboard },
+    { path: 'myprofile', component: MyProfile }
+  ],
   beforeEnter: (to,from,next) =>{
     if(user.user.role == 'rtf'){
       next();
@@ -88,12 +101,10 @@ export const router = new Router({
     }
   }
 },
-{path: '/affiliatedashboard',
-component: affiliatedashboard,
+{path: '/affiliate', component: affiliateHome,
 children: [
-  { path: 'MyProfile', 
-  component: MyProfile 
-    },
+  { path: '', component: affiliatedashboard },
+    { path: 'myprofile', component: MyProfile }
   ],
 beforeEnter: (to,from,next) =>{
   if(user.user.role == 'affiliate'){
@@ -114,10 +125,12 @@ beforeEnter: (to,from,next) =>{
     }
   },
     { path: '/register', component: RegisterPage },
-    { path: '/salesdashboard/:id?', component:SalesDashBoard,
+    { path: '/sales', component:salesHome,
     children: [
-      // {path: 'NewAffiliateform', component:NewAffiliateform},
+      { path: '', component: SalesDashBoard },
       { path: 'myprofile', component: MyProfile },
+      { path: ':id?', component: SalesDashBoard }
+      //{path: 'NewAffiliateform', component:NewAffiliateform},
      ],
      beforeEnter: (to,from,next) => {
        if(user.user.role == 'sales'){
@@ -127,10 +140,10 @@ beforeEnter: (to,from,next) =>{
        }
      }
     },
-    { path: '/HrDashBoard', component: HrDashBoard,
+    { path: '/humanresource', component: humanresourceHome,
     children: [
-          { path: 'test1', component: Testpage },
-          { path: 'test2', component: testpage2 }
+          { path: '', component: HrDashBoard },
+          { path: 'myprofile', component: MyProfile }
         ]
     // beforeEnter: (to,from,next) =>{
     //   if(user.user.role == 'humanResource'){
@@ -143,7 +156,7 @@ beforeEnter: (to,from,next) =>{
     { path: '/admin', component: adminHome,
     children: [
       {path:'', component: AdminDashBoard},
-      { path: 'MyProfile', component: MyProfile }
+      { path: 'myprofile', component: MyProfile }
     ],
     beforeEnter: (to,from,next) => {
       userService.checkrole().then(res => res.json()).then(roleMapping => {

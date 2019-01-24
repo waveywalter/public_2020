@@ -1,7 +1,5 @@
 <template>
     <div>
-        <TopHeader></TopHeader>
-        <SideBar></SideBar>
         <div id="page-wrapper">
             <div class="container-fluid">
             <div class="col-lg">
@@ -18,8 +16,6 @@
         </div>
 </template>
 <script>
-import TopHeader from '../layoutComponents/TopHeader';
-import SideBar from '../layoutComponents/SideBar';
     export default {
         name: "AffiliateDashboard",
                 data(){
@@ -27,8 +23,7 @@ import SideBar from '../layoutComponents/SideBar';
             }
         },
         components: {
-            TopHeader,
-            SideBar,
+           
         }
     }
 </script>

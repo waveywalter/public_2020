@@ -3,9 +3,9 @@
             <div class="sidebar-nav navbar-collapse slimscrollsidebar">
               <div class="user-profile">
                     <div class="dropdown user-pro-body">
-                        <div><img v-bind:src=imagepath alt="user-img" class="img-circle"></div> <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.user.role}}<span class="caret"></span></a>
+                        <div><img v-bind:src=imagepath alt="user-img" class="img-circle"></div> <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.user.username}}<span class="caret"></span></a>
                         <ul class="dropdown-menu animated flipInY">
-                            <li><router-link to="/salesdashboard/MyProfile"><i class="ti-user"></i> My Profile</router-link></li>
+                            <li><router-link v-bind:to="'/'+user.user.role+'/myprofile'"><i class="ti-user"></i> My Profile</router-link></li>
                             <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
                             <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
                             <li role="separator" class="divider"></li>
@@ -18,10 +18,10 @@
                 <ul class="nav" id="side-menu">
                     <li class="nav-small-cap m-t-10">--- Main Menu</li>
                     <li>
-                      <a href="#" class="waves-effect active">
+                      <router-link v-bind:to="'/'+user.user.role" class="waves-effect active">
                         <i class="linea-icon linea-basic fa-fw" data-icon="E"></i>
                         <span class="hide-menu">Dashboard</span>
-                      </a>
+                      </router-link>
                     </li>
                     <li> <a href="javascript:void(0);" class="waves-effect"><i class="linea-icon linea-basic fa-fw " data-icon="7"></i> <span class="hide-menu "> Components <span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
