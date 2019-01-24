@@ -7,6 +7,7 @@ import LandingPage from '../components/LandingPage';
 import UserProfiles from '../_pages/UserProfiles'
 import LoginPage from '../_pages/LoginPage'
 import RegisterPage from '../_pages/RegisterPage'
+import adminHome from '../_pages/adminHome'
 import Testpage from '../_pages/TestPage'
 import AdminDashBoard from '../components/adminComponents/adminDashBoard'
 import CreateAdmin from '../components/adminComponents/createAdmin'
@@ -20,6 +21,7 @@ import forbiddenerror from '../_pages/forbiddenerror'
 import affiliatedashboard from '../components/affiliateComponents/affiliateDashboard'
 import RTFdashboard from '../components/RTFComponents/RTFdashboard'
 import OwnerDashboard from '../components/ownerComponents/OwnerDashboard'
+import MyProfile from  '../_pages/MyProfile'
 
 Vue.use(Router);
 let user = JSON.parse(localStorage.getItem('user'));
@@ -51,6 +53,13 @@ export const router = new Router({
       }
     }  
   },
+  // { path: '/myprofile', component: MyProfile,
+  //   beforeRouteEnter: (to,from,next) => {
+  //     if(localStorage.getItem(user) === user){
+  //         next();
+  //     }
+  //   }  
+  // },
     { path: '/homepage', component:HomePage,
     beforeEnter: (to,from,next) => {
       if(user.user.role == 'sales'){
@@ -60,7 +69,7 @@ export const router = new Router({
       } else if (user.user.role == "humanResource"){
         next('/hrdashboard');
       } else if (user.user.role == "admin"){
-        next('/admindashboard');
+        next('/admin');
       } else if (user.user.role == "owner" ){
         next('/ownerdashboard');
       }else if (user.user.role == "affiliate" ){
@@ -79,7 +88,13 @@ export const router = new Router({
     }
   }
 },
-{path: '/affiliatedashboard',component: affiliatedashboard,
+{path: '/affiliatedashboard',
+component: affiliatedashboard,
+children: [
+  { path: 'MyProfile', 
+  component: MyProfile 
+    },
+  ],
 beforeEnter: (to,from,next) =>{
   if(user.user.role == 'affiliate'){
     next();
@@ -101,7 +116,8 @@ beforeEnter: (to,from,next) =>{
     { path: '/register', component: RegisterPage },
     { path: '/salesdashboard/:id?', component:SalesDashBoard,
     children: [
-      {path: 'NewAffiliateform', component:NewAffiliateform}
+      // {path: 'NewAffiliateform', component:NewAffiliateform},
+      { path: 'myprofile', component: MyProfile },
      ],
      beforeEnter: (to,from,next) => {
        if(user.user.role == 'sales'){
@@ -113,26 +129,30 @@ beforeEnter: (to,from,next) =>{
     },
     { path: '/HrDashBoard', component: HrDashBoard,
     children: [
-      {path:'hrcreateform', component: hrcreateform}
-    ],
-    beforeEnter: (to,from,next) =>{
-      if(user.user.role == 'humanResource'){
-        next();
-      }else {
-        next("/forbidden")
-      }
-    }
+          { path: 'test1', component: Testpage },
+          { path: 'test2', component: testpage2 }
+        ]
+    // beforeEnter: (to,from,next) =>{
+    //   if(user.user.role == 'humanResource'){
+    //     next();
+    //   }else {
+    //     next("/forbidden")
+    //   }
+    // }
   },
-    { path: '/admindashboard', component: AdminDashBoard,
+    { path: '/admin', component: adminHome,
     children: [
-      {path:'createadmin', component: CreateAdmin}
+      {path:'', component: AdminDashBoard},
+      { path: 'MyProfile', component: MyProfile }
     ],
-    beforeEnter: (to,from,next) =>{
-      if(user.user.role == 'admin' ){
-        next();
-      }else {
-        next("/forbidden")
-      }
+    beforeEnter: (to,from,next) => {
+      userService.checkrole().then(res => res.json()).then(roleMapping => {
+            if ((user.user.role == "admin") && roleMapping.id) {
+              next();
+            }else {
+              next("/forbidden")
+            }
+        });
     }
   },
   //   { path: '/affiliatedashboard', component: affiliatedashboard,

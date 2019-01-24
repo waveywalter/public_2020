@@ -9,8 +9,8 @@
 </style>
 <template>
     <div>
-        <AdminTopHeader></AdminTopHeader>
-        <AdminSideBar></AdminSideBar>
+        <TopHeader></TopHeader>
+        <SideBar></SideBar>
         <!-- <div id="page-wrapper">
             <div id="flexor">
             <NewAffiliateform></NewAffiliateform>
@@ -19,6 +19,7 @@
         </div> -->
 
         <div id="page-wrapper">
+<<<<<<< HEAD
          <div >
             <div class="container-fluid">
              <div class="col-lg">
@@ -33,10 +34,28 @@
              <div class="sttabs tabs-style-bar">
                 <nav>
                 <ul>
+=======
+        <div>
+                       <div class="col-lg">
+                <div class="row bg-title">
+             <h4 class="page-title">Sales DashBoard</h4>
+             </div>
+            </div>
+        </div>
+            <div class="flexor">
+
+             <div class="col-lg-3 col-sm-1 col-xs-12">
+             <div class="white-box">
+            <section>
+                <div class="sttabs tabs-style-bar">
+                    <nav>
+                    <ul>
+>>>>>>> ded12654d2e1d57b5da9cda965627c4c2025c2ac
                     <li><a v-on:click="currentTab.tabname = 'NewAffiliateform' " href="#ownerform" class="sticon ti-home "><span>New Form</span></a></li>
                     <li><a v-on:click="currentTab.tabname = 'UserInformation' " href="#UserInformation" class="sticon ti-trash"><span>User Info</span></a></li>
                     <!-- <button v-on:click="components = 'NewAffiliateform' ">Show Form</button>
                     <button v-on:click="components = 'Userinformation' ">Show Info</button> -->
+<<<<<<< HEAD
                     </ul>
                 </nav>
                 <!-- /content -->
@@ -55,6 +74,25 @@
          </div>
      
          </div>
+=======
+                     </ul>
+                    </nav>
+                </div>
+            </section>
+            
+    <div class="tab-content">
+            <keep-alive>
+            <component v-bind:is="currentTab.tabname"></component>
+            </keep-alive>
+            </div>
+            </div>
+        
+            </div>
+            <div class="col-lg-6">
+        <AffiliateRegistration></AffiliateRegistration>
+>>>>>>> ded12654d2e1d57b5da9cda965627c4c2025c2ac
+        </div>
+        </div>
         </div>
 
     
@@ -62,8 +100,8 @@
 </template>
 
 <script>
-import AdminTopHeader from '../layoutComponents/adminTopHeader';
-import AdminSideBar from '../layoutComponents/adminSideBar';
+import TopHeader from '../layoutComponents/TopHeader';
+import SideBar from '../layoutComponents/SideBar';
 import NewAffiliateform from '../salesComponents/NewAffiliateform';
 import AffiliateRegistration from '../salesComponents/AffiliateRegistration';
 import UserInformation from '../layoutComponents/UserInformation';
@@ -88,8 +126,8 @@ import Vue from 'vue';
             this.opentab();
         },
         components: {
-            AdminTopHeader,
-            AdminSideBar,
+            TopHeader,
+            SideBar,
             NewAffiliateform,
             AffiliateRegistration,
             UserInformation
@@ -127,4 +165,8 @@ import Vue from 'vue';
     }
 </script>
 <style scoped>
+    .flexor{
+        display:flex;
+    }
+
 </style>

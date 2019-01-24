@@ -1,7 +1,7 @@
 <template>
  <div>
-    <AdminTopHeader></AdminTopHeader>
-    <AdminSideBar></AdminSideBar>
+    <TopHeader></TopHeader>
+    <SideBar></SideBar>
     
         <div id="page-wrapper">
             <div class="container-fluid">
@@ -16,14 +16,14 @@
 </template>
 
 <script>
-import AdminTopHeader from '../components/layoutComponents/adminTopHeader';
-import AdminSideBar from '../components/layoutComponents/adminSideBar';
+import TopHeader from '../components/layoutComponents/TopHeader';
+import SideBar from '../components/layoutComponents/SideBar';
 
 export default {
     name: 'HomePage',
     components:{
-        AdminTopHeader,
-        AdminSideBar,
+        TopHeader,
+        SideBar,
     }
 }
 

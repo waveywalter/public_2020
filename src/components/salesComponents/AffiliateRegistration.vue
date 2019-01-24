@@ -143,7 +143,7 @@ iframe{
 
 <template>
 
-    <div class="white-box mt-5 ml-5 max50 flexor" >
+    <div class="white-box ml-5 max50 flexor" >
        
                <div v-if="this.$root._route.params.id">
                    

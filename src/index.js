@@ -2,7 +2,8 @@ import Vue from 'vue';
 import VeeValidate from 'vee-validate';
 
 import { store } from './_store';
-import { router } from './_helpers';
+import { router } from './_router';
+import { authHeader } from './_helpers';
 import App from './app/App';
 import {
     Vuetify,
@@ -33,6 +34,7 @@ Vue.use(VeeValidate);
 new Vue({
     el: '#app',
     router,
+    authHeader,
     store,
     render: h => h(App)
 });

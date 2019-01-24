@@ -1,13 +1,21 @@
-
 <template>
-<div class="container">
+  <div>
+    <div id="page-wrapper">
+      <div class="container-fluid">
+        <div class="col-lg">
+          <div class="row bg-title">
+            <h4 class="page-title">My Profile</h4>
+          </div>
+        </div>
+        <div class="col-lg-6 col-sm-6 col-xs-12">
+          <div class="white-box">
+            <div class="container">
     <div class="row">
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 el-element-overlay">
         <div class="white-box">
         <!-- <div class="user-bg"> <img width="100%" v-bind:src=imagepath alt="user-img"> </div> -->
 <div class="row">
 <div class="col-md-12">
-
 <form ref="form" @submit.prevent="form_m" class="form-horizontal form-material">
     <div class="form-group">
         <label class="col-md-12">First Name</label>
@@ -40,42 +48,28 @@
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 el-element-overlay">
 <div>
     <div class="white-box">
-        <div class="el-card-item">
-            <div class="el-card-avatar el-overlay-1"> 
-                <p>My current avatar</p>
-                <img v-bind:src=imagepath>
-                <div class="el-overlay">
-                    <ul class="el-info">
-                        <!-- <li><a class="btn default btn-outline image-popup-vertical-fit" href="/public/uploads/img1.jpg"><i class="icon-magnifier"></i></a></li> -->
-                        <!-- <li><a class="btn default btn-outline" href="javascript:void(0);"><i class="icon-link"></i></a></li> -->
-                    </ul>
-                </div>
-            </div>
-            <div class="el-card-content">
-                </div>
                     <imageUpload></imageUpload>
-        </div>
     </div>
 </div>
 </div>
 </div>
-</div>
 
-
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
 </template>
 
 <script>
-let user = JSON.parse(localStorage.getItem("user"));
-
-// import { authHeader } from '../_helpers';
-import TopHeader from "./TopHeader";
-import SideBar from "./SideBar";
 import { mapState, mapActions } from "vuex";
-import { store } from '../../_store';
-import imageUpload from './imageUpload'
+import { store } from '../_store';
+import imageUpload from '../components/layoutComponents/imageUpload'
 
-//console.log(user)
+let user = JSON.parse(localStorage.getItem("user"));
 export default {
+  name: "MyProfile",
   data() {
     return {
       imagepath: "/public/uploads/" + user.user.username +'/'+user.user.avatarName,
@@ -91,8 +85,6 @@ export default {
   },
   name: "UserInformation",
   components: {
-    TopHeader,
-    SideBar,
     imageUpload
   },
   computed: {
@@ -130,3 +122,8 @@ export default {
     }
 };
 </script>
+<style scoped>
+.current-avatar{
+    margin: 15px 0;
+}
+</style>

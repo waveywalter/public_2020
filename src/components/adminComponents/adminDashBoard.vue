@@ -1,7 +1,5 @@
 <template>
     <div>
-        <AdminTopHeader></AdminTopHeader>
-        <AdminSideBar></AdminSideBar>
         <div id="page-wrapper">
             <div class="container-fluid">
             <div class="col-lg">
@@ -16,7 +14,7 @@
             <nav>
                 <ul>
                     <li><a v-on:click="currentTab.tabname = 'CreateAdmin' " href="#CreateAdmin" class="sticon ti-home "><span>New Form</span></a></li>
-                    <li><a v-on:click="currentTab.tabname = 'UserInformation' " href="#UserInformation" class="sticon ti-trash"><span>User Info</span></a></li>
+                    <!-- <li><a v-on:click="currentTab.tabname = 'UserInformation' " href="#UserInformation" class="sticon ti-trash"><span>User Info</span></a></li> -->
                 </ul>
             </nav>
             <!-- /content -->
@@ -36,8 +34,6 @@
 </template>
 
 <script>
-import AdminTopHeader from '../layoutComponents/adminTopHeader';
-import AdminSideBar from '../layoutComponents/adminSideBar';
 import CreateAdmin from '../adminComponents/createAdmin';
 import UserInformation from '../layoutComponents/UserInformation';
 import Vue from 'vue';
@@ -62,13 +58,9 @@ import Vue from 'vue';
             }
         },
         components: {
-            AdminTopHeader,
-            AdminSideBar,
             CreateAdmin,
             UserInformation,
         }
        
     }
 </script>
-<style scoped>
-</style>
