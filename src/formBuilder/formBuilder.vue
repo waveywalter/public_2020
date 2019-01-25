@@ -9,7 +9,7 @@
       <topHeader></topHeader>
        <div id="page-wrapper">
             <div class="container-fluid">
-            <nav class="navbar navbar-light  bg-faded fixed-top">
+            <nav class="">
                 <div class="clearfix">
                     <div class="container">
                         <button style="cursor: pointer;display: none" class="btn btn-info export_html mt-2 pull-right">Export HTML</button>
@@ -22,7 +22,7 @@
             <div class="form_builder" style="margin-top: 25px">
                 <div class="row">
                     <div class="col-sm-2">
-                        <nav class="nav-sidebar">
+                        <nav class="white-box">
                             <ul class="nav">
                                 <li class="form_bal_textfield">
                                     <a href="javascript:;">Text Field <i class="fa fa-plus-circle pull-right"></i></a>

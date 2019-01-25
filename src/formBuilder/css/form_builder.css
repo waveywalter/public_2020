@@ -96,7 +96,7 @@ body {
 .form_builder_area {
     width:100%;
     min-height:50px;
-    position: absolute
+    /* position: absolute */
 }
 
 .mt-radio {
