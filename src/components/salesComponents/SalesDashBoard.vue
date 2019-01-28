@@ -9,8 +9,6 @@
 </style>
 <template>
     <div>
-        <TopHeader></TopHeader>
-        <SideBar></SideBar>
         <!-- <div id="page-wrapper">
             <div id="flexor">
             <NewAffiliateform></NewAffiliateform>
@@ -39,6 +37,7 @@
                     <li><a v-on:click="currentTab.tabname = 'UserInformation' " href="#UserInformation" class="sticon ti-trash"><span>User Info</span></a></li>
                     <!-- <button v-on:click="components = 'NewAffiliateform' ">Show Form</button>
                     <button v-on:click="components = 'Userinformation' ">Show Info</button> -->
+
 
                      </ul>
                     </nav>

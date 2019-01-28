@@ -1,7 +1,5 @@
 <template>
     <div>
-        <TopHeader></TopHeader>
-        <SideBar></SideBar>
         <div id="page-wrapper">
             <div class="container-fluid">
             <div class="col-lg">
