@@ -27,7 +27,7 @@ import affiliatedashboard from '../components/affiliateComponents/affiliateDashb
 import RTFdashboard from '../components/RTFComponents/RTFdashboard'
 import OwnerDashboard from '../components/ownerComponents/OwnerDashboard'
 import MyProfile from  '../_pages/MyProfile'
-import Faclaties from  '../components/faclatiesComponents/faclatiesDashboard'
+import facilities from  '../_pages/facilitiesHome'
 
 Vue.use(Router);
 let user = JSON.parse(localStorage.getItem('user'));
@@ -169,7 +169,7 @@ beforeEnter: (to,from,next) =>{
         });
     }
   },
-  {path:'/faclaties', component: Faclaties},
+  {path:'/facilities', component: facilities},
   //   { path: '/affiliatedashboard', component: affiliatedashboard,
   //   children: [
   //     { path: 'test1', component: Testpage },

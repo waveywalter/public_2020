@@ -13,7 +13,7 @@ import SideBar from '../components/layoutComponents/SideBar';
 import Vue from 'vue';
 
     export default {
-        name: "ownerHome",
+        name: "facilitiesHome",
         components: {
             TopHeader,
             SideBar
