@@ -61,12 +61,14 @@ function register(user) {
     return fetch(baseURL+'/wsers/', requestOptions).then(handleResponse);
 }
 
-function getAll( ) {
+function getAll(filter) {
+    let filterpara = ' '
+    if(filter.role) filterpara = '{"where":{"role":"'+ filter.role +'"}}';
     const requestOptions = {
         method: 'GET',
         headers: authHeader()
     };
-    return fetch(baseURL+'/wsers', requestOptions).then(handleResponse);
+    return fetch(baseURL+'/wsers?filter='+filterpara, requestOptions).then(handleResponse);
 }
 
 
