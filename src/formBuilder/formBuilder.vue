@@ -57,7 +57,7 @@
                             </ul>
                         </nav>
                     </div>
-                    <div class="col-md-5 bal_builder">
+                    <div class="col-md-5 bal_builder white-box">
                         <div class="form_builder_area"></div>
                     </div>
                     <div class="col-md-5">
