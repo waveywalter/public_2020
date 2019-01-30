@@ -22,6 +22,7 @@ import RTFdashboard from '../components/RTFComponents/RTFdashboard'
 import OwnerDashboard from '../components/ownerComponents/OwnerDashboard'
 import MyProfile from  '../_pages/MyProfile'
 import formBuilder from '../formBuilder/formBuilder'
+import testfunctions from '../_pages/testfunctions'
 
 Vue.use(Router);
 let user = JSON.parse(localStorage.getItem('user'));
@@ -44,6 +45,7 @@ export const router = new Router({
     }
   },
     {path:'/formbuilder',component:formBuilder},
+    {path:'/userlist',component:testfunctions},
     { path: '/', component: LandingPage,
     beforeEnter: (to,from,next) => {
       if(user == null){
