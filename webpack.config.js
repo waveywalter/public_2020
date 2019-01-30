@@ -5,7 +5,7 @@ const webpack = require('webpack');
 const {GenerateSW} = require('workbox-webpack-plugin');
 console.log("PRODUCTIONNNNNNNNNNNN")
 module.exports = {
-    mode: 'production',
+    mode: 'development',
     entry: ['babel-polyfill', './src/app'],
     entry:path.join(__dirname, 'src', 'index.js'),
     resolve: {
@@ -30,7 +30,7 @@ module.exports = {
             },
             {
                 test: /\.css/,
-                use: ['style-loader','vue-style-loader', 'css-loader'] ,// BOTH are needed!
+                use: ['vue-style-loader', 'css-loader'] ,// BOTH are needed!
                 include:[path.resolve(__dirname,'public/assets/'),]
               },
               {
@@ -56,7 +56,7 @@ module.exports = {
             "/upload":"http://localhost:3344"
 
         },headers:{
-            'Service-Worker-Allowed': true
+           // 'Service-Worker-Allowed': true
         },
         disableHostCheck: true,   // That solved it
     },

@@ -10,7 +10,8 @@
                                                 <div class="form-group row">
                                                     <label class="control-label text-right col-md-3">First Name</label>
                                                     <div class="col-md-9">
-                                                        <input type="text" class="form-control" placeholder="John doe">
+                                                    
+                                                        <input type="text" class="form-control" placeholder="John Smoe" v-model="firstname">
                                                         <small class="form-control-feedback"> </small> </div>
                                                 </div>
                                             </div>
@@ -19,7 +20,7 @@
                                                 <div class="form-group has-danger row">
                                                     <label class="control-label text-right col-md-3">Last Name</label>
                                                     <div class="col-md-9">
-                                                        <input type="text" class="form-control form-control-danger" placeholder="12n">
+                                                        <input type="text" class="form-control form-control-danger" v-model="lastname" placeholder="12n">
                                                         <small class="form-control-feedback">  </small> </div>
                                                 </div>
                                             </div>
@@ -96,6 +97,32 @@
         name: "affiliateformfields",
                 data(){
             return{
+                
+                
+            }
+        },
+        computed:{
+            firstname:{
+                    get: function () {
+                        console.log("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM")
+                        console.log(this)
+                        return this.$store.state.account.user.user.firstname
+                    },
+                    // setter
+                    set: function (newValue) {
+                    this.$store.state.account.user.user.firstname= newValue
+                }           
+            },
+             lastname:{
+                    get: function () {
+                        console.log("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM")
+                        console.log(this)
+                        return this.$store.state.account.user.user.lastname
+                    },
+                    // setter
+                    set: function (newValue) {
+                    this.$store.state.account.user.user.lastname= newValue
+                }           
             }
         },
         components: {

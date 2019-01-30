@@ -21,14 +21,13 @@ function loco(){
     console.log('loco')
 }
 function login(username, password) {
-    console.log("HERE WE GOOOOOOOOOOO")
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, password })
     };
 
-        console.log("LOGINNNNNNNNNNNNNNNNNN")
+       
      return fetch(baseURL+'/wsers/login?include=User', requestOptions)
          .then(handleResponse)
          .then(user => {
@@ -61,12 +60,18 @@ function register(user) {
     return fetch(baseURL+'/wsers/', requestOptions).then(handleResponse);
 }
 
-function getAll( ) {
+function getAll(filter) {
+    let filter1 = {filter :{where:{role:"affiliate"}}};
+    //console.log(filter,"FILTERRRRRRRRRRRRRRR")
+    let filterpara = ' '
+   // if(filter.where.role) filterpara = '{"where":{"role":"'+ filter.where.role +'"}}';
     const requestOptions = {
         method: 'GET',
         headers: authHeader()
+        //headers: { ...authHeader(), 'filter' :'{where:{role:"affiliate"}}}', 'Content-Type': 'application/json' },
+        //body: JSON.stringify(filter1)
     };
-    return fetch(baseURL+'/wsers', requestOptions).then(handleResponse);
+    return fetch(baseURL+'/wsers?filter='+JSON.stringify(filter1), requestOptions).then(handleResponse);
 }
 
 

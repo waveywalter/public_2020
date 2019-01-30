@@ -135,7 +135,8 @@ beforeEnter: (to,from,next) =>{
     children: [
       { path: '', component: SalesDashBoard },
       { path: 'myprofile', component: MyProfile },
-      { path: ':id?', component: SalesDashBoard }
+      { path: ':root/:id?', component: SalesDashBoard },
+ 
       //{path: 'NewAffiliateform', component:NewAffiliateform},
      ],
      beforeEnter: (to,from,next) => {

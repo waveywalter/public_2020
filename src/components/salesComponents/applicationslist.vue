@@ -1,7 +1,7 @@
 <template>
 <div class="list-group">
                 <div v-for="apps in cfilterlist" > 
-                 <router-link class="list-group-item " :key="apps.id"  tag="li" :to="'/sales/'+apps.id" @click.native="updateId(apps.id)">
+                 <router-link class="list-group-item " :key="apps.id"  tag="li" :to="'/sales/applicant/'+apps.id" @click.native="updateId(apps.id)">
                 <div class="mr15 minw125"><a> {{apps.firstname}} {{apps.lastname}}</a></div>
                 <span class="ti-close" v-on:click="openmodal(apps.id)"></span>
                 </router-link>
@@ -22,7 +22,7 @@
                                     </div>
                                     <!-- /.modal-dialog -->
                                 </div>                                         
-                                       </div>
+                            </div>
 </template>
 
 <script>
@@ -668,6 +668,7 @@ String.prototype.capitalize = function() {
     };
 </script>
 <style >
+
 .minw125{
 min-width:125px;
 display:inline-block
@@ -681,5 +682,7 @@ display:inline-block
     margin-bottom: 14px;
     background-color: #ffffff1c;
 }
-.ti-close{cursor:pointer}
+.ti-close{cursor:pointer;
+float:right;
+}
 </style>

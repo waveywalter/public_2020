@@ -71,7 +71,7 @@
                                         <!--/row-->
                                     
                                     </div>
-                        <div><span><i class="ti-plus badge badge-pill badge-info float-right"></i>Add another location</span></div>
+                        <div><span class="badge badge-pill badge-info float-right"><i class="ti-plus "></i>Add another location</span></div>
                 </form>     
 
             </div>
@@ -92,5 +92,7 @@
     }
 </script>
 <style scoped>
-
+.badge{
+    cursor:pointer;
+}
 </style>
