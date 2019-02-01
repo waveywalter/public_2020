@@ -23,6 +23,7 @@ import OwnerDashboard from '../components/ownerComponents/OwnerDashboard'
 import MyProfile from  '../_pages/MyProfile'
 import formBuilder from '../formBuilder/formBuilder'
 import testfunctions from '../_pages/testfunctions'
+import tinymceformbuilder from '../_pages/TinymceFormbuilder'
 
 Vue.use(Router);
 let user = JSON.parse(localStorage.getItem('user'));
@@ -34,6 +35,7 @@ let user = JSON.parse(localStorage.getItem('user'));
 export const router = new Router({
   mode: 'history',
   routes: [
+    {path:'/tinymceformbuilder', component:tinymceformbuilder},
     { path: '/forbidden', component:forbiddenerror},
     {path: '/ownerdashboard', component:OwnerDashboard,
     beforeEnter: (to,from,next) =>{
