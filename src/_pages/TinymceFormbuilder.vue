@@ -11,7 +11,7 @@
 <script>
 
 import tinymce from '../components/layoutComponents/tinymce'
-import TopHeader from '../components/layoutComponents/TopHeader'
+import topheader from '../components/layoutComponents/TopHeader'
 import sidebar from '../components/layoutComponents/SideBar'
 export default {
     name:"tinymceformbulder",
@@ -22,7 +22,7 @@ export default {
         },
         components:{
             tinymce,
-            TopHeader,
+            topheader,
             sidebar
         }
 }
