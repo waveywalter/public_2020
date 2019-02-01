@@ -344,7 +344,7 @@ $(document).ready(function () {
                 if (checkbox.is(':checked')) {
                     required = 'required';
                 }
-                html += '<div class="form-group"><label class="control-label">' + label + '</label><textarea rows="5" name="' + name + '" placeholder="' + placeholder + '" class="form-control" ' + required + '/></div>';
+                html += '<div class="form-group"><label class="control-label">' + label + '</label><textarea rows="5" name="' + name + '" placeholder="' + placeholder + '" class="form-control" ' + required + '></textarea></div>';
             }
             if (data_type === 'date') {
                 var checkbox = $(this).find('.form-check-input');
@@ -395,6 +395,8 @@ $(document).ready(function () {
         if (plain_html === 'html') {
             $('.preview').hide();
             $('.plain_html').show().find('textarea').val(html);
+            $('.plain_html').find('textarea').trigger( "change" );
+            console.log($('.plain_html').find('textarea').val())
         } else {
             $('.plain_html').hide();
             $('.preview').html(html).show();

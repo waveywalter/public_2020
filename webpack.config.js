@@ -3,7 +3,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 const {GenerateSW} = require('workbox-webpack-plugin');
 console.log("PRODUCTIONNNNNNNNNNNN")
 module.exports = {
-    mode: 'production',
+    mode: 'development',
     entry: ['babel-polyfill', './src/app'],
     entry:path.join(__dirname, 'src', 'index.js'),
     resolve: {
