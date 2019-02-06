@@ -1,7 +1,15 @@
 <template>
  <div>
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                    <div class="clearfix">
+                        <div class="container">
      <textarea :id="id" :value="defaultcontent"></textarea>
- </div>
+     </div>
+     </div>
+     </div>
+     </div>
+     </div>
 </template>
 <script>
 import Vue from 'vue';
@@ -14,7 +22,7 @@ export default {
         },
         defaultcontent:{
             type: String,
-            default: "<h1>start to build</h1>"
+            default: ""
         }
     },
     data() {

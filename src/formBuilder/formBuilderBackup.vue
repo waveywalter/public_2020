@@ -7,7 +7,7 @@
 
         <!-- <sideBar></sideBar>
         <topHeader></topHeader> -->
-        <div id="page-wrapper" class="example">
+        <div id="page-wrapper">
             <div class="container-fluid">
                 <nav class="">
                     <div class="clearfix">
@@ -20,45 +20,47 @@
                 </nav>
                 <br />
                 <div class="clearfix"></div>
-                <div class="" style="margin-top: 25px">
-                    <div class="">
+                <div class="form_builder" style="margin-top: 25px">
+                    <div class="row">
                         <div class="col-sm-2">
-                            <nav class="">
-                                <ul class="">
+                            <nav class="white-box">
+                                <ul class="nav">
                                     <li class="form_bal_textfield">
-                                        <a href="javascript:;">Text Field </a>
+                                        <a href="javascript:;">Text Field <i class="fa fa-plus-circle pull-right"></i></a>
                                     </li>
                                     <li class="form_bal_textarea">
-                                        <a href="javascript:;">Text Area </a>
+                                        <a href="javascript:;">Text Area <i class="fa fa-plus-circle pull-right"></i></a>
                                     </li>
                                     <li class="form_bal_select">
-                                        <a href="javascript:;">Select </a>
+                                        <a href="javascript:;">Select <i class="fa fa-plus-circle pull-right"></i></a>
                                     </li>
                                     <li class="form_bal_radio">
-                                        <a href="javascript:;">Radio Button </a>
+                                        <a href="javascript:;">Radio Button <i class="fa fa-plus-circle pull-right"></i></a>
                                     </li>
                                     <li class="form_bal_checkbox">
-                                        <a href="javascript:;">Checkbox </a>
+                                        <a href="javascript:;">Checkbox <i class="fa fa-plus-circle pull-right"></i></a>
                                     </li>
                                     <li class="form_bal_email">
-                                        <a href="javascript:;">Email </a>
+                                        <a href="javascript:;">Email <i class="fa fa-plus-circle pull-right"></i></a>
                                     </li>
                                     <li class="form_bal_number">
-                                        <a href="javascript:;">Number </a>
+                                        <a href="javascript:;">Number <i class="fa fa-plus-circle pull-right"></i></a>
                                     </li>
                                     <li class="form_bal_password">
-                                        <a href="javascript:;">Password </a>
+                                        <a href="javascript:;">Password <i class="fa fa-plus-circle pull-right"></i></a>
                                     </li>
                                     <li class="form_bal_date">
-                                        <a href="javascript:;">Date </a>
+                                        <a href="javascript:;">Date <i class="fa fa-plus-circle pull-right"></i></a>
                                     </li>
                                     <li class="form_bal_button">
-                                        <a href="javascript:;">Button </a>
+                                        <a href="javascript:;">Button <i class="fa fa-plus-circle pull-right"></i></a>
                                     </li>
                                 </ul>
                             </nav>
                         </div>
-
+                        <div class="col-md-5 bal_builder white-box">
+                            <div class="form_builder_area"></div>
+                        </div>
                         <div class="col-md-5">
                             <div class="col-md-12">
                                 <form class="form-horizontal" @submit.prevent="handleSubmit">
@@ -78,33 +80,9 @@
                 </div>
             </div>
         </div>
+
     </div>
 </template>
-
-<style scoped>
-.example{
-    min-height:0px !important;
-}
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-}
-
-li {
-  float: left;
-}
-
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-</style>
 
 <script>
 import TopHeader from '../components/layoutComponents/SideBar'

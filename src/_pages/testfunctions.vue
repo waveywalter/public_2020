@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import tinymce from './tinymce'
+import tinymce from '../components/layoutComponents/tinymce' 
 
 export default {
     name:"testfunctions",
