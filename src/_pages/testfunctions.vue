@@ -1,6 +1,6 @@
 <template>
     <div>
-        <tinymce></tinymce>
+        <tinymce v-model="value"></tinymce>
     </div>
 </template>
 
@@ -9,6 +9,11 @@ import tinymce from '../components/layoutComponents/tinymce'
 
 export default {
     name:"testfunctions",
+    data(){
+        return{
+            value:''
+        }
+    },
     computed: {
         
     },

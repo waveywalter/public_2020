@@ -4,8 +4,7 @@
             <div class="container-fluid">
                     <div class="clearfix">
                         <div class="container">
-     <textarea  :value="value.content"></textarea>
-     <input type="text" :value="value.content" class="form-control" />
+     <textarea :id="id" :value="defaultcontent"></textarea>
      </div>
      </div>
      </div>
@@ -16,11 +15,18 @@
 import Vue from 'vue';
 export default {
     name: 'tinymce',
+    props: {
+        id: {
+            type: String,
+            default: 'tmceeditor'
+        },
+        defaultcontent:{
+            type: String,
+            default: ""
+        }
+    },
     data() {
         return {
-            value: {
-                content: ''
-            },
             tinymceOptions: {
                 selector: 'textarea',
   height: 200,
@@ -31,8 +37,7 @@ export default {
     'insertdatetime media nonbreaking save table contextmenu directionality',
     'emoticons template paste textcolor colorpicker textpattern imagetools toc'
   ],
-  toolbar1: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-  toolbar2: 'print preview | forecolor backcolor',
+  toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | forecolor backcolor | TextInput CheckboxInput',
   valid_elements:"*[*]",
   content_css: '',
   images_upload_url: 'postAcceptor.php',
@@ -105,20 +110,27 @@ export default {
         var options=$.extend(true, {}, this.tinymceOptions);
         var vm = this;
         options.setup=function(editor){
-        console.log("setup");
+      options.selector = '#${this.id}';
+        editor.addButton('TextInput', {
+      text: 'TextInput',
+      onclick: function (_) {
+        editor.insertContent('<input type="text">');
+      }
+    });
+    editor.addButton('CheckboxInput', {
+      text: 'CheckboxInput',
+      onclick: function (_) {
+        editor.insertContent('<input type="checkbox">');
+      }
+    });
         
       editor.on("keyup",function(e){
-        var value = editor.getContent();
-        Vue.set(vm.value, "content", value);
+        vm.$emit('input', editor.getContent());
       });
-      editor.setContent(this.value);
-      editor.on("blur",function(){
-        this.allowSetContent=true;
+      editor.on('Change', (e) => {
+        vm.$emit('input', editor.getContent());
       });
-      
-      editor.on("focus",function(){
-         this.allowSetContent=false;
-      })
+      editor.setContent(vm.defaultcontent);
     };
     
     tinymce.init(options);
