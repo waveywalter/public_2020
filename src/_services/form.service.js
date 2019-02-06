@@ -3,61 +3,34 @@ import { authHeader } from '../_helpers';
 
 
 
-export const userService = {
-    login,
-    checkrole,
-    logout,
-    register,
-    getAll,
-    getById,
-    update,
-    delete: _delete,
-    loco
+export const formService = {
+    saveform,
+    getform
 };
-//const baseURL="http://localhost:3000/api";
-const baseURL="https://2020i.site/api";
+const baseURL="http://localhost:3000/api";
+//const baseURL="https://2020i.site/api";
 //const baseURL = 'https://google.com'
 function loco(){
     console.log('loco')
 }
-function login(username, password) {
+
+function saveform(formdata) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password })
+        body: JSON.stringify(formdata)
     };
 
-       
-     return fetch(baseURL+'/wsers/login?include=User', requestOptions)
-         .then(handleResponse)
-         .then(user => {
-             // login successful if there's a jwt token in the response
-             if (user.id) {
-                 // store user details and jwt token in local storage to keep user logged in between page refreshes
-                  localStorage.setItem('user', JSON.stringify(user));
-             }
-
-             return user;
-         });
+    return fetch(baseURL+'/hrforms', requestOptions).then(handleResponse);
 }
 
-function logout() {
+function getform(id) {
     const requestOptions = {
-        method: 'POST',
+        method: 'GET',
         headers: authHeader()
-     };
-    localStorage.removeItem('user');
-    return fetch(baseURL+'/wsers/logout', requestOptions).then(handleLogoutResponse);
-}
-
-function register(user) {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(user)
     };
 
-    return fetch(baseURL+'/wsers/', requestOptions).then(handleResponse);
+    return fetch(baseURL+'/hrforms/5c522b218de90b3b6469a445', requestOptions).then(handleResponse);
 }
 
 function getAll(filter) {
@@ -66,21 +39,12 @@ function getAll(filter) {
     const requestOptions = {
         method: 'GET',
         headers: authHeader()
-        //headers: { ...authHeader(), 'filter' :'{where:{role:"affiliate"}}}', 'Content-Type': 'application/json' },
-        //body: JSON.stringify(filter1)
     };
     return fetch(baseURL+'/wsers?filter='+filterpara, requestOptions).then(handleResponse);
 }
 
 
-function getById(id) {
-    const requestOptions = {
-        method: 'GET',
-        headers: authHeader()
-    };
 
-    return fetch(baseURL+'/wsers', requestOptions).then(handleResponse);
-}
 
 function checkrole() {
     const user = JSON.parse(localStorage.getItem('user'));

@@ -6,12 +6,14 @@ import { alert } from './alert.module';
 import { account } from './account.module';
 import { users } from './users.module';
 import { apps } from './apps.module';
+import { form } from './form.module';
 
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
     modules: {
         alert,
+        form,
         account,
         users,
         apps
