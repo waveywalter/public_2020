@@ -1,9 +1,15 @@
 <template>
  <div>
-     
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                    <div class="clearfix">
+                        <div class="container">
      <textarea  :value="value.content"></textarea>
-     
      <input type="text" :value="value.content" class="form-control" />
+     </div>
+     </div>
+     </div>
+     </div>
      </div>
 </template>
 <script>

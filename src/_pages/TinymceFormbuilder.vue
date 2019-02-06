@@ -1,9 +1,9 @@
 <template>
 <div>
-<h1>Jello World</h1>
 <topheader></topheader>
 <sidebar></sidebar>
-    <tinymce> </tinymce>
+    <formBuilder></formBuilder>
+    <tinymce></tinymce>
     </div>
 </template>
 
@@ -13,6 +13,7 @@
 import tinymce from '../components/layoutComponents/tinymce'
 import topheader from '../components/layoutComponents/TopHeader'
 import sidebar from '../components/layoutComponents/SideBar'
+import formBuilder from '../formBuilder/formBuilder'
 export default {
     name:"tinymceformbulder",
         data(){
@@ -23,7 +24,8 @@ export default {
         components:{
             tinymce,
             topheader,
-            sidebar
+            sidebar,
+            formBuilder
         }
 }
 
