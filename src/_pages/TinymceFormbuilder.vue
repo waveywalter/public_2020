@@ -7,7 +7,8 @@
         <div class="clearfix">
           <div class="container white-box">
             <h1>Form Title: <input type="text" name="FirstName" value=""></h1>
-    <tinymce></tinymce>
+    <tinymce v-model="value"></tinymce>
+    {{value}}
     <input type="submit" value="Submit">
 
           </div>
@@ -28,7 +29,7 @@ export default {
     name:"tinymceformbulder",
         data(){
             return {
-
+                value:''
             }
         },
         components:{

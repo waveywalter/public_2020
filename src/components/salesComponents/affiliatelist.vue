@@ -1,8 +1,8 @@
 <template>
 <div class="list-group">
-{{users}}
+
                 <div v-for="user in users.items" :key="user.id" > 
-                  {{user}}
+              
                  <router-link class="list-group-item " :key="user.id"  tag="li" :to="'/sales/affiliate/'+user.id" @click.native="updateId(user.id)">
                 <div class="mr15 minw125"><a> {{user.firstname}} {{user.lastname}}</a></div>
                 <span class="ti-close" v-on:click="openmodal(user.id)"></span>

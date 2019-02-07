@@ -23,7 +23,7 @@ self.addEventListener('install', function(event) {
 //If any fetch fails, it will show the offline page.
 //Maybe this should be limited to HTML documents?
 self.addEventListener('fetch', function(event) {
-  console.log(event.request)
+  //console.log(event.request)
   //console.log("FETCHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH")
   event.respondWith(
     fetch(event.request).catch(function(error) {
