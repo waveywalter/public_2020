@@ -4,13 +4,14 @@
     <sidebar></sidebar>
     <div id="page-wrapper">
       <div class="container-fluid">
-        <div data-v-7ad1cecc class="col-lg">
+        <div data-v-7ad1cecc class="">
           <div data-v-7ad1cecc class="row bg-title">
             <h4 data-v-7ad1cecc class="page-title">Form Builder</h4>
           </div>
         </div>
         <div class="row">
           <div class="container white-box col-sm-12">
+            <form class="form-horizontal" @submit.prevent="handleSubmit">
             <h1>
               Form Title:
               <input type="text" name value>
@@ -23,6 +24,7 @@
                 value="Submit"
               >
             </div>
+            </form>
           </div>
         </div>
       </div>
