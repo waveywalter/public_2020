@@ -5,10 +5,10 @@ const state = {
 };
 
 const actions = {
-    getAll({ commit }) {
+    getAll({ commit }, filter) {
         commit('getAllRequest');
         
-        userService.getAll()
+        userService.getAll(filter)
             .then(
                 users => commit('getAllSuccess', users),
                 error => commit('getAllFailure', error)

@@ -2,7 +2,10 @@
 .col-md-6.col-lg-4.col-sm-12 {
     flex: 1  1 100%;
 }
-#flexor{display:flex;}
+#flexor,
+.flexible {
+    display: flex;
+}
 </style>
 <template>
     <div>
@@ -14,23 +17,28 @@
         </div> -->
 
         <div id="page-wrapper">
-        <div>
-                       <div class="col-lg">
-                <div class="row bg-title">
-             <h4 class="page-title">Sales DashBoard</h4>
-             </div>
-            </div>
-        </div>
-            <div class="flexor">
 
-             <div class="col-lg-3 col-sm-1 col-xs-12">
+         <div >
+            <div class="container-fluid">
+             <div class="col-lg">
+                <div class="row bg-title">
+               <h4 class="page-title">Sales DashBoard</h4>
+               </div>
+              </div>
+            <div class="flexible">    
+                <div class="col-lg-3 col-sm-3 col-xs-12">
              <div class="white-box">
-            <section>
-                <div class="sttabs tabs-style-bar">
-                    <nav>
-                    <ul>
+             <section>
+             <div class="sttabs tabs-style-bar">
+                <nav>
+                <ul>
+
                     <li><a v-on:click="currentTab.tabname = 'NewAffiliateform' " href="#ownerform" class="sticon ti-home "><span>New Form</span></a></li>
-                    <!-- <li><a v-on:click="currentTab.tabname = 'UserInformation' " href="#UserInformation" class="sticon ti-trash"><span>User Info</span></a></li> -->
+                    <li><a v-on:click="currentTab.tabname = 'UserInformation' " href="#UserInformation" class="sticon ti-trash"><span>User Info</span></a></li>
+                    <!-- <button v-on:click="components = 'NewAffiliateform' ">Show Form</button>
+                    <button v-on:click="components = 'Userinformation' ">Show Info</button> -->
+
+
                      </ul>
                     </nav>
                 </div>
@@ -46,11 +54,14 @@
             </div>
             <div class="col-lg-6">
         <AffiliateRegistration></AffiliateRegistration>
+
         </div>
         </div>
         </div>
 
     
+    </div>
+        </div>
     </div>
 </template>
 

@@ -1,9 +1,28 @@
 <template>
 <div class="list-group">
-                 <router-link class="list-group-item " :key="apps.id"  v-for="apps in cfilterlist" tag="li" :to="'/sales/'+apps.id" @click.native="updateId(apps.id)">
-                <a>{{apps.firstname}} {{apps.lastname}}</a>
-                </router-link>                                         
-                                       </div>
+                <div v-for="apps in cfilterlist" > 
+                 <router-link class="list-group-item " :key="apps.id"  tag="li" :to="'/sales/applicant/'+apps.id" @click.native="updateId(apps.id)">
+                <div class="mr15 minw125"><a> {{apps.firstname}} {{apps.lastname}}</a></div>
+                <span class="ti-close" v-on:click="openmodal(apps.id)"></span>
+                </router-link>
+        
+                </div>
+                        <div v-if="modalopen" class="modal fade bs-example-modal-sm show" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" style="display: block; padding-right: 17px;" aria-modal="true">
+                                    <div class="modal-dialog modal-sm">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title" id="mySmallModalLabel">Are You Sure?</h4>
+                                                <button type="button" class="close" v-on:click="openmodal('')" data-dismiss="modal" aria-hidden="true">×</button>
+                                            </div>
+                                            <div class="modal-body"> <button v-on:click="deleteApp(modalid)" type="button" class="btn waves-effect waves-light btn-danger">Delete</button>
+                                            <button type="button" class="btn waves-effect waves-light btn-info " v-on:click="openmodal()"  data-dismiss="modal">Cancel</button>
+                                            </div>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                    <!-- /.modal-dialog -->
+                                </div>                                         
+                            </div>
 </template>
 
 <script>
@@ -12,6 +31,8 @@ import VeeValidate from "vee-validate";
 export default {
     data(){
         return {
+            modalid:"",
+            modalopen:false,
           //  signature:[["Accident Reporting Procedure",1,1],['Authorization-Background Screening',1,0],['CDCFactSheet VaccineInfoSign Sheet',1,0],
           //      ['Confidentiality Statement-Contractor',1,0],['Part-Time-PerDiemStaffOrientationPacket',1,0],
           //      ['Profl Code of Ethics & Standards of Conduct',1,0],['Sexual Harrassment Policy- Contractors',1,0],['TB Status Review',1,0],['Admission Agreement',1,0]],
@@ -27,11 +48,33 @@ export default {
         }
     },
 methods:{
-      updateId(id){
+  openmodal(id){
+    if(this.modalopen===1){
+      this.modalopen=0
+      this.modalid = '';
+      
+    }
+    else{
+      this.modalopen=1
+      this.modalid = id;
+    }
+
+  },
+    deleteApp(id){
+      fetch('/api/applications/'+id,{method:"DELETE"}).then(()=>{this.getApps()})
+  if (this.modalopen===1){
+    this.modalopen=0;
+    this.modalid=''
+  }
+     },
+    getApps(){
+       this.$store.commit('apps/getApps')
+      },
+    updateId(id){
       console.log("UPATEEEEEEEEEEEEEE")
       this.cid = id;
       this.getrecord(id);
-     },
+        },
     getrecord(id){
       console.log('RECORDSSSSSSSSSSSSSSSSSSSSSSS')
      // window.sessionStorage.id = id;
@@ -624,5 +667,22 @@ String.prototype.capitalize = function() {
         return this[this.length - 1];
     };
 </script>
-<style scoped>
+<style >
+
+.minw125{
+min-width:125px;
+display:inline-block
+}
+.mr15{
+  margin-right:15px;
+}
+.list-group-item, .list-group-item:first-child, .list-group-item:last-child {
+    border-radius: 19px;
+    border-color: rgba(120,130,140,.28);
+    margin-bottom: 14px;
+    background-color: #ffffff1c;
+}
+.ti-close{cursor:pointer;
+float:right;
+}
 </style>

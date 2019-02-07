@@ -19,6 +19,7 @@ import CreateAdmin from '../components/adminComponents/createAdmin'
 import HrDashBoard from '../components/hrComponents/HrDashBoard'
 import hrcreateform from '../components/hrComponents/hrcreateform'
 import SalesDashBoard from '../components/salesComponents/SalesDashBoard'
+import Formbuilder from '../_pages/FormBuilder'
 import NewAffiliateform from '../components/salesComponents/NewAffiliateform'
 import testpage2 from '../_pages/testpage2'
 import HomePage from '../_pages/HomePage'
@@ -27,7 +28,11 @@ import affiliatedashboard from '../components/affiliateComponents/affiliateDashb
 import RTFdashboard from '../components/RTFComponents/RTFdashboard'
 import OwnerDashboard from '../components/ownerComponents/OwnerDashboard'
 import MyProfile from  '../_pages/MyProfile'
+import formBuilder from '../formBuilder/formBuilder'
+import testfunctions from '../_pages/testfunctions'
+import tinymceformbuilder from '../_pages/TinymceFormbuilder'
 import facilities from  '../_pages/facilitiesHome'
+
 
 Vue.use(Router);
 let user = JSON.parse(localStorage.getItem('user'));
@@ -39,6 +44,7 @@ let user = JSON.parse(localStorage.getItem('user'));
 export const router = new Router({
   mode: 'history',
   routes: [
+    {path:'/tinymceformbuilder', component:tinymceformbuilder},
     { path: '/forbidden', component:forbiddenerror},
     {path: '/owner', component:ownerHome,
     children: [
@@ -53,7 +59,8 @@ export const router = new Router({
       }
     }
   },
-
+    {path:'/formbuilder',component:formBuilder},
+    {path:'/userlist',component:testfunctions},
     { path: '/', component: LandingPage,
     beforeEnter: (to,from,next) => {
       if(user == null){
@@ -70,6 +77,11 @@ export const router = new Router({
   //     }
   //   }  
   // },
+    {path:'/formbuilder',component:Formbuilder,
+      children:[  { path: '/template', 
+      component: Formbuilder
+        }]
+      },
     { path: '/homepage', component:HomePage,
     beforeEnter: (to,from,next) => {
       if(user.user.role == 'sales'){
@@ -130,7 +142,8 @@ beforeEnter: (to,from,next) =>{
     children: [
       { path: '', component: SalesDashBoard },
       { path: 'myprofile', component: MyProfile },
-      { path: ':id?', component: SalesDashBoard }
+      { path: ':root/:id?', component: SalesDashBoard },
+ 
       //{path: 'NewAffiliateform', component:NewAffiliateform},
      ],
      beforeEnter: (to,from,next) => {
@@ -194,7 +207,7 @@ beforeEnter: (to,from,next) =>{
 
 router.beforeEach((to, from, next) => {
 
-  const publicPages = ['/','/login', '/register',];
+  const publicPages = ['/','/login', '/register','/formBuilder'];
   const authRequired = !publicPages.includes(to.path);
   const loggedIn = localStorage.getItem('user');
 

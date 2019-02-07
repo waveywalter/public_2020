@@ -237,7 +237,9 @@ iframe{
                 </div>
     <div id="app-wrapper" v-if="!this.$root._route.params.id" :key="listkey">
             <div >
-            <div class="row" >
+
+             <div class="col-md-6 col-sm-6 mt-6 apps">
+                           <div class="row" >
              <div class="col-xl-12">
               <div class="form-group">
                
@@ -246,9 +248,24 @@ iframe{
                </div>
               </div>
              </div>
-             <div class="col-md-6 col-sm-6 mt-6 apps">
                                         <h4 class="card-title">Applications</h4>
                                         <applicationslist></applicationslist>
+                                    </div>
+            </div>
+        <div >
+
+             <div class="col-md-6 col-sm-6 mt-6 apps">
+                           <div class="row" >
+             <div class="col-xl-12">
+              <div class="form-group">
+               
+                <label for="exampleInputEmail1">Filter Affiliates</label>
+                <input type="text" v-model='appfilter' v-on:blur='filterApp(appfilter)' class="form-control" id="exampleInputEmail1" placeholder="Enter Email Address">
+               </div>
+              </div>
+             </div>
+                                        <h4 class="card-title">Affiliates</h4>
+                                        <affiliatelist></affiliatelist>
                                     </div>
             </div>
         </div>
@@ -269,6 +286,7 @@ iframe{
 import axiosApi from 'axios';
 import  $ from 'jquery';
 import applicationslist from './applicationslist';
+import affiliatelist from './affiliatelist';
 import imageupload from "../layoutComponents/imageUpload"
 
 //import AffiliateRegView from '../salesComponents/jottComponents/v5/pages/AffiliateRegView.vue';
@@ -1648,14 +1666,14 @@ mounted :function(){
     console.log(this)
     
       $("iframe").on("load",function(){console.log('IFRAME LOADED')})
-      console.log("MOUNTED bbbbbbbbbbbbbbbbbb IDDDDDDDDDDDDD")
+    
       let id;
       console.log(this)
       console.log(this.$route)
   
         console.log("DEFINEDDDDDD ..............")
          id=this.$route.params.id;
-      
+      this.$store.state.id = this.$route.params.id;;
      
       let vp = this;
       console.log(id)
@@ -1686,7 +1704,7 @@ mounted :function(){
 
         name: "AffiliateRegistration",
         components: {
-               applicationslist
+               applicationslist,affiliatelist
         }
     
     
