@@ -10,14 +10,13 @@
           </div>
         </div>
         <div class="row">
-          <div class="container white-box col-sm-12">
+          <div class="container  col-sm-12">
             <form class="form-horizontal" @submit.prevent="handleSubmit">
             <h1>
               Form Title:
               <input type="text" name value>
             </h1>
    <tinymce v-model="value"></tinymce>
-    {{value}}
             <div class="col-lg-2 col-sm-4 col-xs-12">
               <input
                 class="btn btn-success  upload-botton"
