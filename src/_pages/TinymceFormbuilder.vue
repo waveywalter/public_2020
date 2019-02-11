@@ -11,12 +11,12 @@
         </div>
         <div class="row">
           <div class="container  col-sm-12">
-            <form class="form-horizontal" @submit.prevent="handleSubmit">
+            <form class="form-horizontal" @submit.prevent="MceSubmit">
             <h1>
               Form Title:
-              <input type="text" name value>
+              <input v-model="form.FormTitle " type="text" name value>
             </h1>
-   <tinymce v-model="value"></tinymce>
+   <tinymce v-model="form.FormContent"></tinymce>
             <div class="col-lg-2 col-sm-4 col-xs-12">
               <input
                 class="btn btn-success  upload-botton"
@@ -31,26 +31,49 @@
     </div>
   </div>
 </template>
-
-
 <script>
 import tinymce from "../components/layoutComponents/tinymce";
 import topheader from "../components/layoutComponents/TopHeader";
 import sidebar from "../components/layoutComponents/SideBar";
 import formBuilder from "../formBuilder/formBuilder";
+import { mapState, mapActions } from "vuex";
+
 export default {
     name:"tinymceformbulder",
         data(){
             return {
-                value:''
-            }
+              form: {
+                FormContent:"",
+                FormTitle:"",
+              },
+            submitted: false
+            };
         },
         components:{
             tinymce,
             topheader,
             sidebar,
             formBuilder
+        },
+          computed: {
+    ...mapState("alert", ["message", "type"])
+  },
+        methods: {
+    ...mapActions("form", ["saveform"]),
+    ...mapActions({ clearAlert: "alert/clear" }),
+    MceSubmit(e) {
+                this.saveform(this.form);
+      console.log(e)
+      this.submitted = true;
+        // console.log(valid)
+        if (true) {
+          this.form = {
+                FormContent:'',
+                FormTitle:''
+          };
         }
+    }
+  }
 }
 </script>
 
