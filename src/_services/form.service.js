@@ -21,7 +21,7 @@ function saveform(formdata) {
         body: JSON.stringify(formdata)
     };
 
-    return fetch(baseURL+'/hrforms', requestOptions).then(handleResponse);
+    return fetch(baseURL+'/forms', requestOptions).then(handleResponse);
 }
 
 function getform(id) {
