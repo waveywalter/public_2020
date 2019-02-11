@@ -5,9 +5,10 @@ import { authHeader } from '../_helpers';
 
 export const formService = {
     saveform,
-    getform
+    getform,
+    getSignedFormByUserId
 };
-const baseURL="http://localhost:3000/api";
+const baseURL="http://2020i.site/api";
 //const baseURL="https://2020i.site/api";
 //const baseURL = 'https://google.com'
 function loco(){
@@ -24,13 +25,23 @@ function saveform(formdata) {
     return fetch(baseURL+'/forms', requestOptions).then(handleResponse);
 }
 
+function getSignedFormByUserId(id){
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
+
+    return fetch(baseURL+'GET /wsers/'+this.$store.state.account.user.userId+'/signedforms', requestOptions).then(handleResponse)
+
+}
+
 function getform(id) {
     const requestOptions = {
         method: 'GET',
         headers: authHeader()
     };
 
-    return fetch(baseURL+'/hrforms/5c522b218de90b3b6469a445', requestOptions).then(handleResponse);
+    return fetch(baseURL+'/forms/5c619d688d96e52e186ae773', requestOptions).then(handleResponse);
 }
 
 function getAll(filter) {
