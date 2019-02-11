@@ -120,7 +120,7 @@ export default {
     editor.addButton('AuthInput', {
       icon: 'lock',
       onclick: function (_) {
-        editor.insertContent('<input type="text" name="name" id="name" placeholder="Auth Code">');
+        editor.insertContent('<button>Get Authentication Code</button><input type="text" name="name" id="name" placeholder="Auth Code">');
       }
     });
     editor.addButton('CheckboxInput', {

@@ -910,7 +910,7 @@ methods:{
         this.update();
         console.log(this);
         let mm = this.cid;
-        fetch('https://jott.thewaveint.com/api/containers/'+mm+'/files/'+doctitle.toLowerCase()+'.pdf',{
+        fetch('https://2020i.site/api/containers/'+mm+'/files/'+doctitle.toLowerCase()+'.pdf',{
             method:"DELETE",}
         )
       
@@ -979,7 +979,7 @@ methods:{
             console.log("Empty .. Please create and send")
             let data  = this.$store.state.apps.application;
             // dont email link - create docs with send through emailas yes - may require new API route
-          fetch('https://jott.thewaveint.com/api/create/newcontract/'+this.cid,{
+          fetch('https://2020i.site/api/create/newcontract/'+this.cid,{
               method:"POST",
               headers:{"Content-Type": "application/json; charset=utf-8","accept": "*/*"
               },
@@ -1025,7 +1025,7 @@ methods:{
             if(this.$store.state.apps.application[l]==1){
             console.log("Empty .. Please create and send")
             // dont email link - create docs with send through emailas yes - may require new API route
-            fetch('https://jott.thewaveint.com/api/sendandcreate/contracts/'+this.cid,{
+            fetch('https://2020i.site/api/sendandcreate/contracts/'+this.cid,{
               method:"POST",
               headers:{"Content-Type": "application/json; charset=utf-8","accept": "*/*"
               },
@@ -1040,7 +1040,7 @@ methods:{
             else{
             req.text = "So and so document was rjeccted. Please Resign "+this.$store.state.apps.application[l]
             req.recipient = 'walterj@thewaveint.com';
-         fetch('https://jott.thewaveint.com/api/email/post',
+         fetch('https://2020i.site/api/email/post',
                 {
                     method:"POST",
                     headers:{"Content-Type": "application/json; charset=utf-8",},
@@ -1131,7 +1131,7 @@ methods:{
           
           this.$store.state.apps.application.email = this.email;
           //this.$store
-          fetch('https://jott.thewaveint.com/api/register',{method:"POST",headers:{"Content-Type": "application/json; charset=utf-8",},body:JSON.stringify({email:this.email,progress:this.progress})}).then(response=>{
+          fetch('https://2020i.site/api/register',{method:"POST",headers:{"Content-Type": "application/json; charset=utf-8",},body:JSON.stringify({email:this.email,progress:this.progress})}).then(response=>{
         
           response.text().then(text=>{
                   let application = JSON.parse(text);
@@ -1146,7 +1146,7 @@ methods:{
           window.sessionStorage.id = application.id;
           this.cid = application.id;
           if(application.progress<1){
-          fetch('https://jott.thewaveint.com/api/containers',{
+          fetch('https://2020i.site/api/containers',{
             method:"POST",headers:{"Content-Type": "application/json; charset=utf-8"},
             body:JSON.stringify({
               "provider": "filesystem",
@@ -1221,7 +1221,7 @@ methods:{
              
           //data.sign1 = this.csign1;
           //data.links = this.clinks;
-          fetch('https://jott.thewaveint.com/api/createnew/contracts/'+id,{method:"POST",
+          fetch('https://2020i.site/api/createnew/contracts/'+id,{method:"POST",
               headers:{"Content-Type": "application/json; charset=utf-8","accept": "*/*"},body:JSON.stringify(data)}).then(response=>{
               console.log(response);
               response.text().then(text=>{
@@ -1307,7 +1307,7 @@ methods:{
     filterApp(txt){
             console.log('filterApp2');
         if(txt!=""){
-        fetch('https://jott.thewaveint.com/api/applications').then(response=>response.json()).then(json=>{console.log(json)
+        fetch('https://2020i.site/api/applications').then(response=>response.json()).then(json=>{console.log(json)
         
          // this.$store.state.app.application.list =[];
           let list = json.filter(item=>{ 
@@ -1325,7 +1325,7 @@ methods:{
         }
          else{
            console.log("NO TXT FILTERRRRRRRRRRRRR")
-        fetch('https://jott.thewaveint.com/api/applications').then(response=>response.json()).then(json=>{console.log(json)
+        fetch('https://2020i.site/api/applications').then(response=>response.json()).then(json=>{console.log(json)
         
          // this.$store.state.app.application.list =[];
           let list = json;
@@ -1442,7 +1442,7 @@ methods:{
       console.log('GET STATEEEEEEE')
       let id = this.cid;
      if(id!=undefined){
-      fetch('https://jott.thewaveint.com/api/applications/'+id,{method:"GET",headers:{"Content-Type": "application/json; charset=utf-8",}}).then(response=>response.json()).then(json=>{console.log(json)
+      fetch('https://2020i.site/api/applications/'+id,{method:"GET",headers:{"Content-Type": "application/json; charset=utf-8",}}).then(response=>response.json()).then(json=>{console.log(json)
         this.$store.state = json;
 
       }
@@ -1462,7 +1462,7 @@ methods:{
      // window.sessionStorage.id = id;
       this.cid = id;
       if(id!=undefined){
-       fetch('https://jott.thewaveint.com/api/applications/'+id,{method:"GET",headers:{"Content-Type": "application/json; charset=utf-8",}}).then(response=>response.json()).then(json=>{console.log(json)
+       fetch('https://2020i.site/api/applications/'+id,{method:"GET",headers:{"Content-Type": "application/json; charset=utf-8",}}).then(response=>response.json()).then(json=>{console.log(json)
  
         this.$store.state.apps.application = json;
         //this.$store.state.apps.application.visible = this.visible(1);
@@ -1573,7 +1573,7 @@ methods:{
             console.log(formData);  
             this.$store.state.apps.application[pre] = '1';
             console.log("CONTAINERSSSSSSSSSSSSSSSSSSS")
-            fetch('https://jott.thewaveint.com/api/containers/'+this.cid+'/upload', {
+            fetch('https://2020i.site/api/containers/'+this.cid+'/upload', {
                 method: 'POST', // *GET, POST, PUT, DELETE, etc.
  
                 redirect: "follow", // manual, *follow, error
@@ -1589,7 +1589,7 @@ methods:{
         //data.links = this.clinks;
         console.log("UPDATE APPLICATIONNNNNNNNNNNNNNNNN")
         console.log(data);
-        fetch('https://jott.thewaveint.com/api/applications/'+data.id,{method:"PATCH",
+        fetch('https://2020i.site/api/applications/'+data.id,{method:"PATCH",
         headers:{"Content-Type": "application/json; charset=utf-8","accept": "*/*"},body:JSON.stringify(data)}).then(response=>{
         //update upload status
           })
@@ -1684,7 +1684,7 @@ mounted :function(){
 
 
     if(id!=undefined){
-      fetch('https://jott.thewaveint.com/api/applications/'+id,{method:"GET",headers:{"Content-Type": "application/json; charset=utf-8",}}).then(response=>response.json()).then(json=>{console.log(json)
+      fetch('https://2020i.site/api/applications/'+id,{method:"GET",headers:{"Content-Type": "application/json; charset=utf-8",}}).then(response=>response.json()).then(json=>{console.log(json)
         this.$store.state.apps.application = json ;
 
      if(this.$store.state.apps.application.s1==0){

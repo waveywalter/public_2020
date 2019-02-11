@@ -62,7 +62,7 @@ function register(user) {
 
 function getAll(filter) {
     let filterpara = ' '
-    if(filter.role) filterpara = '{"where":{"role":"'+ filter.role +'"}}';
+    if(filter.role) filterpara = '{"where":{"role":"'+ filter.role +'","type":{"neq":"test"}}}';
     const requestOptions = {
         method: 'GET',
         headers: authHeader()
