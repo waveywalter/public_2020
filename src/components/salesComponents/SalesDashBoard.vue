@@ -52,7 +52,7 @@
             </div>
         
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-9">
         <AffiliateRegistration></AffiliateRegistration>
 
         </div>

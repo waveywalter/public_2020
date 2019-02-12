@@ -1,9 +1,10 @@
 import { formService } from '../_services/form.service';
-import { router } from '../_helpers';
+import { router } from '../_router';
 import * as Cookie from 'js-cookie';
 
 const state = {
    status:{},
+   allforms:{},
    formdata:null
 };
 
@@ -23,17 +24,34 @@ const actions = {
     //             }
     //         );
     // },
+    updateform({ dispatch, commit }, formdata) {    
+        formService.updateform(formdata)
+            .then(
+                Form => {
+                    commit('updateFormSuccess', Form);
+                    router.go();
+                    setTimeout(() => {
+                        // display success message after route change completes
+                        dispatch('alert/success', 'Update form successful', { root: true });
+                    })
+                },
+                error => {
+                    commit('updateFormFailure', error);
+                    dispatch('alert/error', error, { root: true });
+                }
+            );
+    },
     saveform({ dispatch, commit }, formdata) {
         commit('saveFormRequest');
     
         formService.saveform(formdata)
             .then(
-                hrForm => {
-                    commit('saveFromSuccess', hrForm);
+                Form => {
+                    commit('saveFromSuccess', Form);
                     // router.go();
                     setTimeout(() => {
                         // display success message after route change completes
-                        dispatch('alert/success', 'Registration successful', { root: true });
+                        dispatch('alert/success', 'Save form successful', { root: true });
                     })
                 },
                 error => {
@@ -42,40 +60,45 @@ const actions = {
                 }
             );
     },
-    getform({ commit }) {
-        formService.getform()
+    getformbyid({ commit }, id) {
+        formService.getformbyid(id)
             .then(
                 formdata => commit('getFromSuccess', formdata),
                 error => commit('getFormFailure', error)
             );
     },
+    deleteform({ commit }, id) {
+        commit('deleteFormRequest', id);
+
+        formService.deleteform(id)
+            .then(
+                form => commit('deleteFormSuccess', id),
+                error => commit('deleteFormFailure', { id, error: error.toString() })
+            );
+    },
+    getforms({ commit }, filter) {
+        commit('getFormsRequest');
+        
+        formService.getforms(filter)
+            .then(
+                forms => commit('getFormsSuccess', forms),
+                error => commit('getFormsFailure', error)
+            );
+    }
+    
 };
 
 const mutations = {
-    loginRequest(state, user) {
-        state.status = { loggingIn: true };
-        state.user = user;
-    },
-    loginSuccess(state, user) {
-        state.status = { loggedIn: true };
-        state.user = user;
-    },
-    updateSuccess(state, user) {
-        state.status = { loggedIn: true };
-        state.user.user = user;
-    },
-    loginFailure(state) {
+    updateFormSuccess(state, forminfo) {
         state.status = {};
-        state.user = null;
     },
-    logout(state) {
+    updateFormFailure(state, error) {
         state.status = {};
-        state.user = null;
     },
     saveFormRequest(state) {
         state.status = { savingform: true };
     },
-    saveFromSuccess(state, user) {
+    saveFromSuccess(state) {
         state.status = {};
     },
     saveFromFailure(state, error) {
@@ -85,8 +108,42 @@ const mutations = {
         state.formdata = forminfo;
     },
     getFormFailure(state, error) {
-        state.all = { error };
+        state.formdata = { error };
     },
+    getFormsRequest(state) {
+        state.allforms = { loading: true };
+    },
+    getFormsSuccess(state, forms) {
+        state.allforms = { items: forms };
+    },
+    getFormsFailure(state, error) {
+        state.allforms = { error };
+    },
+    deleteFormRequest(state, id) {
+        // add 'deleting:true' property to form being deleted
+        state.allforms.items = state.allforms.items.map(form =>
+            form.id === id
+                ? { ...form, deleting: true }
+                : form
+        )
+    },
+    deleteFormSuccess(state, id) {
+        // remove deleted form from state
+        state.allforms.items = state.allforms.items.filter(form => form.id !== id)
+    },
+    deleteFormFailure(state, { id, error }) {
+        // remove 'deleting:true' property and add 'deleteError:[error]' property to user 
+        state.allforms.items = state.items.map(form => {
+            if (form.id === id) {
+                // make copy of form without 'deleting:true' property
+                const { deleting, ...formCopy } = form;
+                // return copy of form with 'deleteError:[error]' property
+                return { ...formCopy, deleteError: error };
+            }
+
+            return user;
+        })
+    }
 };
 
 export const form = {

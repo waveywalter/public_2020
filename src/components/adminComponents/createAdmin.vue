@@ -16,7 +16,7 @@
                       class="form-control"
                       placeholder="First Name"
                       name="firstname"
-                      v-on:change="clearAlert"
+                      v-on:click="clearAlert"
                     >
                     <div class="input-group-addon">
                       <i class="ti-user"></i>
@@ -51,7 +51,7 @@
                       class="form-control"
                       placeholder="Username"
                       name="username"
-                      v-on:change="clearAlert"
+                      v-on:click="clearAlert"
                     >
                     <div class="input-group-addon">
                       <i class="ti-user"></i>

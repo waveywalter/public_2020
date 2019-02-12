@@ -15,6 +15,7 @@ import ownerHome from '../_pages/ownerHome'
 import affiliateHome from '../_pages/affiliateHome'
 import Testpage from '../_pages/TestPage'
 import AdminDashBoard from '../components/adminComponents/adminDashBoard'
+import adminForms from '../components/adminComponents/adminForms'
 import CreateAdmin from '../components/adminComponents/createAdmin'
 import HrDashBoard from '../components/hrComponents/HrDashBoard'
 import hrcreateform from '../components/hrComponents/hrcreateform'
@@ -163,7 +164,8 @@ beforeEnter: (to,from,next) =>{
     { path: '/admin', component: adminHome,
     children: [
       {path:'', component: AdminDashBoard},
-      { path: 'myprofile', component: MyProfile }
+      { path: 'myprofile', component: MyProfile },
+      { path: 'adminforms', component: adminForms }
     ],
     beforeEnter: (to,from,next) => {
       userService.checkrole().then(res => res.json()).then(roleMapping => {
