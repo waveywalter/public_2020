@@ -28,11 +28,19 @@ module.exports = {
                 exclude: /(node_modules)/,
                 use: 'babel-loader'
             },
-            {
-                test: /\.css/,
-                use: ['vue-style-loader', 'css-loader'] ,// BOTH are needed!
-                include:[path.resolve(__dirname,'public/assets/'),]
-              },
+            {test: /\.scss?$/, 
+                use: ['style-loader', 'css-loader', 'sass-loader'],
+                include:[path.resolve(__dirname,'public/assets/'),]},
+            {test: /\.css?/, 
+            use: ['vue-style-loader', 'css-loader'],
+            // include:[path.resolve(__dirname,'public/assets/'),]
+        },
+            
+            // {
+            //     test: /\.css/,
+            //     use: ['vue-style-loader', 'css-loader'] ,// BOTH are needed!
+            //     include:[path.resolve(__dirname,'public/assets/'),]
+            //   },
               {
                 test: /\.styl$/,
                 use:['css-loader','stylus-loader']

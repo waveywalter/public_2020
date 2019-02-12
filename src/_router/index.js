@@ -30,6 +30,7 @@ import MyProfile from  '../_pages/MyProfile'
 import testfunctions from '../_pages/testfunctions'
 import tinymceformbuilder from '../_pages/TinymceFormbuilder'
 import facilities from  '../_pages/facilitiesHome'
+import assignform from '../_pages/assignform'
 
 
 Vue.use(Router);
@@ -42,6 +43,7 @@ let user = JSON.parse(localStorage.getItem('user'));
 export const router = new Router({
   mode: 'history',
   routes: [
+    {path:'/assignform', component:assignform},
     {path:'/tinymceformbuilder', component:tinymceformbuilder},
     { path: '/forbidden', component:forbiddenerror},
     {path: '/owner', component:ownerHome,
