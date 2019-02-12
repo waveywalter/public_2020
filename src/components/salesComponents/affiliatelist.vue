@@ -52,7 +52,7 @@ methods:{
      // window.sessionStorage.id = id;
       this.cid = id;
       if(id!=undefined){
-       fetch('https://jott.thewaveint.com/api/applications/'+id,{method:"GET",headers:{"Content-Type": "application/json; charset=utf-8",}}).then(response=>response.json()).then(json=>{console.log(json)
+       fetch('https://2020i.site/api/applications/'+id,{method:"GET",headers:{"Content-Type": "application/json; charset=utf-8",}}).then(response=>response.json()).then(json=>{console.log(json)
  
         this.$store.state.apps.application = json;
         //this.$store.state.apps.application.visible = this.visible(1);

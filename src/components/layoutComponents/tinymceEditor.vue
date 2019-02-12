@@ -9,7 +9,7 @@
 <script>
 import Vue from 'vue';
 export default {
-    name: 'tinymce',
+    name: 'tinymceEditor',
     props: {
         id: {
             type: String,
@@ -23,7 +23,7 @@ export default {
     data() {
         return {
             tinymceOptions: {
-                selector: 'textarea',
+                selector: '#'+this.id,
   height: 200,
   menubar: true,
   plugins: [
@@ -112,7 +112,7 @@ export default {
     editor.addButton('AuthInput', {
       icon: 'lock',
       onclick: function (_) {
-        editor.insertContent('<input type="text" name="name" id="name" placeholder="Auth Code">');
+        editor.insertContent('<button>Get Authentication Code</button><input type="text" name="name" id="name" placeholder="Auth Code">');
       }
     });
     editor.addButton('CheckboxInput', {

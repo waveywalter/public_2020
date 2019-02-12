@@ -14,17 +14,19 @@
             <form class="form-horizontal" @submit.prevent="MceSubmit">
             <h1>
               Form Title:
-              <input v-model="form.FormTitle " type="text" name value>
+              <input v-model="form.FormTitle " type="text" v-on:click="clearAlert">
             </h1>
-   <tinymce v-model="form.FormContent"></tinymce>
+   <tinymceEditor id= "tiny-mce-form" ref="FormContent" v-model="form.FormContent"></tinymceEditor>
+
             <div class="col-lg-2 col-sm-4 col-xs-12">
               <input
                 class="btn btn-success  upload-botton"
                 type="submit"
-                value="Submit"
+                value="Save Form"
               >
             </div>
             </form>
+            <p v-show="message">{{message}}</p>
           </div>
         </div>
       </div>
@@ -32,7 +34,7 @@
   </div>
 </template>
 <script>
-import tinymce from "../components/layoutComponents/tinymce";
+import tinymceEditor from "../components/layoutComponents/tinymceEditor";
 import topheader from "../components/layoutComponents/TopHeader";
 import sidebar from "../components/layoutComponents/SideBar";
 import formBuilder from "../formBuilder/formBuilder";
@@ -50,7 +52,7 @@ export default {
             };
         },
         components:{
-            tinymce,
+            tinymceEditor,
             topheader,
             sidebar,
             formBuilder
@@ -62,16 +64,13 @@ export default {
     ...mapActions("form", ["saveform"]),
     ...mapActions({ clearAlert: "alert/clear" }),
     MceSubmit(e) {
-                this.saveform(this.form);
+      this.saveform(this.form);
       console.log(e)
       this.submitted = true;
-        // console.log(valid)
-        if (true) {
-          this.form = {
-                FormContent:'',
-                FormTitle:''
-          };
-        }
+      this.form = {
+        FormTitle:""
+      };
+      tinymce.get('tiny-mce-form').setContent("");  
     }
   }
 }

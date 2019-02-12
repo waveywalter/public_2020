@@ -15,6 +15,7 @@ import ownerHome from '../_pages/ownerHome'
 import affiliateHome from '../_pages/affiliateHome'
 import Testpage from '../_pages/TestPage'
 import AdminDashBoard from '../components/adminComponents/adminDashBoard'
+import adminForms from '../components/adminComponents/adminForms'
 import CreateAdmin from '../components/adminComponents/createAdmin'
 import HrDashBoard from '../components/hrComponents/HrDashBoard'
 import hrcreateform from '../components/hrComponents/hrcreateform'
@@ -26,12 +27,13 @@ import forbiddenerror from '../_pages/forbiddenerror'
 import affiliatedashboard from '../components/affiliateComponents/affiliateDashboard'
 import RTFdashboard from '../components/RTFComponents/RTFdashboard'
 import OwnerDashboard from '../components/ownerComponents/OwnerDashboard'
+import formViewer from '../components/formViewerComponents/formViewer'
 import MyProfile from  '../_pages/MyProfile'
+import formBuilder from '../formBuilder/formBuilder'
 import testfunctions from '../_pages/testfunctions'
 import tinymceformbuilder from '../_pages/TinymceFormbuilder'
 import facilities from  '../_pages/facilitiesHome'
 import assignform from '../_pages/assignform'
-
 
 Vue.use(Router);
 let user = JSON.parse(localStorage.getItem('user'));
@@ -44,6 +46,7 @@ export const router = new Router({
   mode: 'history',
   routes: [
     {path:'/assignform', component:assignform},
+    {path:'/test/:id',component:formViewer},
     {path:'/tinymceformbuilder', component:tinymceformbuilder},
     { path: '/forbidden', component:forbiddenerror},
     {path: '/owner', component:ownerHome,
@@ -165,7 +168,8 @@ beforeEnter: (to,from,next) =>{
     { path: '/admin', component: adminHome,
     children: [
       {path:'', component: AdminDashBoard},
-      { path: 'myprofile', component: MyProfile }
+      { path: 'myprofile', component: MyProfile },
+      { path: 'adminforms', component: adminForms }
     ],
     beforeEnter: (to,from,next) => {
       userService.checkrole().then(res => res.json()).then(roleMapping => {
@@ -202,7 +206,7 @@ beforeEnter: (to,from,next) =>{
 
 router.beforeEach((to, from, next) => {
 
-  const publicPages = ['/','/login', '/register',];
+  const publicPages = ['/','/login', '/register','/test'];
   const authRequired = !publicPages.includes(to.path);
   const loggedIn = localStorage.getItem('user');
 
