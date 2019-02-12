@@ -28,10 +28,10 @@ import affiliatedashboard from '../components/affiliateComponents/affiliateDashb
 import RTFdashboard from '../components/RTFComponents/RTFdashboard'
 import OwnerDashboard from '../components/ownerComponents/OwnerDashboard'
 import MyProfile from  '../_pages/MyProfile'
+import formBuilder from '../formBuilder/formBuilder'
 import testfunctions from '../_pages/testfunctions'
 import tinymceformbuilder from '../_pages/TinymceFormbuilder'
 import facilities from  '../_pages/facilitiesHome'
-
 
 Vue.use(Router);
 let user = JSON.parse(localStorage.getItem('user'));
