@@ -27,6 +27,7 @@ import forbiddenerror from '../_pages/forbiddenerror'
 import affiliatedashboard from '../components/affiliateComponents/affiliateDashboard'
 import RTFdashboard from '../components/RTFComponents/RTFdashboard'
 import OwnerDashboard from '../components/ownerComponents/OwnerDashboard'
+import formViewer from '../components/formViewerComponents/formViewer'
 import MyProfile from  '../_pages/MyProfile'
 import formBuilder from '../formBuilder/formBuilder'
 import testfunctions from '../_pages/testfunctions'
@@ -43,6 +44,7 @@ let user = JSON.parse(localStorage.getItem('user'));
 export const router = new Router({
   mode: 'history',
   routes: [
+    {path:'/test/:id',component:formViewer},
     {path:'/tinymceformbuilder', component:tinymceformbuilder},
     { path: '/forbidden', component:forbiddenerror},
     {path: '/owner', component:ownerHome,
@@ -202,7 +204,7 @@ beforeEnter: (to,from,next) =>{
 
 router.beforeEach((to, from, next) => {
 
-  const publicPages = ['/','/login', '/register',];
+  const publicPages = ['/','/login', '/register','/test'];
   const authRequired = !publicPages.includes(to.path);
   const loggedIn = localStorage.getItem('user');
 
