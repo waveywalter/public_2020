@@ -112,7 +112,8 @@ export default {
     editor.addButton('AuthInput', {
       icon: 'lock',
       onclick: function (_) {
-        editor.insertContent('<button>Get Authentication Code</button><input type="text" name="name" id="name" placeholder="Auth Code">');
+        editor.insertContent('<button v-on:click="getAuth" v-if="unsent">Get Authentication Code</button><input v-model="authcode" type="text" name="name" id="name" placeholder="Auth Code">'
+        +'<button v-on:click="sendAuth" v-if="unsent">send Authentication Code</button>  ');
       }
     });
     editor.addButton('CheckboxInput', {

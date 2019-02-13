@@ -1,15 +1,16 @@
 var path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-
-const webpack = require('webpack');
 const {GenerateSW} = require('workbox-webpack-plugin');
-console.log("PRODUCTIONNNNNNNNNNNN")
+console.log("PRODUCTION")
 module.exports = {
     mode: 'development',
     entry: ['babel-polyfill', './src/app'],
     entry:path.join(__dirname, 'src', 'index.js'),
     resolve: {
-        extensions: ['.js', '.vue','styl','.css']
+        extensions: ['.js', '.vue','styl'],
+        alias: {
+            'vue$': 'vue/dist/vue.esm.js' // 'vue/dist/vue.common.js' for webpack 1
+          }
     },
     output: {
         path: path.join(__dirname, 'src'),
@@ -31,7 +32,7 @@ module.exports = {
             {
                 test: /\.css/,
                 use: ['vue-style-loader', 'css-loader'] ,// BOTH are needed!
-                include:[path.resolve(__dirname,'public/assets/'),]
+                include:[path.resolve(__dirname,'public/assets/')]
               },
               {
                 test: /\.styl$/,
@@ -42,13 +43,7 @@ module.exports = {
     plugins: [new HtmlWebpackPlugin({
         template: './src/index.html'
     }),
-    new GenerateSW(),
-    new webpack.ProvidePlugin({
-        $: "jquery",
-        jQuery: "jquery",
-        "window.jQuery": "jquery'",
-        "window.$": "jquery"
-    })
+    new GenerateSW()
     ],
     devServer: {
         historyApiFallback: true,
@@ -56,15 +51,16 @@ module.exports = {
             "/upload":"http://localhost:3344"
 
         },headers:{
-           // 'Service-Worker-Allowed': true
+            'Service-Worker-Allowed': true
         },
-        disableHostCheck: true,   // That solved it
+        disableHostCheck: true
     },
     externals: {
         // global app config object
         config: JSON.stringify({
             apiUrl: 'http://localhost:4000'
         })
-    }
+    },
+
     
 }
