@@ -5,6 +5,9 @@ import { store } from './_store';
 import { router } from './_router';
 import { authHeader } from './_helpers';
 import App from './app/App';
+import BootstrapVue from 'bootstrap-vue';
+import { Dropdown } from 'bootstrap-vue/es/components';
+
 import {
     Vuetify,
     VApp,
@@ -29,6 +32,11 @@ import {
 
 
 Vue.use(VeeValidate);
+Vue.use(BootstrapVue);
+Vue.use(Dropdown);
+
+
+
 
 
 new Vue({

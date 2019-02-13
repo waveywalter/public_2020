@@ -9,7 +9,7 @@
 <script>
 import Vue from 'vue';
 export default {
-    name: 'tinymce',
+    name: 'tinymceEditor',
     props: {
         id: {
             type: String,
@@ -23,7 +23,7 @@ export default {
     data() {
         return {
             tinymceOptions: {
-                selector: 'textarea',
+                selector: '#'+this.id,
   height: 200,
   menubar: true,
   plugins: [

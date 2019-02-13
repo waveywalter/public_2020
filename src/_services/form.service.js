@@ -5,8 +5,10 @@ import { authHeader } from '../_helpers';
 
 export const formService = {
     saveform,
-    getform,
-    getSignedFormByUserId
+    updateform,
+    getformbyid,
+    getforms,
+    deleteform
 };
 const baseURL="http://2020i.site/api";
 //const baseURL="https://2020i.site/api";
@@ -25,78 +27,43 @@ function saveform(formdata) {
     return fetch(baseURL+'/forms', requestOptions).then(handleResponse);
 }
 
-function getSignedFormByUserId(id){
-    const requestOptions = {
-        method: 'GET',
-        headers: authHeader()
-    };
-
-    return fetch(baseURL+'GET /wsers/'+this.$store.state.account.user.userId+'/signedforms', requestOptions).then(handleResponse)
-
-}
-
-function getform(id) {
-    const requestOptions = {
-        method: 'GET',
-        headers: authHeader()
-    };
-
-    return fetch(baseURL+'/forms/5c619d688d96e52e186ae773', requestOptions).then(handleResponse);
-}
-
-function getAll(filter) {
-    let filterpara = ' '
-    if(filter.role) filterpara = '{"where":{"role":"'+ filter.role +'"}}';
-    const requestOptions = {
-        method: 'GET',
-        headers: authHeader()
-    };
-    return fetch(baseURL+'/wsers?filter='+filterpara, requestOptions).then(handleResponse);
-}
-
-
-
-
-function checkrole() {
-    const user = JSON.parse(localStorage.getItem('user'));
-    const requestOptions = {
-        method: 'GET',
-        headers: authHeader()
-    };
-    
-    return fetch(baseURL+'/wsers/username/'+user.userId+'/roles/'+user.user.role, requestOptions); 
-}
-
-function update(user) {
+function updateform(formdata) {
     const requestOptions = {
         method: 'PATCH',
         headers: { ...authHeader(), 'Content-Type': 'application/json' },
-        body: JSON.stringify(user)
+        body: JSON.stringify(formdata)
     };
 
-    return fetch(baseURL+'/wsers/'+user.userId, requestOptions).then(handleResponse)
-    .then(user => {
-        // login successful if there's a jwt token in the response
-        if (user.userId) {
-            var userold = JSON.parse(localStorage.getItem('user'));
-            userold.user = user
+    return fetch(baseURL+'/forms/'+formdata.id, requestOptions).then(handleResponse);
+}
 
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
-             localStorage.setItem('user', JSON.stringify(userold));
-        }
+function getformbyid(id) {
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
 
-        return user;
-    });
+    return fetch(baseURL+'/forms/'+id, requestOptions).then(handleResponse);
+}
+
+function getforms(filter) {
+    let filterpara = ' '
+    if("FormType" in filter) filterpara = '{"where":{"FormType":"'+ filter.FormType +'"}}';
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
+    return fetch(baseURL+'/forms?filter='+filterpara, requestOptions).then(handleResponse);
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
-function _delete(id) {
+function deleteform(id) {
     const requestOptions = {
         method: 'DELETE',
         headers: authHeader()
     };
 
-    return fetch(baseURL+'/wsers/${id}', requestOptions).then(handleResponse);
+    return fetch(baseURL+'/forms/'+id, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

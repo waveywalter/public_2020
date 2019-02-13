@@ -15,6 +15,7 @@ import ownerHome from '../_pages/ownerHome'
 import affiliateHome from '../_pages/affiliateHome'
 import Testpage from '../_pages/TestPage'
 import AdminDashBoard from '../components/adminComponents/adminDashBoard'
+import adminForms from '../components/adminComponents/adminForms'
 import CreateAdmin from '../components/adminComponents/createAdmin'
 import HrDashBoard from '../components/hrComponents/HrDashBoard'
 import hrcreateform from '../components/hrComponents/hrcreateform'
@@ -32,6 +33,7 @@ import formBuilder from '../formBuilder/formBuilder'
 import testfunctions from '../_pages/testfunctions'
 import tinymceformbuilder from '../_pages/TinymceFormbuilder'
 import facilities from  '../_pages/facilitiesHome'
+import assignform from '../_pages/assignform'
 
 Vue.use(Router);
 let user = JSON.parse(localStorage.getItem('user'));
@@ -43,6 +45,7 @@ let user = JSON.parse(localStorage.getItem('user'));
 export const router = new Router({
   mode: 'history',
   routes: [
+    {path:'/assignform', component:assignform},
     {path:'/test/:id',component:formViewer},
     {path:'/tinymceformbuilder', component:tinymceformbuilder},
     { path: '/forbidden', component:forbiddenerror},
@@ -165,7 +168,8 @@ beforeEnter: (to,from,next) =>{
     { path: '/admin', component: adminHome,
     children: [
       {path:'', component: AdminDashBoard},
-      { path: 'myprofile', component: MyProfile }
+      { path: 'myprofile', component: MyProfile },
+      { path: 'adminforms', component: adminForms }
     ],
     beforeEnter: (to,from,next) => {
       userService.checkrole().then(res => res.json()).then(roleMapping => {
