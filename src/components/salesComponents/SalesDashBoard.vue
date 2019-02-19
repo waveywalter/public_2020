@@ -34,7 +34,7 @@
                 <ul>
 
                     <li><a v-on:click="currentTab.tabname = 'NewAffiliateform' " href="#ownerform" class="sticon ti-home "><span>New Form</span></a></li>
-                    <li><a v-on:click="currentTab.tabname = 'UserInformation' " href="#UserInformation" class="sticon ti-trash"><span>User Info</span></a></li>
+                    <!-- <li><a v-on:click="currentTab.tabname = 'UserInformation' " href="#UserInformation" class="sticon ti-trash"><span>User Info</span></a></li> -->
                     <!-- <button v-on:click="components = 'NewAffiliateform' ">Show Form</button>
                     <button v-on:click="components = 'Userinformation' ">Show Info</button> -->
 
