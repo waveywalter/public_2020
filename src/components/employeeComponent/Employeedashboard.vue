@@ -7,7 +7,7 @@
              <h4 class="page-title">Employee DashBoard</h4>
              </div>
             </div>
-             <div class="col-lg-6 col-sm-6 col-xs-12">
+             <!-- <div class="col-lg-6 col-sm-6 col-xs-12">
              <div class="white-box">
             <section>
         <div class="sttabs tabs-style-bar">
@@ -17,9 +17,7 @@
                     <li><a v-on:click="currentTab.tabname = 'UserInformation' " href="#UserInformation" class="sticon ti-trash"><span>User Info</span></a></li>
                 </ul>
             </nav>
-            <!-- /content -->
         </div>
-        <!-- /tabs -->
     </section>
     <div class="tab-content">
             <keep-alive>
@@ -27,7 +25,7 @@
             </keep-alive>
             </div>
             </div>
-            </div>
+            </div> -->
         </div>
         </div>
         </div>

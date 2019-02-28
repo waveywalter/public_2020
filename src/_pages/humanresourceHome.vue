@@ -1,14 +1,14 @@
 <template>
     <div>
         <TopHeader></TopHeader>
-        <SideBar></SideBar>
+        <HrSideBar></HrSideBar>
         <router-view></router-view>
     </div>
 </template>
 
 <script>
 import TopHeader from '../components/layoutComponents/TopHeader';
-import SideBar from '../components/layoutComponents/SideBar';
+import HrSideBar from '../components/layoutComponents/hrSideBar';
 
 import Vue from 'vue';
 
@@ -16,7 +16,7 @@ import Vue from 'vue';
         name: "humanresourceHome",
         components: {
             TopHeader,
-            SideBar
+            HrSideBar
         }
        
     }
