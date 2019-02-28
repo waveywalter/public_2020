@@ -1,7 +1,8 @@
 import { userService } from '../_services';
 
 const state = {
-    all: {}
+    all: {},
+    
 };
 
 const actions = {

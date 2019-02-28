@@ -33,6 +33,9 @@ import formBuilder from '../formBuilder/formBuilder'
 import testfunctions from '../_pages/testfunctions'
 import tinymceformbuilder from '../_pages/TinymceFormbuilder'
 import facilities from  '../_pages/facilitiesHome'
+import assignform from '../_pages/assignform'
+import employeeHome from '../_pages/employeeHome'
+import employeedashboard from '../components/employeeComponent/Employeedashboard'
 
 Vue.use(Router);
 let user = JSON.parse(localStorage.getItem('user'));
@@ -44,6 +47,7 @@ let user = JSON.parse(localStorage.getItem('user'));
 export const router = new Router({
   mode: 'history',
   routes: [
+    {path:'/assignform', component:assignform},
     {path:'/test/:id',component:formViewer},
     {path:'/tinymceformbuilder', component:tinymceformbuilder},
     { path: '/forbidden', component:forbiddenerror},
@@ -92,6 +96,8 @@ export const router = new Router({
         next('/owner');
       }else if (user.user.role == "affiliate" ){
         next('/affiliate');
+      }else if (user.user.role == "employee" ){
+        next('/employee');
       }else{
         next();
       }
@@ -109,6 +115,19 @@ export const router = new Router({
       next("/forbidden")
     }
   }
+},
+{path: '/employee',component: employeeHome,
+children: [
+  { path: '', component: employeedashboard },
+  { path: 'myprofile', component: MyProfile }
+],
+beforeEnter: (to,from,next) =>{
+  if(user.user.role == 'employee'){
+    next();
+  }else {
+    next("/forbidden")
+  }
+}
 },
 {path: '/affiliate', component: affiliateHome,
 children: [

@@ -1,9 +1,7 @@
 <template>
     <div>
-       
-       <div v-html="chtml"></div> 
 
-        <dynamic ref="dynamic" v-bind:template="chtml"></dynamic>
+<dynamic ref="dynamic" v-bind:template="html"></dynamic>
 
     </div>
 </template>
@@ -15,15 +13,14 @@ export default {
         data(){
             return {
                 html:"<div>School</div>",
-                 templateRender: null,
             };
         },
         mounted(){
             this.getFormHtml(this.$route.params.id)
         },
-             components: {
-               dynamic
-            },
+        components:{
+                dynamic
+        },
           computed: {
               chtml:{
                   get:function(){

@@ -10,8 +10,13 @@ export const formService = {
     getforms,
     deleteform
 };
+<<<<<<< HEAD
 const baseURL="http://localhost:3000/api";
 //const baseURL="http://2020i.site/api";
+=======
+// const baseURL="http://2020i.site/api";
+const baseURL="http://localhost:3000/api";
+>>>>>>> 747a000e4fe28b646ef2e06cb79be3e9e245b18e
 //const baseURL = 'https://google.com'
 function loco(){
     console.log('loco')

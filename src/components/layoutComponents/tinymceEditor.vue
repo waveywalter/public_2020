@@ -32,7 +32,11 @@ export default {
     'insertdatetime media nonbreaking save table contextmenu directionality',
     'emoticons template paste textcolor colorpicker textpattern imagetools toc'
   ],
+<<<<<<< HEAD
   toolbar: 'undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | forecolor backcolor | TextInput CheckboxInput AuthInput',
+=======
+  toolbar: 'fontsizeselect | undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | forecolor backcolor | TextInput CheckboxInput AuthInput',
+>>>>>>> 747a000e4fe28b646ef2e06cb79be3e9e245b18e
   valid_elements:"*[*]",
   content_css: '',
   images_upload_url: 'postAcceptor.php',
@@ -112,7 +116,8 @@ export default {
     editor.addButton('AuthInput', {
       icon: 'lock',
       onclick: function (_) {
-        editor.insertContent('<button>Get Authentication Code</button><input type="text" name="name" id="name" placeholder="Auth Code">');
+        editor.insertContent('<button v-on:click="getAuth" v-if="unsent">Get Authentication Code</button><input v-model="authcode" type="text" name="name" id="name" placeholder="Auth Code">'
+        +'<button v-on:click="sendAuth" v-if="unsent">send Authentication Code</button>  ');
       }
     });
     editor.addButton('CheckboxInput', {

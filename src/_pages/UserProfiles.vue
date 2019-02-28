@@ -107,7 +107,7 @@ export default {
       formData.append('key','value')
       for (const [key, value]  of formData.entries()) {
         jsonObject[key] = value;
-        console.log(vm.$refs.form[1]);
+        // console.log(vm.$refs.form[1]);
       }
        fetch(`http://localhost:3000/api/wsers/change-password`,
        {method:'POST',body:JSON.stringify(jsonObject),
