@@ -32,7 +32,7 @@ export default {
     'insertdatetime media nonbreaking save table contextmenu directionality',
     'emoticons template paste textcolor colorpicker textpattern imagetools toc'
   ],
-  toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | forecolor backcolor | TextInput CheckboxInput AuthInput',
+  toolbar: 'fontsizeselect | undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | forecolor backcolor | TextInput CheckboxInput AuthInput',
   valid_elements:"*[*]",
   content_css: '',
   images_upload_url: 'postAcceptor.php',
