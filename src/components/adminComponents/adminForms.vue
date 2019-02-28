@@ -11,8 +11,8 @@
           <div class="col-lg-3 col-sm-3 col-xs-12">
             <div class="white-box">
               <span v-if="allforms.error" class="text-danger">ERROR: {{allforms.error}}</span>
-              <ul v-if="allforms.items">
-                <li v-for="allform in allforms.items" :key="allform.id">
+              <ul class="list-group" v-if="allforms.items">
+                <li class="list-group-item" v-for="allform in allforms.items" :key="allform.id">
                   {{allform.FormTitle}}
                   <span v-if="allform.deleting">
                     <em>- Deleting...</em>
@@ -32,27 +32,37 @@
           </div>
           <div v-if="this.$route.query.formid" class="col-lg-9 col-sm-9 col-xs-12">
             <div class="white-box">
-              
-                <form class="form-horizontal" @submit.prevent="MceSubmit">
-                  <input v-model="editedform.id " type="hidden">
-                  <h1>
-                    <span>Form Title:</span>
-                    <input v-model="editedform.FormTitle" type="text">
-                  </h1>
-                  <tinymceEditor id="tiny-mce-form" ref="FormContent" v-model="editedform.FormContent"></tinymceEditor>
-                  <h3>
-                    <span>Form Type:</span>
+
+              <form class="form-horizontal" @submit.prevent="MceSubmit">
+                <input v-model="editedform.id " type="hidden">
+                <div class="form-group creat-form-title">
+                  <label class="col-md-12">Form Title:</label>
+                  <div class="col-md-12">
+                    <input class="form-control form-control-line" v-model="editedform.FormTitle" type="text">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-12">Form Content:</label>
+                  <div class="col-md-12">
+                    <tinymceEditor id="tiny-mce-form" ref="FormContent" v-model="editedform.FormContent"></tinymceEditor>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="col-md-12">Form Type:</label>
+                  <div class="col-md-12">
+
                     <select v-model="editedform.FormType" class="form-control">
                       <option value="humanResource">Human Resource</option>
                       <option value="affiliate">Affiliate</option>
                       <option value="others">Others</option>
                     </select>
-                  </h3>
-                  <div class="col-lg-2 col-sm-4 col-xs-12">
-                    <input class="btn btn-success upload-botton" type="submit" value="Update Form">
                   </div>
-                </form>
-              
+                </div>
+
+                <button class="btn btn-success waves-effect waves-light m-r-10" type="submit">Update Form</button>
+
+              </form>
+
             </div>
           </div>
         </div>
@@ -123,3 +133,10 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.creat-form-title, .creat-form-title input{
+    font-size: 24px;
+}
+</style>
+

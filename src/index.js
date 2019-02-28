@@ -29,8 +29,6 @@ import {
   } from 'vuetify'
 
 
-
-
 Vue.use(VeeValidate);
 Vue.use(BootstrapVue);
 Vue.use(Dropdown);

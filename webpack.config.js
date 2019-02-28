@@ -29,13 +29,6 @@ module.exports = {
                 exclude: /(node_modules)/,
                 use: 'babel-loader'
             },
-<<<<<<< HEAD
-            {
-                test: /\.css/,
-                use: ['vue-style-loader', 'css-loader'] ,// BOTH are needed!
-                include:[path.resolve(__dirname,'public/assets/')]
-              },
-=======
             {test: /\.scss?$/, 
                 use: ['style-loader', 'css-loader', 'sass-loader'],
                 include:[path.resolve(__dirname,'public/assets/'),]},
@@ -43,23 +36,23 @@ module.exports = {
             use: ['vue-style-loader', 'css-loader'],
             // include:[path.resolve(__dirname,'public/assets/'),]
         },
-            
-            // {
-            //     test: /\.css/,
-            //     use: ['vue-style-loader', 'css-loader'] ,// BOTH are needed!
-            //     include:[path.resolve(__dirname,'public/assets/'),]
-            //   },
->>>>>>> 8409b6b35a41c295661668bbd1138828b1f9a065
               {
                 test: /\.styl$/,
                 use:['css-loader','stylus-loader']
               }
         ]
     },
-    plugins: [new HtmlWebpackPlugin({
+    plugins: [
+        new HtmlWebpackPlugin({
         template: './src/index.html'
     }),
-    new GenerateSW()
+    new GenerateSW(),
+    // new webpack.ProvidePlugin({
+    //     $: "jquery",
+    //     jQuery: "jquery",
+    //     "window.jQuery": "jquery'",
+    //     "window.$": "jquery"
+    // })
     ],
     devServer: {
         historyApiFallback: true,

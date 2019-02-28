@@ -84,6 +84,9 @@ export default {
     };
   },
   name: "UserInformation",
+  mounted(){
+   
+  },
   components: {
     imageUpload
   },
