@@ -26,8 +26,6 @@ import {
   } from 'vuetify'
 
 
-
-
 Vue.use(VeeValidate);
 
 
