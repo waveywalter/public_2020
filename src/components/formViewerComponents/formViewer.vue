@@ -1,41 +1,41 @@
 <template>
     <div>
 
-<dynamic ref="dynamic" v-bind:template="html"></dynamic>
+<dynamic :fid="fid" ref="dynamic" v-bind:template="chtml[0]"></dynamic> 
 
     </div>
 </template>
 <script>
 import Vue from 'vue'
 import dynamic from './dynamic'
+import printer from "vue-printer";
 export default {
     name:"formViewer",
+        props:["fid","phtml"],
         data(){
             return {
-                html:"<div>School</div>",
+                html:"<div>Initializing</div>",
             };
         },
         mounted(){
-            this.getFormHtml(this.$route.params.id)
+
         },
         components:{
-                dynamic
+                dynamic,printer
         },
           computed: {
               chtml:{
                   get:function(){
-                      return this.html
+                      return this.phtml
                   },
                   set:function(value){
-                      this.html = value
+                      this.chtml = value
 
                   }
               }
   },
         methods: {
-                getFormHtml(id){
-                    fetch('https://2020i.site/api/Forms?filter[where][id]='+id).then(res=>res.json()).then(json=>{this.chtml = json ; return "FOO"})
-                }
+  
   }
 }
 </script>

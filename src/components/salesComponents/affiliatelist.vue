@@ -43,34 +43,26 @@ export default {
   },
 methods:{
     updateId(id){
-      console.log("UPATEEEEEEEEEEEEEE")
       this.cid = id;
       this.getrecord(id);
         },
     getrecord(id){
-      console.log('RECORDSSSSSSSSSSSSSSSSSSSSSSS')
-     // window.sessionStorage.id = id;
+
       this.cid = id;
       if(id!=undefined){
-       fetch('https://2020i.site/api/applications/'+id,{method:"GET",headers:{"Content-Type": "application/json; charset=utf-8",}}).then(response=>response.json()).then(json=>{console.log(json)
- 
-        this.$store.state.apps.application = json;
-        //this.$store.state.apps.application.visible = this.visible(1);
-      if(json.s1==0){
-          console.log("Not Signed")
-          //check to see if signed start interval check
-          this.clock = setInterval(this.checkContractStatus,7000);
+       fetch('https://2020i.site/api/applications/'+id,{method:"GET",headers:{"Content-Type": "application/json; charset=utf-8",}})
+       .then(response=>response.json())
+       .then(json=>{
+            this.$store.state.apps.application = json;
+            if(json.s1==0){
+                this.clock = setInterval(this.checkContractStatus,7000);
 
-        }
-        else{
-          console.log("Signed")
-          //update ui
-          clearInterval(this.clock)
-        }
-      console.log(this)
-      }
+                }
+            else{
+                clearInterval(this.clock)
+                }
+            }     
         )
-        //this.getState();
       }
 
       },

@@ -8,10 +8,12 @@ export const formService = {
     updateform,
     getformbyid,
     getforms,
-    deleteform
+    deleteform,
+    attachUserToForm,
+    getFormsByUser
 };
-// const baseURL="http://2020i.site/api";
-const baseURL="http://localhost:3000/api";
+ const baseURL="https://2020i.site/api";
+//const baseURL="http://localhost:3000/api";
 //const baseURL = 'https://google.com'
 function loco(){
     console.log('loco')
@@ -34,7 +36,7 @@ function updateform(formdata) {
         body: JSON.stringify(formdata)
     };
 
-    return fetch(baseURL+'/forms/'+formdata.id, requestOptions).then(handleResponse);
+    return fetch(baseURL+'/Forms/'+formdata.id, requestOptions).then(handleResponse);
 }
 
 function getformbyid(id) {
@@ -53,7 +55,7 @@ function getforms(filter) {
         method: 'GET',
         headers: authHeader()
     };
-    return fetch(baseURL+'/forms?filter='+filterpara, requestOptions).then(handleResponse);
+    return fetch(baseURL+'/Forms?filter='+filterpara, requestOptions).then(handleResponse);
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
@@ -95,4 +97,25 @@ function handleLogoutResponse(response) {
         return data;
     });
 
+}
+
+function getFormsByUser(id,toekn){
+    console.log("GETFORMSSSSSSSSS")
+    console.log(toekn)
+    console.log(id)
+    return fetch('/api/wsers/'+id+'/signedforms?access_token='+toekn,{
+        method:"GET",
+        headers: { ...authHeader(), 'Content-Type': 'application/json' },  
+    }).then(handleResponse)
+
+}
+
+function attachUserToForm(data){
+    console.log(data)
+    data.status = false
+    fetch('/api/wsers/'+data.userId+'/signedforms',{
+        method:"POST",
+        headers: {...authHeader(), 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)   
+    }).then(handleResponse)
 }

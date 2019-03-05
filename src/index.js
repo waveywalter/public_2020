@@ -7,33 +7,47 @@ import { authHeader } from './_helpers';
 import App from './app/App';
 import BootstrapVue from 'bootstrap-vue';
 import { Dropdown } from 'bootstrap-vue/es/components';
-
-import {
-    Vuetify,
+import Print from 'vue-print-nb'
+import VueHtmlToPaper from 'vue-html-to-paper';
+ 
+const options = {
+  name: '_blank',
+  specs: [
+    'fullscreen=yes',
+    'titlebar=yes',
+    'scrollbars=yes'
+  ],
+  styles: [
+    'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css',
+    'https://unpkg.com/kidlat-css/css/kidlat.css'
+  ]
+}
+ 
+Vue.use(VueHtmlToPaper, options);
+import Vuetify,{
+    
     VApp,
-    VNavigationDrawer,
-    VFooter,
-    VCheckbox,
-    VList,
-    VBtn,
-    VIcon,
-    VGrid,
-    VToolbar,
-    VCard,
-    VForm,
-    VTextField,
-    VTabs,
-    VDatePicker,
-  VSelect,
-    transitions
-  } from 'vuetify'
+    VPagination,
+    VIcon
 
+  } from 'vuetify/lib'
 
-
-
+  import 'vuetify/src/stylus/app.styl'
+  Vue.use(require('vue-moment'));
+Vue.use(Print);
 Vue.use(VeeValidate);
 Vue.use(BootstrapVue);
 Vue.use(Dropdown);
+Vue.use(Vuetify, {
+  components: {
+    VApp,
+    VPagination,
+    VIcon
+  },
+  directives: {
+  //  Ripple
+  }
+})
 
 
 

@@ -113,7 +113,7 @@ li {
                 </div>
               </form>
               <p v-show="message">{{message}}</p>
-            <div class="col-sm-12 col-xs-12" v-if="this.$root._route.params.id">
+            <div class="col-sm-12 col-xs-12" v-if="checkroute()">
             <div class="">
                                         <h4 class="card-title">Applications </h4>
                                         <applicationslist></applicationslist>
@@ -167,6 +167,11 @@ export default {
   
   },
   methods: {
+        checkroute(){
+      if(this.$root._route.params.id && this.$root._route.params.root!='crm'){
+        return true
+      }
+    },
         getrecord(id){
       console.log('RECORDSSSSSSSSSSSSSSSSSSSSSSS')
      // window.sessionStorage.id = id;

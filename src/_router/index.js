@@ -28,6 +28,7 @@ import affiliatedashboard from '../components/affiliateComponents/affiliateDashb
 import RTFdashboard from '../components/RTFComponents/RTFdashboard'
 import OwnerDashboard from '../components/ownerComponents/OwnerDashboard'
 import formViewer from '../components/formViewerComponents/formViewer'
+import crm from '../components/crmComponents/crmComponent'
 import MyProfile from  '../_pages/MyProfile'
 import formBuilder from '../formBuilder/formBuilder'
 import testfunctions from '../_pages/testfunctions'
@@ -112,19 +113,6 @@ export const router = new Router({
     }
   }
 },
-{path: '/affiliate', component: affiliateHome,
-children: [
-  { path: '', component: affiliatedashboard },
-    { path: 'myprofile', component: MyProfile }
-  ],
-beforeEnter: (to,from,next) =>{
-  if(user.user.role == 'affiliate'){
-    next();
-  }else {
-    next("/forbidden")
-  }
-}
-},
     { path: '/UserProfiles', component: UserProfiles },
     { path: '/login', component: LoginPage,
     beforeEnter: (to,from,next) => {
@@ -138,11 +126,12 @@ beforeEnter: (to,from,next) =>{
     { path: '/register', component: RegisterPage },
     { path: '/sales', component:salesHome,
     children: [
+      {path:':root/forms/:id',component:SalesDashBoard},
       { path: '', component: SalesDashBoard },
       { path: 'myprofile', component: MyProfile },
       { path: ':root/:id?', component: SalesDashBoard },
+      {path:'/crm/:id?',component:crm}
  
-      //{path: 'NewAffiliateform', component:NewAffiliateform},
      ],
      beforeEnter: (to,from,next) => {
        if(user.user.role == 'sales'){
@@ -151,6 +140,20 @@ beforeEnter: (to,from,next) =>{
          next("/forbidden")
        }
      }
+    },
+    {path: '/affiliate', component: affiliateHome,
+    children: [
+      { path: '', component: affiliatedashboard },
+      { path: '/affiliate/:formtype/:id', component: affiliatedashboard },
+        { path: 'myprofile', component: MyProfile }
+      ],
+    beforeEnter: (to,from,next) =>{
+      if(user.user.role == 'affiliate'){
+        next();
+      }else {
+        next("/forbidden")
+      }
+    }
     },
     { path: '/humanresource', component: humanresourceHome,
     children: [

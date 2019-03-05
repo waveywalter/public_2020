@@ -4,6 +4,7 @@
         <div class="form-body form-material">
    
                                         <h3 class="box-title">Person Info</h3>
+                                       
                                         <hr class="m-t-0 m-b-40">
                                         <div class="row">
                                             <div class="col-md-6">
@@ -95,6 +96,7 @@
 
     export default {
         name: "affiliateformfields",
+        props :["afid"],
                 data(){
             return{
                 
@@ -102,26 +104,30 @@
             }
         },
         computed:{
+            user: function(){
+                if(this.$store.state.account.user.user.role=="sales") return this.$store.state.users.all.items.filter(aff=>{return aff.id===this.afid})
+                return [this.$store.state.account.user.user]
+            },
             firstname:{
                     get: function () {
-                        console.log("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM")
-                        console.log(this)
-                        return this.$store.state.account.user.user.firstname
+                        console.log("FIRDT")
+                        console.log(this.user)
+                        return this.user[0].firstname
                     },
                     // setter
                     set: function (newValue) {
-                    this.$store.state.account.user.user.firstname= newValue
+                    this.user[0].firstname= newValue
                 }           
             },
              lastname:{
                     get: function () {
-                        console.log("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM")
+                        console.log("LAST")
                         console.log(this)
-                        return this.$store.state.account.user.user.lastname
+                        return this.user[0].lastname
                     },
                     // setter
                     set: function (newValue) {
-                    this.$store.state.account.user.user.lastname= newValue
+                    this.user[0].lastname= newValue
                 }           
             }
         },

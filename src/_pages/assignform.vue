@@ -8,28 +8,30 @@
           <div data-v-7ad1cecc class="row bg-title">
             <h4 data-v-7ad1cecc class="page-title">Assign Form</h4>
           </div>
+          <form ref="form" @submit.prevent="handleSubmit">
           <div>
               <label>User</label>
-          <ul id="userList" v-if="users.items">
-            <li v-for="wser in users.items" :key="wser.id">
-                 <input type="checkbox">
-                 <span class="checkmark"></span>
-                 {{wser.username + ' ' + wser.email}}
-            </li>
-          </ul>
+          <select id="userList" v-if="users.items" v-model="data.userId">
+            <option >Select an Employee</option>
+            <option v-for="wser in users.items" :key="wser.id" v-bind:value="wser.id">
+              {{wser.firstname}} {{wser.lastname}}
+            </option>
+          </select>
           </div>
           <div>
               <label>Forms</label>
-                <ul v-if="allforms.items">
+              <ul v-if="allforms.items">
                <li v-for="allform in allforms.items" :key="allform.id">
-                 <input type="checkbox">
+                 <input :data-attr="allform.id" type="checkbox" :name="allform.name" v-on:click="updateData">
                  <span class="checkmark"></span>
-                 {{allform.FormTitle}}
+                 <label :for="allform.name">{{allform.FormTitle}}</label>
                  <a :href="'/admin/adminforms/?formid='+allform.id">Edit</a>
                  <!-- <router-link :to="'/admin/adminforms/?formid='+allform.id">Edit</router-link> -->
                </li>
              </ul>
-          </div>        
+          </div> 
+          <button type="submit">Attach Form To User</button>
+          </form>
           </div>
       </div>
     </div>
@@ -55,21 +57,28 @@ export default {
   name: "assignForm",
   data() {
     return {
-      info: ""
+      data: {
+        userId:'',
+        formId:'',
+        meta:{}
+      }
     };
   },
   computed: {
     ...mapState({
       account: state => state.account,
       users: state => state.users.all,
-      ...mapState("form", ["allforms", "formdata"]), 
+      ...mapState("form", ["allforms", "formdata","userForms"]), 
           })
   },
   mounted(){
+   
   },
   created() {
     this.getAllUsers({ });
     this.getforms({ });
+   
+    //this.attachUserToForm({})
   },
   components: {
     TopHeader,
@@ -81,7 +90,19 @@ export default {
       deleteUser: "delete",
       update: "update",
      }),
-      ...mapActions("form", ["getformbyid", "updateform","getforms", "deleteform"]),
+      ...mapActions("form", ["getformbyid", "updateform","getforms", "deleteform","attachUserToForm","getUserForms"]),
+      updateData(e){
+
+        this.data.formId = e.target.attributes[1].value
+        this.data.userId = this.$refs.form[0].value
+
+       
+      },
+      handleSubmit(e){
+        //post to website clear form
+        this.attachUserToForm(this.data)
+        e.target.reset()
+      }
   },
 };
 </script>

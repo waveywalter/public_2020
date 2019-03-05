@@ -5,7 +5,9 @@ import * as Cookie from 'js-cookie';
 const state = {
    status:{},
    allforms:{},
-   formdata:null
+   formdata:null,
+   userForms:[],
+   current_signed_form:""
 };
 
 const actions = {
@@ -78,17 +80,32 @@ const actions = {
     },
     getforms({ commit }, filter) {
         commit('getFormsRequest');
-        
         formService.getforms(filter)
             .then(
                 forms => commit('getFormsSuccess', forms),
                 error => commit('getFormsFailure', error)
             );
+    },
+    attachUserToForm({commit},data){
+        formService.attachUserToForm(data)
+        console.log(data)
+    },
+    getUserForms({commit},id){
+
+        formService.getFormsByUser(id,this.state.account.user.id).then(
+            forms=>commit("getUserFormsSuccess",forms)
+        )
+       
+
     }
+    
     
 };
 
 const mutations = {
+    getUserFormsSuccess(state,userForms){
+        state.userForms = userForms
+    },
     updateFormSuccess(state, forminfo) {
         state.status = {};
     },

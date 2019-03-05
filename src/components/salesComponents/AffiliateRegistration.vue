@@ -121,7 +121,7 @@ iframe{
     
 }
 .flexor > div:first-child {
-    width:70%;
+    
     margin-right:20px
     
 }
@@ -139,13 +139,13 @@ iframe{
     display: table-cell;
     vertical-align: top;
 }
+#app-wrapper{width:100%}
 </style>
 
 <template>
 
     <div class="white-box ml-5 max50 flexor" >
-       
-               <div v-if="this.$root._route.params.id">
+               <div v-if="this.$root._route.params.root=='applicant'">
                    
                    <div class="thumbs"><h3> Application <span v-if="capproved==1">Approved <i class="ti-thumb-up"></i></span><span v-if="capproved==0">Not Approved <i class="ti-thumb-down"></i></span> 
                     <button  class="btn waves-effect waves-light btn-success" v-on:click="approveApp('1')" v-if="check()==1">Approve Application</button> 
@@ -153,7 +153,7 @@ iframe{
                         </h3>
                     </div>
                    
-                <div>
+                <div >
                     
                     <ul class="nav nav-pills m-t-30 m-b-30" role="tablist">
  
@@ -235,7 +235,7 @@ iframe{
                         </div>
                     </div>
                 </div>
-    <div id="app-wrapper" v-if="!this.$root._route.params.id" :key="listkey">
+    <div id="app-wrapper" :key="listkey" v-if="showmain(this.$root._route.params.root)">
             <div >
 
              <div class="col-md-6 col-sm-6 mt-6 apps">
@@ -269,14 +269,22 @@ iframe{
                                     </div>
             </div>
         </div>
-    <div v-if="this.$root._route.params.id">
-                    <div class="meter max6">
+    <div  v-if="this.$root._route.params.root=='applicant'">
+                    <div class="">
  
                      <div><span>Admission Agreement</span> <i class="ti-check" v-if="cs1==1"></i><br></div>       
 
-                    </div>               
+                    </div>           
+      
         </div> 
-
+    <div v-if="this.$root._route.params.root=='affiliate'">
+                    <div class="">
+ 
+                     <div> <i class="ti-check" v-if="cs1==1"></i><br></div>       
+                      <affiliateApplication :afid="this.$root._route.params.id"></affiliateApplication>
+                    </div>           
+      
+        </div> 
     </div>
 
 </template>
@@ -288,6 +296,7 @@ import  $ from 'jquery';
 import applicationslist from './applicationslist';
 import affiliatelist from './affiliatelist';
 import imageupload from "../layoutComponents/imageUpload"
+import affiliateApplication from "../affiliateComponents/affiliateApplication"
 
 //import AffiliateRegView from '../salesComponents/jottComponents/v5/pages/AffiliateRegView.vue';
 
@@ -309,6 +318,7 @@ export default {
           //  test:'My Life'
         }
     },
+props:["afid"],
 computed:{
     clist:{
                 get:function(e){
@@ -860,6 +870,11 @@ computed:{
     },
   
 methods:{
+    showmain(test){
+      console.log("SHOWWWWWW",test)
+      if(test==undefined){return true}
+      return false
+    },
     deleteApp(id){
       fetch('/api/applications/'+id,{method:"DELETE"}).then(()=>{this.getApps()})
 
@@ -1704,7 +1719,7 @@ mounted :function(){
 
         name: "AffiliateRegistration",
         components: {
-               applicationslist,affiliatelist
+               applicationslist,affiliatelist,affiliateApplication
         }
     
     
