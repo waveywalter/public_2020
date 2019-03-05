@@ -48,10 +48,17 @@ module.exports = {
               }
         ]
     },
-    plugins: [new HtmlWebpackPlugin({
+    plugins: [
+        new HtmlWebpackPlugin({
         template: './src/index.html'
     }),
-    new GenerateSW()
+    new GenerateSW(),
+    // new webpack.ProvidePlugin({
+    //     $: "jquery",
+    //     jQuery: "jquery",
+    //     "window.jQuery": "jquery'",
+    //     "window.$": "jquery"
+    // })
     ],
     devServer: {
         historyApiFallback: true,

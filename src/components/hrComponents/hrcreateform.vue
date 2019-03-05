@@ -2,7 +2,7 @@
   <div>
     <div class="row">
       <div class="col-md-7 ">
-          <h3 class="box-title m-b-5">New HR Form</h3>
+          <h3 class="box-title m-b-5">New Employee Form</h3>
           <div class="row">
             <div class="col-sm-12 col-xs-12">
               <form ref="form" @submit.prevent="handleSubmit">
@@ -69,11 +69,14 @@
                       name="list"
                       class="form-control"
                     >
-                      <option value="admin">Admin</option>
+                      <!-- <option value="admin">Admin</option>
                       <option value="owner">Owner</option>
-                      <option value="exdir">Executive Director</option>
-                      <option value="nursdir">Director of Nursing</option>
-                      <option value="nurse1">Nurse1</option>
+                      <option value="sales">Sales</option>
+                      <option value="humanResource">HR</option>
+                      <option value="rtf">RTF</option>
+                      <option value="affiliate">Affiliate</option> -->
+                      <option value="employee">Employee</option>
+
                     </select>
                     <div class="input-group-addon">
                       <i class="ti-shield"></i>

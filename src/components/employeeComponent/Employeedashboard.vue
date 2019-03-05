@@ -4,22 +4,20 @@
             <div class="container-fluid">
             <div class="col-lg">
                 <div class="row bg-title">
-             <h4 class="page-title">Human Resources DashBoard</h4>
+             <h4 class="page-title">Employee DashBoard</h4>
              </div>
             </div>
-             <div class="col-lg-6 col-sm-6 col-xs-12">
+             <!-- <div class="col-lg-6 col-sm-6 col-xs-12">
              <div class="white-box">
             <section>
         <div class="sttabs tabs-style-bar">
             <nav>
                 <ul>
-                    <li><a v-on:click="currentTab.tabname = 'hrcreateform' " href="#hrcreateform" class="sticon ti-home "><span>Create Employee</span></a></li>
-                    <!-- <li><a v-on:click="currentTab.tabname = 'UserInformation' " href="#UserInformation" class="sticon ti-trash"><span>User Info</span></a></li> -->
+                    <li><a v-on:click="currentTab.tabname = 'hrcreateform' " href="#hrcreateform" class="sticon ti-home "><span>New Form</span></a></li>
+                    <li><a v-on:click="currentTab.tabname = 'UserInformation' " href="#UserInformation" class="sticon ti-trash"><span>User Info</span></a></li>
                 </ul>
             </nav>
-            <!-- /content -->
         </div>
-        <!-- /tabs -->
     </section>
     <div class="tab-content">
             <keep-alive>
@@ -27,22 +25,20 @@
             </keep-alive>
             </div>
             </div>
-            </div>
+            </div> -->
         </div>
         </div>
         </div>
 </template>
 
 <script>
-import TopHeader from '../layoutComponents/TopHeader';
-import SideBar from '../layoutComponents/SideBar';
 import hrcreateform from '../hrComponents/hrcreateform';
 import UserInformation from '../layoutComponents/UserInformation';
 import Vue from 'vue';
 
 
     export default {
-        name: "HrDashBoard",
+        name: "Employeedashboard",
          data(){
             return{
                 currentTab: {
@@ -61,8 +57,6 @@ import Vue from 'vue';
             }
         },
         components: {
-            TopHeader,
-            SideBar,
             hrcreateform,
             UserInformation,
         }

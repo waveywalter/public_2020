@@ -1,22 +1,22 @@
 <template>
     <div>
         <TopHeader></TopHeader>
-        <HrSideBar></HrSideBar>
+        <SideBar></SideBar>
         <router-view></router-view>
     </div>
 </template>
 
 <script>
 import TopHeader from '../components/layoutComponents/TopHeader';
-//import HrSideBar from '../components/layoutComponents/hrSideBar';
+import SideBar from '../components/layoutComponents/SideBar';
 
 import Vue from 'vue';
 
     export default {
-        name: "humanresourceHome",
+        name: "employeeHome",
         components: {
             TopHeader,
-  //          HrSideBar
+            SideBar
         }
        
     }

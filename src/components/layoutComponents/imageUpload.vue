@@ -2,17 +2,6 @@
   <div>
   <form @submit.prevent="sendFile" enctype="multipart/form-data" class="update-avatar">
       <label style="margin: 15px 0">My current avatar</label>
-      <!-- <label
-        class="btn btn-block btn-info btn-rounded upload-botton"
-        for="user_image_uploader_button"
-      >Choose File</label>
-      <input
-        type="file"
-        ref="file"
-        id="user_image_uploader_button"
-        style="width: 100px"
-        @change="selectFile"
-      > -->
       <input type="file" ref="file" title=" " id="input-file-now" class="dropify" v-bind:data-default-file="imagepath" @change="selectFile" />
       <!-- <button class="dropify-clear upload-botton">Upload</button> -->
   </form>
@@ -37,19 +26,19 @@ export default {
     };
   },
   mounted() {
-    $('.dropify').dropify({
-    tpl: {
-        message:         '',
-        preview:         '<div class="dropify-preview"><span class="dropify-render"></span><div class="dropify-infos"><div class="dropify-infos-inner"><p class="dropify-infos-message">Drag and drop <br>or click to <br>change avatar</p></div></div></div>',
-        filename:        '',
-        clearButton:     '',
-        errorLine:       '',
-        errorsContainer: ''
-    }
-});
-    var drEvent = $('.dropify').dropify();
+    var drEvent = $('.dropify').dropify({
+      tpl: {
+          message:         '',
+          preview:         '<div class="dropify-preview"><span class="dropify-render"></span><div class="dropify-infos"><div class="dropify-infos-inner"><p class="dropify-infos-message">Drag and drop <br>or click to <br>change avatar</p></div></div></div>',
+          filename:        '',
+          clearButton:     '',
+          errorLine:       '',
+          errorsContainer: ''
+      }
+    });
+     //$('.dropify').dropify();
     drEvent.on('dropify.beforeClear', function(event, element){
-        $(".upload-button").remove();
+      $(".upload-button").remove();
     });   
   },
   methods: {

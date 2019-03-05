@@ -35,6 +35,8 @@ import testfunctions from '../_pages/testfunctions'
 import tinymceformbuilder from '../_pages/TinymceFormbuilder'
 import facilities from  '../_pages/facilitiesHome'
 import assignform from '../_pages/assignform'
+import employeeHome from '../_pages/employeeHome'
+import employeedashboard from '../components/employeeComponent/Employeedashboard'
 
 Vue.use(Router);
 let user = JSON.parse(localStorage.getItem('user'));
@@ -95,6 +97,8 @@ export const router = new Router({
         next('/owner');
       }else if (user.user.role == "affiliate" ){
         next('/affiliate');
+      }else if (user.user.role == "employee" ){
+        next('/employee');
       }else{
         next();
       }
@@ -112,6 +116,32 @@ export const router = new Router({
       next("/forbidden")
     }
   }
+},
+{path: '/employee',component: employeeHome,
+children: [
+  { path: '', component: employeedashboard },
+  { path: 'myprofile', component: MyProfile }
+],
+beforeEnter: (to,from,next) =>{
+  if(user.user.role == 'employee'){
+    next();
+  }else {
+    next("/forbidden")
+  }
+}
+},
+{path: '/affiliate', component: affiliateHome,
+children: [
+  { path: '', component: affiliatedashboard },
+    { path: 'myprofile', component: MyProfile }
+  ],
+beforeEnter: (to,from,next) =>{
+  if(user.user.role == 'affiliate'){
+    next();
+  }else {
+    next("/forbidden")
+  }
+}
 },
     { path: '/UserProfiles', component: UserProfiles },
     { path: '/login', component: LoginPage,
@@ -158,15 +188,18 @@ export const router = new Router({
     { path: '/humanresource', component: humanresourceHome,
     children: [
           { path: '', component: HrDashBoard },
-          { path: 'myprofile', component: MyProfile }
-        ]
-    // beforeEnter: (to,from,next) =>{
-    //   if(user.user.role == 'humanResource'){
-    //     next();
-    //   }else {
-    //     next("/forbidden")
-    //   }
-    // }
+          { path: 'myprofile', component: MyProfile },
+          {path: 'hrforms', component:adminForms}
+        ],
+        beforeEnter: (to,from,next) => {
+          userService.checkrole().then(res => res.json()).then(roleMapping => {
+                if ((user.user.role == "humanResource") && roleMapping.id) {
+                  next();
+                }else {
+                  next("/forbidden")
+                }
+            });
+        }
   },
     { path: '/admin', component: adminHome,
     children: [

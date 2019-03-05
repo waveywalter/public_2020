@@ -26,6 +26,7 @@
                  <span class="checkmark"></span>
                  <label :for="allform.name">{{allform.FormTitle}}</label>
                  <a :href="'/admin/adminforms/?formid='+allform.id">Edit</a>
+                 <!-- <a :href="'/'+{{url()}}+'/adminforms/?formid='+allform.id">Edit</a> -->
                  <!-- <router-link :to="'/admin/adminforms/?formid='+allform.id">Edit</router-link> -->
                </li>
              </ul>
@@ -52,6 +53,10 @@ import SideBar from "../components/layoutComponents/TopHeader";
 import axios from "axios";
 import { mapState, mapActions } from "vuex";
 import { authHeader } from "../_helpers";
+
+let user = JSON.parse(localStorage.getItem('user'));
+
+
 
 export default {
   name: "assignForm",
@@ -85,6 +90,12 @@ export default {
     SideBar
   },
   methods: {
+    url(){
+      //if user role is admin return admin if its hr then return hr route
+      if (wser.email = "eddmin@gmail.com"){
+        console.log("hypeeeeeeeee")
+      }
+    },
     ...mapActions("users", {
       getAllUsers: "getAll",
       deleteUser: "delete",
@@ -104,5 +115,7 @@ export default {
         e.target.reset()
       }
   },
+
 };
+
 </script>
