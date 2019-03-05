@@ -35,6 +35,23 @@
             <p>{{updateInfo.role}}</p> <span class="bar"></span>
     </div>
     </div>
+            <div class="form-group">
+        <label class="col-md-12">G-Mail</label>
+        <div class="col-md-12">
+<input placeholder="Email" type="text" v-on:change="clearAlert" v-model="updateInfo.email" name="email"> <span class="bar"></span>    
+</div>
+    </div>
+            <div class="form-group">
+        <label class="col-md-12">Password</label>
+        <div class="col-md-12">
+<input placeholder="Password" type="text" v-on:change="clearAlert" name="password"> <span class="bar"></span>    
+</div>
+    </div>
+        <div class="form-group">
+        <div class="col-sm-12">
+            <button class="btn btn-danger">Authenticate Gmail</button>
+        </div>
+    </div>
     <div class="form-group">
         <div class="col-sm-12">
             <button class="btn btn-success">Update Profile</button>
@@ -48,12 +65,11 @@
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 el-element-overlay">
 <div>
     <div class="white-box">
-                    <imageUpload></imageUpload>
+    <imageUpload></imageUpload>
     </div>
 </div>
 </div>
 </div>
-
           </div>
         </div>
       </div>
@@ -80,6 +96,7 @@ export default {
         lastname: user.user.lastname,
         role: user.user.role,
         userId: user.userId,
+        email: user.user.email
       },
     };
   },

@@ -26,7 +26,7 @@
                     <li> <a href="javascript:void(0);" class="waves-effect"><i class="linea-icon linea-basic fa-fw " data-icon="7"></i> <span class="hide-menu "> Components <span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
                             <li> <a href="clients.php">Clients</a> </li>
-                            <li> <router-link to="assignform">Assign Forms</router-link></li>
+                            <li> <router-link to="assignform"></router-link></li>
                             <li> <a href="eliteadmin/eliteadmin-hospital/index.html">Responsibilities</a> </li>
                             <li> <a href="eliteadmin/eliteadmin-hospital/index.html">Training</a> </li>
                             <li> <a href="eliteadmin/eliteadmin-hospital/index.html">Account</a> </li>
@@ -122,8 +122,10 @@ console.log(user)
                 user: user,
                 role: user.user.role,
             }
+
         }
     }
+
 </script>
 
 <style scoped>

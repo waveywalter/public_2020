@@ -172,15 +172,18 @@ beforeEnter: (to,from,next) =>{
     { path: '/humanresource', component: humanresourceHome,
     children: [
           { path: '', component: HrDashBoard },
-          { path: 'myprofile', component: MyProfile }
-        ]
-    // beforeEnter: (to,from,next) =>{
-    //   if(user.user.role == 'humanResource'){
-    //     next();
-    //   }else {
-    //     next("/forbidden")
-    //   }
-    // }
+          { path: 'myprofile', component: MyProfile },
+          {path: 'hrforms', component:adminForms}
+        ],
+        beforeEnter: (to,from,next) => {
+          userService.checkrole().then(res => res.json()).then(roleMapping => {
+                if ((user.user.role == "humanResource") && roleMapping.id) {
+                  next();
+                }else {
+                  next("/forbidden")
+                }
+            });
+        }
   },
     { path: '/admin', component: adminHome,
     children: [
