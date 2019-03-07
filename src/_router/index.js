@@ -8,7 +8,7 @@ import UserProfiles from '../_pages/UserProfiles'
 import LoginPage from '../_pages/LoginPage'
 import RegisterPage from '../_pages/RegisterPage'
 import adminHome from '../_pages/adminHome'
-import humanresourceHome from '../_pages/humanresourceHome'
+import humanResourceHome from '../_pages/humanResourceHome'
 import salesHome from '../_pages/salesHome'
 import rtfHome from '../_pages/rtfHome'
 import ownerHome from '../_pages/ownerHome'
@@ -90,7 +90,7 @@ export const router = new Router({
       } else if (user.user.role == "rtf"){
         next('/rtf');
       } else if (user.user.role == "humanResource"){
-        next('/humanresource');
+        next('/humanResource');
       } else if (user.user.role == "admin"){
         next('/admin');
       } else if (user.user.role == "owner" ){
@@ -185,7 +185,9 @@ beforeEnter: (to,from,next) =>{
       }
     }
     },
-    { path: '/humanresource', component: humanresourceHome,
+
+    
+    { path: '/humanResource', component: humanResourceHome,
     children: [
           { path: '', component: HrDashBoard },
           { path: 'myprofile', component: MyProfile },

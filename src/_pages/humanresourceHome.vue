@@ -8,7 +8,7 @@
 
 <script>
 import TopHeader from '../components/layoutComponents/TopHeader';
-//import HrSideBar from '../components/layoutComponents/hrSideBar';
+import HrSideBar from '../components/layoutComponents/hrSideBar';
 
 import Vue from 'vue';
 
@@ -16,7 +16,7 @@ import Vue from 'vue';
         name: "humanresourceHome",
         components: {
             TopHeader,
-  //          HrSideBar
+          HrSideBar,
         }
        
     }

@@ -6,6 +6,10 @@ const state = {
 };
 
 const actions = {
+    helloWorld(){
+    alert("loml")
+    },
+
     getAll({ commit }, filter) {
         commit('getAllRequest');
         userService.getAll(filter)
@@ -17,14 +21,12 @@ const actions = {
 
     delete({ commit }, id) {
         commit('deleteRequest', id);
-
         userService.delete(id)
             .then(
                 user => commit('deleteSuccess', id),
                 error => commit('deleteSuccess', { id, error: error.toString() })
             );
     },
-
     update({ commit }, id) {
         commit('patchSuccess', id);
 

@@ -49,7 +49,7 @@
     </div>
         <div class="form-group">
         <div class="col-sm-12">
-            <button class="btn btn-danger">Authenticate Gmail</button>
+            <button class="btn btn-danger" v-on:click="helloworld">Authenticate Gmail</button>
         </div>
     </div>
     <div class="form-group">
@@ -112,7 +112,7 @@ export default {
     ...mapState("alert", ["message"])
   },
   methods: {
-    ...mapActions("account", ["update"]),
+    ...mapActions("account", ["update","helloWorld"]),
     ...mapActions({ clearAlert: "alert/clear" }),
     onFileSelected(event) {
       this.selectedFile = event.target.files[0];
@@ -138,6 +138,9 @@ export default {
           "Content-Type": "application/x-www-form-urlencoded"
         }
       });
+    },
+    helloworld:function(event){
+      alert("SSsS")
     }
     }
 };
