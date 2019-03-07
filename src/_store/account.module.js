@@ -26,6 +26,9 @@ const actions = {
                 }
             );
     },
+    authGoogle(){
+        alert("SSsS")
+    },
     update({ dispatch, commit }, userInfo ) {
     
         userService.update(userInfo)

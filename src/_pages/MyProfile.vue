@@ -112,7 +112,7 @@ export default {
     ...mapState("alert", ["message"])
   },
   methods: {
-    ...mapActions("account", ["update","helloWorld"]),
+    ...mapActions("account", ["update"]),
     ...mapActions({ clearAlert: "alert/clear" }),
     onFileSelected(event) {
       this.selectedFile = event.target.files[0];
@@ -139,7 +139,7 @@ export default {
         }
       });
     },
-    helloworld:function(event){
+    helloworld(){
       alert("SSsS")
     }
     }
