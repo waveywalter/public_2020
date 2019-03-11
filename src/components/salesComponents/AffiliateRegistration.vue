@@ -168,9 +168,9 @@ iframe{
                                             <div class="col-md-12">
                                                     <div class="">
                                                         <div class="profile-details">
-                                                            <div><span class="white">Name</span><span>{{cname}}</span></div>
-                                                            <div><span class="white">Email</span><span>{{cemail}}</span></div>
-                                                            <div><span class="white">Phone</span><span>{{cphone}}</span></div>
+                                                            <div><span class="">Name</span><span>{{cname}}</span></div>
+                                                            <div><span class="">Email</span><span>{{cemail}}</span></div>
+                                                            <div><span class="">Phone</span><span>{{cphone}}</span></div>
              
 
                                                             </div>
@@ -888,7 +888,7 @@ methods:{
         // if all things satisfied return true else tretun false
         if(
 
-            this.cs1==1 &&
+          
 
             this.capproved==0
         ){
@@ -1386,7 +1386,7 @@ methods:{
             return datar[1] 
             })
             console.log(this.cs1,st.approved)
-      if(this.cs1==true && st.approved==true)
+      if(st.approved==true)
          {
            let req ={};
            req.approved='1';

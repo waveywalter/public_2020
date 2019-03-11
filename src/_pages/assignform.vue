@@ -39,11 +39,19 @@
   </div>
 </template>
 <style scoped>
+select{
+
+}
 li{
     cursor: pointer;
 }
 li:hover {
   background-color: yellow;
+}
+select {
+   
+      -webkit-appearance: menulist-button;
+    background-color: #353c48;
 }
 </style>
 

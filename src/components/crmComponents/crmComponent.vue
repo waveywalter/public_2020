@@ -246,6 +246,8 @@ display:flex;}
 <script>
 import { mapState, mapActions } from "vuex";
 
+
+
 export default{
   name:"crm",
     data() {
@@ -265,7 +267,9 @@ export default{
       emailtext:'',
       page:1,
       page2:2,
-      page3:3
+      page3:3,
+      gtoken:"",
+      tokens:''
     };
   },
   computed: {
@@ -276,7 +280,10 @@ export default{
           })
   },
   mounted(){
-   
+    console.log(this.$auth)
+   this.gtoken = this.$auth.getToken()
+   this.tokens = JSON.parse(this.$auth.storage.getItem("tokens"))
+  
    },
   created() {
     this.getLeads();
@@ -311,6 +318,12 @@ export default{
       d.filter = filter;
       d.id = lead.id
       this.getNotes(d)
+      this.getEmails(lead)
+    },
+    getEmails(lead){
+      console.log("HIT Gmail and get assocaited emails")
+       
+
     },
     closeLead(){
       this.view="ListView"

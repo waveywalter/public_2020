@@ -146,17 +146,24 @@ watch: {
 	template:{
       immediate: true, // makes the watcher fire on first render, too.
       handler() {
-
+        console.log("SWITCH ID")
         if(this.template){
+ 
+     
         let html = "<div class='former'> <h3>"+this.template.FormTitle+"</h3>"+this.template.FormContent+"<div class='error' v-if='error_on'>{{error}}</div></div>"
         let status = this.$store.state.form.userForms.filter((form)=>{
           console.log(form.formId,this.template.id);this.formID=this.template.id; if (form.formId==this.template.id)
           return form
           })
+          console.log("WATCHCHCHCH")
+           this.$store.state.form.current_signed_form = status[0].id
+           console.log(this.$store)
         this.unsent = true 
-        console.log(status)
+        console.log(status[0])
+        this.formAuthed = false;
         if(status[0].status==true){
-
+          
+          this.$store.state.form.current_signed_form = status[0].id
           let new_html = this.template.FormContent.replace(/\<input/g ,"<input disabled ")
           html ="<div class='former'><h3>Already Signed</h3> <button class='btn btn-default' v-on:click='print'>Print</button>"+
           "<div id='printarea'><h3 >"+this.template.FormTitle+"</h3>"+

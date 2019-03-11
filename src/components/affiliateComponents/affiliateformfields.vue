@@ -28,6 +28,28 @@
                                             <!--/span-->
                                         </div>
                                         <!--/row-->
+                                                                                <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="form-group row">
+                                                    <label class="control-label text-right col-md-3">Phone</label>
+                                                    <div class="col-md-9">
+                                                    
+                                                        <input type="phone" class="form-control" placeholder="John Smoe" v-model="phone">
+                                                        <small class="form-control-feedback"> </small> </div>
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                            <div class="col-md-6">
+                                                <div class="form-group has-danger row">
+                                                    <label class="control-label text-right col-md-3">Email</label>
+                                                    <div class="col-md-9">
+                                                        <input type="email" class="form-control form-control-danger" v-model="email" placeholder="12n">
+                                                        <small class="form-control-feedback">  </small> </div>
+                                                </div>
+                                            </div>
+                                            <!--/span-->
+                                        </div>
+                                        <!--/row-->
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group row">
@@ -129,7 +151,30 @@
                     set: function (newValue) {
                     this.user[0].lastname= newValue
                 }           
+            },
+            phone:{
+                    get: function () {
+                        console.log("FIRDT")
+                        console.log(this.user)
+                        return this.user[0].phone
+                    },
+                    // setter
+                    set: function (newValue) {
+                    this.user[0].phone= newValue
+                }           
+            },
+             email:{
+                    get: function () {
+                        console.log("LAST")
+                        console.log(this)
+                        return this.user[0].email
+                    },
+                    // setter
+                    set: function (newValue) {
+                    this.user[0].email= newValue
+                }           
             }
+
         },
         components: {
 
