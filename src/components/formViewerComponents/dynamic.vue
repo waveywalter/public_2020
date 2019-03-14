@@ -206,12 +206,24 @@ div#printarea {
     background-color: white;
     padding: 20px;
     color: black;
+    max-width: 900px;
 }
 
 div#printarea  input {
-    background-color: white;
-    border none:;
-    border: none;
+    background-color: rgb(245, 255, 140)
 }
 #printarea h3{color:black}
+
+div#printarea button {
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.16, rgb(207, 207, 207)), color-stop(0.79, rgb(252, 252, 252)));
+    background-image: -moz-linear-gradient(center bottom, rgb(207, 207, 207) 16%, rgb(252, 252, 252) 79%);
+    background-image: linear-gradient(to top, rgb(207, 207, 207) 16%, rgb(252, 252, 252) 79%);
+    padding: 5px;
+    border: 1px solid #000;
+    /* color: black; */
+    text-decoration: none;
+}
 </style>

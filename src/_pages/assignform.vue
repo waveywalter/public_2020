@@ -46,7 +46,16 @@ li{
     cursor: pointer;
 }
 li:hover {
-  background-color: yellow;
+  background-color: #3e5688;
+}
+button, input, select, textarea {
+    background-color: #414b61;
+    border-style: groove;
+    color: inherit;
+}
+select {
+    -moz-appearance: none;
+    -webkit-appearance: menulist;
 }
 select {
    
@@ -98,12 +107,12 @@ export default {
     SideBar
   },
   methods: {
-    url(){
-      //if user role is admin return admin if its hr then return hr route
-      if (wser.email = "eddmin@gmail.com"){
-        console.log("hypeeeeeeeee")
-      }
-    },
+    // url(){
+    //   //if user role is admin return admin if its hr then return hr route
+    //   if (wser.email = "eddmin@gmail.com"){
+    //     console.log("hypeeeeeeeee")
+    //   }
+    // },
     ...mapActions("users", {
       getAllUsers: "getAll",
       deleteUser: "delete",

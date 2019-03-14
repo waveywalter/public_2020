@@ -60,7 +60,7 @@
                   </div>
                   <span>{{ errors.first("username")}}</span>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <label for="exampleInputEmail1" type="text" name="role">Role</label>
                   <div class="input-group">
                     <select
@@ -69,21 +69,20 @@
                       name="list"
                       class="form-control"
                     >
-                      <!-- <option value="admin">Admin</option>
+                      <option value="admin">Admin</option>
                       <option value="owner">Owner</option>
                       <option value="sales">Sales</option>
                       <option value="humanResource">HR</option>
                       <option value="rtf">RTF</option>
-                      <option value="affiliate">Affiliate</option> -->
+                      <option value="affiliate">Affiliate</option>
                       <option value="employee">Employee</option>
-
                     </select>
                     <div class="input-group-addon">
                       <i class="ti-shield"></i>
                     </div>
                   </div>
                   <span>{{ errors.first("role")}}</span>
-                </div>
+                </div> -->
                 <div class="form-group">
                   <label for="exampleInputEmail1">Email address</label>
                   <div class="input-group">
@@ -147,7 +146,7 @@ export default {
         firstname: "",
         lastname: "",
         username: "",
-        role: "",
+        role: "employee",
         email: "",
         password: ""
       },
