@@ -6,7 +6,10 @@
           <div class="row bg-title">
             <h4 class="page-title">New Lead</h4>
           </div>
+              <div class="white-box col-lg-4 col-sm-12">
+
           <createlead></createlead>
+          </div>
         </div>
       </div>
     </div>

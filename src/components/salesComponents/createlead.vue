@@ -26,7 +26,6 @@ li {
 </style>
 <template>
   <div>
-    <div class="white-box col-lg-4 col-sm-12">
     <div class="row">
       <div class="col-md-6 col-lg-4 col-sm-12">
         <div class=" mt-5 ">
@@ -127,7 +126,6 @@ li {
         </div>
       </div>
       </div>
-    </div>
 </template>
 
 <script>
