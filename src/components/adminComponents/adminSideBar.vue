@@ -25,9 +25,10 @@
                     </li>
                     <li> <a href="javascript:void(0);" class="waves-effect"><i class="linea-icon linea-basic fa-fw " data-icon="7"></i> <span class="hide-menu "> Components <span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
-                            <li> <a href="clients.php">Clients</a> </li>
-                            <li> <a href="eliteadmin/eliteadmin-hospital/index.html">Responsibilities</a> </li>
-                            <li> <a href="eliteadmin/eliteadmin-hospital/index.html">Training</a> </li>
+                            <li> <router-link to="/admin/createAdmin">Create User </router-link> </li>
+                            <li> <router-link to="/tinymceformbuilder">Build Form</router-link> </li>
+                            <li> <router-link to="/assignform"> Assign Form</router-link> </li>
+                            <li> <router-link to="/admin/adminforms/">Edit Form </router-link> </li>
                             <li> <a href="eliteadmin/eliteadmin-hospital/index.html">Account</a> </li>
                         </ul>
                     </li>
