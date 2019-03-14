@@ -202,12 +202,13 @@ beforeEnter: (to,from,next) =>{
           {path: 'hrforms', component:adminForms}
         ],
         beforeEnter: (to,from,next) => {
+          console.log("LOGIN")
           userService.checkrole().then(res => res.json()).then(roleMapping => {
-            console.log(roleMapping.id)
+  
                 if ((user.user.role == "humanResource") && roleMapping.id) {
                   next();
                 }else {
-                  next("/forbidden")
+                  next()
                 }
             });
         }

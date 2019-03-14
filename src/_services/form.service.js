@@ -26,7 +26,7 @@ function saveform(formdata) {
         body: JSON.stringify(formdata)
     };
 
-    return fetch(baseURL+'/forms', requestOptions).then(handleResponse);
+    return fetch(baseURL+'/Forms', requestOptions).then(handleResponse);
 }
 
 function updateform(formdata) {
@@ -45,7 +45,7 @@ function getformbyid(id) {
         headers: authHeader()
     };
 
-    return fetch(baseURL+'/forms/'+id, requestOptions).then(handleResponse);
+    return fetch(baseURL+'/Forms/'+id, requestOptions).then(handleResponse);
 }
 
 function getforms(filter) {
@@ -65,7 +65,7 @@ function deleteform(id) {
         headers: authHeader()
     };
 
-    return fetch(baseURL+'/forms/'+id, requestOptions).then(handleResponse);
+    return fetch(baseURL+'/Forms/'+id, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {

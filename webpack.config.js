@@ -4,10 +4,16 @@ const {GenerateSW} = require('workbox-webpack-plugin');
 console.log("PRODUCTION")
 module.exports = {
     mode: 'development',
+   // target: 'node' ,
+    node: {
+        fs: 'empty',
+        net: 'empty',
+        tls: 'empty',
+      },
     entry: ['babel-polyfill', './src/app'],
     entry:path.join(__dirname, 'src', 'index.js'),
     resolve: {
-        extensions: ['.js', '.vue','styl'],
+        extensions: ['.js', '.vue','styl','.json'],
         alias: {
             'vue$': 'vue/dist/vue.esm.js' // 'vue/dist/vue.common.js' for webpack 1
           }

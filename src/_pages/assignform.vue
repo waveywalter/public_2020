@@ -13,6 +13,32 @@
       </div>
     </div>
   </div>
+</template>
+<style scoped>
+select{
+
+}
+li{
+    cursor: pointer;
+}
+li:hover {
+  background-color: #3e5688;
+}
+button, input, select, textarea {
+    background-color: #414b61;
+    border-style: groove;
+    color: inherit;
+}
+select {
+    -moz-appearance: none;
+    -webkit-appearance: menulist;
+}
+select {
+   
+      -webkit-appearance: menulist-button;
+    background-color: #353c48;
+}
+</style>
 
 </template>
 <script>

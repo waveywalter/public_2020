@@ -35,6 +35,14 @@
             <p>{{updateInfo.role}}</p> <span class="bar"></span>
     </div>
     </div>
+
+    <div class="form-group">
+        <div class="col-sm-12">
+            <button class="btn btn-success">Update Profile</button>
+        </div>
+    </div>
+</form>
+
             <div class="form-group">
         <label class="col-md-12">G-Mail</label>
         <div class="col-md-12">
@@ -49,15 +57,13 @@
     </div>
         <div class="form-group">
         <div class="col-sm-12">
+<<<<<<< HEAD
+            <button class="btn btn-danger" v-on:click="authenticate('google')">auth Google</button>
+=======
             <button class="btn btn-danger" v-on:click="helloworld">Authenticate Gmail</button>
+>>>>>>> a16472f10af018d6b1eb05108703f899bd6880a9
         </div>
     </div>
-    <div class="form-group">
-        <div class="col-sm-12">
-            <button class="btn btn-success">Update Profile</button>
-        </div>
-    </div>
-</form>
 </div>
 </div>
 </div>
@@ -88,7 +94,7 @@ export default {
   name: "MyProfile",
   data() {
     return {
-      imagepath: "/public/uploads/" + user.user.username +'/'+user.user.avatarName,
+      imagepath: "/public/uploads/" + user.user.username +'/'+user.user.id+'.png',
       userInfo: false,
       userPassword: false,
       updateInfo: {
@@ -112,6 +118,10 @@ export default {
     ...mapState("alert", ["message"])
   },
   methods: {
+        authenticate: function (provider) {
+          console.log("AUTHENITCATE")
+ this.$login()
+    },
     ...mapActions("account", ["update"]),
     ...mapActions({ clearAlert: "alert/clear" }),
     onFileSelected(event) {

@@ -76,6 +76,7 @@ export default{
     methods:{
            ...mapActions("form", ["getformbyid", "updateform","getforms", "deleteform","attachUserToForm","getUserForms"]),
            formloader(e){
+               console.log(e)
                 this.$store.state.account.formid = e
                 let rootform = this.$store.state.form.userForms//.filter(form=>{return form.formId==e})
                 this.$store.state.form.current_signed_form = rootform[0].id;
