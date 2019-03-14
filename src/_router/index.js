@@ -39,8 +39,10 @@ import employeeHome from '../_pages/employeeHome'
 import employeedashboard from '../components/employeeComponent/Employeedashboard'
 import newaffiliate from '../components/salesComponents/NewAffiliateform'
 import newaffiliatepage from '../_pages/newaffiliatepage'
+
 import createlead from '../components/salesComponents/createlead'
-import creatleadpage from '../_pages/creatleadpage'
+import createleadpage from '../_pages/createleadpage'
+
 
 Vue.use(Router);
 let user = JSON.parse(localStorage.getItem('user'));
@@ -164,7 +166,7 @@ beforeEnter: (to,from,next) =>{
       { path: '', component: SalesDashBoard },
       { path: 'myprofile', component: MyProfile },
       { path: '/createlead', component: createlead },
-      { path: '/creatleadpage', component: creatleadpage },
+      { path: '/createleadpage', component: createleadpage },
       { path: '/newaffiliate', component: newaffiliate },
       { path: '/newaffiliatepage', component: newaffiliatepage },
       { path: ':root/:id?', component: SalesDashBoard },
@@ -202,13 +204,12 @@ beforeEnter: (to,from,next) =>{
           {path: 'hrforms', component:adminForms}
         ],
         beforeEnter: (to,from,next) => {
-          console.log("LOGIN")
           userService.checkrole().then(res => res.json()).then(roleMapping => {
-  
+            console.log(roleMapping.id)
                 if ((user.user.role == "humanResource") && roleMapping.id) {
                   next();
                 }else {
-                  next()
+                  next("/forbidden")
                 }
             });
         }

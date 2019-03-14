@@ -27,9 +27,7 @@
                         <ul class="nav nav-second-level">
                             <li> <a href="clients.php">Clients</a> </li>
                             <li> <router-link to="newaffiliatepage">Create Affiliate</router-link></li>
-                                                        <li> <router-link to="createleadpage">Create Lead</router-link></li>
-
-                            <li> <a href="eliteadmin/eliteadmin-hospital/index.html">Training</a> </li>
+                            <li> <router-link to="createleadpage">Create Lead</router-link></li>
                             <li> <a href="eliteadmin/eliteadmin-hospital/index.html">Account</a> </li>
                         </ul>
                     </li>

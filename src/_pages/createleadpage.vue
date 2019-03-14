@@ -15,7 +15,7 @@
 <script>
 import createlead from '../components/salesComponents/createlead'
 export default {
-    name: 'createadmin',
+    name: 'createleadpage',
     components:{
         createlead
     }
