@@ -39,6 +39,8 @@ import employeeHome from '../_pages/employeeHome'
 import employeedashboard from '../components/employeeComponent/Employeedashboard'
 import newaffiliate from '../components/salesComponents/NewAffiliateform'
 import newaffiliatepage from '../_pages/newaffiliatepage'
+import createlead from '../components/salesComponents/createlead'
+import creatleadpage from '../_pages/creatleadpage'
 
 Vue.use(Router);
 let user = JSON.parse(localStorage.getItem('user'));
@@ -161,9 +163,10 @@ beforeEnter: (to,from,next) =>{
       {path:':root/forms/:id',component:SalesDashBoard},
       { path: '', component: SalesDashBoard },
       { path: 'myprofile', component: MyProfile },
+      { path: '/createlead', component: createlead },
+      { path: '/creatleadpage', component: creatleadpage },
       { path: '/newaffiliate', component: newaffiliate },
       { path: '/newaffiliatepage', component: newaffiliatepage },
-
       { path: ':root/:id?', component: SalesDashBoard },
       {path:'/crm/:id?',component:crm}
  

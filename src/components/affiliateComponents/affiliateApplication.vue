@@ -4,6 +4,9 @@
     border:none;
 }
 .tab-content{width:90%}
+.list {
+    display: grid;
+}
 </style>
 <template>
 
@@ -33,10 +36,10 @@
                                             
                                             </router-link>
                                             </div> 
-                                            <div v-if="role=='affiliate'">
+                                            <div  v-if="role=='affiliate'">
                                             <router-link :to="'/affiliates/forms/'+form.id" v-for="(form,index) in forms_list" :key="index" v-if="form.status!='signed' ">
                                       
-                                            <a style="margin-right:10px" v-on:click="formloader(form.id)" :value="form.id">{{form.FormTitle}}</a>
+                                            <a class="list" style="margin-right:10px" v-on:click="formloader(form.id)" :value="form.id">{{form.FormTitle}}</a>
                                             
                                             </router-link>
                                          </div>
