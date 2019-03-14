@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="row">
-      <div class="col-md-7 ">
+      <div class="col-md ">
           <h3 class="box-title m-b-5">Create new User</h3>
           <div class="row">
             <div class="col-sm-12 col-xs-12">

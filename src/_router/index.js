@@ -15,8 +15,8 @@ import ownerHome from '../_pages/ownerHome'
 import affiliateHome from '../_pages/affiliateHome'
 import Testpage from '../_pages/TestPage'
 import AdminDashBoard from '../components/adminComponents/adminDashBoard'
-import adminForms from '../components/adminComponents/adminForms'
-import CreateAdmin from '../components/adminComponents/createAdmin'
+import adminForms from '../_pages/Formspage'
+import createadmin from '../_pages/createuser'
 import HrDashBoard from '../components/hrComponents/HrDashBoard'
 import hrcreateform from '../components/hrComponents/hrcreateform'
 import SalesDashBoard from '../components/salesComponents/SalesDashBoard'
@@ -37,6 +37,8 @@ import facilities from  '../_pages/facilitiesHome'
 import assignform from '../_pages/assignform'
 import employeeHome from '../_pages/employeeHome'
 import employeedashboard from '../components/employeeComponent/Employeedashboard'
+import newaffiliate from '../components/salesComponents/NewAffiliateform'
+import newaffiliatepage from '../_pages/newaffiliatepage'
 
 Vue.use(Router);
 let user = JSON.parse(localStorage.getItem('user'));
@@ -159,6 +161,9 @@ beforeEnter: (to,from,next) =>{
       {path:':root/forms/:id',component:SalesDashBoard},
       { path: '', component: SalesDashBoard },
       { path: 'myprofile', component: MyProfile },
+      { path: '/newaffiliate', component: newaffiliate },
+      { path: '/newaffiliatepage', component: newaffiliatepage },
+
       { path: ':root/:id?', component: SalesDashBoard },
       {path:'/crm/:id?',component:crm}
  
@@ -195,6 +200,7 @@ beforeEnter: (to,from,next) =>{
         ],
         beforeEnter: (to,from,next) => {
           userService.checkrole().then(res => res.json()).then(roleMapping => {
+            console.log(roleMapping.id)
                 if ((user.user.role == "humanResource") && roleMapping.id) {
                   next();
                 }else {
@@ -207,10 +213,14 @@ beforeEnter: (to,from,next) =>{
     children: [
       {path:'', component: AdminDashBoard},
       { path: 'myprofile', component: MyProfile },
-      { path: 'adminforms', component: adminForms }
+      // { path: 'createAdmin', component: createadmin },
+      { path: 'adminforms', component: adminForms },
+
     ],
     beforeEnter: (to,from,next) => {
       userService.checkrole().then(res => res.json()).then(roleMapping => {
+        console.log(roleMapping.id)
+
             if ((user.user.role == "admin") && roleMapping.id) {
               next();
             }else {

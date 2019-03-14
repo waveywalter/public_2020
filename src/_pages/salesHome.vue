@@ -1,14 +1,14 @@
 <template>
     <div>
         <TopHeader></TopHeader>
-        <SideBar></SideBar>
+        <SalesSideBar></SalesSideBar>
         <router-view></router-view>
     </div>
 </template>
 
 <script>
 import TopHeader from '../components/layoutComponents/TopHeader';
-import SideBar from '../components/layoutComponents/SideBar';
+import SalesSideBar from '../components/salesComponents/salessidebar';
 
 import Vue from 'vue';
 
@@ -16,7 +16,7 @@ import Vue from 'vue';
         name: "salesHome",
         components: {
             TopHeader,
-            SideBar
+            SalesSideBar
         }
        
     }

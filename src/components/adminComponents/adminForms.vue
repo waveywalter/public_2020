@@ -1,14 +1,7 @@
 <template>
-  <div>
-    <div id="page-wrapper">
-      <div class="container-fluid">
-        <div class="col-lg">
-          <div class="row bg-title">
-            <h4 class="page-title">All Forms</h4>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-3 col-sm-3 col-xs-12">
+
+<div class="row">
+          <div class="col-lg col-sm-3 col-xs-12">
             <div class="white-box">
               <span v-if="allforms.error" class="text-danger">ERROR: {{allforms.error}}</span>
               <ul class="list-group" v-if="allforms.items">
@@ -66,9 +59,9 @@
             </div>
           </div>
         </div>
-      </div>
-    </div>
-  </div>
+
+
+
 </template>
 
 <script>

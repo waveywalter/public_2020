@@ -1,7 +1,7 @@
 <template>
   <div>
-    <topheader></topheader>
-    <sidebar></sidebar>
+        <AdminTopHeader></AdminTopHeader>
+        <AdminSideBar></AdminSideBar>
     <div id="page-wrapper">
       <div class="container-fluid">
         <div data-v-7ad1cecc class>
@@ -53,8 +53,8 @@
 </template>
 <script>
 import tinymceEditor from "../components/layoutComponents/tinymceEditor";
-import topheader from "../components/layoutComponents/TopHeader";
-import sidebar from "../components/layoutComponents/SideBar";
+import AdminTopHeader from '../components/layoutComponents/adminTopHeader';
+import AdminSideBar from '../components/adminComponents/adminSideBar';
 import formBuilder from "../formBuilder/formBuilder";
 import { mapState, mapActions } from "vuex";
 
@@ -72,8 +72,8 @@ export default {
   },
   components: {
     tinymceEditor,
-    topheader,
-    sidebar,
+    AdminTopHeader,
+    AdminSideBar,
     formBuilder
   },
   computed: {
