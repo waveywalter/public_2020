@@ -1,11 +1,11 @@
 <template>
     <div>
-        <tinymce v-model="value"></tinymce>
+        <tinymceEditor v-model="value"></tinymceEditor>
     </div>
 </template>
 
 <script>
-import tinymce from '../components/layoutComponents/tinymce' 
+import tinymceEditor from '../components/layoutComponents/tinymceEditor' 
 
 export default {
     name:"testfunctions",

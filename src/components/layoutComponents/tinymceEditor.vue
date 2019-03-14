@@ -1,23 +1,15 @@
 <template>
  <div>
-        <div id="page-wrapper">
-            <div class="container-fluid">
-                    <div class="clearfix">
-                        <div class="container">
+
      <textarea :id="id" :value="defaultcontent"></textarea>
-    
-     
-     </div>
-     </div>
-     </div>
-     </div>
+
      </div>
 
 </template>
 <script>
 import Vue from 'vue';
 export default {
-    name: 'tinymce',
+    name: 'tinymceEditor',
     props: {
         id: {
             type: String,
@@ -31,7 +23,7 @@ export default {
     data() {
         return {
             tinymceOptions: {
-                selector: 'textarea',
+                selector: '#'+this.id,
   height: 200,
   menubar: true,
   plugins: [
@@ -40,7 +32,7 @@ export default {
     'insertdatetime media nonbreaking save table contextmenu directionality',
     'emoticons template paste textcolor colorpicker textpattern imagetools toc'
   ],
-  toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | forecolor backcolor | TextInput CheckboxInput AuthInput',
+  toolbar: 'fontsizeselect | undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | forecolor backcolor | TextInput CheckboxInput AuthInput',
   valid_elements:"*[*]",
   content_css: '',
   images_upload_url: 'postAcceptor.php',
@@ -120,7 +112,7 @@ export default {
     editor.addButton('AuthInput', {
       icon: 'lock',
       onclick: function (_) {
-        editor.insertContent('<input type="text" name="name" id="name" placeholder="Auth Code">');
+        editor.insertContent("<p v-if='!formAuthed'><button v-on:click='getAuth' v-if='unsent'>Get Authentication Code</button><input v-model='authcode' type='text' name='name' id='name' placeholder='Auth Code' /><button v-on:click='sendAuth' v-if='!unsent' >Send Authentication Code</button> </p>");
       }
     });
     editor.addButton('CheckboxInput', {

@@ -13,7 +13,7 @@ import SideBar from '../components/layoutComponents/SideBar';
 import Vue from 'vue';
 
     export default {
-        name: "humanresourceHome",
+        name: "employeeHome",
         components: {
             TopHeader,
             SideBar

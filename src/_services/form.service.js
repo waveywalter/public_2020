@@ -5,10 +5,15 @@ import { authHeader } from '../_helpers';
 
 export const formService = {
     saveform,
-    getform
+    updateform,
+    getformbyid,
+    getforms,
+    deleteform,
+    attachUserToForm,
+    getFormsByUser
 };
+//  const baseURL="https://2020i.site/api";
 const baseURL="http://localhost:3000/api";
-//const baseURL="https://2020i.site/api";
 //const baseURL = 'https://google.com'
 function loco(){
     console.log('loco')
@@ -21,71 +26,46 @@ function saveform(formdata) {
         body: JSON.stringify(formdata)
     };
 
-    return fetch(baseURL+'/hrforms', requestOptions).then(handleResponse);
+    return fetch(baseURL+'/Forms', requestOptions).then(handleResponse);
 }
 
-function getform(id) {
-    const requestOptions = {
-        method: 'GET',
-        headers: authHeader()
-    };
-
-    return fetch(baseURL+'/hrforms/5c522b218de90b3b6469a445', requestOptions).then(handleResponse);
-}
-
-function getAll(filter) {
-    let filterpara = ' '
-    if(filter.role) filterpara = '{"where":{"role":"'+ filter.role +'"}}';
-    const requestOptions = {
-        method: 'GET',
-        headers: authHeader()
-    };
-    return fetch(baseURL+'/wsers?filter='+filterpara, requestOptions).then(handleResponse);
-}
-
-
-
-
-function checkrole() {
-    const user = JSON.parse(localStorage.getItem('user'));
-    const requestOptions = {
-        method: 'GET',
-        headers: authHeader()
-    };
-    
-    return fetch(baseURL+'/wsers/username/'+user.userId+'/roles/'+user.user.role, requestOptions); 
-}
-
-function update(user) {
+function updateform(formdata) {
     const requestOptions = {
         method: 'PATCH',
         headers: { ...authHeader(), 'Content-Type': 'application/json' },
-        body: JSON.stringify(user)
+        body: JSON.stringify(formdata)
     };
 
-    return fetch(baseURL+'/wsers/'+user.userId, requestOptions).then(handleResponse)
-    .then(user => {
-        // login successful if there's a jwt token in the response
-        if (user.userId) {
-            var userold = JSON.parse(localStorage.getItem('user'));
-            userold.user = user
+    return fetch(baseURL+'/Forms/'+formdata.id, requestOptions).then(handleResponse);
+}
 
-            // store user details and jwt token in local storage to keep user logged in between page refreshes
-             localStorage.setItem('user', JSON.stringify(userold));
-        }
+function getformbyid(id) {
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
 
-        return user;
-    });
+    return fetch(baseURL+'/Forms/'+id, requestOptions).then(handleResponse);
+}
+
+function getforms(filter) {
+    let filterpara = ' '
+    if("FormType" in filter) filterpara = '{"where":{"FormType":"'+ filter.FormType +'"}}';
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
+    return fetch(baseURL+'/Forms?filter='+filterpara, requestOptions).then(handleResponse);
 }
 
 // prefixed function name with underscore because delete is a reserved word in javascript
-function _delete(id) {
+function deleteform(id) {
     const requestOptions = {
         method: 'DELETE',
         headers: authHeader()
     };
 
-    return fetch(baseURL+'/wsers/${id}', requestOptions).then(handleResponse);
+    return fetch(baseURL+'/Forms/'+id, requestOptions).then(handleResponse);
 }
 
 function handleResponse(response) {
@@ -117,4 +97,25 @@ function handleLogoutResponse(response) {
         return data;
     });
 
+}
+
+function getFormsByUser(id,toekn){
+    console.log("GETFORMSSSSSSSSS")
+    console.log(toekn)
+    console.log(id)
+    return fetch('/api/wsers/'+id+'/signedforms?access_token='+toekn,{
+        method:"GET",
+        headers: { ...authHeader(), 'Content-Type': 'application/json' },  
+    }).then(handleResponse)
+
+}
+
+function attachUserToForm(data){
+    console.log(data)
+    data.status = false
+    fetch('/api/wsers/'+data.userId+'/signedforms',{
+        method:"POST",
+        headers: {...authHeader(), 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)   
+    }).then(handleResponse)
 }

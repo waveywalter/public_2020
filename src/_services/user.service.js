@@ -15,7 +15,7 @@ export const userService = {
     loco
 };
 //const baseURL="http://localhost:3000/api";
-const baseURL="https://2020i.site/api";
+ const baseURL="https://2020i.site/api";
 //const baseURL = 'https://google.com'
 function loco(){
     console.log('loco')
@@ -62,7 +62,8 @@ function register(user) {
 
 function getAll(filter) {
     let filterpara = ' '
-    if(filter.role) filterpara = '{"where":{"role":"'+ filter.role +'"}}';
+    //if("role" in filter) filterpara = '{"where":{"role":"'+ filter.role +'","type":{"neq":"test"}}}';
+    if("role" in filter) filterpara = '{"where":{"role":"'+ filter.role +'"}}';
     const requestOptions = {
         method: 'GET',
         headers: authHeader()

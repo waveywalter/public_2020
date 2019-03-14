@@ -607,7 +607,7 @@ export default {
 
 
     if(id!=undefined){
-      fetch('https://jott.thewaveint.com/api/applications/'+id,{method:"GET",headers:{"Content-Type": "application/json; charset=utf-8",}}).then(response=>response.json()).then(json=>{console.log(json)
+      fetch('https://2020i.site/api/applications/'+id,{method:"GET",headers:{"Content-Type": "application/json; charset=utf-8",}}).then(response=>response.json()).then(json=>{console.log(json)
      this.$store.state.email = json.email;
      this.$store.state.name = json.name;
      this.$store.state.phone = json.phone;
@@ -1238,7 +1238,7 @@ export default {
           
           this.$store.state.email = this.email;
           //this.$store
-          fetch('https://jott.thewaveint.com/api/register',{method:"POST",headers:{"Content-Type": "application/json; charset=utf-8",},body:JSON.stringify({email:this.email,progress:this.progress})}).then(response=>{
+          fetch('https://2020i.site/api/register',{method:"POST",headers:{"Content-Type": "application/json; charset=utf-8",},body:JSON.stringify({email:this.email,progress:this.progress})}).then(response=>{
         
           response.text().then(text=>{
                   let application = JSON.parse(text);
@@ -1253,7 +1253,7 @@ export default {
           window.sessionStorage.id = application.id;
           this.cid = application.id;
           if(application.progress<1){
-          fetch('https://jott.thewaveint.com/api/containers',{
+          fetch('https://2020i.site/api/containers',{
             method:"POST",headers:{"Content-Type": "application/json; charset=utf-8"},
             body:JSON.stringify({
               "provider": "filesystem",
@@ -1326,7 +1326,7 @@ export default {
              
           //data.sign1 = this.csign1;
           //data.links = this.clinks;
-          fetch('https://jott.thewaveint.com/api/create/contracts/'+id,{method:"POST",
+          fetch('https://2020i.site/api/create/contracts/'+id,{method:"POST",
               headers:{"Content-Type": "application/json; charset=utf-8","accept": "*/*"},body:JSON.stringify(data)}).then(response=>{
               console.log(response);
               response.text().then(text=>{
@@ -1387,7 +1387,7 @@ export default {
       console.log(this.list);
       console.log(this.listlength)
       if(this.list[0]==undefined)
-        fetch('https://jott.thewaveint.com/api/applications').then(response=>response.json()).then(json=>{console.log(json)
+        fetch('https://2020i.site/api/applications').then(response=>response.json()).then(json=>{console.log(json)
         
           this.list =[];
           this.list = json.map(item=>{ 
@@ -1403,7 +1403,7 @@ export default {
         })
     },
     getApps(){
-        fetch('https://jott.thewaveint.com/api/applications').then(response=>response.json()).then(json=>{console.log(json)
+        fetch('https://2020i.site/api/applications').then(response=>response.json()).then(json=>{console.log(json)
         
           this.list =[];
           this.list = json.map(item=>{ if(true)return{name:item.name,email:item.email,id:item.id}})
@@ -1496,7 +1496,7 @@ export default {
       console.log('GET STATEEEEEEE')
       let id = this.cid;
      if(id!=undefined){
-      fetch('https://jott.thewaveint.com/api/applications/'+id,{method:"GET",headers:{"Content-Type": "application/json; charset=utf-8",}}).then(response=>response.json()).then(json=>{console.log(json)
+      fetch('https://2020i.site/api/applications/'+id,{method:"GET",headers:{"Content-Type": "application/json; charset=utf-8",}}).then(response=>response.json()).then(json=>{console.log(json)
         this.$store.state = json;
 
       }
@@ -1516,7 +1516,7 @@ export default {
       window.sessionStorage.id = id;
       this.cid = id;
       if(id!=undefined){
-       fetch('https://jott.thewaveint.com/api/applications/'+id,{method:"GET",headers:{"Content-Type": "application/json; charset=utf-8",}}).then(response=>response.json()).then(json=>{console.log(json)
+       fetch('https://2020i.site/api/applications/'+id,{method:"GET",headers:{"Content-Type": "application/json; charset=utf-8",}}).then(response=>response.json()).then(json=>{console.log(json)
         this.$store.state.email = json.email;
         this.$store.state.name = json.name;
           this.$store.state.phone = json.phone;
@@ -1582,7 +1582,7 @@ export default {
            this.$store.commit('increment')
           this.$store.state.email = this.email;
           //this.$store
-          fetch('https://jott.thewaveint.com/api/register',{method:"POST",headers:{"Content-Type": "application/json; charset=utf-8",},body:JSON.stringify({email:this.email,progress:this.progress})}).then(response=>{
+          fetch('https://2020i.site/api/register',{method:"POST",headers:{"Content-Type": "application/json; charset=utf-8",},body:JSON.stringify({email:this.email,progress:this.progress})}).then(response=>{
         
           response.text().then(text=>{
                   let application = JSON.parse(text);
@@ -1597,7 +1597,7 @@ export default {
           window.sessionStorage.id = application.id;
           this.cid = application.id;
           if(application.progress<1){
-          fetch('https://jott.thewaveint.com/api/containers',{
+          fetch('https://2020i.site/api/containers',{
             method:"POST",headers:{"Content-Type": "application/json; charset=utf-8"},
             body:JSON.stringify({
               "provider": "filesystem",
@@ -1720,7 +1720,7 @@ export default {
 
      }           console.log(open)
           if(open){
-          fetch('https://jott.thewaveint.com/api/create/contracts/'+id,{method:"POST",
+          fetch('https://2020i.site/api/create/contracts/'+id,{method:"POST",
               headers:{"Content-Type": "application/json; charset=utf-8","accept": "*/*"},body:JSON.stringify(this.$store.state)}).then(response=>{
               console.log(response);
               response.text().then(text=>{
@@ -1819,7 +1819,7 @@ export default {
             } 
             console.log(formData);  
             this.$store.state[pre] = 1;
-            fetch('https://jott.thewaveint.com/api/containers/'+this.cid+'/upload', {
+            fetch('https://2020i.site/api/containers/'+this.cid+'/upload', {
                 method: 'POST', // *GET, POST, PUT, DELETE, etc.
  
                 redirect: "follow", // manual, *follow, error
@@ -1846,7 +1846,7 @@ export default {
         //data.sign1 = this.csign1;
         //data.links = this.clinks;
         
-        fetch('https://jott.thewaveint.com/api/applications/'+data.id,{method:"PATCH",
+        fetch('https://2020i.site/api/applications/'+data.id,{method:"PATCH",
         headers:{"Content-Type": "application/json; charset=utf-8","accept": "*/*"},body:JSON.stringify(data)}).then(response=>{
         //update upload status
           })

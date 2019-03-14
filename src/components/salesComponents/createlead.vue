@@ -29,7 +29,7 @@ li {
     <div class="row">
       <div class="col-md-6 col-lg-4 col-sm-12">
         <div class=" mt-5 ">
-          <h3 class="box-title m-b-5">New Affiliate Applicant</h3>
+          <h3 class="box-title m-b-5">New Lead Form</h3>
           <div class="row">
             <div class="col-sm-12 col-xs-12">
               <form ref="form" @submit.prevent="handleSubmit">
@@ -113,7 +113,7 @@ li {
                 </div>
               </form>
               <p v-show="message">{{message}}</p>
-            <div class="smallbox col-sm-12 col-xs-12" v-if="checkroute()">
+            <div  class="smallbox col-sm-12 col-xs-12" v-if="checkroute()">
             <div class="">
                                         <h4 class="card-title">Applications </h4>
                                         <applicationslist></applicationslist>
@@ -134,7 +134,7 @@ import VeeValidate from "vee-validate";
 import applicationslist from '../salesComponents/applicationslist'
 
 export default {
-  name: "NewAffiliateform",
+  name: "createlead",
 
   data() {
     return {

@@ -35,12 +35,35 @@
             <p>{{updateInfo.role}}</p> <span class="bar"></span>
     </div>
     </div>
+
     <div class="form-group">
         <div class="col-sm-12">
             <button class="btn btn-success">Update Profile</button>
         </div>
     </div>
 </form>
+
+            <div class="form-group">
+        <label class="col-md-12">G-Mail</label>
+        <div class="col-md-12">
+<input placeholder="Email" type="text" v-on:change="clearAlert" v-model="updateInfo.email" name="email"> <span class="bar"></span>    
+</div>
+    </div>
+            <div class="form-group">
+        <label class="col-md-12">Password</label>
+        <div class="col-md-12">
+<input placeholder="Password" type="text" v-on:change="clearAlert" name="password"> <span class="bar"></span>    
+</div>
+    </div>
+        <div class="form-group">
+        <div class="col-sm-12">
+<<<<<<< HEAD
+            <button class="btn btn-danger" v-on:click="authenticate('google')">auth Google</button>
+=======
+            <button class="btn btn-danger" v-on:click="helloworld">Authenticate Gmail</button>
+>>>>>>> a16472f10af018d6b1eb05108703f899bd6880a9
+        </div>
+    </div>
 </div>
 </div>
 </div>
@@ -48,12 +71,11 @@
 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 el-element-overlay">
 <div>
     <div class="white-box">
-                    <imageUpload></imageUpload>
+    <imageUpload></imageUpload>
     </div>
 </div>
 </div>
 </div>
-
           </div>
         </div>
       </div>
@@ -72,7 +94,7 @@ export default {
   name: "MyProfile",
   data() {
     return {
-      imagepath: "/public/uploads/" + user.user.username +'/'+user.user.avatarName,
+      imagepath: "/public/uploads/" + user.user.username +'/'+user.user.id+'.png',
       userInfo: false,
       userPassword: false,
       updateInfo: {
@@ -80,10 +102,14 @@ export default {
         lastname: user.user.lastname,
         role: user.user.role,
         userId: user.userId,
+        email: user.user.email
       },
     };
   },
   name: "UserInformation",
+  mounted(){
+   
+  },
   components: {
     imageUpload
   },
@@ -92,6 +118,10 @@ export default {
     ...mapState("alert", ["message"])
   },
   methods: {
+        authenticate: function (provider) {
+          console.log("AUTHENITCATE")
+ this.$login()
+    },
     ...mapActions("account", ["update"]),
     ...mapActions({ clearAlert: "alert/clear" }),
     onFileSelected(event) {
@@ -118,6 +148,9 @@ export default {
           "Content-Type": "application/x-www-form-urlencoded"
         }
       });
+    },
+    helloworld(){
+      alert("SSsS")
     }
     }
 };

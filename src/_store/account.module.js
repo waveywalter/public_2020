@@ -4,7 +4,7 @@ import * as Cookie from 'js-cookie';
 
 const user = JSON.parse(localStorage.getItem('user'));
 const state = user
-    ? { status: { loggedIn: true }, user }
+    ? { status: { loggedIn: true }, user, authCodeId:'' }
     : { status: {}, user: null };
 
 const actions = {
@@ -25,6 +25,9 @@ const actions = {
                     dispatch('alert/error', error, { root: true });
                 }
             );
+    },
+    authGoogle(){
+        alert("SSsS")
     },
     update({ dispatch, commit }, userInfo ) {
     

@@ -8,14 +8,15 @@ import UserProfiles from '../_pages/UserProfiles'
 import LoginPage from '../_pages/LoginPage'
 import RegisterPage from '../_pages/RegisterPage'
 import adminHome from '../_pages/adminHome'
-import humanresourceHome from '../_pages/humanresourceHome'
+import humanResourceHome from '../_pages/humanResourceHome'
 import salesHome from '../_pages/salesHome'
 import rtfHome from '../_pages/rtfHome'
 import ownerHome from '../_pages/ownerHome'
 import affiliateHome from '../_pages/affiliateHome'
 import Testpage from '../_pages/TestPage'
 import AdminDashBoard from '../components/adminComponents/adminDashBoard'
-import CreateAdmin from '../components/adminComponents/createAdmin'
+import adminForms from '../_pages/Formspage'
+import createadmin from '../_pages/createuser'
 import HrDashBoard from '../components/hrComponents/HrDashBoard'
 import hrcreateform from '../components/hrComponents/hrcreateform'
 import SalesDashBoard from '../components/salesComponents/SalesDashBoard'
@@ -26,11 +27,18 @@ import forbiddenerror from '../_pages/forbiddenerror'
 import affiliatedashboard from '../components/affiliateComponents/affiliateDashboard'
 import RTFdashboard from '../components/RTFComponents/RTFdashboard'
 import OwnerDashboard from '../components/ownerComponents/OwnerDashboard'
+import formViewer from '../components/formViewerComponents/formViewer'
+import crm from '../components/crmComponents/crmComponent'
 import MyProfile from  '../_pages/MyProfile'
+import formBuilder from '../formBuilder/formBuilder'
 import testfunctions from '../_pages/testfunctions'
 import tinymceformbuilder from '../_pages/TinymceFormbuilder'
 import facilities from  '../_pages/facilitiesHome'
-
+import assignform from '../_pages/assignform'
+import employeeHome from '../_pages/employeeHome'
+import employeedashboard from '../components/employeeComponent/Employeedashboard'
+import newaffiliate from '../components/salesComponents/NewAffiliateform'
+import newaffiliatepage from '../_pages/newaffiliatepage'
 
 Vue.use(Router);
 let user = JSON.parse(localStorage.getItem('user'));
@@ -42,6 +50,8 @@ let user = JSON.parse(localStorage.getItem('user'));
 export const router = new Router({
   mode: 'history',
   routes: [
+    {path:'/assignform', component:assignform},
+    {path:'/test/:id',component:formViewer},
     {path:'/tinymceformbuilder', component:tinymceformbuilder},
     { path: '/forbidden', component:forbiddenerror},
     {path: '/owner', component:ownerHome,
@@ -82,13 +92,15 @@ export const router = new Router({
       } else if (user.user.role == "rtf"){
         next('/rtf');
       } else if (user.user.role == "humanResource"){
-        next('/humanresource');
+        next('/humanResource');
       } else if (user.user.role == "admin"){
         next('/admin');
       } else if (user.user.role == "owner" ){
         next('/owner');
       }else if (user.user.role == "affiliate" ){
         next('/affiliate');
+      }else if (user.user.role == "employee" ){
+        next('/employee');
       }else{
         next();
       }
@@ -106,6 +118,19 @@ export const router = new Router({
       next("/forbidden")
     }
   }
+},
+{path: '/employee',component: employeeHome,
+children: [
+  { path: '', component: employeedashboard },
+  { path: 'myprofile', component: MyProfile }
+],
+beforeEnter: (to,from,next) =>{
+  if(user.user.role == 'employee'){
+    next();
+  }else {
+    next("/forbidden")
+  }
+}
 },
 {path: '/affiliate', component: affiliateHome,
 children: [
@@ -133,11 +158,15 @@ beforeEnter: (to,from,next) =>{
     { path: '/register', component: RegisterPage },
     { path: '/sales', component:salesHome,
     children: [
+      {path:':root/forms/:id',component:SalesDashBoard},
       { path: '', component: SalesDashBoard },
       { path: 'myprofile', component: MyProfile },
+      { path: '/newaffiliate', component: newaffiliate },
+      { path: '/newaffiliatepage', component: newaffiliatepage },
+
       { path: ':root/:id?', component: SalesDashBoard },
+      {path:'/crm/:id?',component:crm}
  
-      //{path: 'NewAffiliateform', component:NewAffiliateform},
      ],
      beforeEnter: (to,from,next) => {
        if(user.user.role == 'sales'){
@@ -147,26 +176,52 @@ beforeEnter: (to,from,next) =>{
        }
      }
     },
-    { path: '/humanresource', component: humanresourceHome,
+    {path: '/affiliate', component: affiliateHome,
+    children: [
+      { path: '', component: affiliatedashboard },
+      { path: '/affiliate/:formtype/:id', component: affiliatedashboard },
+        { path: 'myprofile', component: MyProfile }
+      ],
+    beforeEnter: (to,from,next) =>{
+      if(user.user.role == 'affiliate'){
+        next();
+      }else {
+        next("/forbidden")
+      }
+    }
+    },
+
+    
+    { path: '/humanResource', component: humanResourceHome,
     children: [
           { path: '', component: HrDashBoard },
-          { path: 'myprofile', component: MyProfile }
-        ]
-    // beforeEnter: (to,from,next) =>{
-    //   if(user.user.role == 'humanResource'){
-    //     next();
-    //   }else {
-    //     next("/forbidden")
-    //   }
-    // }
+          { path: 'myprofile', component: MyProfile },
+          {path: 'hrforms', component:adminForms}
+        ],
+        beforeEnter: (to,from,next) => {
+          console.log("LOGIN")
+          userService.checkrole().then(res => res.json()).then(roleMapping => {
+  
+                if ((user.user.role == "humanResource") && roleMapping.id) {
+                  next();
+                }else {
+                  next()
+                }
+            });
+        }
   },
     { path: '/admin', component: adminHome,
     children: [
       {path:'', component: AdminDashBoard},
-      { path: 'myprofile', component: MyProfile }
+      { path: 'myprofile', component: MyProfile },
+      // { path: 'createAdmin', component: createadmin },
+      { path: 'adminforms', component: adminForms },
+
     ],
     beforeEnter: (to,from,next) => {
       userService.checkrole().then(res => res.json()).then(roleMapping => {
+        console.log(roleMapping.id)
+
             if ((user.user.role == "admin") && roleMapping.id) {
               next();
             }else {
@@ -200,7 +255,7 @@ beforeEnter: (to,from,next) =>{
 
 router.beforeEach((to, from, next) => {
 
-  const publicPages = ['/','/login', '/register',];
+  const publicPages = ['/','/login', '/register','/test'];
   const authRequired = !publicPages.includes(to.path);
   const loggedIn = localStorage.getItem('user');
 
