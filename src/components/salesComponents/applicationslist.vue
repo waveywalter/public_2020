@@ -29,6 +29,7 @@
 import { mapState, mapActions } from "vuex";
 import VeeValidate from "vee-validate";
 export default {
+  name:"applicationslist",
     data(){
         return {
             modalid:"",

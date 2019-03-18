@@ -39,9 +39,11 @@ import employeeHome from '../_pages/employeeHome'
 import employeedashboard from '../components/employeeComponent/Employeedashboard'
 import newaffiliate from '../components/salesComponents/NewAffiliateform'
 import newaffiliatepage from '../_pages/newaffiliatepage'
-
 import createlead from '../components/salesComponents/createlead'
 import createleadpage from '../_pages/createleadpage'
+
+import affiliateregistrationpage from '../_pages/affiliateregistrationpage'
+import affiliateregistration from '../components/salesComponents/AffiliateRegistration'
 
 
 Vue.use(Router);
@@ -164,14 +166,15 @@ beforeEnter: (to,from,next) =>{
     children: [
       {path:':root/forms/:id',component:SalesDashBoard},
       { path: '', component: SalesDashBoard },
+      { path: ':root/:id?', component: SalesDashBoard },
+      {path:'/crm/:id?',component:crm},
       { path: 'myprofile', component: MyProfile },
       { path: '/createlead', component: createlead },
       { path: '/createleadpage', component: createleadpage },
       { path: '/newaffiliate', component: newaffiliate },
       { path: '/newaffiliatepage', component: newaffiliatepage },
-      { path: ':root/:id?', component: SalesDashBoard },
-      {path:'/crm/:id?',component:crm}
- 
+      {path: '/affiliateregistration',component: affiliateregistration},
+      {path: '/affiliateregistrationpage',component: affiliateregistrationpage}
      ],
      beforeEnter: (to,from,next) => {
        if(user.user.role == 'sales'){
