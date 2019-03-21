@@ -36,18 +36,27 @@ button.btn.btn-default {
           </div>
           <div class="flexible">
             <div class="dw" v-if="root==undefined">
-              <div class="mx-3 white-box">
-                  <NewAffiliateform/>
+              <div class="wrapper">
+              <div class=" affiliateBox white-box">
+                <NewAffiliateform/>
               </div>
-              <div class="white-box">
-                  <Createlead/>
+              <div class="leadBox white-box">
+                <Createlead/>
               </div>
-              <div class="fill-content">
+            <div class="taskBox white-box">
+                <taskSideBar/>
+                </div>
+              <!-- <div class="mx-3 white-box">
+                <crmComponent/>
+              </div>-->
+              <div class="registrationBox fill-content">
                 <AffiliateRegistration v-if="root==undefined"></AffiliateRegistration>
                 <crm ref="crm" v-if="root=='crm'"></crm>
               </div>
+              <div class=" crmBox white-box">CRM Placeholder</div>
             </div>
           </div>
+        </div>
         </div>
       </div>
     </div>
@@ -57,10 +66,12 @@ button.btn.btn-default {
 <script>
 import NewAffiliateform from "../salesComponents/NewAffiliateform";
 import NewLeadForm from "../crmComponents/NewLeadForm";
-import Createlead from './createlead'
+import Createlead from "./createlead";
 import AffiliateRegistration from "../salesComponents/AffiliateRegistration";
 import UserInformation from "../layoutComponents/UserInformation";
+import taskSideBar from "../layoutComponents/taskSideBar"
 import crm from "../crmComponents/crmComponent";
+import crmComponent from "../crmComponents/crmComponent";
 import Vue from "vue";
 import { mapState, mapActions } from "vuex";
 
@@ -83,7 +94,6 @@ export default {
   data() {
     return {
       root: this.$root._route.params.root,
-
       components: ["NewAffiliateform", "NewLeadForm"],
       currentTab: {
         tabname: "NewLeadForm"
@@ -102,8 +112,10 @@ export default {
     AffiliateRegistration,
     UserInformation,
     crm,
+    crmComponent,
     Createlead,
-    NewLeadForm
+    NewLeadForm,
+    taskSideBar
   },
   methods: {
     goBack() {
@@ -143,10 +155,50 @@ export default {
 };
 </script>
 <style scoped>
+#page-wrapper {
+    position: inherit;
+    margin: 0 0px 0 220px;
+}
 .flexor {
   display: flex;
 }
-.dw{
-    display:flex;
+.dw {
+  display: flex;
+}
+
+.wrapper {
+    display: grid;
+    grid-gap: 10px;
+		grid-template-columns: auto auto auto auto auto;
+	}
+
+	.box {
+		background-color: #444;
+		color: #fff;
+		border-radius: 5px;
+		padding: 20px;
+		font-size: 150%;
+
+	}
+
+	.crmBox {
+		grid-column: 1 / 3;
+		grid-row: 2;
+	}
+	.registrationBox {
+		grid-column: 3 ;
+		grid-row: 1 / 3;
+	}
+	.affiliateBox {
+		grid-column: 1 ;
+		grid-row: 1 ;
+	}
+	.leadBox {
+		grid-column: 2;
+		grid-row: 1;
+  }
+.taskBox{
+  	grid-column: 4;
+		grid-row: 1 / 3;
 }
 </style>

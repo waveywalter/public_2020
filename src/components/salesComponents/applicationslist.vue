@@ -677,13 +677,19 @@ display:inline-block
 .mr15{
   margin-right:15px;
 }
+  .list-group-item {
+    border: 0px !important;
+}
 .list-group-item, .list-group-item:first-child, .list-group-item:last-child {
-    border-radius: 19px;
+    /* border-radius: 19px;
     border-color: rgba(120,130,140,.28);
     margin-bottom: 14px;
-    background-color: #ffffff1c;
+    background-color: #ffffff1c; */
 }
 .ti-close{cursor:pointer;
 float:right;
+}
+.apps{
+  float:left !important;
 }
 </style>

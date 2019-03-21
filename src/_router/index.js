@@ -29,6 +29,7 @@ import RTFdashboard from '../components/RTFComponents/RTFdashboard'
 import OwnerDashboard from '../components/ownerComponents/OwnerDashboard'
 import formViewer from '../components/formViewerComponents/formViewer'
 import crm from '../components/crmComponents/crmComponent'
+import crmpage from '../_pages/crmpage'
 import MyProfile from  '../_pages/MyProfile'
 import formBuilder from '../formBuilder/formBuilder'
 import testfunctions from '../_pages/testfunctions'
@@ -166,9 +167,10 @@ beforeEnter: (to,from,next) =>{
     children: [
       {path:':root/forms/:id',component:SalesDashBoard},
       { path: '', component: SalesDashBoard },
+      {path:'crm/:id?',component:crm},
       { path: ':root/:id?', component: SalesDashBoard },
-      {path:'/crm/:id?',component:crm},
       { path: 'myprofile', component: MyProfile },
+      {path:'/crmpage', component:crmpage},
       { path: '/createlead', component: createlead },
       { path: '/createleadpage', component: createleadpage },
       { path: '/newaffiliate', component: newaffiliate },
