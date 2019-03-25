@@ -1,26 +1,6 @@
-<style scoped>
-.col-md-6.col-lg-4.col-sm-12 {
-  flex: 1 1 100%;
-}
-#flexor,
-.flexible {
-  display: flex;
-}
-button.btn.btn-default {
-  margin-left: 13px;
-}
-.fill-content {
-  width: -webkit-fill-available;
-}
-</style>
+
 <template>
   <div>
-    <!-- <div id="page-wrapper">
-            <div id="flexor">
-            <NewAffiliateform></NewAffiliateform>
-            <AffiliateRegistration></AffiliateRegistration>
-            </div>
-    </div>-->
     <div id="page-wrapper">
       <div>
         <div class="container-fluid">
@@ -37,26 +17,49 @@ button.btn.btn-default {
           <div class="flexible">
             <div class="dw" v-if="root==undefined">
               <div class="wrapper">
-              <div class=" affiliateBox white-box">
-                <NewAffiliateform/>
-              </div>
-              <div class="leadBox white-box">
-                <Createlead/>
-              </div>
-            <div class="taskBox white-box">
-                <taskSideBar/>
+                <div class="affiliateBox white-box">
+                  <NewAffiliateform/>
                 </div>
-              <!-- <div class="mx-3 white-box">
-                <crmComponent/>
-              </div>-->
-              <div class="registrationBox fill-content">
-                <AffiliateRegistration v-if="root==undefined"></AffiliateRegistration>
-                <crm ref="crm" v-if="root=='crm'"></crm>
+                <div class="leadBox white-box">
+                  <Createlead/>
+                </div>
+                <div class="taskBox white-box">
+                  <taskSideBar/>
+                </div>
+                <div class="registrationBox fill-content">
+                  <AffiliateRegistration v-if="root==undefined"></AffiliateRegistration>
+                  <crm ref="crm" v-if="root=='crm'"></crm>
+                </div>
+                <div class="crmBox white-box">
+                  <div class>
+                    <div class="col-in row">
+                      <div class="col-md-6 col-sm-6 col-xs-6">
+                        <i data-icon="E" class="linea-icon linea-basic"></i>
+                        <h5 class="text-muted vb">MY NEW CLIENTS</h5>
+                      </div>
+                      <div class="col-md-6 col-sm-6 col-xs-6">
+                        <h3 class="counter text-right m-t-15 text-danger">{{count}}</h3>
+                      </div>
+                      <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="progress">
+                          <div
+                            class="progress-bar progress-bar-danger"
+                            role="progressbar"
+                            aria-valuenow="40"
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                            style="width: 40%"
+                          >
+                            <span class="sr-only">40% Complete (success)</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <div class=" crmBox white-box">CRM Placeholder</div>
             </div>
           </div>
-        </div>
         </div>
       </div>
     </div>
@@ -69,7 +72,7 @@ import NewLeadForm from "../crmComponents/NewLeadForm";
 import Createlead from "./createlead";
 import AffiliateRegistration from "../salesComponents/AffiliateRegistration";
 import UserInformation from "../layoutComponents/UserInformation";
-import taskSideBar from "../layoutComponents/taskSideBar"
+import taskSideBar from "../layoutComponents/taskSideBar";
 import crm from "../crmComponents/crmComponent";
 import crmComponent from "../crmComponents/crmComponent";
 import Vue from "vue";
@@ -89,6 +92,14 @@ export default {
     },
     id: function() {
       return this.$root._route.params.id;
+    },
+    ...mapState({
+      leads: state => state.leads,
+      notes: state => state.leads.notes,
+      emails: state => state.leads.emails
+    }),
+    count: function() {
+      return this.leads.leads.length;
     }
   },
   data() {
@@ -154,51 +165,62 @@ export default {
   }
 };
 </script>
+
 <style scoped>
 #page-wrapper {
-    position: inherit;
-    margin: 0 0px 0 220px;
+  position: inherit;
+  margin: 220 0px 0 220px;
 }
-.flexor {
+#flexor,
+.flexible {
   display: flex;
+}
+.col-md-6.col-lg-4.col-sm-12 {
+  flex: 1 1 100%;
 }
 .dw {
   display: flex;
 }
-
+.fill-content {
+  width: -webkit-fill-available;
+}
 .wrapper {
-    display: grid;
-    grid-gap: 10px;
-		grid-template-columns: auto auto auto auto auto;
-	}
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: auto auto auto auto auto;
+  grid-auto-rows: auto 200px;
+}
 
-	.box {
-		background-color: #444;
-		color: #fff;
-		border-radius: 5px;
-		padding: 20px;
-		font-size: 150%;
+.box {
+  background-color: #444;
+  color: #fff;
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 150%;
+}
 
-	}
-
-	.crmBox {
-		grid-column: 1 / 3;
-		grid-row: 2;
-	}
-	.registrationBox {
-		grid-column: 3 ;
-		grid-row: 1 / 3;
-	}
-	.affiliateBox {
-		grid-column: 1 ;
-		grid-row: 1 ;
-	}
-	.leadBox {
-		grid-column: 2;
-		grid-row: 1;
-  }
-.taskBox{
-  	grid-column: 4;
-		grid-row: 1 / 3;
+.crmBox {
+  grid-column: 1 / 3;
+  grid-row: 2;
+  grid-auto-rows: 10%;
+}
+.registrationBox {
+  grid-column: 3;
+  grid-row: 1 / 3;
+}
+.affiliateBox {
+  grid-column: 1;
+  grid-row: 1;
+}
+.leadBox {
+  grid-column: 2;
+  grid-row: 1;
+}
+.taskBox {
+  grid-column: 4;
+  grid-row: 1 / 3;
+}
+button.btn.btn-default {
+  margin-left: 13px;
 }
 </style>
