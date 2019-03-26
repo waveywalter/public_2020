@@ -17,7 +17,7 @@ import Vue from 'vue';
         components: {
             TopHeader,
             SalesSideBar
-        }
+                    }
        
     }
 </script>

@@ -88,8 +88,7 @@ display:flex;}
 </style>
 <template>
 <div ref="crm" id="page-wrapper">
- 
-<div v-if="view==='ListView'"> 
+<div v-if="view==='ListView'" class="container-fluid"> 
   <div class="col-lg-3"><input placeholder="Filter Contacts" type="text" v-model="search" ></input></div>
   <div>
   <div class="leadHolder">
@@ -115,8 +114,12 @@ display:flex;}
   </div>
  </div>
 <div v-if="view==='LeadView'">
-   <div class="flexible"><button class="btn btn-default" v-on:click="openNoteModal=true">Add Notes</button><button v-on:click="openEmailModal=true" class="btn btn-default">Send Email</button>
+   <div class="flexible">
+     <button class="btn btn-default" v-on:click="openNoteModal=true">Add Notes</button>
+   <button v-on:click="openEmailModal=true" class="btn btn-default">Send Email</button>
    <button class="btn btn-default">Convert To Affiliate</button>
+  <button  class="btn btn-default"><router-link to ="/crmpage">Back</router-link></button>
+
    </div>
    <div class="flexible">
    <div class="card lead col-lg-3 col-md-6">
@@ -191,70 +194,70 @@ display:flex;}
   </div>
 
 <div v-if="openNoteModal">
-  <div id="responsive-modal" class="modal fade show" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: block; padding-right: 17px;" aria-modal="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" @click="openNoteModal=false">×</button>
-                                                <h4 class="modal-title">Add New Note</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form>
-                                                    <div class="form-group">
-                                                        <label for="recipient-name" class="control-label">Title:</label>
-                                                        <input type="text" class="form-control" id="recipient-name" v-model="title">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="message-text" class="control-label">Note:</label>
-                                                        <textarea class="form-control" id="message-text" v-model="notetext"></textarea>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal" @click="openNoteModal=false">Close</button>
-                                                <button type="button" class="btn btn-danger waves-effect waves-light" @click="saveNote()">Save changes</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                   
-                                </div>
-                                 <div class="modal-backdrop fade show"></div>
+<div id="responsive-modal" class="modal fade show" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: block; padding-right: 17px;" aria-modal="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true" @click="openNoteModal=false">×</button>
+<h4 class="modal-title">Add New Note</h4>
+</div>
+<div class="modal-body">
+<form>
+    <div class="form-group">
+        <label for="recipient-name" class="control-label">Title:</label>
+        <input type="text" class="form-control" id="recipient-name" v-model="title">
+    </div>
+    <div class="form-group">
+        <label for="message-text" class="control-label">Note:</label>
+        <textarea class="form-control" id="message-text" v-model="notetext"></textarea>
+    </div>
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default waves-effect" data-dismiss="modal" @click="openNoteModal=false">Close</button>
+<button type="button" class="btn btn-danger waves-effect waves-light" @click="saveNote()">Save changes</button>
+</div>
+</div>
+</div>
+
+</div>
+<div class="modal-backdrop fade show"></div>
 </div>
 <div v-if="openEmailModal">
-  <div id="responsive-modal" class="modal fade show" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: block; padding-right: 17px;" aria-modal="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true" @click="openEmailModal=false">×</button>
-                                                <h4 class="modal-title">Send Email</h4>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form>
-                                                    <div class="form-group">
-                                                        <label for="recipient-name" class="control-label">Recipient</label>
-                                                        <input type="text" class="form-control" id="recipient-name" v-model="email">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="subject" class="control-label">Subject</label>
-                                                        <input type="text" class="form-control" id="subject" v-model="subject">
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="message-text" class="control-label">Body</label>
-                                                        <textarea class="form-control" id="message-text" v-model="emailtext"></textarea>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-default waves-effect" data-dismiss="modal" @click="openEmailModal=false">Close</button>
-                                                <button type="button" class="btn btn-danger waves-effect waves-light" @click="saveEmail()">Send Email</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                   
-                                </div>
-                                 <div class="modal-backdrop fade show"></div>
+<div id="responsive-modal" class="modal fade show" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: block; padding-right: 17px;" aria-modal="true">
+<div class="modal-dialog">
+<div class="modal-content">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true" @click="openEmailModal=false">×</button>
+<h4 class="modal-title">Send Email</h4>
 </div>
-   </div>
+<div class="modal-body">
+<form>
+    <div class="form-group">
+        <label for="recipient-name" class="control-label">Recipient</label>
+        <input type="text" class="form-control" id="recipient-name" v-model="email">
+    </div>
+    <div class="form-group">
+        <label for="subject" class="control-label">Subject</label>
+        <input type="text" class="form-control" id="subject" v-model="subject">
+    </div>
+    <div class="form-group">
+        <label for="message-text" class="control-label">Body</label>
+        <textarea class="form-control" id="message-text" v-model="emailtext"></textarea>
+    </div>
+</form>
+</div>
+<div class="modal-footer">
+<button type="button" class="btn btn-default waves-effect" data-dismiss="modal" @click="openEmailModal=false">Close</button>
+<button type="button" class="btn btn-danger waves-effect waves-light" @click="saveEmail()">Send Email</button>
+</div>
+</div>
+</div>
+
+</div>
+<div class="modal-backdrop fade show"></div>
+</div>
+</div>
 </template>
 <script>
 import { mapState, mapActions } from "vuex";

@@ -8,7 +8,7 @@
 
 <script>
 import TopHeader from '../components/layoutComponents/TopHeader';
-import SideBar from '../components/layoutComponents/SideBar';
+import SideBar from '../components/affiliateComponents/affiliateSidebar';
 
 import Vue from 'vue';
 

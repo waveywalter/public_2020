@@ -1,14 +1,12 @@
-
 <template>
     <div id="page-wrapper">
       <div class="container-fluid">
         <div class="col-lg">
           <div class="row bg-title">
-            <h4 class="page-title">New Affiliate</h4>
+            <h4 class="page-title">New Lead</h4>
           </div>
               <div class="white-box col-lg-4 col-sm-12">
-
-          <newaffiliate></newaffiliate>
+          <affiliateregistration></affiliateregistration>
           </div>
         </div>
       </div>
@@ -16,19 +14,11 @@
 </template>
 
 <script>
-import newaffiliate from '../components/salesComponents/NewAffiliateform'
+import affiliateregistration from '../components/salesComponents/AffiliateRegistration'
 export default {
-    name: 'createadmin',
+    name: 'affiliateregistrationpage',
     components:{
-        newaffiliate
+      affiliateregistration
     }
 }
 </script>
-
-
-
-
-
-
-
-        

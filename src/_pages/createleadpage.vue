@@ -4,11 +4,11 @@
       <div class="container-fluid">
         <div class="col-lg">
           <div class="row bg-title">
-            <h4 class="page-title">New Affiliate</h4>
+            <h4 class="page-title">New Lead</h4>
           </div>
               <div class="white-box col-lg-4 col-sm-12">
 
-          <newaffiliate></newaffiliate>
+          <createlead></createlead>
           </div>
         </div>
       </div>
@@ -16,11 +16,11 @@
 </template>
 
 <script>
-import newaffiliate from '../components/salesComponents/NewAffiliateform'
+import createlead from '../components/salesComponents/createlead'
 export default {
-    name: 'createadmin',
+    name: 'createleadpage',
     components:{
-        newaffiliate
+        createlead
     }
 }
 </script>

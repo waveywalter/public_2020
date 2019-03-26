@@ -4,6 +4,9 @@
     border:none;
 }
 .tab-content{width:90%}
+.list {
+    display: grid;
+}
 </style>
 <template>
 
@@ -53,10 +56,10 @@
                                         </div>
                                         <div class="tab-pane p-20  " id="messages4" role="tabpanel">
 
-                                            <uploader :afid='afid'></uploader>
-                                        </div>
-                                    </div>
-                                </div>
+            <uploader :afid='afid'></uploader>
+        </div>
+    </div>
+</div>
 </template>
 <script>
 import viewer from '../formViewerComponents/formViewer'

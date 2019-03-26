@@ -57,11 +57,7 @@
     </div>
         <div class="form-group">
         <div class="col-sm-12">
-<<<<<<< HEAD
-            <button class="btn btn-danger" v-on:click="authenticate('google')">auth Google</button>
-=======
             <button class="btn btn-danger" v-on:click="helloworld">Authenticate Gmail</button>
->>>>>>> a16472f10af018d6b1eb05108703f899bd6880a9
         </div>
     </div>
 </div>
