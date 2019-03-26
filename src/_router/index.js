@@ -163,9 +163,9 @@ beforeEnter: (to,from,next) =>{
       { path: 'myprofile', component: MyProfile },
       { path: '/newaffiliate', component: newaffiliate },
       { path: '/newaffiliatepage', component: newaffiliatepage },
-
+      {path:'crm/:id?',component:crm},
       { path: ':root/:id?', component: SalesDashBoard },
-      {path:'/crm/:id?',component:crm}
+      
  
      ],
      beforeEnter: (to,from,next) => {

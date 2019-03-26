@@ -9,7 +9,7 @@ i{
 .email,.note {
     background-color: white;
     color: black;
-    padding: 20px;
+    padding: 0px 10px;
     margin-bottom:10px;
     border: 0px solid rgba(0,0,0,.4);
     border-radius: 4px;
@@ -34,15 +34,20 @@ li {
 }
 .col-md-6{
 float:none;
+padding:0;
+
 }
 .flexible {
     display: flex;
 }
+.potential_affiliate,.pre_affiliate,.new{
+  background-color: #607D8B;
+    color:white;
+}
 div#meta {
-    margin-top: 20px;
+ 
     width: -webkit-fill-available;
-    border: thin solid;
-    padding: 20px;
+
 }
 .modal-open .modal {
     overflow-x: hidden;
@@ -63,6 +68,9 @@ div#meta {
     overflow: hidden;
     outline: 0;
 }
+.card-body.basic.potential_affiliate{
+    color:white;
+}
 .fade {
     transition: opacity .15s linear;
 }
@@ -72,11 +80,15 @@ div#meta {
 .mainc{
   width:80% !important
 }
+.newness {
+    color: red !important;
+}
 .icons{flex-direction:column;
 display:flex;}
 </style>
 <template>
-<div ref="crm">
+<div ref="crm" id="page-wrapper">
+ 
 <div v-if="view==='ListView'"> 
   <div class="col-lg-3"><input placeholder="Filter Contacts" type="text" v-model="search" ></input></div>
   <div>
@@ -85,17 +97,17 @@ display:flex;}
   <div v-for="lead in regexLead(leads)" class="card col-lg-3 col-md-6">
     
 
-    <div class="card-body">
-    <div class="card-title"> {{lead.first_name}} {{lead.last_name}} 
+    <div :class="'card-body basic  '+lead.status">
 
-                 <router-link class="view " :key="lead.id"  tag="li" :to="'/sales/crm/'+lead.id" @click.native="loadLead(lead)">
+    <div class="card-title"> {{lead.first_name}} {{lead.last_name}} 
+     <v-icon v-if="lead.type==='therapist'">face</v-icon><v-icon v-if="lead.type==='medical_professional'">local_hospital</v-icon><v-icon v-if="lead.type==='social_worker'">public</v-icon>
+            <v-icon v-if="newtest(lead.status)" class="newness">fiber_new</v-icon>     <router-link class="view " :key="lead.id"  tag="li" :to="'/sales/crm/'+lead.id" @click.native="loadLead(lead)">
                   View
                 </router-link>      
     </div>
     <div> {{lead.phone}} </div>
     <div> {{lead.email}} </div>
-    <div> {{lead.type}} </div>
-    <div> {{lead.notes}} </div>
+  <div> {{lead.notes}} </div>
    <!-- <button class="btn btn-primary">Convert to Applicant</button> -->
    </div>
    </div>
@@ -108,13 +120,14 @@ display:flex;}
    </div>
    <div class="flexible">
    <div class="card lead col-lg-3 col-md-6">
-    <div class="card-body">
-    <div class="card-title"> {{vlead.first_name}} {{vlead.last_name}} 
+    <div :class="'card-body basic  '+currentLead.status">
+    <div class="card-title"> {{currentLead.first_name}} {{currentLead.last_name}} 
+           <v-icon v-if="currentLead.type==='therapist'">face</v-icon><v-icon v-if="currentLead.type==='medical_professional'">local_hospital</v-icon><v-icon v-if="currentLead.type==='social_worker'">public</v-icon>
+   
     </div>
-    <div> {{vlead.phone}} </div>
-    <div> {{vlead.email}} </div>
-    <div> {{vlead.type}} </div>
-    <div> {{vlead.notes}} </div>
+    <div> {{currentLead.phone}} </div>
+    <div> {{currentLead.email}} </div>
+    <div> {{currentLead.notes}} </div>
    <!-- <button class="btn btn-primary">Convert to Applicant</button> -->
    </div>
 
@@ -122,10 +135,8 @@ display:flex;}
   
    </div>
 <div id="meta">
-     <div >Last Contact Date : Last Contact Method</div>
-     
-   <div class="flexible">  
-    <div>
+<div class="flexible">  
+    <div class="hidden">
      <div><h3>Notes</h3>     <v-pagination
       v-model="page"
       :length="6"
@@ -138,7 +149,7 @@ display:flex;}
         <div>{{note.content}}</div>
       </div>
     </div>
-    <div>
+    <div  class="hidden">
       <div><h3>Emails</h3>
        <v-pagination
       v-model="page2"
@@ -160,14 +171,16 @@ display:flex;}
       :length="4"
        ></v-pagination>
       </div>  
-
-         <div class="email" v-for="email in emails">
+   
+         <div class="email" v-for="task in tasks">
          <div class="flexible"><div class="mainc">
-        <h4>{{email.subject}}</h4>
-        <div>{{email.date_created | moment("dddd, MMMM Do YYYY")}}</div>
-        <div>{{email.message}}</div>
+        <h5><v-icon v-if="task.type=='phone_call'" class="blueg">phone</v-icon> {{task.title}}</h5>
+        
+        <div>{{task.date_created | moment("dddd, MMMM Do YYYY")}}</div>
+        <div><v-icon v-if="task.status=='new'" class="blueg">fiber_new</v-icon></div>
+        <div></div>
         </div><div class="icons">
-           <v-icon>delete</v-icon><v-icon>edit</v-icon>
+           <v-icon>done</v-icon><v-icon>delete</v-icon>
            </div>
            </div>
       </div>
@@ -269,32 +282,66 @@ export default{
       page2:2,
       page3:3,
       gtoken:"",
-      tokens:''
+      tokens:'',
+      note_filter:"",
+      
     };
   },
   computed: {
     ...mapState({
       leads: state => state.leads,    
       notes: state => state.leads.notes,   
-      emails: state => state.leads.emails,   
+      tasks: state => state.leads.tasks,   
+      emails: state => state.leads.emails,  
+      currentLead:state=>state.leads.currentlead,
+      alltask:state=>state.leads.alltask
           })
   },
   mounted(){
+      console.log("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMM")
     console.log(this.$auth)
    this.gtoken = this.$auth.getToken()
    this.tokens = JSON.parse(this.$auth.storage.getItem("tokens"))
-  
+    this.loadLead()
    },
   created() {
-    this.getLeads();
+      console.log("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC")
+    this.getLeads({});
+    console.log(this.leads.leads)
+    if(this.$route.params.id != undefined){
+    this.view = 'LeadView'
+    let _this = this;
+    //fetch("https://2020i.site/api2/leads/"+this.$route.params.id).then(res=>{return res.json()}).then(json=>{console.log(json);_this.loadLead(json)})
+    this.getLeadById(this.$route.params.id)
+    this.getAllTask();
+   //console.log(this)
+   //let ls  = this.leads.leads.filter(lead=>{return lead.id==this.$route.params.id})
+ //console.log(ls)
     
+   }
 
   },
   components: {
   },
   methods: {
+      jsUcfirst(string) 
+{
+    return string.charAt(0).toUpperCase() + string.slice(1);
+},
+      getIcon(text){
+          if(text=="phone_call"){return 'phone'}
+          return ''
+      },
+      newtest(text){
+          console.log(text)
+          if(text==="new"){return true}
+          if(text==="pre_affiliate"){return true}
+          if(text==="potential_patient"){return true}
+          if(text==="potential_affiliate"){return true}
+          return false
+      },
     filternote(notes){
-      return notes.filter(note=>{return note.status=="New"})
+      return notes.filter(note=>{if(this.note_filter==""){return true} return note.status==this.note_filter})
     },
     saveNote(){
       let note ={};
@@ -309,16 +356,32 @@ export default{
       data.filter = {"name":null};
      this.createNote(data)
     },
-    loadLead(lead){
-      console.log(lead)
+    saveTask(){
+      let note ={};
+      note.title = this.title;
+      note.text = this.notetext
+      console.log(this.vlead)
+      let data = {};
+      note.date_created = new Date()
+      data.task = note;
+      data.id = this.vlead.id
+      
+      data.filter = {"name":null};
+     this.createTask(data)
+    },
+    loadLead(){
+        console.log("LUXXXXXXXXXXXXXXXXXXXXX")
+    
       this.view = 'LeadView'
-      this.vlead = lead
+      this.vlead = this.currentLead
       let filter = {"name":null}
       let d  = {};
       d.filter = filter;
-      d.id = lead.id
+      console.log(this.currentLead)
+      d.id = this.$route.params.id
+      console.log(d)
       this.getNotes(d)
-      this.getEmails(lead)
+      //this.getEmails(lead)
     },
     getEmails(lead){
       console.log("HIT Gmail and get assocaited emails")
@@ -347,6 +410,9 @@ export default{
       getLeads: "getLeads",
       getNotes: "getNotes",
       createNote: "createNote",
+      createTask:"createTask",
+      getLeadById:"getLeadById",
+      getAllTask:"getAllTask"
      }),
       handleSubmit(e){
         //post to website clear form

@@ -34,11 +34,18 @@
                                             </router-link>
                                             </div> 
                                             <div v-if="role=='affiliate'">
+                                            <div>
+                                            <h3>    
                                             <router-link :to="'/affiliates/forms/'+form.id" v-for="(form,index) in forms_list" :key="index" v-if="form.status!='signed' ">
                                       
                                             <a style="margin-right:10px" v-on:click="formloader(form.id)" :value="form.id">{{form.FormTitle}}</a>
                                             
                                             </router-link>
+                                            </h3>
+                                            <div>
+                                                Form Description/Details/Usage
+                                            </div>
+                                            </div>
                                          </div>
                                                 <viewer :fid="fid" :phtml="thtml" ></viewer>
           

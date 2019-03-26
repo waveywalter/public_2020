@@ -8,13 +8,27 @@ export const leadService = {
     getLeads,
     createLead,
     createNote,
-    getNotes
+    getNotes,
+    createTask,
+    getLeadById,
+    getAllTask
    
 };
+/*/////////////////////////////////////////////////////
+Future - Add authentication to LB4 API
+
+////////////////////////////////////////////////////*/
+
 //const baseURL="http://localhost:3000/api";
 const baseURL="https://2020i.site/api2";
 //const baseURL = 'https://google.com'
-
+function getAllTask(filter){
+    console.log("ALL TASK")
+    console.log(filter)
+    let filterpara = ' '
+    return fetch(baseURL+'/tasks?filter[limit]=100').then(handleResponse);
+  //return []
+}
 function createNote(note,userId){
     note.status="New"
     const requestOptions = {
@@ -25,6 +39,18 @@ function createNote(note,userId){
     };
     note.status="New"
     return fetch(baseURL+'/lead/'+userId+'/note', requestOptions).then(handleResponse);   
+}
+
+function createTask(task,userId){
+    task.status="New"
+    const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(task)
+
+    };
+ 
+    return fetch(baseURL+'/lead/'+userId+'/task', requestOptions).then(handleResponse);   
 }
 
 function getNotes(filter,userId){
@@ -57,7 +83,9 @@ function createLead(lead){
     return fetch(baseURL+'/leads', requestOptions).then(handleResponse);
    
 }
-
+function getLeadById(id){
+  return  fetch("https://2020i.site/api2/leads/"+id).then(handleResponse)
+}
 function getById(id) {
     const requestOptions = {
         method: 'GET',
