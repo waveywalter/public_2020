@@ -1,5 +1,6 @@
 <template>
   <div class="white-box ml-5 max50 flexor">
+    {{this.$root._route.params.root}}
     <div v-if="this.$root._route.params.root=='applicant'">
       <div class="thumbs">
         <h3>
@@ -171,78 +172,8 @@
         </div>
       </div>
     </div>
-<div class="row">
-                    <div class="col-md-12">
-                        <div class="white-box pr-5">
-                            <h3 class="box-title">Only Content Scroll</h3>
-                            <div class="row">
-                                <!-- <div class="col-sm-3"><img src="../plugins/images/big/img1.jpg" class="img-fluid  "></div> -->
-                                <div class="col-sm-9">
-                                    <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 250px;"><div id="slimtest1" style="overflow: hidden; width: auto; height: 250px;">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam rhoncus, felis interdum condimentum consectetur, nisl libero elementum eros, vehicula congue lacus eros non diam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-                                        <p>Vivamus mauris lorem, lacinia id tempus non, imperdiet et leo. Cras sit amet erat sit amet lacus egestas placerat. </p>
-                                        <p>Aenean ultricies ultrices mauris ac congue. In vel tortor vel velit tristique tempus ac id nisi. Proin quis lorem velit. Nunc dui dui, blandit a ullamcorper vitae, congue fringilla lectus. Aliquam ultricies malesuada feugiat. Vestibulum placerat turpis et eros lobortis vel semper sapien pulvinar.</p>
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam rhoncus, felis interdum condimentum consectetur, nisl libero elementum eros, vehicula congue lacus eros non diam. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-                                        <p>Vivamus mauris lorem, lacinia id tempus non, imperdiet et leo. Cras sit amet erat sit amet lacus egestas placerat. </p>
-                                        <p>Aenean ultricies ultrices mauris ac congue. In vel tortor vel velit tristique tempus ac id nisi. Proin quis lorem velit. Nunc dui dui, blandit a ullamcorper vitae, congue fringilla lectus. Aliquam ultricies malesuada feugiat. Vestibulum placerat turpis et eros lobortis vel semper sapien pulvinar.</p>
-                                        <p>Vivamus mauris lorem, lacinia id tempus non, imperdiet et leo. Cras sit amet erat sit amet lacus egestas placerat. </p>
-                                        <p>Aenean ultricies ultrices mauris ac congue. In vel tortor vel velit tristique tempus ac id nisi. Proin quis lorem velit. Nunc dui dui, blandit a ullamcorper vitae, congue fringilla lectus. Aliquam ultricies malesuada feugiat. Vestibulum placerat turpis et eros lobortis vel semper sapien pulvinar.</p>
-                                    </div><div class="slimScrollBar" style="background: rgb(0, 0, 0); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 170.765px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(51, 51, 51); opacity: 0.2; z-index: 90; right: 1px;"></div></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-    <div id="app-wrapper" :key="listkey" v-if="showmain(this.$root._route.params.root)">
-<div class="row">
-                </div>
-      <div>
-        <div class="col-md-6 col-sm-6 mt-6 apps r-5">
-          <div class="row">
-            <div class="col-xl-12">
-              <div class="form-group">
-                <label for="exampleInputEmail1">Filter Applications</label>
-                <input
-                  type="text"
-                  v-model="appfilter"
-                  v-on:blur="filterApp(appfilter)"
-                  class="form-control"
-                  id="exampleInputEmail1"
-                  placeholder="Enter Email Address"
-                >
-              </div>
-            </div>
-          </div>
-          <h4 class="card-title">Applications</h4>
-          <applicationslist></applicationslist>
-        </div>
-      </div>
 
 
-      <div>
-        <div class="col-md-6 col-sm-6 mt-6 apps  hide hidden">
-          <div class="row">
-            <div class="col-xl-12">
-              <div class="form-group">
-                <label for="exampleInputEmail1">Filter Affiliates</label>
-                <input
-                  type="text"
-                  v-model="appfilter"
-                  v-on:blur="filterApp(appfilter)"
-                  class="form-control"
-                  id="exampleInputEmail1"
-                  placeholder="Enter Email Address"
-                >
-              </div>
-            </div>
-          </div>
-          <h4 class="card-title">Affiliates</h4>
-          <affiliatelist></affiliatelist>
-        </div>
-      </div>
-
-
-    </div>
     <div v-if="this.$root._route.params.root=='applicant'">
       <div class>
         <div>

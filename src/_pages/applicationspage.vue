@@ -4,18 +4,18 @@
       <div class="container-fluid">
         <h1>Hello World</h1>
       </div>
-      <applicationslist/>
+      <AffReg/>
     </div>
   </div>
 </template>
 
 <script>
-import applicationslist from "../components/salesComponents/applicationslist";
+import AffReg from "../components/salesComponents/AffiliateRegistration";
 
 export default {
   name: "ownerHome",
   components: {
-    applicationslist
+    AffReg
   }
 };
 </script>
