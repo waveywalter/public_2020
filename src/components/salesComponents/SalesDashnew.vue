@@ -1,39 +1,69 @@
-
 <template>
   <div>
     <div id="page-wrapper">
-      <div class="container-fluid">
-        <div class="col-lg">
-          <div class="row bg-title">
-            <div class="flexible">
-              <h4 class="page-title">Sales DashBoard</h4>
-              <button v-if="needed" class="btn btn-default" v-on:click="goBack()">
-                <i class="ti-arrow-left">Back</i>
-              </button>
+      <div>
+        <div class="container-fluid">
+          <div class="col-lg">
+            <div class="row bg-title">
+              <div class="flexible">
+                <h4 class="page-title">Sales DashBoard</h4>
+                <button v-if="needed" class="btn btn-default" v-on:click="goBack()">
+                  <i class="ti-arrow-left">Back</i>
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-
-        <div v-if="root==undefined">
-
-          <div class="row">
-            <NewAffiliateform/>
-            <!-- <Createlead/> -->
-            <!-- <taskSideBar></taskSideBar> -->
+          <div class="flexible">
+            <div class="dw" v-if="root==undefined">
+              <div class="wrapper">
+                <div class="affiliateBox white-box">
+                  <NewAffiliateform/>
+                </div>
+                <div class="leadBox white-box">
+                  <Createlead/>
+                </div>
+                <div class="taskBox white-box">
+                  <taskSideBar/>
+                </div>
+                <div class="registrationBox fill-content">
+                  <AffiliateRegistration v-if="root==undefined"></AffiliateRegistration>
+                  <crm ref="crm" v-if="root=='crm'"></crm>
+                </div>
+                <div class="crmBox white-box">
+                  <div class>
+                    <div class="col-in row">
+                      <div class="col-md-6 col-sm-6 col-xs-6">
+                        <i data-icon="E" class="linea-icon linea-basic"></i>
+                        <h5 class="text-muted vb">MY NEW CLIENTS</h5>
+                      </div>
+                      <div class="col-md-6 col-sm-6 col-xs-6">
+                        <h3 class="counter text-right m-t-15 text-danger">{{count}}</h3>
+                      </div>
+                      <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="progress">
+                          <div
+                            class="progress-bar progress-bar-danger"
+                            role="progressbar"
+                            aria-valuenow="40"
+                            aria-valuemin="0"
+                            aria-valuemax="100"
+                            style="width: 40%"
+                          >
+                            <span class="sr-only">40% Complete (success)</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
-
-          <div class="row">
-            <applicantbox/>
-            <!-- <affiliateBoxcomponent/>
-            <crmclientbox></crmclientbox> -->
-          </div>
-          
         </div>
       </div>
     </div>
   </div>
 </template>
-    <script src="/public/assets/js/jquery.slimscroll.js"></script>
 
 <script>
 import NewAffiliateform from "../salesComponents/NewAffiliateform";
@@ -42,24 +72,12 @@ import Createlead from "./createlead";
 import AffiliateRegistration from "../salesComponents/AffiliateRegistration";
 import UserInformation from "../layoutComponents/UserInformation";
 import taskSideBar from "../layoutComponents/taskSideBar";
-import applicantbox from "../salesComponents/applicantbox";
-import affiliateBoxcomponent from "../salesComponents/affiliateboxcomponent";
-
 import crm from "../crmComponents/crmComponent";
 import crmComponent from "../crmComponents/crmComponent";
-import crmclientbox from '../salesComponents/crmclientbox'
 import Vue from "vue";
 import { mapState, mapActions } from "vuex";
-
 export default {
   name: "SalesDashBoard",
-  data: {
-    return() {
-      options: {
-        height: "490px";
-      }
-    }
-  },
   created() {
     this.init();
   },
@@ -97,12 +115,6 @@ export default {
     filter.name = null;
     console.log(filter);
     this.getLeads(filter);
-    console.log(this.$refs.testcrm);
-
-    // this.$refs.slimtest1.style.color = '#6c95d2';
-    // this.$refs.slimtest1.style.size = '10px';
-    // this.$refs.slimtest1.style.height = '#490px';
-    // this.$refs.slimtest1.style.alwaysVisible = true;
   },
   components: {
     NewAffiliateform,
@@ -112,10 +124,7 @@ export default {
     crmComponent,
     Createlead,
     NewLeadForm,
-    taskSideBar,
-    crmclientbox,
-    applicantbox,
-    affiliateBoxcomponent
+    taskSideBar
   },
   methods: {
     goBack() {
@@ -123,7 +132,6 @@ export default {
       console.log(this);
       this.$refs.crm.view = "ListView";
     },
-    showMyDiv() {},
     ...mapActions("leads", ["getLeads"]),
     init() {
       window.onload = function() {
@@ -157,7 +165,6 @@ export default {
 </script>
 
 <style scoped>
-
 #page-wrapper {
   position: inherit;
   margin: 220 0px 0 220px;
@@ -181,7 +188,6 @@ export default {
   grid-template-columns: auto auto auto auto auto;
   grid-auto-rows: auto 200px;
 }
-
 .box {
   background-color: #444;
   color: #fff;
@@ -189,7 +195,6 @@ export default {
   padding: 20px;
   font-size: 150%;
 }
-
 .crmBox {
   grid-column: 1 / 3;
   grid-row: 2;

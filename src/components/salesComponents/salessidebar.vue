@@ -1,6 +1,6 @@
 <template>
     <div class="navbar-default sidebar" role="navigation">
-            <div class="sidebar-nav navbar-collapse slimscrollsidebar">
+            <div class="sidebar-nav navbar-collapse ">
               <div class="user-profile">
                     <div class="dropdown user-pro-body">
                         <div><img v-bind:src=imagepath alt="user-img" class="img-circle"></div> <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.user.username}}<span class="caret"></span></a>
@@ -26,13 +26,11 @@
                     <li> <a href="javascript:void(0);" class="waves-effect"><i class="linea-icon linea-basic fa-fw " data-icon="7"></i> <span class="hide-menu "> Components <span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
                             <li> <router-link to="/crmpage">CRM</router-link></li>
-                            <li> <router-link to="newaffiliatepage">Create Affiliate</router-link></li>
-                            <li> <router-link to="createleadpage">Create Lead</router-link></li>
+                            <li> <router-link to="/newaffiliatepage">Create Affiliate</router-link></li>
+                            <li> <router-link to="/createleadpage">Create Lead</router-link></li>
                             <li> <router-link to="affiliateregistrationpage">Approve Applicants</router-link></li>
                             <li> <router-link to="#">View Affiliates</router-link></li>
                             <li> <router-link to="#">View Leads</router-link></li>
-
-
                         </ul>
                     </li>
                     <li>
@@ -102,8 +100,6 @@
                     <li>
                       <a href="tables.html" class="waves-effect"><i data-icon="O" class="linea-icon linea-software fa-fw"></i>
                         <span class="hide-menu">Tasks<span class="fa arrow"></span><span class="label label-rouded label-danger pull-right">7</span></span> -->
-                      </a>
-                    </li>
                 </ul>
             </div>
         </div>
@@ -114,17 +110,16 @@ import { mapState, mapActions } from "vuex";
 let user = JSON.parse(localStorage.getItem('user'));
 console.log(user)
 
-    export default {
-        name: "SideBar",
-        data(){
-            return{
-                imagepath: "/public/uploads/" + user.user.username +'/'+user.user.avatarName,
-                user: user,
-                role: user.user.role,
-            }
-
+export default {
+    name: "SideBar",
+    data(){
+        return{
+            imagepath: "/public/uploads/" + user.user.username +'/'+user.user.avatarName,
+            user: user,
+            role: user.user.role,
         }
     }
+}
 
 </script>
 

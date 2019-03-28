@@ -110,7 +110,7 @@ iframe{
                 <v-flex xs6>
                 
                   <v-card v-if="capproved==1">
-                   <div class="thumbs"><h3> Application Approved <v-icon>thumb_up</v-icon> ! (Account will be created in 2020i) </h3></div>
+                   <div class="thumbs"><h3> Application dffdf <v-icon>thumb_up</v-icon> ! (Account will be created in 2020i) </h3></div>
                    </v-card>
                    <div>
                     <v-tabs v-model="active" color="cyan" dark slider-color="yellow">

@@ -11,10 +11,10 @@
         <div class="mr15 minw125">
           <a>{{apps.firstname}} {{apps.lastname}}</a>
         </div>
-        <span class="ti-close" v-on:click="openmodal(apps.id)"></span>
+        <!-- <span class="ti-close" v-on:click="openmodal(apps.id)"></span> -->
       </router-link>
     </div>
-    <div
+    <!-- <div
       v-if="modalopen"
       class="modal fade bs-example-modal-sm show"
       tabindex="-1"
@@ -49,10 +49,8 @@
             >Cancel</button>
           </div>
         </div>
-        <!-- /.modal-content -->
       </div>
-      <!-- /.modal-dialog -->
-    </div>
+    </div> -->
   </div>
 </template>
 
