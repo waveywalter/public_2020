@@ -106,6 +106,9 @@ import { mapState, mapActions } from "vuex";
     import { userService } from '../../_services';
     export default {
         name: "TopHeader",
+        created(){
+             this.getAllTask();
+        },
         data (){
             return {
                 alltasklist:false
@@ -123,7 +126,11 @@ import { mapState, mapActions } from "vuex";
             opentaskmodal(){},
           logout() {
             userService.logout();
-          }
+          },
+              ...mapActions("leads", {
+
+      getAllTask:"getAllTask"
+     }),
         },  
         computed:{...mapState({
 
