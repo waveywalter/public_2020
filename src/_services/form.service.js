@@ -16,7 +16,7 @@ export const formService = {
 // const baseURL="http://localhost:3000/api";
 //const baseURL = 'https://google.com'
 function loco(){
-    console.log('loco')
+    console.log('loco') 
 }
 
 function saveform(formdata) {

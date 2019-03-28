@@ -27,6 +27,9 @@
 <!--END This is left top logo -->
 <ul class="nav navbar-top-links navbar-right pull-right">
   <li class="dropdown">
+    <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#" v-on:click="opentaskmodal()" > <i class=" icon-list"></i> {{taskcount}} Open Task</a>
+  </li>    
+  <li class="dropdown">
     <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#" @click.prevent="logout()"> <i class=" icon-logout"></i> Logout</a>
   </li>
   <li class="dropdown">
@@ -74,13 +77,24 @@
 </template>
 
 <script>
+import { mapState, mapActions } from "vuex";
     import { userService } from '../../_services';
     export default {
         name: "TopHeader",
         methods: {
+            opentaskmodal(){},
           logout() {
             userService.logout();
           }
+        },  
+        computed:{...mapState({
+
+      alltask:state=>state.leads.alltask
+          }),
+          taskcount(){
+              return this.alltask.filter(task=>{return task.status=="new"}).length
+          },
+
         }
     }
 </script>

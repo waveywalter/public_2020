@@ -11,43 +11,50 @@
 <template>
 
                                 <!-- Nav tabs -->
-<div class="vtabs">
-    <ul class="nav nav-tabs tabs-vertical" role="tablist">
-        <li class="nav-item"> <a class="nav-link active show" data-toggle="tab" href="#home4" role="tab" aria-selected="true"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span class="hidden-xs-down">Profile Details</span> </a> </li>
-        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#practice4" role="tab" aria-selected="false"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span class="hidden-xs-down">Practice Details</span> </a> </li>
-        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#profile4" role="tab" aria-selected="false"><span class="hidden-sm-up"><i class="ti-user"></i></span> <span class="hidden-xs-down">Forms</span></a> </li>
-        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#messages4" role="tab" aria-selected="false"><span class="hidden-sm-up"><i class="ti-email"></i></span> <span class="hidden-xs-down">Uploads</span></a> </li>
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-        <div class="tab-pane active" id="home4" role="tabpanel">
-                <affiliateformfields :afid='afid'></affiliateformfields>
-        </div>
-        <div class="tab-pane" id="practice4" role="tabpanel">
-        <practicefields></practicefields>
-        </div>
-        <div class="tab-pane p-20 " id="profile4" role="tabpanel">
-            <div>
-                
-                <div v-if="role=='sales'">
-            <router-link :to="'/sales/affiliate/forms/'+form.id" v-for="(form,index) in forms_list" :key="'fskl'+index" v-if="form.status!='signed' ">
-
-            <a style="margin-right:10px" v-on:click="formloader(form.id)" :value="form.id">{{form.FormTitle}}</a>
-            
-            </router-link>
-            </div> 
-            <div  v-if="role=='affiliate'">
-            <router-link :to="'/affiliates/forms/'+form.id" v-for="(form,index) in forms_list" :key="index" v-if="form.status!='signed' ">
-        
-            <a class="list" style="margin-right:10px" v-on:click="formloader(form.id)" :value="form.id">{{form.FormTitle}}</a>
-            
-            </router-link>
-            </div>
-                <viewer :fid="fid" :phtml="thtml" ></viewer>
-
-            </div>
-        </div>
-        <div class="tab-pane p-20  " id="messages4" role="tabpanel">
+                                <div class="vtabs">
+                                    <ul class="nav nav-tabs tabs-vertical" role="tablist">
+                                        <li class="nav-item"> <a class="nav-link active show" data-toggle="tab" href="#home4" role="tab" aria-selected="true"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span class="hidden-xs-down">Profile Details</span> </a> </li>
+                                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#practice4" role="tab" aria-selected="false"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span class="hidden-xs-down">Practice Details</span> </a> </li>
+                                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#profile4" role="tab" aria-selected="false"><span class="hidden-sm-up"><i class="ti-user"></i></span> <span class="hidden-xs-down">Forms</span></a> </li>
+                                        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#messages4" role="tab" aria-selected="false"><span class="hidden-sm-up"><i class="ti-email"></i></span> <span class="hidden-xs-down">Uploads</span></a> </li>
+                                    </ul>
+                                    <!-- Tab panes -->
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="home4" role="tabpanel">
+                                                <affiliateformfields :afid='afid'></affiliateformfields>
+                                        </div>
+                                        <div class="tab-pane" id="practice4" role="tabpanel">
+                                        <practicefields></practicefields>
+                                        </div>
+                                        <div class="tab-pane p-20 " id="profile4" role="tabpanel">
+                                            <div>
+                                               
+                                                <div v-if="role=='sales'">
+                                            <router-link :to="'/sales/affiliate/forms/'+form.id" v-for="(form,index) in forms_list" :key="'fskl'+index" v-if="form.status!='signed' ">
+                                      
+                                            <a style="margin-right:10px" v-on:click="formloader(form.id)" :value="form.id">{{form.FormTitle}}</a>
+                                            
+                                            </router-link>
+                                            </div> 
+                                            <div v-if="role=='affiliate'">
+                                            <div>
+                                            <h3>    
+                                            <router-link :to="'/affiliates/forms/'+form.id" v-for="(form,index) in forms_list" :key="index" v-if="form.status!='signed' ">
+                                      
+                                            <a style="margin-right:10px" v-on:click="formloader(form.id)" :value="form.id">{{form.FormTitle}}</a>
+                                            
+                                            </router-link>
+                                            </h3>
+                                            <div>
+                                                Form Description/Details/Usage
+                                            </div>
+                                            </div>
+                                         </div>
+                                                <viewer :fid="fid" :phtml="thtml" ></viewer>
+          
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane p-20  " id="messages4" role="tabpanel">
 
             <uploader :afid='afid'></uploader>
         </div>
