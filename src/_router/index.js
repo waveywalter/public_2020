@@ -44,6 +44,8 @@ import createlead from '../components/salesComponents/createlead'
 import createleadpage from '../_pages/createleadpage'
 import affiliateregistrationpage from '../_pages/affiliateregistrationpage'
 import affiliateregistration from '../components/salesComponents/AffiliateRegistration'
+import affiliatespage from '../_pages/affiliatespage'
+import applicationspage from '../_pages/applicationspage'
 
 
 Vue.use(Router);
@@ -172,6 +174,8 @@ export const router = new Router({
         { path: 'myprofile', component: MyProfile },
         { path: '', component: SalesDashBoard },
         { path: 'crm/:id?', component: crm },
+        { path: 'affiliate/:id?', component: affiliatespage },
+        { path: 'applicant/:id?', component: applicationspage },
         { path: ':root/:id?', component: SalesDashBoard },
         { path: '/crmpage', component: crmpage },
         { path: '/createlead', component: createlead },

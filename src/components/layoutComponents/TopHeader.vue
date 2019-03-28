@@ -6,7 +6,7 @@
       </a>
 <!--This is left top logo -->
       <div class="top-left-part">
-          <a class="logo" href="index.html"><b>
+          <a class="logo" href="/index.html"><b>
               <!--This is dark logo icon-->
               <img src="/public/assets/plugins/images/2020iLogoSmall.png" alt="home" class="dark-logo" />
               <!--This is light logo icon-->

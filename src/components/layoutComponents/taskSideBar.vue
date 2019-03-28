@@ -1,51 +1,165 @@
 <template>
-  <div class role>
-    <h3 class="px-2">Task</h3>
-    <h6 class="px-2">My Task</h6>
-    <!-- <button v-on:click="addTask" class="px-2">+ Add Task</button> -->
-    <div id="taskList">
-      <ul>
-        <li>
-          <a href="#">New Lead</a>
-          <p>View profile for James Stone</p>
-        </li>
-        <li>
-          <a href="#">Follow Up</a>
-          <p>Call back Julia Wells</p>
-        </li>
-        <li>
-          <a href="#">Sign Document</a>
-          <p>Sign new required form</p>
-        </li>
-        <li>
-          <a href="#">Follow Up</a>
-          <p>Email applicant Julia Wells</p>
-        </li>
-      </ul>
+  <div class="col-md-4">
+    <div class="white-box todo">
+      <h3 class="box-title">To Do List</h3>
+
+      <div class="row">
+        <perfect-scrollbar>
+          <div class="col-sm-12 col-xs-12">
+            <ul class="list-task list-group" data-role="tasklist">
+              <div class="taskBox">
+                <li class="list-group-item" data-role="task">
+
+                  <div class="wrapper">
+                    <div class="font-icon">
+                      <i class="fas fa-phone">
+                        <span class="line"></span>
+                      </i>
+                    </div>
+
+                    <div class="task-data">
+                      <label for="inputSchedule">
+                        <span class="mainText">Schedule meeting</span>
+                      </label>
+                      <p class="subText">Call Renee Michaels at 1pm</p>
+
+                      <div class="bottom-cal">
+                        <i class="fas fa-calendar"></i>
+                        <i class="fas fa-calendar-o"></i>
+                      </div>
+                    </div>
+
+                    <div class="right-side">
+                      <i class="fa fa-file-text"></i>
+                      <i class="fa fa-trash-o"></i>
+                    </div>
+                  </div>
+
+                                    <div class="wrapper">
+                    <div class="font-icon">
+                      <i class="fas fa-phone">
+                        <span class="line"></span>
+                      </i>
+                    </div>
+
+                    <div class="task-data">
+                      <label for="inputSchedule">
+                        <span class="mainText">Schedule meeting</span>
+                      </label>
+                      <p class="subText">Call Renee Michaels at 1pm</p>
+
+                      <div class="bottom-cal">
+                        <i class="fas fa-calendar"></i>
+                        <i class="fas fa-calendar-o"></i>
+                      </div>
+                    </div>
+
+                    <div class="right-side">
+                      <i class="fa fa-file-text"></i>
+                      <i class="fa fa-trash-o"></i>
+                    </div>
+                  </div>
+                                    <div class="wrapper">
+                    <div class="font-icon">
+                      <i class="fas fa-warning (alias)">
+                        <span class="line"></span>
+                      </i>
+                    </div>
+
+                    <div class="task-data">
+                      <label for="inputSchedule">
+                        <span class="mainText">Schedule meeting</span>
+                      </label>
+                      <p class="subText">Call Renee Michaels at 1pm</p>
+
+                      <div class="bottom-cal">
+                        <i class="fas fa-calendar"></i>
+                        <i class="fas fa-calendar-o"></i>
+                      </div>
+                    </div>
+
+                    <div class="right-side">
+                      <i class="fa fa-file-text"></i>
+                      <i class="fa fa-trash-o"></i>
+                    </div>
+                  </div>
+                                    <div class="wrapper">
+                    <div class="font-icon">
+                      <i class="fas fa-comments">
+                        <span class="line"></span>
+                      </i>
+                    </div>
+
+                    <div class="task-data">
+                      <label for="inputSchedule">
+                        <span class="mainText">Schedule meeting</span>
+                      </label>
+                      <p class="subText">Call Renee Michaels at 1pm</p>
+
+                      <div class="bottom-cal">
+                        <i class="fas fa-calendar"></i>
+                        <i class="fas fa-calendar-o"></i>
+                      </div>
+                    </div>
+
+                    <div class="right-side">
+                      <i class="fa fa-file-text"></i>
+                      <i class="fa fa-trash-o"></i>
+                    </div>
+                  </div>
+
+                </li>
+              </div>
+            </ul>
+          </div>
+        </perfect-scrollbar>
+      </div>
     </div>
   </div>
 </template>
+    <style scoped>
+.wrapper {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: 50px 200px 50px;
+}
+.font-icon {
+  float: left;
+  font-size: 30px;
+  margin-right: 10px;
+  color: dodgerblue;
+  grid-column: 1;
+}
+.line {
+  border-left: solid;
+  margin-left: 10px;
+}
+.task-data {
+  grid-column: 2;
+}
+.right-side {
+  grid-column: 3;
+  display: grid;
+  font-size: 20px;
+}
+.subText {
+  line-height: 1;
+}
+.ps {
+  position: relative;
+  height: 500px;
+  width: 100%;
+}
+.ps__rail-x:hover > .ps__thumb-x,
+.ps__rail-x:focus > .ps__thumb-x,
+.ps__rail-x.ps--clicking .ps__thumb-x {
+  background-color: rgb(156, 1, 1) !important;
+  height: 11px !important;
+}
 
-<script>
-import { mapState, mapActions } from "vuex";
-let user = JSON.parse(localStorage.getItem("user"));
-console.log(user);
-var newNote = document.createElement("span");
-export default {
-  name: "SideBar",
-  data() {
-    return {};
-  },
-  methods: {
-    addTask: function() {
-      document.getElementById("taskList").innerHTML +=
-        '<input style="background-color:white;margin-top:20px " type="text" placeholder="New Note" class="notes">';
-    }
-  }
-};
-</script>
-
-<style scoped>
+.todo {
+  max-height: 565.29px;
+}
 .rightsidebar {
   right: 22px;
   top: 149px;
@@ -57,3 +171,18 @@ export default {
   background: #353c48;
 }
 </style>
+
+
+<script>
+import { mapState, mapActions } from "vuex";
+let user = JSON.parse(localStorage.getItem("user"));
+console.log(user);
+var newNote = document.createElement("span");
+export default {
+  name: "SideBar",
+  data: {
+    return() {}
+  }
+};
+</script>
+

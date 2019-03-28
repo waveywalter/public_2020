@@ -1,32 +1,28 @@
 
 <template>
-    <div id="page-wrapper">
-      <div class="container-fluid">
-        <div class="col-lg">
-          <div class="row bg-title">
-            <h4 class="page-title">New Affiliate</h4>
-          </div>
-              <div class="white-box col-lg-4 col-sm-12">
-
-          <newaffiliate></newaffiliate>
-          </div>
-        </div>
-      </div>
-    </div>
+<div id="page-wrapper">
+  <newaffiliate/>
+  </div>
 </template>
 
 <script>
-import newaffiliate from '../components/salesComponents/NewAffiliateform'
+import newaffiliate from "../components/salesComponents/NewAffiliateform";
 export default {
-    name: 'createadmin',
-    components:{
-        newaffiliate
-    }
-}
+  name: "createadmin",
+  components: {
+    newaffiliate
+  }
+};
 </script>
 
 
 
+<style scoped>
+
+.col-md-4 {
+    float: none;
+}
+</style>
 
 
 

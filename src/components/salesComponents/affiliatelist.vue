@@ -14,6 +14,8 @@
         <span class="ti-close" v-on:click="openmodal(user.id)"></span>
       </router-link>
     </div>
+
+
     <div
       v-if="modalopen"
       class="modal fade bs-example-modal-sm show"
@@ -49,10 +51,10 @@
             >Cancel</button>
           </div>
         </div>
-        <!-- /.modal-content -->
       </div>
-      <!-- /.modal-dialog -->
     </div>
+
+
   </div>
 </template>
 

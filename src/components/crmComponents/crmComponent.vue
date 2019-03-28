@@ -92,10 +92,10 @@ display:flex;}
                   View
                 </router-link>      
     </div>
-    <div> {{lead.phone}} </div>
+    <!-- <div> {{lead.phone}} </div>
     <div> {{lead.email}} </div>
     <div> {{lead.type}} </div>
-    <div> {{lead.notes}} </div>
+    <div> {{lead.notes}} </div> -->
    <!-- <button class="btn btn-primary">Convert to Applicant</button> -->
    </div>
    </div>
@@ -339,7 +339,7 @@ export default{
       this.view="ListView"
     },
     regexLead(leads){
-      console.log( leads.leads.length)
+      console.log( leads.leads)
       let r = leads.leads.filter(lead=>{console.log(lead);return lead.first_name.includes(this.search) })
       if(r.length>0){
         return r

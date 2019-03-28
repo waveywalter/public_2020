@@ -1,5 +1,11 @@
 import Vue from 'vue';
 import VeeValidate from 'vee-validate';
+import PerfectScrollbar from 'vue2-perfect-scrollbar'
+import 'vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css'
+ 
+Vue.use(PerfectScrollbar)
+
+
 
 import { store } from './_store';
 import { router } from './_router';

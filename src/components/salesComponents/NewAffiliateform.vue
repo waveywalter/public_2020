@@ -1,37 +1,15 @@
-<style scoped>
-.col-md-6.col-lg-4.col-sm-12 {
-    flex: 1  1 100%;max-width:100%;
-}
-li {
-    list-style: none;
-}
-.list-group-item:first-child {
-    border-top-left-radius: 0.25rem;
-    border-top-right-radius: 0.25rem;
-}
-.list-group-item:last-child {
-    margin-bottom: 0;
-    border-bottom-right-radius: 0.25rem;
-    border-bottom-left-radius: 0.25rem;
-}
- .list-group-item.router-link-active, .list-group .list-group-item.router-link-active:hover {
-    background: #fb9678;
-    border-color: #fb9678;
-}
-.btn-link, a {
-    color: #ffffff;
-    text-decoration: none;
-}
-.router-link-active{display:none}
-</style>
+
 <template>
-  <div>
-    <div class="row">
-      <div class="col-md-6 col-lg-4 col-sm-12">
-        <div class=" mt-5 ">
-          <h3 class="box-title m-b-5">New Affiliate Applicant</h3>
-          <div class="row">
-            <div class="col-sm-12 col-xs-12">
+
+                <div class="col-md-4">
+                    <div class="white-box">
+                        <h3 class="box-title m-b-0">New Affiliate Form</h3>
+                        <div class="row">
+                            <div class="col-sm-12 col-xs-12">
+
+
+
+
               <form ref="form" @submit.prevent="handleSubmit">
                 <div class="form-group mt-5">
                   <label for="exampleInputuname">First Name</label>
@@ -112,20 +90,25 @@ li {
                   >Submit</button>
                 </div>
               </form>
-              <p v-show="message">{{message}}</p>
-            <div class="smallbox col-sm-12 col-xs-12" v-if="checkroute()">
+
+
+
+              
+              <!-- <p v-show="message">{{message}}</p> -->
+            <!-- <div class="smallbox col-sm-12 col-xs-12" v-if="checkroute()">
             <div class="">
                                         <h4 class="card-title">Applications </h4>
                                         <applicationslist></applicationslist>
                                     </div>
  
-            </div>
+            </div> -->
             </div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
+
+
+
 </template>
 
 <script>
@@ -324,8 +307,3 @@ export default {
 }
 </script>
 
-<style scoped>
- .smallbox{
-   display: none;
- }
-</style>

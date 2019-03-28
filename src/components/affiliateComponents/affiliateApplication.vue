@@ -64,7 +64,7 @@ import { authHeader } from '../../_helpers';
 import { mapState, mapActions } from "vuex";
 export default{
     name:"affiliateApplication",
-    props:["afid"],
+  //  props:["afid"],
     mounted(){
 
             this.getFormsHtml()
@@ -117,6 +117,9 @@ export default{
         
         },
     computed:{
+        afid:function(){
+            return this.$route.params.id
+        },
         role:function(){
             return this.$store.state.account.user.user.role
         },
