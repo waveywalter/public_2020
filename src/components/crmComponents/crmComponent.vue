@@ -2,10 +2,19 @@
 .card-body {
     flex: 1 1 auto;
     padding: 1.25rem;
+}.spiel {
+    position: relative;
+    left: 133px;
+    background-color: white;
+    width: 400px;
+    top: -82px;
+    padding: 10px;
+    border-radius:5px;
 }
 i{
   cursor:pointer
 }
+.heightless{height:0;width:0;}
 .email,.note {
     background-color: white;
     color: black;
@@ -100,7 +109,7 @@ display:flex;}
 
     <div class="card-title"> {{lead.first_name}} {{lead.last_name}} 
      <v-icon v-if="lead.type==='therapist'">face</v-icon><v-icon v-if="lead.type==='medical_professional'">local_hospital</v-icon><v-icon v-if="lead.type==='social_worker'">public</v-icon>
-            <v-icon v-if="newtest(lead.status)" class="newness">fiber_new</v-icon>     <router-link class="view " :key="lead.id"  tag="li" :to="'/sales/crm/'+lead.id" @click.native="loadLead(lead)">
+            <v-icon v-if="newtest(lead.status)" class="newness">fiber_new</v-icon>     <router-link class="view " :key="lead.id"  tag="li" :to="'/sales/crm/'+lead.id" @click.native="changeLead(lead)">
                   View
                 </router-link>      
     </div>
@@ -115,10 +124,10 @@ display:flex;}
  </div>
 <div v-if="view==='LeadView'">
    <div class="flexible">
-     <button class="btn btn-default" v-on:click="openNoteModal=true">Add Notes</button>
-   <button v-on:click="openEmailModal=true" class="btn btn-default">Send Email</button>
+     <button class="btn btn-default hidden" v-on:click="openNoteModal=true">Add Notes</button>
+   <button v-on:click="openEmailModal=true" class="btn btn-default hidden">Send Email</button>
    <button class="btn btn-default">Convert To Affiliate</button>
-  <button  class="btn btn-default"><router-link to ="/crmpage">Back</router-link></button>
+  <button  class="btn btn-default" v-on:click="goBack()">Back</button>
 
    </div>
    <div class="flexible">
@@ -145,7 +154,8 @@ display:flex;}
       :length="6"
        ></v-pagination></div>
       <div class="note" v-for="note in filternote(notes)">
-<v-icon>delete</v-icon><v-icon>edit</v-icon>
+<v-icon>delete</v-icon><v-icon>edit</v-icon><v-icon>message</v-icon>
+
         <h4>Title: {{note.title}}</h4>
         <div>{{note.date_created | moment("dddd, MMMM Do YYYY h:mm ")}}</div>
         <div>{{note.type}} {{note.status}}</div>
@@ -171,7 +181,8 @@ display:flex;}
       <div><h3>Tasks</h3>
        <v-pagination
       v-model="page3"
-      :length="4"
+      :length="tasks.length/5"
+      v-if="tasks.length>6"
        ></v-pagination>
       </div>  
    
@@ -179,20 +190,104 @@ display:flex;}
          <div class="flexible"><div class="mainc">
         <h5><v-icon v-if="task.type=='phone_call'" class="blueg">phone</v-icon> {{task.title}}</h5>
         
-        <div>{{task.date_created | moment("dddd, MMMM Do YYYY")}}</div>
-        <div><v-icon v-if="task.status=='new'" class="blueg">fiber_new</v-icon></div>
+        <div>Created: {{task.date_created | moment("dddd, MMMM Do YYYY")}}</div>
+        <div>Due Date: {{task.due_date | moment("dddd, MMMM Do YYYY")}}</div>
+        <div><v-icon v-if="task.status=='new'" class="blueg">fiber_new</v-icon><v-icon v-if="task.status=='complete'" class="blueg">cloud_done</v-icon></div>
         <div></div>
         </div><div class="icons">
-           <v-icon>done</v-icon><v-icon>delete</v-icon>
+           <v-icon v-on:click="completeTask(task.id)"  v-if="task.status!='complete'">done</v-icon><v-icon >delete</v-icon>
+           <v-icon v-on:click="message_modal==true?message_modal=false:message_modal=true">message</v-icon>
+           <v-icon @click.stop="dialog=true">calendar_today</v-icon>
+        </div>
+           
            </div>
            </div>
+                   <div class="heightless"><div v-if="message_modal" class="spiel">
+  <div  class="">
+                    <div class="white-box todo">
+                        <h3 class="box-title">To Do List</h3>
+                                      
+                        <div class="row">
+                       
+                            <div class="col-sm-12 col-xs-12">
+                        <ul class="list-task list-group" data-role="tasklist">
+                            <li class="list-group-item" data-role="task" :class="{'task-done':selected2.includes('meeting')}" >
+                                <div class="checkbox checkbox-info" >
+                                    <input type="checkbox" id="inputSchedule" name="inputCheckboxesSchedule" @click="taskDone" v-bind:checked="selected2.includes('meeting')" >
+                                    <label for="inputSchedule" > <span >Schedule meeting</span> </label>
+                                </div>
+                            </li>
+                            <li class="list-group-item" data-role="task">
+                                <div class="checkbox checkbox-info">
+                                    <input type="checkbox" id="inputCall" name="inputCheckboxesCall">
+                                    <label for="inputCall"> <span>Give Purchase report</span> <span class="label label-danger">Today</span> </label>
+                                </div>
+                            </li>
+            
+                                
+                            <li class="list-group-item" data-role="task">
+                                <div class="checkbox checkbox-info">
+                                    <input type="checkbox" id="inputBook" name="inputCheckboxesBook">
+                                    <label for="inputBook"> <span>Book flight for holiday</span> </label>
+                                </div>
+                            </li>
+         
+                        </ul>
+                    </div>
+               
+                </div>
+                </div>
+                </div>
+             </div>
       </div>
      </div> 
     </div>
     </div>
    </div>
   </div>
+  <div class="text-xs-center">
+    <v-dialog
+    v-model="dialog"
+      width="500"
 
+
+    >
+
+
+      <v-card>
+        <v-card-title
+          class="headline grey lighten-2"
+          primary-title
+        >
+          Change Date
+        </v-card-title>
+
+        <v-card-text>
+    <v-sheet height="300">
+        <v-calendar
+          ref="calendar"
+          v-model="start"
+          :type="type"
+          :end="end"
+          color="primary"
+        ></v-calendar>
+      </v-sheet> </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="primary"
+            flat
+            @click="dialog = false"
+          >
+            I accept
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </div>
 <div v-if="openNoteModal">
 <div id="responsive-modal" class="modal fade show" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" style="display: block; padding-right: 17px;" aria-modal="true">
 <div class="modal-dialog">
@@ -271,6 +366,9 @@ export default{
       data: {
         
       },
+      dialog:false,
+      calendar_modal:false,
+      message_modal:false,
       openNoteModal:false,
       openEmailModal:false,
       search:'',
@@ -287,8 +385,11 @@ export default{
       gtoken:"",
       tokens:'',
       note_filter:"",
+      currentTask:'',
+          selected2: []
       
-    };
+    
+    }
   },
   computed: {
     ...mapState({
@@ -305,7 +406,10 @@ export default{
     console.log(this.$auth)
    this.gtoken = this.$auth.getToken()
    this.tokens = JSON.parse(this.$auth.storage.getItem("tokens"))
-    this.loadLead()
+   console.log(this.$route.params.id)
+   if(this.$route.params.id!=undefined){
+     this.loadLead()
+     }
    },
   created() {
       console.log("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC")
@@ -316,17 +420,43 @@ export default{
     let _this = this;
     //fetch("https://2020i.site/api2/leads/"+this.$route.params.id).then(res=>{return res.json()}).then(json=>{console.log(json);_this.loadLead(json)})
     this.getLeadById(this.$route.params.id)
-    this.getAllTask();
+    
    //console.log(this)
    //let ls  = this.leads.leads.filter(lead=>{return lead.id==this.$route.params.id})
  //console.log(ls)
     
    }
-
+    this.getAllTask();
   },
   components: {
   },
   methods: {
+    test(e){
+      console.log(e)
+    },
+    taskDone(){
+      
+      this.selected2.includes('meeting') ? this.selected2.splice(this.selected2.indexOf('meeting'), 1) : this.selected2.push('meeting');
+      console.log(this.selected2)
+    },
+                goBack(){
+                this.$router.go(-1)
+                console.log(this)
+                this.view="ListView"
+            },
+    completeTask(id){
+        console.log(id)
+      fetch('/api2/tasks/'+id,{
+        method:"PATCH",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({status:"complete"})
+      })
+      this.getAllTask();
+      let g = this.currentLead;
+      g.filter = {};
+      this.getNotes(g);
+      console.log("RELAD SCREEEEENNNNNNNN")
+    },
       jsUcfirst(string) 
 {
     return string.charAt(0).toUpperCase() + string.slice(1);
@@ -371,6 +501,13 @@ export default{
       
       data.filter = {"name":null};
      this.createTask(data)
+    },
+    changeLead(lead){
+      console.log("CHANGE LEAD")
+      console.log(lead)
+      this.getLeadById(lead.id) 
+      this.loadLead()
+      
     },
     loadLead(){
         console.log("LUXXXXXXXXXXXXXXXXXXXXX")

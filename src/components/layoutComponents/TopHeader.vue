@@ -27,7 +27,32 @@
 <!--END This is left top logo -->
 <ul class="nav navbar-top-links navbar-right pull-right">
   <li class="dropdown">
-    <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#" v-on:click="opentaskmodal()" > <i class=" icon-list"></i> {{taskcount}} Open Task</a>
+    <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#" v-on:click="alltasklist=true" > <i class=" icon-list"></i> {{taskcount}} Open Task
+    <div data-v-0f0d4343="" class="notify" v-if="taskcount>0"><span data-v-0f0d4343="" class="heartbit"></span><span data-v-0f0d4343="" class="point"></span></div></a>
+
+<div class="modal fade bs-example-modal-sm show" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" style="display: block; padding-right: 17px;" aria-modal="true" v-if="alltasklist">
+                                    <div class="modal-dialog modal-sm">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title" id="mySmallModalLabel">Open Task List</h4>
+                                                <button type="button" class="close" data-dismiss="modal" @click="alltasklist=false" aria-hidden="true">×</button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div>
+                                                    <ul class="list-group">
+                                                        <li class="list-item" v-for="task in $store.state.leads.alltask.filter(task=>{return task.status=='new'})">
+                                                           <router-link class="newtask view " :key="task.id"  tag="li" :to="'/sales/crm/'+task.leadId" @click.native="loadLead(task)">
+                  {{task.title}}
+                </router-link> 
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                 </div>
+                                        </div>
+                                        <!-- /.modal-content -->
+                                    </div>
+                                    <!-- /.modal-dialog -->
+                                </div>
   </li>    
   <li class="dropdown">
     <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#" @click.prevent="logout()"> <i class=" icon-logout"></i> Logout</a>
@@ -81,7 +106,20 @@ import { mapState, mapActions } from "vuex";
     import { userService } from '../../_services';
     export default {
         name: "TopHeader",
+        data (){
+            return {
+                alltasklist:false
+            }
+        },
         methods: {
+            loadLead(task){
+                /*$refs.crm.changeLead($store.state.leads.leads.filter(lead=>{return lead.id==task.leadId})[0]) */
+                console.log(this)
+                this.alltasklist=false
+                this.$parent.$children[2].changeLead(this.$store.state.leads.leads.filter(lead=>{return lead.id==task.leadId})[0])
+                    
+
+            },
             opentaskmodal(){},
           logout() {
             userService.logout();
@@ -100,5 +138,8 @@ import { mapState, mapActions } from "vuex";
 </script>
 
 <style scoped>
-
+.newtask.view{
+    float:none;
+    cursor:pointer;
+}
 </style>

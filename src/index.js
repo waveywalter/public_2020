@@ -40,7 +40,15 @@ import Vuetify,{
     
     VApp,
     VPagination,
-    VIcon
+    VIcon ,
+    VDialog,
+    VButton,
+    VCard,
+    VCardTitle,
+    VSlot,
+    VCalendar,
+    VSheet
+
 
   } from 'vuetify/lib'
   import VueAxios from 'vue-axios'
@@ -56,7 +64,16 @@ Vue.use(Vuetify, {
   components: {
     VApp,
     VPagination,
-    VIcon
+    VIcon,
+    VDialog,
+    VButton,
+    VCard,
+    VCardTitle,
+    VSlot,
+    VCalendar,
+    VSheet
+
+
   },
   directives: {
   //  Ripple

@@ -25,7 +25,7 @@
                     </li>
                     <li> <a href="javascript:void(0);" class="waves-effect"><i class="linea-icon linea-basic fa-fw " data-icon="7"></i> <span class="hide-menu "> Components <span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
-                            <li> <router-link to="crmpage">CRM</router-link></li>
+                            <li> <router-link to="/crmpage">CRM</router-link></li>
                             <li> <router-link to="newaffiliatepage">Create Affiliate</router-link></li>
                             <li> <router-link to="createleadpage">Create Lead</router-link></li>
                             <li> <router-link to="affiliateregistrationpage">Approve Applicants</router-link></li>

@@ -20,10 +20,10 @@
                 <div class="affiliateBox white-box">
                   <NewAffiliateform/>
                 </div>
-                <div class="leadBox white-box">
+                <div class="leadBox white-box  hide hidden">
                   <Createlead/>
                 </div>
-                <div class="taskBox white-box">
+                <div class="taskBox white-box  hide hidden">
                   <taskSideBar/>
                 </div>
                 <div class="registrationBox fill-content">
