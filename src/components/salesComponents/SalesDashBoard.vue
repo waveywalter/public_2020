@@ -19,7 +19,7 @@
           <div class="row">
             <NewAffiliateform/>
             <!-- <Createlead/> -->
-            <!-- <taskSideBar></taskSideBar> -->
+             <taskSideBar></taskSideBar> 
           </div>
 
           <div class="row">

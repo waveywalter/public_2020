@@ -8,9 +8,9 @@
           <div class="col-sm-12 col-xs-12">
             <ul class="list-task list-group" data-role="tasklist">
               <div class="taskBox">
-                <li class="list-group-item" data-role="task">
+                <li class="list-group-item" data-role="task" v-for="task in ctasklist">
 
-                  <div class="wrapper">
+                                                        <div class="wrapper">
                     <div class="font-icon">
                       <i class="fas fa-phone">
                         <span class="line"></span>
@@ -19,9 +19,11 @@
 
                     <div class="task-data">
                       <label for="inputSchedule">
-                        <span class="mainText">Schedule meeting</span>
+                        <span class="mainText">{{task.title}}</span>
                       </label>
-                      <p class="subText">Call Renee Michaels at 1pm</p>
+                      <p class="subText" v-html="task.content"></p>
+                      <p class="subText">Created: {{task.date_created}}</p>
+                      <p class="subText">Due By: {{task.due_date}}</p>
 
                       <div class="bottom-cal">
                         <i class="fas fa-calendar"></i>
@@ -35,78 +37,6 @@
                     </div>
                   </div>
 
-                                    <div class="wrapper">
-                    <div class="font-icon">
-                      <i class="fas fa-phone">
-                        <span class="line"></span>
-                      </i>
-                    </div>
-
-                    <div class="task-data">
-                      <label for="inputSchedule">
-                        <span class="mainText">Schedule meeting</span>
-                      </label>
-                      <p class="subText">Call Renee Michaels at 1pm</p>
-
-                      <div class="bottom-cal">
-                        <i class="fas fa-calendar"></i>
-                        <i class="fas fa-calendar-o"></i>
-                      </div>
-                    </div>
-
-                    <div class="right-side">
-                      <i class="fa fa-file-text"></i>
-                      <i class="fa fa-trash-o"></i>
-                    </div>
-                  </div>
-                                    <div class="wrapper">
-                    <div class="font-icon">
-                      <i class="fas fa-warning (alias)">
-                        <span class="line"></span>
-                      </i>
-                    </div>
-
-                    <div class="task-data">
-                      <label for="inputSchedule">
-                        <span class="mainText">Schedule meeting</span>
-                      </label>
-                      <p class="subText">Call Renee Michaels at 1pm</p>
-
-                      <div class="bottom-cal">
-                        <i class="fas fa-calendar"></i>
-                        <i class="fas fa-calendar-o"></i>
-                      </div>
-                    </div>
-
-                    <div class="right-side">
-                      <i class="fa fa-file-text"></i>
-                      <i class="fa fa-trash-o"></i>
-                    </div>
-                  </div>
-                                    <div class="wrapper">
-                    <div class="font-icon">
-                      <i class="fas fa-comments">
-                        <span class="line"></span>
-                      </i>
-                    </div>
-
-                    <div class="task-data">
-                      <label for="inputSchedule">
-                        <span class="mainText">Schedule meeting</span>
-                      </label>
-                      <p class="subText">Call Renee Michaels at 1pm</p>
-
-                      <div class="bottom-cal">
-                        <i class="fas fa-calendar"></i>
-                        <i class="fas fa-calendar-o"></i>
-                      </div>
-                    </div>
-
-                    <div class="right-side">
-                      <i class="fa fa-file-text"></i>
-                      <i class="fa fa-trash-o"></i>
-                    </div>
-                  </div>
 
                 </li>
               </div>
@@ -117,7 +47,7 @@
     </div>
   </div>
 </template>
-    <style scoped>
+<style scoped>
 .wrapper {
   display: grid;
   grid-gap: 10px;
@@ -180,8 +110,28 @@ console.log(user);
 var newNote = document.createElement("span");
 export default {
   name: "SideBar",
-  data: {
-    return() {}
+  computed:{
+        ...mapState({
+
+      ctasklist: state => state.leads.alltask.filter(task=>{return task.status=="new"})
+    }),
+  },
+  data() {
+    return {
+
+        tasklist:[{
+          content:"string",
+date_created:"2019-03-25T19:33:34.081Z",
+due_date:"1554404841544",
+id:"5c992d0e16815d7bb6209621",
+leadId:"5c992c242f52d27613674343",
+status:"complete",
+title:"string",
+type:"string",
+
+        }]
+
+    }
   }
 };
 </script>
