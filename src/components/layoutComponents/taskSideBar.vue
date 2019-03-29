@@ -59,7 +59,7 @@
                       <i class="fa fa-trash-o"></i>
                     </div>
                   </div>
-                                    <div class="wrapper">
+                     <div class="wrapper">
                     <div class="font-icon">
                       <i class="fas fa-comments">
                         <span class="line"></span>

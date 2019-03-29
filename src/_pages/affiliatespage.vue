@@ -2,8 +2,6 @@
     <div>
         <div id="page-wrapper">
                   <div class="container-fluid">
-
-        <h1>Hello World</h1>
         <affiliateApplication/>
         </div>
         </div>
