@@ -113,10 +113,10 @@ display:flex;}
                   View
                 </router-link>      
     </div>
-    <!-- <div> {{lead.phone}} </div>
+    <div> {{lead.phone}} </div>
     <div> {{lead.email}} </div>
     <div> {{lead.type}} </div>
-    <div> {{lead.notes}} </div> -->
+    <div> {{lead.notes}} </div>
    <!-- <button class="btn btn-primary">Convert to Applicant</button> -->
    </div>
    </div>
@@ -250,8 +250,6 @@ display:flex;}
     <v-dialog
     v-model="dialog"
       width="500"
-
-
     >
 
 
