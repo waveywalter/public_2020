@@ -183,7 +183,7 @@
             </div>  -->
             <div id="app-wrapper" :key="listkey" >
               <div>
-                <div class="col-md-6 col-sm-6 mt-6 apps">
+                <div class="">
                   <div class="row">
                     <div class="col-xl-12">
                       <div class="form-group">

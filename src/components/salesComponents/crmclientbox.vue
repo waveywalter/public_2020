@@ -41,11 +41,11 @@
         <div class="col-md-6">
                     <perfect-scrollbar>
             <div v-for="lead in regexLead(leads)">
-              <div class="card-body">
+              <div class="btn btn-default btn-outline showbottom mt-2 card-body .mr15">
                 <div class="card-title">{{lead.first_name}} {{lead.last_name}}</div>
               </div>
             </div>
-                    </perfect-scrollbar>
+         </perfect-scrollbar>
         </div>
       </div>
     </div>
@@ -53,6 +53,11 @@
 </template>
 
 <style scroped>
+.mr15 {
+  margin-right: 15px;
+  text-align: left;
+  width: 100%;
+}
 .icon-people{
     font-size:100px;
 }
