@@ -24,8 +24,8 @@
                       <p class="subText">Call Renee Michaels at 1pm</p>
 
                       <div class="bottom-cal">
-                        <i class="fas fa-calendar"></i>
-                        <i class="fas fa-calendar-o"></i>
+                        <i @click.stop="dialog=true" class="fas fa-calendar"></i>
+                        <i @click.stop="dialog=true" class="fas fa-calendar-o"></i>
                       </div>
                     </div>
 
@@ -35,30 +35,6 @@
                     </div>
                   </div>
 
-                                    <div class="wrapper">
-                    <div class="font-icon">
-                      <i class="fas fa-phone">
-                        <span class="line"></span>
-                      </i>
-                    </div>
-
-                    <div class="task-data">
-                      <label for="inputSchedule">
-                        <span class="mainText">Schedule meeting</span>
-                      </label>
-                      <p class="subText">Call Renee Michaels at 1pm</p>
-
-                      <div class="bottom-cal">
-                        <i class="fas fa-calendar"></i>
-                        <i class="fas fa-calendar-o"></i>
-                      </div>
-                    </div>
-
-                    <div class="right-side">
-                      <i class="fa fa-file-text"></i>
-                      <i class="fa fa-trash-o"></i>
-                    </div>
-                  </div>
                                     <div class="wrapper">
                     <div class="font-icon">
                       <i class="fas fa-warning (alias)">
@@ -112,6 +88,52 @@
               </div>
             </ul>
           </div>
+
+
+ <div class="text-xs-center">
+    <v-dialog
+    v-model="dialog"
+      width="500"
+    >
+
+
+      <v-card>
+        <v-card-title
+          class="headline grey lighten-2"
+          primary-title
+        >
+          Change Date
+        </v-card-title>
+
+        <v-card-text>
+    <v-sheet height="300">
+        <v-calendar
+          ref="calendar"
+          v-model="start"
+          :type="type"
+          :end="end"
+          color="primary"
+        ></v-calendar>
+      </v-sheet> </v-card-text>
+
+        <v-divider></v-divider>
+
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn
+            color="primary"
+            flat
+            @click="dialog = false"
+          >
+            I accept
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+  </div>
+
+
+
         </perfect-scrollbar>
       </div>
     </div>
@@ -180,8 +202,13 @@ console.log(user);
 var newNote = document.createElement("span");
 export default {
   name: "SideBar",
-  data: {
-    return() {}
+  data(){
+    return{
+      data:{
+
+      },
+      dialog:false
+    }
   }
 };
 </script>
