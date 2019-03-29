@@ -153,6 +153,7 @@
     padding-bottom: 20px;
     padding-left: 2px;
     background-color: #3c4452;
+    padding: 10px;
 }
 .font-icon {
   float: left;
