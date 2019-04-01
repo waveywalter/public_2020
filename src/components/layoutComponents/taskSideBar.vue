@@ -37,30 +37,8 @@
                     </div>
                   </div>
 
-                                    <div class="wrapper">
-                    <div class="font-icon">
-                      <i class="fas fa-warning (alias)">
-                        <span class="line"></span>
-                      </i>
-                    </div>
 
-                    <div class="task-data">
-                      <label for="inputSchedule">
-                        <span class="mainText">Schedule meeting</span>
-                      </label>
-                      <p class="subText">Call Renee Michaels at 1pm</p>
 
-                      <div class="bottom-cal">
-                        <i class="fas fa-calendar"></i>
-                        <i class="fas fa-calendar-o"></i>
-                      </div>
-                    </div>
-
-                    <div class="right-side">
-                      <i class="fa fa-file-text"></i>
-                      <i class="fa fa-trash-o"></i>
-                    </div>
-                  </div>
                      <div class="wrapper">
                     <div class="font-icon">
                       <i class="fas fa-comments">
@@ -75,8 +53,8 @@
                       <p class="subText">Call Renee Michaels at 1pm</p>
 
                       <div class="bottom-cal">
-                        <i class="fas fa-calendar"></i>
-                        <i class="fas fa-calendar-o"></i>
+                        <i @click.stop="dialog=true" class="fas fa-calendar"></i>
+                        <i @click.stop="dialog=true" class="fas fa-calendar-o"></i>
                       </div>
                     </div>
 
@@ -201,6 +179,10 @@
   padding-top: 60px;
   height: 59%;
   background: #353c48;
+}
+.bottom-cal {
+    display: flex;
+    justify-content: space-evenly;
 }
 </style>
 

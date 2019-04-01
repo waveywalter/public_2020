@@ -66,7 +66,9 @@
         <div class="list-group">
 
           <div v-if="role=='sales'">
-            <router-link
+
+            
+            <!-- <router-link
               :to="'/sales/affiliate/forms/'+form.id"
               v-for="(form,index) in forms_list"
               :key="'fskl'+index"
@@ -77,7 +79,19 @@
                 v-on:click="formloader(form.id)"
                 :value="form.id"
               >{{form.FormTitle}}</a>
-            </router-link>
+            </router-link> -->
+
+<div class="list-group">
+<a class="list-group-item" href="https://2020i.site/sales/affiliate/forms/5c769decad45e43584144c28" >027 SexualHarrass-EEOC P&P <span class="btn btn-success btn-rounded">Completed</span> </a>
+<a class="list-group-item" href="https://2020i.site/sales/affiliate/forms/5c7ed0bd577bf47e8e4d0669">ACCIDENT REPORTING PROCEDURE <span class="btn btn-success btn-rounded">Completed</span> </a>
+<a class="list-group-item" href="https://2020i.site/sales/affiliate/forms/5c7683cead45e43584144c20">VARIOUS THE WAVE INTERNATIONAL, LLC POLICIES AND PROCEDURES <span class="btn btn-danger btn-rounded">Not Completed</span> </a>
+<a class="list-group-item" href="https://2020i.site/sales/affiliate/forms/5c7fe5e3577bf47e8e4d0677">TB Status Review <span class="btn btn-warning btn-rounded">Not Eligible</span> </a>
+<a class="list-group-item" href="https://2020i.site/sales/affiliate/forms/5c7fcced577bf47e8e4d0670">HEALTH SCREEN FORM <span class="btn btn-default btn-rounded">In Progress</span> </a>
+<a class="list-group-item" href="https://2020i.site/sales/affiliate/forms/5c7fe19f577bf47e8e4d0675">CODE OF ETHICS AND STANDARDS OF CONDUCT <span class="btn btn-success btn-rounded">Complete</span> </a>
+<a class="list-group-item" href="https://2020i.site/sales/affiliate/forms/5c75875ead45e43584144c1b">TERMS OF EMPLOYMENT STATEMENT <span class="btn btn-success btn-rounded">Complete</span> </a>
+</div>
+
+
           </div>
           <div v-if="role=='affiliate'">
             <div>
