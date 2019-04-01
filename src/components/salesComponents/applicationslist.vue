@@ -8,8 +8,9 @@
         :to="'/sales/applicant/'+apps.id"
         @click.native="updateId(apps.id)"
       >
-        <div class="mr15 minw125">
+        <div class=" btn btn-default btn-outline showbottom mr15 minw125">
           <a>{{apps.firstname}} {{apps.lastname}}</a>
+          <i class="fas fa-phone"></i>
         </div>
         <!-- <span class="ti-close" v-on:click="openmodal(apps.id)"></span> -->
       </router-link>
@@ -702,13 +703,20 @@ Array.prototype.last = function() {
 };
 </script>
 <style >
+.fas {
+    font-weight: 900;
+    float: right;
+}
 .minw125 {
   min-width: 125px;
   display: inline-block;
+  width:100%;
 }
 .mr15 {
   margin-right: 15px;
-}
+  text-align: left;
+  width: 100%;
+  }
 .list-group-item {
   border: 0px !important;
 }

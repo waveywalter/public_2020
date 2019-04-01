@@ -12,7 +12,7 @@
 import AffReg from "../components/salesComponents/AffiliateRegistration";
 
 export default {
-  name: "ownerHome",
+  name: "applicationspage",
   components: {
     AffReg
   }

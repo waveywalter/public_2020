@@ -10,7 +10,7 @@
               <div class="taskBox">
                 <li class="list-group-item" data-role="task" v-for="task in ctasklist">
 
-                                                        <div class="wrapper">
+                     <div class="wrapper">
                     <div class="font-icon">
                       <i class="fas fa-phone">
                         <span class="line"></span>
@@ -50,17 +50,7 @@
                       </label>
                       <p class="subText">Call Renee Michaels at 1pm</p>
 
-                      <div class="bottom-cal">
-                        <i class="fas fa-calendar"></i>
-                        <i class="fas fa-calendar-o"></i>
-                      </div>
-                    </div>
 
-                    <div class="right-side">
-                      <i class="fa fa-file-text"></i>
-                      <i class="fa fa-trash-o"></i>
-                    </div>
-                  </div>
                      <div class="wrapper">
                     <div class="font-icon">
                       <i class="fas fa-comments">
@@ -75,8 +65,8 @@
                       <p class="subText">Call Renee Michaels at 1pm</p>
 
                       <div class="bottom-cal">
-                        <i class="fas fa-calendar"></i>
-                        <i class="fas fa-calendar-o"></i>
+                        <i @click.stop="dialog=true" class="fas fa-calendar"></i>
+                        <i @click.stop="dialog=true" class="fas fa-calendar-o"></i>
                       </div>
                     </div>
 
@@ -146,6 +136,14 @@
   display: grid;
   grid-gap: 10px;
   grid-template-columns: 50px 200px 50px;
+      border-style: solid;
+    border-width: 1px;
+    margin-bottom: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 2px;
+    background-color: #3c4452;
+    padding: 10px;
 }
 .font-icon {
   float: left;
@@ -193,6 +191,10 @@
   padding-top: 60px;
   height: 59%;
   background: #353c48;
+}
+.bottom-cal {
+    display: flex;
+    justify-content: space-evenly;
 }
 </style>
 

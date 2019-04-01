@@ -54,9 +54,7 @@ padding:0;
     color:white;
 }
 div#meta {
- 
     width: -webkit-fill-available;
-
 }
 .modal-open .modal {
     overflow-x: hidden;
@@ -103,13 +101,11 @@ display:flex;}
   <div class="leadHolder">
 
   <div v-for="lead in regexLead(leads)" class="card col-lg-3 col-md-6">
-    
-
     <div :class="'card-body basic  '+lead.status">
-
     <div class="card-title"> {{lead.first_name}} {{lead.last_name}} 
      <v-icon v-if="lead.type==='therapist'">face</v-icon><v-icon v-if="lead.type==='medical_professional'">local_hospital</v-icon><v-icon v-if="lead.type==='social_worker'">public</v-icon>
-            <v-icon v-if="newtest(lead.status)" class="newness">fiber_new</v-icon>     <router-link class="view " :key="lead.id"  tag="li" :to="'/sales/crm/'+lead.id" @click.native="changeLead(lead)">
+            <v-icon v-if="newtest(lead.status)" class="newness">fiber_new</v-icon>     
+            <router-link class="view " :key="lead.id"  tag="li" :to="'/sales/crm/'+lead.id" @click.native="changeLead(lead)">
                   View
                 </router-link>      
     </div>
