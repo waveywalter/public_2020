@@ -11,7 +11,8 @@
 <template>
 
                                 <!-- Nav tabs -->
-                                <div class="vtabs">
+                              <div class="vtabs">
+                       
                                     <ul class="nav nav-tabs tabs-vertical" role="tablist">
                                         <li class="nav-item"> <a class="nav-link active show" data-toggle="tab" href="#home4" role="tab" aria-selected="true"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span class="hidden-xs-down">Profile Details</span> </a> </li>
                                         <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#practice4" role="tab" aria-selected="false"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span class="hidden-xs-down">Practice Details</span> </a> </li>
@@ -21,6 +22,7 @@
                                     <!-- Tab panes -->
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="home4" role="tabpanel">
+
                                                 <affiliateformfields :afid='afid'></affiliateformfields>
                                         </div>
                                         <div class="tab-pane" id="practice4" role="tabpanel">
@@ -50,6 +52,7 @@
                                             </div>
                                             </div>
                                          </div>
+                                                
                                                 <viewer :fid="fid" :phtml="thtml" ></viewer>
           
                                             </div>
@@ -74,13 +77,21 @@ export default{
   //  props:["afid"],
     mounted(){
 
+        if(this.$root._route.params.id){
+            console.log("LOAD DATA")
+        }
             this.getFormsHtml()
         },
     created(){
+        this.getAllUsers({role:"affiliate"})
          this.getUserForms(this.afid)
        
         },
     methods:{
+            ...mapActions("users", {
+      getAllUsers: "getAll",
+      deleteUser: "delete"
+    }),
            ...mapActions("form", ["getformbyid", "updateform","getforms", "deleteform","attachUserToForm","getUserForms"]),
            formloader(e){
                console.log(e)
@@ -124,8 +135,15 @@ export default{
         
         },
     computed:{
-        afid:function(){
-            return this.$route.params.id
+            ...mapState({
+      account: state => state.account,
+      users: state => state.users.all
+    }),
+        afid:{
+                           get:function(){ return this.$root._route.params.id },
+                set:function(value){
+                    this.afid = value
+                }
         },
         role:function(){
             return this.$store.state.account.user.user.role

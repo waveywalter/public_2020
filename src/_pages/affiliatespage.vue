@@ -1,6 +1,7 @@
 <template>
     <div>
         <div id="page-wrapper">
+         
                   <div class="container-fluid">
         <affiliateApplication/>
         </div>

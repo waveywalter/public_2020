@@ -6,7 +6,7 @@
         :key="user.id"
         tag="li"
         :to="'/sales/affiliate/'+user.id"
-        @click.native="updateId(user.id)"
+        @click.native=""
       >
         <div class="mr15 minw125">
           <a>{{user.firstname}} {{user.lastname}}</a>
@@ -78,7 +78,7 @@ export default {
     },
     getrecord(id) {
       this.cid = id;
-      if (id != undefined) {
+   /*   if (id != undefined) {
         fetch("https://2020i.site/api/applications/" + id, {
           method: "GET",
           headers: { "Content-Type": "application/json; charset=utf-8" }
@@ -93,6 +93,7 @@ export default {
             }
           });
       }
+      */
     },
     ...mapActions("users", {
       getAllUsers: "getAll",

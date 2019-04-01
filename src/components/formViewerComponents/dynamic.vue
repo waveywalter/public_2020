@@ -6,6 +6,9 @@ export default {
   name:"dynamic",
 props: ['template','fid'],
 mounted(){
+       this.user = this.currentUser();
+      console.log("USERRRRRRRRRRRRRRRRRRRRRRRRRRRRRR")
+     console.log(this.user)
 },
 components:{printer},
 data() {
@@ -18,10 +21,15 @@ data() {
       error_on:false,
       formID:'',
       formAuthed:false,
-      printer_off:true
+      printer_off:true,
+      user:{}
     };
   },
 methods:{
+  currentUser(){
+
+    return this.$store.state.users.current
+  },
   print(){
     this.$htmlToPaper('printarea');
   },
@@ -113,6 +121,7 @@ methods:{
   },
   getAuth(){
       console.log(this)
+
       let authDetails = {
           userid:this.$store.state.account.user.user.id,
           formId:this.$store.state.account.formid,
