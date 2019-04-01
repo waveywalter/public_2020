@@ -1,5 +1,7 @@
 <template>
     <div>
+   
+       <div class="hide">{{user}}</div>
         <form>
         <div class="form-body form-material">
    
@@ -115,7 +117,7 @@
 
 </template>
 <script>
-
+import { mapState, mapActions } from "vuex";
     export default {
         name: "affiliateformfields",
         props :["afid"],
@@ -125,10 +127,23 @@
                 
             }
         },
+            created(){
+        this.getAllUsers({role:"affiliate"})
+        this.user
+        // this.getUserForms(this.afid)
+       
+        },
+
         computed:{
             user: function(){
+                console.log(this.$store.state.users.all.items)
+                console.log(this.afid)
+                if( this.$store.state.users.all.items != undefined){
                 if(this.$store.state.account.user.user.role=="sales") return this.$store.state.users.all.items.filter(aff=>{return aff.id===this.afid})
+
                 return [this.$store.state.account.user.user]
+                }
+                return []
             },
             firstname:{
                     get: function () {
@@ -176,6 +191,11 @@
             }
 
         },
+            methods:{
+            ...mapActions("users", {
+      getAllUsers: "getAll",
+      deleteUser: "delete"
+    })},
         components: {
 
         }

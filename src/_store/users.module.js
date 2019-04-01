@@ -2,6 +2,8 @@ import { userService } from '../_services';
 
 const state = {
     all: {},
+    current:{},
+    afid:""
     
 };
 

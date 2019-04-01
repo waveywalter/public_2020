@@ -21,9 +21,9 @@
                       <label for="inputSchedule">
                         <span class="mainText">{{task.title}}</span>
                       </label>
-                      <p class="subText" v-html="task.content"></p>
-                      <p class="subText">Created: {{task.date_created}}</p>
-                      <p class="subText">Due By: {{task.due_date}}</p>
+                      <p class="subText" v-html="`<a href='`+returnUrl(task.content)+`'>View Lead</a>`"></p>
+                      <p class="subText">Created: {{task.date_created | moment("dddd, MMMM Do YYYY h:mm ")}}</p>
+                      <p class="subText">Due By: {{task.due_date | moment("dddd, MMMM Do YYYY h:mm ")}}</p>
 
                       <div class="bottom-cal">
                         <i @click.stop="dialog=true" class="fas fa-calendar"></i>
@@ -37,6 +37,18 @@
                     </div>
                   </div>
 
+                   <!--                 <div class="wrapper">
+                    <div class="font-icon">
+                      <i class="fas fa-warning (alias)">
+                        <span class="line"></span>
+                      </i>
+                    </div>
+
+                    <div class="task-data">
+                      <label for="inputSchedule">
+                        <span class="mainText">Schedule meeting</span>
+                      </label>
+                      <p class="subText">Call Renee Michaels at 1pm</p>
 
 
                      <div class="wrapper">
@@ -62,7 +74,7 @@
                       <i class="fa fa-file-text"></i>
                       <i class="fa fa-trash-o"></i>
                     </div>
-                  </div>
+                  </div> -->
 
                 </li>
               </div>
@@ -194,18 +206,25 @@ console.log(user);
 var newNote = document.createElement("span");
 export default {
   name: "SideBar",
+  methods:{
+        returnUrl(text){
+      console.log(typeof text)
+      return text.slice(12)
+    },
+  },
   computed:{
+
         ...mapState({
 
       ctasklist: state => state.leads.alltask.filter(task=>{return task.status=="new"})
     }),
   },
   data() {
-    return {
 
-dialog:false,
-tasklist:[{
-content:"string",
+    return {
+    
+        tasklist:[{
+          content:"string",
 date_created:"2019-03-25T19:33:34.081Z",
 due_date:"1554404841544",
 id:"5c992d0e16815d7bb6209621",
@@ -214,7 +233,18 @@ status:"complete",
 title:"string",
 type:"string",
 
-        }]
+        }],
+              type: 'month',
+      start: '2019-01-01',
+      end: '2019-01-06',
+      typeOptions: [
+        { text: 'Day', value: 'day' },
+        { text: '4 Day', value: '4day' },
+        { text: 'Week', value: 'week' },
+        { text: 'Month', value: 'month' },
+        { text: 'Custom Daily', value: 'custom-daily' },
+        { text: 'Custom Weekly', value: 'custom-weekly' }
+      ]
 
     }
   }
