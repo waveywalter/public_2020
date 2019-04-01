@@ -12,7 +12,7 @@
 import affiliateApplication from '../components/affiliateComponents/affiliateApplication'
 
     export default {
-        name: "ownerHome",
+        name: "affiliatespage",
         components: {
             affiliateApplication
         }
