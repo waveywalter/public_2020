@@ -10,7 +10,7 @@
               <div class="taskBox">
                 <li class="list-group-item" data-role="task" v-for="task in ctasklist">
 
-                                                        <div class="wrapper">
+                     <div class="wrapper">
                     <div class="font-icon">
                       <i class="fas fa-phone">
                         <span class="line"></span>
@@ -221,8 +221,9 @@ export default {
   data() {
     return {
 
-        tasklist:[{
-          content:"string",
+dialog:false,
+tasklist:[{
+content:"string",
 date_created:"2019-03-25T19:33:34.081Z",
 due_date:"1554404841544",
 id:"5c992d0e16815d7bb6209621",
