@@ -2,9 +2,9 @@
   <div class="col-md-4">
     <div class="white-box">
     <h3 class="box-title">Current Affiliates</h3>
-              <perfect-scrollbar>
-      <div class="">
-          <div class="white-box ml-5 ">
+      <perfect-scrollbar>
+       <div class="">
+        <div class="white-box ml-5 ">
                       
 
             <!-- <div v-if="this.$root._route.params.root=='applicant'">
