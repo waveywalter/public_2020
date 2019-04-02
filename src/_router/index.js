@@ -170,7 +170,7 @@ export const router = new Router({
     {
       path: '/sales', component: salesHome,
       children: [
-        { path: ':root/forms/:id', component: affiliatespage },
+        { path: ':root/forms/:fid', component: affiliatespage },
         { path: 'myprofile', component: MyProfile },
         { path: '', component: SalesDashBoard },
         { path: 'crm/:id?', component: crm },

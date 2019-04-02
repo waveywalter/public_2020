@@ -4,11 +4,8 @@ import printer from "vue-printer";
 var staticRenderFns = [];
 export default {
   name:"dynamic",
-props: ['template','fid'],
+props: ['template','fid','user'],
 mounted(){
-       this.user = this.currentUser();
-      console.log("USERRRRRRRRRRRRRRRRRRRRRRRRRRRRRR")
-     console.log(this.user)
 },
 components:{printer},
 data() {
@@ -21,15 +18,10 @@ data() {
       error_on:false,
       formID:'',
       formAuthed:false,
-      printer_off:true,
-      user:{}
+      printer_off:true
     };
   },
 methods:{
-  currentUser(){
-
-    return this.$store.state.users.current
-  },
   print(){
     this.$htmlToPaper('printarea');
   },
@@ -39,7 +31,7 @@ methods:{
       let code= this.authcode;
       let formid = this.$store.state.account.formid;
       let sformid = this.$store.state.form.current_signed_form
-      let userid = this.$store.state.account.user.user.id;
+      let userid = this.user[0].id;
       let authDetails ={
           formid:formid,
           userid:userid,
@@ -104,7 +96,7 @@ methods:{
               }
               console.log(d)
           //STORE AUTH META DATA WITH FORM
-        fetch('/api/wsers/'+this.$store.state.account.user.user.id+'/signedforms/'+sformid+'?access_token='+this.$store.state.account.user.id,{
+        fetch('/api/wsers/'+this.user[0].id+'/signedforms/'+sformid+'?access_token='+this.$store.state.account.user.id,{
                     method:"PUT",
            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(d)   
@@ -121,13 +113,12 @@ methods:{
   },
   getAuth(){
       console.log(this)
-
       let authDetails = {
-          userid:this.$store.state.account.user.user.id,
+          userid:this.user[0].id,
           formId:this.$store.state.account.formid,
           //change formid to clicked value
-          phone:this.$store.state.account.user.user.phone,
-          email:this.$store.state.account.user.user.email,
+          phone:this.user[0].phone,
+          email:this.user[0].email,
           url:this.$route.path
       };
       
@@ -137,7 +128,7 @@ methods:{
             method:"POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(authDetails)
-      }).then(res=>res.json()).then(json=>{console.log(json);this.$store.state.account.authCodeId=json.id;console.log(this.$store.state)})
+      }).then(res=>{console.log(res);return res.json()}).then(json=>{console.log(json);this.$store.state.account.authCodeId=json.id;console.log(this.$store.state)})
       this.unsent= false;
       //save auth id to user model
       //this.$store.state.account.user.authCodeId = 
@@ -171,15 +162,21 @@ watch: {
         console.log(status[0])
         this.formAuthed = false;
         if(status[0].status==true){
-          
+          console.log("CUREENT USER")
+          console.log(this.user)
+          let p = this.user[0];
+          let pf = p.firstname;
+          let pl = p.lastname;
+          let pp = p.phone;
           this.$store.state.form.current_signed_form = status[0].id
           let new_html = this.template.FormContent.replace(/\<input/g ,"<input disabled ")
+           new_html = new_html.replace("[employee.name]" , pf+" "+pl)
           html ="<div class='former'><h3>Already Signed</h3> <button class='btn btn-default' v-on:click='print'>Print</button>"+
           "<div id='printarea'><h3 >"+this.template.FormTitle+"</h3>"+
           new_html+"<div class='error' v-if='error_on'>{{error}}</div>"+
-          "<div>Signed By:"+this.$store.state.account.user.user.firstname+' '+this.$store.state.account.user.user.lastname+"</div>"+
-          "<div>Authentication Phone: "+this.$store.state.account.user.user.phone+"</div>"+
-          "<div>Date Signed: "+status[0].signed_date+"</div>"+
+          "<div>Signed By:"+pf+' '+pl+"</div>"+
+          "<div>Authentication Phone: "+pp+"</div>"+
+          "<div>Date Signed: "+status[0].signed_date._date+"</div>"+
           "<div>IP Address: "+status[0].meta['x-forwarded-for']+"</div>"+
           "<div>URL:"+status[0].meta['referer']+"</div>"+
           "</div></div>"

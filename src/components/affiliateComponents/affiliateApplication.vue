@@ -1,99 +1,24 @@
 <style>
-.card {
-  background-color: transparent;
-  border: none;
+.card{
+    background-color:transparent;
+    border:none;
 }
-.tab-content {
-  width: 90%;
-}
+.tab-content{width:90%}
 .list {
-  display: grid;
+    display: grid;
+}
+.formlist {
+    width: 25%;
+}
+.lfloat {
+    display: flex;
 }
 </style>
 <template>
-  <!-- Nav tabs -->
-  <div class="vtabs">
-    <ul class="nav nav-tabs tabs-vertical" role="tablist">
-      <li class="nav-item">
-        <a
-          class="nav-link active show"
-          data-toggle="tab"
-          href="#home4"
-          role="tab"
-          aria-selected="true"
-        >
-          <span class="hidden-sm-up">
-            <i class="ti-home"></i>
-          </span>
-          <span class="hidden-xs-down">Profile Details</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#practice4" role="tab" aria-selected="false">
-          <span class="hidden-sm-up">
-            <i class="ti-home"></i>
-          </span>
-          <span class="hidden-xs-down">Practice Details</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#profile4" role="tab" aria-selected="false">
-          <span class="hidden-sm-up">
-            <i class="ti-user"></i>
-          </span>
-          <span class="hidden-xs-down">Forms</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#messages4" role="tab" aria-selected="false">
-          <span class="hidden-sm-up">
-            <i class="ti-email"></i>
-          </span>
-          <span class="hidden-xs-down">Uploads</span>
-        </a>
-      </li>
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <div class="tab-pane active" id="home4" role="tabpanel">
-        <affiliateformfields :afid="afid"></affiliateformfields>
-      </div>
-      <div class="tab-pane" id="practice4" role="tabpanel">
-        <practicefields></practicefields>
-      </div>
-      <div class="tab-pane p-20" id="profile4" role="tabpanel">
-
-        <div class="list-group">
-
-          <div v-if="role=='sales'">
-
-            
-            <!-- <router-link
-              :to="'/sales/affiliate/forms/'+form.id"
-              v-for="(form,index) in forms_list"
-              :key="'fskl'+index"
-              v-if="form.status!='signed' "
-            >
-              <a class="list-group-item"
-                style="margin-right:10px"
-                v-on:click="formloader(form.id)"
-                :value="form.id"
-              >{{form.FormTitle}}</a>
-            </router-link> -->
-
-<div class="list-group">
-<a class="list-group-item" href="https://2020i.site/sales/affiliate/forms/5c769decad45e43584144c28" >027 SexualHarrass-EEOC P&P <span class="btn btn-success btn-rounded">Completed</span> </a>
-<a class="list-group-item" href="https://2020i.site/sales/affiliate/forms/5c7ed0bd577bf47e8e4d0669">ACCIDENT REPORTING PROCEDURE <span class="btn btn-success btn-rounded">Completed</span> </a>
-<a class="list-group-item" href="https://2020i.site/sales/affiliate/forms/5c7683cead45e43584144c20">VARIOUS THE WAVE INTERNATIONAL, LLC POLICIES AND PROCEDURES <span class="btn btn-danger btn-rounded">Not Completed</span> </a>
-<a class="list-group-item" href="https://2020i.site/sales/affiliate/forms/5c7fe5e3577bf47e8e4d0677">TB Status Review <span class="btn btn-warning btn-rounded">Not Eligible</span> </a>
-<a class="list-group-item" href="https://2020i.site/sales/affiliate/forms/5c7fcced577bf47e8e4d0670">HEALTH SCREEN FORM <span class="btn btn-default btn-rounded">In Progress</span> </a>
-<a class="list-group-item" href="https://2020i.site/sales/affiliate/forms/5c7fe19f577bf47e8e4d0675">CODE OF ETHICS AND STANDARDS OF CONDUCT <span class="btn btn-success btn-rounded">Complete</span> </a>
-<a class="list-group-item" href="https://2020i.site/sales/affiliate/forms/5c75875ead45e43584144c1b">TERMS OF EMPLOYMENT STATEMENT <span class="btn btn-success btn-rounded">Complete</span> </a>
-</div>
 
                                 <!-- Nav tabs -->
                               <div class="vtabs">
-                       
+  
                                     <ul class="nav nav-tabs tabs-vertical" role="tablist">
                                         <li class="nav-item"> <a class="nav-link active show" data-toggle="tab" href="#home4" role="tab" aria-selected="true"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span class="hidden-xs-down">Profile Details</span> </a> </li>
                                         <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#practice4" role="tab" aria-selected="false"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span class="hidden-xs-down">Practice Details</span> </a> </li>
@@ -104,20 +29,22 @@
                                     <div class="tab-content">
                                         <div class="tab-pane active" id="home4" role="tabpanel">
 
-                                                <affiliateformfields :afid='afid'></affiliateformfields>
+                                                <affiliateformfields :user="user" :afid='afid'></affiliateformfields>
                                         </div>
                                         <div class="tab-pane" id="practice4" role="tabpanel">
                                         <practicefields></practicefields>
                                         </div>
                                         <div class="tab-pane p-20 " id="profile4" role="tabpanel">
-                                            <div>
+                                            <div class="lfloat">
                                                
-                                                <div v-if="role=='sales'">
-                                            <router-link :to="'/sales/affiliate/forms/'+form.id" v-for="(form,index) in forms_list" :key="'fskl'+index" v-if="form.status!='signed' ">
+                                                <div v-if="role=='sales'" class="formlist">
+                                             <div v-for="(form,index) in forms_list">       
+                                            <router-link :to="'/sales/affiliate/forms/'+form.id"  :key="'fskl'+index" v-if="form.status!='signed' "  >
                                       
                                             <a style="margin-right:10px" v-on:click="formloader(form.id)" :value="form.id">{{form.FormTitle}}</a>
                                             
                                             </router-link>
+                                            </div>
                                             </div> 
                                             <div v-if="role=='affiliate'">
                                             <div>
@@ -134,77 +61,57 @@
                                             </div>
                                          </div>
                                                 
-                                                <viewer :fid="fid" :phtml="thtml" ></viewer>
+                                                <viewer :user="user" :fid="fid" :phtml="thtml" ></viewer>
           
                                             </div>
                                         </div>
                                         <div class="tab-pane p-20  " id="messages4" role="tabpanel">
 
-          </div>
-          <div v-if="role=='affiliate'">
-            <div>
-              <h3>
-                <router-link
-                  :to="'/affiliates/forms/'+form.id"
-                  v-for="(form,index) in forms_list"
-                  :key="index"
-                  v-if="form.status!='signed' "
-                >
-                 <a style="margin-right:10px"
-                    v-on:click="formloader(form.id)"
-                    :value="form.id"
-                  >{{form.FormTitle}}
-                  </a>
-                </router-link>
-                
-              </h3>
-              <div>Form Description/Details/Usage</div>
-            </div>
-          </div>
-          <viewer :fid="fid" :phtml="thtml"></viewer>
+            <uploader :afid='afid'></uploader>
         </div>
-      </div>
-      <div class="tab-pane p-20" id="messages4" role="tabpanel">
-        <uploader :afid="afid"></uploader>
-      </div>
     </div>
-  </div>
+</div>
 </template>
 <script>
-import viewer from "../formViewerComponents/formViewer";
-import affiliateformfields from "./affiliateformfields";
-import practicefields from "./practicefields";
-import forms from "./forms.vue";
-import uploader from "./uploads";
-import { authHeader } from "../../_helpers";
+import viewer from '../formViewerComponents/formViewer'
+import affiliateformfields from './affiliateformfields';
+import practicefields from './practicefields';
+import forms from './forms.vue';
+import uploader from './uploads';
+import { authHeader } from '../../_helpers';
 import { mapState, mapActions } from "vuex";
-export default {
-  name: "affiliateApplication",
-  //  props:["afid"],
+export default{
+    name:"affiliateApplication",
+   // props:["afid"],
     mounted(){
-
+        console.log(this.user)
         if(this.$root._route.params.id){
             console.log("LOAD DATA")
+          //  this.$state.store
+          this.$store.state.users.afid = this.$root._route.params.id  
         }
             this.getFormsHtml()
         },
     created(){
         this.getAllUsers({role:"affiliate"})
-         this.getUserForms(this.afid)
+         this.getUserForms(this.$root._route.params.id)
        
         },
     methods:{
             ...mapActions("users", {
       getAllUsers: "getAll",
       deleteUser: "delete"
-    }),
+            }),
            ...mapActions("form", ["getformbyid", "updateform","getforms", "deleteform","attachUserToForm","getUserForms"]),
            formloader(e){
                console.log(e)
+               
                 this.$store.state.account.formid = e
+                this.$store.state.users.current = this.user
                 let rootform = this.$store.state.form.userForms//.filter(form=>{return form.formId==e})
                 this.$store.state.form.current_signed_form = rootform[0].id;
                this.getFormHtml(e)
+                
                 },
            getFormHtml(id){
  
@@ -216,7 +123,7 @@ export default {
            async getFormsHtml(){
                console.log("AFFFDASHHHHHHHHHHHHH")
                    let sfs = this.$store.state.account.user.user.signedforms
-                        let ssfs = await fetch('https://2020i.site/api/wsers/'+this.afid+'/signedforms?',{
+                        let ssfs = await fetch('https://2020i.site/api/wsers/'+this.$root._route.params.id  +'/signedforms?',{
                             method:"GET",
                             headers: { ...authHeader(), 'Content-Type': 'application/json' },   
                         })
@@ -243,10 +150,22 @@ export default {
     computed:{
             ...mapState({
       account: state => state.account,
-      users: state => state.users.all
+      users: state => state.users.all,
     }),
+        user:{
+            get:function(){
+                if(this.users.items){
+                this.$store.state.users.current = this.users.items.filter(u=>{return u.id==this.afid})
+                console.log("TOP GETTER")
+                console.log(this.users.items.filter(u=>{return u.id==this.afid}))
+                return this.users.items.filter(u=>{return u.id==this.afid})
+                }
+                return []
+                
+                }
+        },
         afid:{
-                           get:function(){ return this.$root._route.params.id },
+                           get:function(){ return this.$store.state.users.afid },
                 set:function(value){
                     this.afid = value
                 }
@@ -269,7 +188,8 @@ export default {
                 html:"",
                 FormTitle:"",
                 thtml:'',
-                forms:''
+                forms:'',
+              //  user:this.users,
                     }   
                 },
     components: {

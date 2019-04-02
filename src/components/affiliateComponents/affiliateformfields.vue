@@ -1,7 +1,7 @@
 <template>
     <div>
    
-       <div class="hide">{{user}}</div>
+       <div class="hide">{{cuser}}</div>
         <form>
         <div class="form-body form-material">
    
@@ -120,7 +120,7 @@
 import { mapState, mapActions } from "vuex";
     export default {
         name: "affiliateformfields",
-        props :["afid"],
+        props :["afid",'user'],
                 data(){
             return{
                 
@@ -128,14 +128,18 @@ import { mapState, mapActions } from "vuex";
             }
         },
             created(){
+                console.log("CURRENT USERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR")
         this.getAllUsers({role:"affiliate"})
-        this.user
+        this.$store.state.users.current = this.user
         // this.getUserForms(this.afid)
        
         },
 
         computed:{
-            user: function(){
+            cuser : function(){
+                return this.user
+            },
+        /*    user: function(){
                 console.log(this.$store.state.users.all.items)
                 console.log(this.afid)
                 if( this.$store.state.users.all.items != undefined){
@@ -144,12 +148,16 @@ import { mapState, mapActions } from "vuex";
                 return [this.$store.state.account.user.user]
                 }
                 return []
-            },
+            }, */
             firstname:{
                     get: function () {
                         console.log("FIRDT")
                         console.log(this.user)
+                        if(this.user[0]){
+                        this.$store.state.users.current = this.user
                         return this.user[0].firstname
+                        }
+                        return ''
                     },
                     // setter
                     set: function (newValue) {
@@ -160,7 +168,10 @@ import { mapState, mapActions } from "vuex";
                     get: function () {
                         console.log("LAST")
                         console.log(this)
+                        if(this.user[0])
                         return this.user[0].lastname
+
+                        return ''
                     },
                     // setter
                     set: function (newValue) {
@@ -171,7 +182,10 @@ import { mapState, mapActions } from "vuex";
                     get: function () {
                         console.log("FIRDT")
                         console.log(this.user)
+                        if(this.user[0])
                         return this.user[0].phone
+
+                        return ''
                     },
                     // setter
                     set: function (newValue) {
@@ -182,7 +196,10 @@ import { mapState, mapActions } from "vuex";
                     get: function () {
                         console.log("LAST")
                         console.log(this)
+                        if(this.user[0])
                         return this.user[0].email
+
+                        return ''
                     },
                     // setter
                     set: function (newValue) {

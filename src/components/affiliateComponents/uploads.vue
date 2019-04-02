@@ -52,10 +52,10 @@ export default {
         },
     methods: {
         uploaded(type){
-            console.log("UPLADED TYPE")
+          //  console.log("UPLADED TYPE")
             let u ={};
-            console.log(this.$store.state.users.all.items)
-            console.log(this.$store.state.account.user.user)
+          //  console.log(this.$store.state.users.all.items)
+          //  console.log(this.$store.state.account.user.user)
             if(this.$store.state.users.all.items!=undefined){
             if(this.$store.state.users.all.items.length!=undefined){
             let us = this.$store.state.users.all.items.filter(user=>{return user.id==this.afid})
@@ -67,12 +67,13 @@ export default {
                u = this.$store.state.account.user.user;  
 
             }
-            console.log(u)
+            //console.log(u)
+            if(u)
             if (u[type]==1){
                     return true
             }
 
-            console.log(u)
+           // console.log(u)
             return false
             
         },
@@ -84,13 +85,13 @@ export default {
             document.getElementById("up"+type).classList.add("active");
         },
         openFileDialog(type) {
-                console.log('FILE DIALOG')
-                console.log(type);
+             //   console.log('FILE DIALOG')
+//                console.log(type);
 
                 document.getElementById(type).click();
         },
         onFileChange(e) {
-                console.log('FILE CHANGE')
+  //              console.log('FILE CHANGE')
                 const formData = new FormData();
                 var self = this;
                 let pre = e.target.id.split(" ").last().toLowerCase();

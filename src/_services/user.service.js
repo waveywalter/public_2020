@@ -18,7 +18,7 @@ export const userService = {
   const baseURL="https://2020i.site/api";
 //const baseURL = 'https://google.com'
 function loco(){
-    console.log('loco')
+   // console.log('loco')
 }
 function login(username, password) {
     const requestOptions = {
@@ -126,7 +126,7 @@ function _delete(id) {
 }
 
 function handleResponse(response) {
-    console.log(response)
+   // consoleconsole.log(response)
     return response.text().then(text => {
         const data = text && JSON.parse(text);
         if (!response.ok) {

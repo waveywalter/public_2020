@@ -100,6 +100,40 @@
                   </div>
                   <span>{{ errors.first('email') }}</span>
                 </div>
+                <div class="form-group" >
+                  <label for="position">Position</label>
+                  <div class="input-group">
+                    <input
+                      v-model="reg.position"
+                      type="text"
+    
+                      class="form-control"
+                      placeholder="Job Title"
+                      name="position"
+                    >
+                    <div class="input-group-addon">
+                      <i class="ti-person"></i>
+                    </div>
+                  </div>
+                  <span>{{ errors.first('position') }}</span>
+                </div>
+                <div class="form-group" >
+                  <label for="salary">Salary</label>
+                  <div class="input-group">
+                    <input
+                      v-model="reg.salary"
+                      type="text"
+                      
+                      class="form-control"
+                      placeholder="Salary"
+                      name="salary"
+                    >
+                    <div class="input-group-addon">
+                      <i class="ti-money"></i>
+                    </div>
+                  </div>
+                  <span>{{ errors.first('salary') }}</span>
+                </div>
                 <div class="form-group">
                   <label for="exampleInputpwd1">Password</label>
                   <div class="input-group">
@@ -148,7 +182,9 @@ export default {
         username: "",
         role: "employee",
         email: "",
-        password: ""
+        password: "",
+        position:"",
+        salary:""
       },
       submitted: false
     };

@@ -1,7 +1,7 @@
 <template>
     <div>
 
-<dynamic :fid="fid" ref="dynamic" v-bind:template="chtml[0]"></dynamic> 
+<dynamic :user="user" :fid="fid" ref="dynamic" v-bind:template="chtml[0]"></dynamic> 
 
     </div>
 </template>
@@ -11,7 +11,7 @@ import dynamic from './dynamic'
 import printer from "vue-printer";
 export default {
     name:"formViewer",
-        props:["fid","phtml"],
+        props:["fid","phtml","user"],
         data(){
             return {
                 html:"<div>Initializing</div>",
@@ -24,6 +24,9 @@ export default {
                 dynamic,printer
         },
           computed: {
+                          cuser : function(){
+                return this.user
+            },
               chtml:{
                   get:function(){
                       return this.phtml

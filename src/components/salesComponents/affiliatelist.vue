@@ -8,12 +8,10 @@
         :to="'/sales/affiliate/'+user.id"
         @click.native=""
       >
-        <div class=" btn btn-default btn-outline showbottom mr15 minw125">
+        <div class="mr15 minw125">
           <a>{{user.firstname}} {{user.lastname}}</a>
-
-          <span class="ti-close" v-on:click="openmodal(user.id)"></span>
-
         </div>
+        <span class="ti-close" v-on:click="openmodal(user.id)"></span>
       </router-link>
     </div>
 
@@ -105,7 +103,8 @@ export default {
   computed: {
     ...mapState({
       account: state => state.account,
-      users: state => state.users.all
+      users: state => state.users.all,
+      us: state => state.users.all,
     })
   }
 };
@@ -117,8 +116,6 @@ export default {
 }
 .mr15 {
   margin-right: 15px;
-  text-align: left;
-  width: 100%;
 }
 .list-group-item,
 .list-group-item:first-child,
