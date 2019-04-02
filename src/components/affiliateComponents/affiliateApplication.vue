@@ -15,85 +15,7 @@
 }
 </style>
 <template>
-  <!-- Nav tabs -->
-  <div class="vtabs">
-    <ul class="nav nav-tabs tabs-vertical" role="tablist">
-      <li class="nav-item">
-        <a
-          class="nav-link active show"
-          data-toggle="tab"
-          href="#home4"
-          role="tab"
-          aria-selected="true"
-        >
-          <span class="hidden-sm-up">
-            <i class="ti-home"></i>
-          </span>
-          <span class="hidden-xs-down">Profile Details</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#practice4" role="tab" aria-selected="false">
-          <span class="hidden-sm-up">
-            <i class="ti-home"></i>
-          </span>
-          <span class="hidden-xs-down">Practice Details</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#profile4" role="tab" aria-selected="false">
-          <span class="hidden-sm-up">
-            <i class="ti-user"></i>
-          </span>
-          <span class="hidden-xs-down">Forms</span>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" data-toggle="tab" href="#messages4" role="tab" aria-selected="false">
-          <span class="hidden-sm-up">
-            <i class="ti-email"></i>
-          </span>
-          <span class="hidden-xs-down">Uploads</span>
-        </a>
-      </li>
-    </ul>
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <div class="tab-pane active" id="home4" role="tabpanel">
-        <affiliateformfields :afid="afid"></affiliateformfields>
-      </div>
-      <div class="tab-pane" id="practice4" role="tabpanel">
-        <practicefields></practicefields>
-      </div>
-      <div class="tab-pane p-20" id="profile4" role="tabpanel">
 
-        <div class="list-group">
-
-          <div v-if="role=='sales'">
-
-            
-            <router-link
-              :to="'/sales/affiliate/forms/'+form.id"
-              v-for="(form,index) in forms_list"
-              :key="'fskl'+index"
-              v-if="form.status!='signed' "
-            >
-              <a class="list-group-item"
-                style="margin-right:10px"
-                v-on:click="formloader(form.id)"
-                :value="form.id"
-              >{{form.FormTitle}}</a>
-            </router-link>
-
-<!-- <div class="list-group">
-<a class="list-group-item" href="https://2020i.site/sales/affiliate/forms/5c769decad45e43584144c28" >027 SexualHarrass-EEOC P&P <span class="btn btn-success btn-rounded">Completed</span> </a>
-<a class="list-group-item" href="https://2020i.site/sales/affiliate/forms/5c7ed0bd577bf47e8e4d0669">ACCIDENT REPORTING PROCEDURE <span class="btn btn-success btn-rounded">Completed</span> </a>
-<a class="list-group-item" href="https://2020i.site/sales/affiliate/forms/5c7683cead45e43584144c20">VARIOUS THE WAVE INTERNATIONAL, LLC POLICIES AND PROCEDURES <span class="btn btn-danger btn-rounded">Not Completed</span> </a>
-<a class="list-group-item" href="https://2020i.site/sales/affiliate/forms/5c7fe5e3577bf47e8e4d0677">TB Status Review <span class="btn btn-warning btn-rounded">Not Eligible</span> </a>
-<a class="list-group-item" href="https://2020i.site/sales/affiliate/forms/5c7fcced577bf47e8e4d0670">HEALTH SCREEN FORM <span class="btn btn-default btn-rounded">In Progress</span> </a>
-<a class="list-group-item" href="https://2020i.site/sales/affiliate/forms/5c7fe19f577bf47e8e4d0675">CODE OF ETHICS AND STANDARDS OF CONDUCT <span class="btn btn-success btn-rounded">Complete</span> </a>
-<a class="list-group-item" href="https://2020i.site/sales/affiliate/forms/5c75875ead45e43584144c1b">TERMS OF EMPLOYMENT STATEMENT <span class="btn btn-success btn-rounded">Complete</span> </a>
-</div> -->
 
                                 <!-- Nav tabs -->
                               <div class="vtabs">
@@ -150,9 +72,7 @@
         </div>
     </div>
   </div>
-        </div>
-    </div>
-  </div>
+  
 </template>
 <script>
 import viewer from '../formViewerComponents/formViewer'
