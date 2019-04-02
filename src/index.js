@@ -1,5 +1,11 @@
 import Vue from 'vue';
 import VeeValidate from 'vee-validate';
+import PerfectScrollbar from 'vue2-perfect-scrollbar'
+import 'vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css'
+
+
+
+
 
 import { store } from './_store';
 import { router } from './_router';
@@ -22,6 +28,10 @@ const apiConfig = {
  
 // Use the plugin and pass along the configuration
 Vue.use(VueGAPI, apiConfig);
+Vue.use(PerfectScrollbar);
+
+
+
 const options = {
   name: '_blank',
   specs: [
@@ -48,7 +58,12 @@ import Vuetify,{
     VSlot,
     VCalendar,
     VSheet,
-    VCheckbox
+    VCheckbox,
+    VDivider,
+    VCardText,
+    VCardActions,
+    VSpacer,
+    VBtn
 
 
   } from 'vuetify/lib'
@@ -73,7 +88,13 @@ Vue.use(Vuetify, {
     VSlot,
     VCalendar,
     VSheet,
-    VCheckbox
+    VCheckbox,
+    VDivider,
+    VCardText,
+    VCardActions,
+    VSpacer,
+    VBtn
+
 
 
   },

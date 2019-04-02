@@ -43,33 +43,27 @@
                         <span class="line"></span>
                       </i>
                     </div>
-
                     <div class="task-data">
                       <label for="inputSchedule">
                         <span class="mainText">Schedule meeting</span>
                       </label>
                       <p class="subText">Call Renee Michaels at 1pm</p>
-
-
                      <div class="wrapper">
                     <div class="font-icon">
                       <i class="fas fa-comments">
                         <span class="line"></span>
                       </i>
                     </div>
-
                     <div class="task-data">
                       <label for="inputSchedule">
                         <span class="mainText">Schedule meeting</span>
                       </label>
                       <p class="subText">Call Renee Michaels at 1pm</p>
-
                       <div class="bottom-cal">
                         <i @click.stop="dialog=true" class="fas fa-calendar"></i>
                         <i @click.stop="dialog=true" class="fas fa-calendar-o"></i>
                       </div>
                     </div>
-
                     <div class="right-side">
                       <i class="fa fa-file-text"></i>
                       <i class="fa fa-trash-o"></i>
@@ -178,7 +172,6 @@
   background-color: rgb(156, 1, 1) !important;
   height: 11px !important;
 }
-
 .todo {
   max-height: 565.29px;
 }
@@ -213,16 +206,13 @@ export default {
     },
   },
   computed:{
-
         ...mapState({
-
       ctasklist: state => state.leads.alltask.filter(task=>{return task.status=="new"})
     }),
   },
   data() {
-
     return {
-    
+    dialog:false,
         tasklist:[{
           content:"string",
 date_created:"2019-03-25T19:33:34.081Z",
@@ -232,7 +222,6 @@ leadId:"5c992c242f52d27613674343",
 status:"complete",
 title:"string",
 type:"string",
-
         }],
               type: 'month',
       start: '2019-01-01',
@@ -245,9 +234,7 @@ type:"string",
         { text: 'Custom Daily', value: 'custom-daily' },
         { text: 'Custom Weekly', value: 'custom-weekly' }
       ]
-
     }
   }
 };
 </script>
-

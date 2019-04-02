@@ -231,7 +231,6 @@
                 </div>
               </div>
             </div>
-
 <!--            <div v-if="this.$root._route.params.root=='affiliate'">
               <div class>
                 <div>
