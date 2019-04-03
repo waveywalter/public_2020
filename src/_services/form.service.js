@@ -103,7 +103,7 @@ function getFormsByUser(id,toekn){
     console.log("GETFORMSSSSSSSSS")
     console.log(toekn)
     console.log(id)
-    return fetch('/api/wsers/'+id+'/signedforms?access_token='+toekn,{
+    return fetch(baseURL+'/wsers/'+id+'/signedforms?access_token='+toekn,{
         method:"GET",
         headers: { ...authHeader(), 'Content-Type': 'application/json' },  
     }).then(handleResponse)
