@@ -12,8 +12,8 @@ export const formService = {
     attachUserToForm,
     getFormsByUser
 };
- const baseURL="https://2020i.site/api";
-// const baseURL="http://localhost:3000/api";
+  const baseURL="https://2020i.site/api";
+//const baseURL="http://localhost:3000/api";
 //const baseURL = 'https://google.com'
 function loco(){
     console.log('loco') 
@@ -113,7 +113,7 @@ function getFormsByUser(id,toekn){
 function attachUserToForm(data){
     console.log(data)
     data.status = false
-    fetch('/api/wsers/'+data.userId+'/signedforms',{
+    fetch(baseURL+'/wsers/'+data.userId+'/signedforms',{
         method:"POST",
         headers: {...authHeader(), 'Content-Type': 'application/json' },
         body: JSON.stringify(data)   

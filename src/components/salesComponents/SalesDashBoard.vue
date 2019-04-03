@@ -18,7 +18,7 @@
 
           <div class="row">
             <NewAffiliateform/>
-            <Createlead/>
+            <!-- <Createlead/> -->
             <taskSideBar></taskSideBar>
           </div>
 

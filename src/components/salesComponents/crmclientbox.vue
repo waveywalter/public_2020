@@ -144,14 +144,23 @@ export default {
       console.log(leads.leads);
       let r = leads.leads.filter(lead => {
         console.log(lead);
+        if(lead.first_name)
         return lead.first_name.includes(this.search);
+
+        if(lead.firstname)
+         return lead.firstname.includes(this.search);
+
       });
       if (r.length > 0) {
         return r;
       } else {
         r = leads.leads.filter(lead => {
           console.log(lead);
-          return lead.last_name.includes(this.search);
+          if(lead.last_name)
+          return lead.last_name.includes(this.search); 
+          
+        if(lead.lastname)
+         return lead.lastname.includes(this.search);
         });
       }
       return r;

@@ -143,6 +143,7 @@ export default {
         phone: "",
         type: "",
         email: "",
+        status:"new"
 
       },
       submitted: false
@@ -161,8 +162,9 @@ export default {
         }
         
       },
-    ...mapState("alert", ["message", "type"]),
-  
+...mapState("alert", ["message", "type"]),
+...mapActions("account", ["register"]),  
+...mapActions("leads", ["createLead"]),  
   },
   methods: {
         checkroute(){
@@ -247,76 +249,13 @@ export default {
           console.log("VALIDDDDDDDDDDDDDDDDDD2222")
             // register applicant in with email
             console.log('Send Application to api')
-            this.newApp();
+            this.createLead(this.app)
       }
     })
     },
    newApp(){     
-        let data = this.app
-          fetch('https://2020i.site/api/register',{method:"POST",headers:{"Content-Type": "application/json; charset=utf-8",},body:JSON.stringify(this.app)}).then(response=>{
-        
-          response.text().then(text=>{
-                  let application = JSON.parse(text);
-
-                console.log(application)
-          fetch('https://2020i.site/api/containers',{
-            method:"POST",headers:{"Content-Type": "application/json; charset=utf-8"},
-            body:JSON.stringify({
-              "provider": "filesystem",
-              "root": "./server/storage",
-              "nameConflict": "makeUnique",
-              "name":application.id
-            }) 
-          }).then(response=>{console.log(response)})
-
- 
-              this.app.firstname ='';
-              this.app.lastname ='';
-              this.app.type ='';
-              this.app.phone ='';
-              this.app.email ='';
-              this.app.address ='';
-               this.$nextTick(() => {
-                this.$validator.reset()
-               })
-              
-              
-          //data.sign1 = this.csign1;
-          //data.links = this.clinks;
-          fetch('https://2020i.site/api/create/newcontract/'+application.id,{method:"POST",
-              headers:{"Content-Type": "application/json; charset=utf-8","accept": "*/*"},body:JSON.stringify(application)}).then(response=>{
-              console.log(response);
-              response.text().then(text=>{
-              console.log(text)
-              let app = JSON.parse(text);
-            //console.log(app);
-            //var decoded = jwt.verify(text, 'shhhhhh');
-              //console.log(decoded.foo)
-            //generate code
-              //send email with code
-            //attach code to app
-              //window.sessionStorage.accessToken = text;
-             //this.$store.commit('increment') 
-           application.csign1 = app.sign1;
-           application.cs1 = app.cs1;
-        // this.csign2 = app.sign2;
-        // this.csign3 = app.sign3;
-        // this.csign4 = app.sign4;
-        // this.csign5 = app.sign5;
-        // this.csign6 = app.sign6;
-        // this.csign7 = app.sign7;
-        // this.csign8 = app.sign8;
-        // this.csign9 = app.sign9;
-        
-        })
-        
-       // this.$store.commit('increment')
-
-        })
-    //this.$store.state.apps.application = application;
-         this.$store.commit('apps/getApps') 
-          })
-          }) 
+       this.createLead(this.app)
+       
  }
   }
 }
