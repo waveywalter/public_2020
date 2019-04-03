@@ -16,12 +16,12 @@
 
                   <div class="input-group">
                     <input
-                      v-model="app.firstname"
+                      v-model="app.first_name"
                       type="text"
                       v-validate="'required'"
                       class="form-control"
                       placeholder="First Name"
-                      name="firstname"
+                      name="first_name"
                       v-on:change="clearAlert"
                     >
                     <div class="input-group-addon">
@@ -34,12 +34,12 @@
                   <label for="exampleInputuname">Last Name</label>
                   <div class="input-group">
                     <input
-                      v-model="app.lastname"
+                      v-model="app.last_name"
                       type="text"
                       v-validate="'required'"
                       class="form-control"
                       placeholder="Last Name"
-                      name="lastname"
+                      name="last_name"
                     >
                     <div class="input-group-addon">
                       <i class="ti-user"></i>
@@ -65,6 +65,10 @@
                   </div>
                   <span>{{ errors.first("phone")}}</span>
                 </div>
+
+
+
+
                 <div class="form-group">
                   <label for="exampleInputEmail1">Email address</label>
                   <div class="input-group">
@@ -82,26 +86,49 @@
                   </div>
                   <span>{{ errors.first('email') }}</span>
                 </div>
+
+<div class="col-lg-2 col-md-2 col-sm-4 col-xs-12">
+<div class="radio radio-warning">
+    <input v-model="app.userType" type="radio" name="radio" id="lead" value="lead">
+    <label for="radio1"> Lead </label>
+</div>
+<div class="radio radio-warning">
+    <input v-model="app.userType" type="radio" name="radio" id="affiliate" value="affiliate">
+    <label for="radio2"> Affiliate </label>
+</div>
+
+
+<div class="radio radio-warning">
+    <input v-model="app.userType" type="radio" name="radio" id="patient" value="patient">
+    <label for="radio2">Patient </label>
+</div>
+
+
+</div>
+
+
 <input type="file" class="hidden" accept="image/*">
-                <div class="text-right">
-                  <button
-                    type="submit"
-                    class="btn btn-success waves-effect waves-light m-r-10"
-                  >Submit</button>
-                </div>
-              </form>
+  <div class="text-right">
+    <button
+      type="submit"
+      class="btn btn-success waves-effect waves-light m-r-10"
+    >Submit</button>
+  </div>
+</form>
 
 
 
-              
-              <!-- <p v-show="message">{{message}}</p> -->
-            <!-- <div class="smallbox col-sm-12 col-xs-12" v-if="checkroute()">
-            <div class="">
-                                        <h4 class="card-title">Applications </h4>
-                                        <applicationslist></applicationslist>
-                                    </div>
- 
-            </div> -->
+
+<!-- <p v-show="message">{{message}}</p> -->
+<!-- <div class="smallbox col-sm-12 col-xs-12" v-if="checkroute()">
+<div class="">
+<h4 class="card-title">Applications </h4>
+<applicationslist></applicationslist>
+</div>
+
+</div> -->
+
+
             </div>
             </div>
           </div>
@@ -123,11 +150,16 @@ export default {
     return {
       // errors: [],
       app: {
-        firstname: "",
-        lastname: "",
+        first_name: "",
+        last_name: "",
+        firstname:app.first_name,
+        lastname:app.last_name,
+
         phone: "",
         type: "",
         email: "",
+        status:"new",
+        userType:""
 
       },
       submitted: false
@@ -137,90 +169,10 @@ export default {
     applicationslist,
   },
   computed: {
-       clist:{
-        get:function(e){
-            return this.$store.state.apps.wholelist
-        },
-        set:function(list){
-          this.$store.state.apps.wholelist  = list
-        }
-        
-      },
     ...mapState("alert", ["message", "type"]),
-  
+    ...mapActions("leads", ["createLead"]),    
   },
   methods: {
-        checkroute(){
-      if(this.$root._route.params.id && this.$root._route.params.root!='crm'){
-        return true
-      }
-    },
-        getrecord(id){
-      console.log('RECORDSSSSSSSSSSSSSSSSSSSSSSS')
-     // window.sessionStorage.id = id;
-      
-      if(id!=undefined){
-       fetch('https://2020i.site/api/applications/'+id,{method:"GET",headers:{"Content-Type": "application/json; charset=utf-8",}}).then(response=>response.json()).then(json=>{console.log(json)
- 
-        
-        this.$store.state.apps.application = json;
-        if(json.s1==0){
-          console.log("Not Signed")
-          //check to see if signed start interval check
-          this.clock = setInterval(this.checkContractStatus,7000);
-
-        }
-        else{
-          console.log("Signed")
-          //update ui
-          clearInterval(this.clock)
-        }
-      console.log(this)
-      }
-        )
-        //this.getState();
-      }
-
-      },
-        checkContractStatus(){
-        console.log("Hit API - Get APP and check for signing");
-        console.log(this);
-        let i = this.$store.state.apps.application.id;
-        fetch('/api/applications/'+i).then(response=>{
-              console.log(response);
-              response.text().then(text=>{
-              
-
-              let a = JSON.parse(text);
-              
-                let s = 's1';
-                let t = a[s];
-                console.log(this.$store.state[s])
-                console.log(a[s]);
-                this.$store.state.apps.application
-
-                if(a[s]!=this.$store.state.apps.application[s] ){
-                  
-                  clearInterval(this.clock)
-                  //if they are not equal then document has been signed .
-                
-                this.$store.state.apps.application = a;
-               
-                }
-   
-
-              
-              })
-        })
-      },
-        updateId(id){
-      console.log("UPATEEEEEEEEEEEEEE")
-      this.cid = id;
-      this.getrecord(id);
-     },
-    test(){
-      console.log("TESTTTTTTTTTTTTTTTTTTTTTT")
-    },
     ...mapActions("account", ["register"]),
     ...mapActions({ clearAlert: "alert/clear" }),
     handleSubmit(e) {
@@ -232,13 +184,34 @@ export default {
           console.log("VALIDDDDDDDDDDDDDDDDDD2222")
             // register applicant in with email
             console.log('Send Application to api')
-            this.newApp();
+            console.log(this.userType)
+
+      }
+       if (this.app.userType == "affiliate"){
+          //check what value is in box
+          //if value equals lead send to one api / function
+          this.newApp();
+
+      } else if(this.app.userType == "lead"){
+          //check what value is in box
+          //if value equals lead send to one api / function
+        this.createLead(this.app)
+
+      } else if(document.getElementById('patient').checked){
+                this.createLead(this.app)
+
       }
     })
     },
    newApp(){     
-        let data = this.app
-          fetch('https://2020i.site/api/register',{method:"POST",headers:{"Content-Type": "application/json; charset=utf-8",},body:JSON.stringify(this.app)}).then(response=>{
+        let data = {
+          firstname:this.app.first_name,
+          lastname:this.app.last_name,
+          email:this.app.email,
+          phone:this.app.phone
+        }
+        
+          fetch('https://2020i.site/api/register',{method:"POST",headers:{"Content-Type": "application/json; charset=utf-8",},body:JSON.stringify(data)}).then(response=>{
         
           response.text().then(text=>{
                   let application = JSON.parse(text);
@@ -255,8 +228,8 @@ export default {
           }).then(response=>{console.log(response)})
 
  
-              this.app.firstname ='';
-              this.app.lastname ='';
+              this.app.first_name ='';
+              this.app.last_name ='';
               this.app.type ='';
               this.app.phone ='';
               this.app.email ='';
