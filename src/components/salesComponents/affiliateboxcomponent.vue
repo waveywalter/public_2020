@@ -3,216 +3,27 @@
     <div class="white-box">
     <h3 class="box-title">Current Affiliates</h3>
 
-
-      <scrolly class="foo">
-      <scrolly-viewport>
    
        <div class="">
-        <div class="white-box ml-5 ">
-                      
+        <div class="ml-5 ">
+          
 
-            <!-- <div v-if="this.$root._route.params.root=='applicant'">
-              <div class="thumbs">
-                <h3>
-                  Application
-                  <span v-if="capproved==1">
-                    Approved
-                    <i class="ti-thumb-up"></i>
-                  </span>
-                  <span v-if="capproved==0">
-                    Not Approved
-                    <i class="ti-thumb-down"></i>
-                  </span>
-                  <button
-                    class="btn waves-effect waves-light btn-success"
-                    v-on:click="approveApp('1')"
-                    v-if="check()==1"
-                  >Approve Application</button>
-                  <button
-                    class="btn waves-effect waves-light btn-danger"
-                    v-on:click="approveApp('0')"
-                    v-if="capproved==1"
-                  >Dissapprove Application</button>
-                </h3>
-              </div>
+    <v-layout column justify-center align-center>
+    </v-layout>
+    <v-container
+      id="scroll-target"
+      style="max-height: 300px"
+      class="scroll-y"
+    >
+      <v-layout
+        v-scroll:#scroll-target="onScroll"
+        column
+        align-center
+        justify-center
+        style="height: 1000px"
+      >
 
-              <div>
-                <ul class="nav nav-pills m-t-30 m-b-30" role="tablist">
-                  <li class="nav-item" v-for="(title,m) in sections">
-                    <a
-                      :href="'#'+title.split(' ')[0].substring(0,6)"
-                      v-bind:class="{active:isActive(m)}"
-                      class="nav-link"
-                      data-toggle="tab"
-                      aria-expanded="true"
-                    >{{title}}</a>
-                  </li>
-                </ul>
-
-                <div class="tab-content br-n pn">
-                  <div id="Profil" class="tab-pane active">
-                    <div class="row">
-                      <div class="col-md-12">
-                        <div class>
-                          <div class="profile-details">
-                            <div>
-                              <span class>Name</span>
-                              <span>{{cname}}</span>
-                            </div>
-                            <div>
-                              <span class>Email</span>
-                              <span>{{cemail}}</span>
-                            </div>
-                            <div>
-                              <span class>Phone</span>
-                              <span>{{cphone}}</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div id="Signed" class="tab-pane">
-                    <div class="vtabs">
-                      <ul class="nav nav-tabs tabs-vertical" role="tablist">
-                        <li class="nav-item" v-for="(docs,n) in signature">
-                          <a
-                            v-bind:class="{active:isActive(n)}"
-                            class="nav-link"
-                            data-toggle="tab"
-                            :href="'#'+docs[0].split(' ')[0]"
-                            role="tab"
-                            aria-selected="true"
-                          >
-                            <span class="hidden-sm-up">
-                              <i class="ti-home"></i>
-                            </span>
-                            <span class="hidden-xs-down">{{docs[0].split(' ')[0].substring(0,14)}}</span>
-                          </a>
-                        </li>
-                      </ul>
-
-                      <div class="tab-content">
-                        <div
-                          class="tab-pane"
-                          v-bind:class="{active:isActive(n)}"
-                          :id="''+docs[0].split(' ')[0]"
-                          role="tabpanel"
-                          v-for="(docs,n) in signature"
-                        >
-                          <div class="p-20">
-                            <div
-                              v-if="false"
-                            >Waiting for document to be signed. Add resend email button.</div>
-                            <iframe
-                              v-if="iframeShow(n)"
-                              name="esignatures-io-iframe"
-                              width="100%"
-                              height="600"
-                              :src="sign(n+1)"
-                            />
-                            <button v-if="iframeShow(n)"  class="btn waves-effect waves-light btn-danger" v-on:click="rejectApp('Signed',n)">Reject {{docs[0]}}</button>
-                                           <button v-if="sendShow(n)"  class="btn waves-effect waves-light btn-danger" v-on:click="sendDocs(n,'current')">Send {{docs[0]}}</button>
-                            <button v-if="iframeShowNext(n) && n<signature.length"  class="btn waves-effect waves-light btn-danger" v-on:click="sendDocs(n+1,'next')">Send {{signature[(n+1)][0]}}</button> 
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div id="Upload" class="tab-pane">
-                    <div class="vtabs">
-                      <ul class="nav nav-tabs tabs-vertical" role="tablist">
-                        <li class="nav-item" v-for="(docs,n) in upload">
-                          <a
-                            v-bind:class="{active:isActive(n)}"
-                            class="nav-link"
-                            data-toggle="tab"
-                            :href="'#'+docs[0].split(' ')[0]"
-                            role="tab"
-                            aria-selected="true"
-                          >
-                            <span class="hidden-sm-up">
-                              <i class="ti-home"></i>
-                            </span>
-                            <span class="hidden-xs-down">{{docs[0].split(' ')[0].substring(0,14)}}</span>
-                          </a>
-                        </li>
-                      </ul>
-
-                      <div class="tab-content">
-                        <div
-                          class="tab-pane"
-                          v-bind:class="{active:isActive(n)}"
-                          :id="''+docs[0].split(' ')[0]"
-                          role="tabpanel"
-                          v-for="(docs,n) in upload"
-                        >
-                          <div class="p-20">
-                            <div>
-                              <embed
-                                v-if="!uploadshow(n,docs[0].split(' ')[0])"
-                                :src="'/api/containers/'+cid+'/download/'+docs[0].split(' ')[0].toLowerCase()+'.pdf'"
-                                type="application/pdf"
-                                width="100%"
-                                height="600px"
-                              >
-                            </div>
-                            <button
-                              v-if="!uploadshow(n,docs[0].split(' ')[0])"
-                              class="btn waves-effect waves-light btn-danger"
-                              v-on:click="rejectUpload(docs[0],n)"
-                            >Reject {{docs[0]}}</button>
-                            <button
-                              v-if="uploadshow(n,docs[0].split(' ')[0])"
-                              class="btn waves-effect waves-light btn-danger"
-                              v-on:click="openFileDialog(docs[0])"
-                            >Upload {{docs[0]}}</button>
-                            <input
-                              type="file"
-                              :id="'upload-'+docs[0]"
-                              style="display:none"
-                              @change="onFileChange"
-                            >
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div id="Emerge" class="tab-pane">
-                    <div v-for="contact in this.$store.state.apps.application.contacts">
-                      <div class="white">{{contact.name}} - {{contact.phone}}</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div> -->
-            
             <div id="app-wrapper" :key="listkey" >
-                
-              <!-- <div>
-                <div class="col-md-6 col-sm-6 mt-6 apps">
-                  <div class="row">
-                    <div class="col-xl-12">
-                      <div class="form-group">
-                        <label for="exampleInputEmail1">Filter Applications</label>
-                        <input
-                          type="text"
-                          v-model="appfilter"
-                          v-on:blur="filterApp(appfilter)"
-                          class="form-control"
-                          id="exampleInputEmail1"
-                          placeholder="Enter Email Address"
-                        >
-                      </div>
-                    </div>
-                  </div>
-                  <h4 class="card-title">Applications</h4>
-                  <applicationslist></applicationslist>
-                </div>
-              </div>  -->
-
-              
-
               <div>
                 <div class="">
                   <div class="row">
@@ -235,27 +46,17 @@
                 </div>
               </div>
             </div>
-<!--            <div v-if="this.$root._route.params.root=='affiliate'">
-              <div class>
-                <div>
-                  <i class="ti-check" v-if="cs1==1"></i>
-                  <br>
-                </div>
-                <affiliateApplication :afid="this.$root._route.params.id"></affiliateApplication>
-              </div>
-              </div>-->
+
+
+      </v-layout>
+    </v-container>
+
+
             </div>
-          </div> 
-
-      </scrolly-viewport>
-  <scrolly-bar axis="y"></scrolly-bar>
-  <scrolly-bar axis="x"></scrolly-bar>
-</scrolly>
-
+          </div>
 
       </div>
     </div>
-  </div>
 </template>
 
 
@@ -267,7 +68,6 @@ import applicationslist from "./applicationslist";
 import affiliatelist from "./affiliatelist";
 import imageupload from "../layoutComponents/imageUpload";
 import affiliateApplication from "../affiliateComponents/affiliateApplication";
-import { Scrolly, ScrollyViewport, ScrollyBar } from 'vue-scrolly';
 
 
 //import AffiliateRegView from '../salesComponents/jottComponents/v5/pages/AffiliateRegView.vue';
@@ -1821,10 +1621,7 @@ export default {
   components: {
     applicationslist,
     affiliatelist,
-    affiliateApplication,
-     Scrolly,
-    ScrollyViewport,
-    ScrollyBar
+    affiliateApplication
   }
 };
 
@@ -1838,10 +1635,7 @@ Array.prototype.last = function() {
 </script>
 <style scoped>
 
-.foo{
-  width: 100%;
-  height:300px;
-}
+
 
 .apps .list-group-item {
   display: flex;

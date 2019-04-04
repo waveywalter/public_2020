@@ -68,8 +68,8 @@ import Vuetify,{
     VSpacer,
     VBtn,
     VLayout,
-    VContainer
-
+    VContainer,
+    VSubheader
 
 
   } from 'vuetify/lib'
@@ -101,7 +101,8 @@ Vue.use(Vuetify, {
     VSpacer,
     VBtn,
     VLayout,
-    VContainer
+    VContainer,
+    VSubheader,
 
 
 
