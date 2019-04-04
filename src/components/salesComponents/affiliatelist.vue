@@ -8,10 +8,11 @@
         :to="'/sales/affiliate/'+user.id"
         @click.native=""
       >
-        <div class="mr15 minw125">
+        <div class=" btn btn-default btn-outline showbottom mr15 minw125">
           <a>{{user.firstname}} {{user.lastname}}</a>
+                  <span class="ti-close" v-on:click="openmodal(user.id)"></span>
+
         </div>
-        <span class="ti-close" v-on:click="openmodal(user.id)"></span>
       </router-link>
     </div>
 

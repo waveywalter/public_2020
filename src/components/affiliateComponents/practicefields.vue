@@ -1,7 +1,7 @@
 <template>
     <div>
 <form>
-<div class="form-body form-material">
+<div class="white-box form-body form-material">
    
                                         <h3 class="box-title">Address</h3>
                                         <hr class="m-t-0 m-b-40">

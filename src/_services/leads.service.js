@@ -77,7 +77,7 @@ function createLead(lead){
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(lead)
+        body: JSON.stringify(lead.app)
 
     };
     return fetch(baseURL+'/leads', requestOptions).then(handleResponse);

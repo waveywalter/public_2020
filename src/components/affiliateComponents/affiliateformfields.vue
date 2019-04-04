@@ -3,7 +3,7 @@
    
        <div class="hide">{{cuser}}</div>
         <form>
-        <div class="form-body form-material">
+        <div class="white-box form-body form-material">
    
                                         <h3 class="box-title">Person Info</h3>
                                        

@@ -40,11 +40,20 @@
 
         <div class="col-md-6">
                     <perfect-scrollbar>
-            <div v-for="lead in regexLead(leads)">
+
+
+            <div v-for="lead in regexLead(leads)" :key="lead.id">
+            <router-link 
+            class="list-group-item"
+            :key="lead.id"
+            tag="li"
+            :to="'/sales/crm/'+lead.id"
+            @click.native=""
+            >
               <div class="btn btn-default btn-outline showbottom mt-2 card-body .mr15">
-                <div class="card-title">{{lead.first_name}} {{lead.last_name}}</div>
-                
+                <a class="card-title">{{lead.first_name}} {{lead.last_name}}</a>
               </div>
+            </router-link>
             </div>
          </perfect-scrollbar>
         </div>
@@ -145,14 +154,23 @@ export default {
       console.log(leads.leads);
       let r = leads.leads.filter(lead => {
         console.log(lead);
+        if(lead.first_name)
         return lead.first_name.includes(this.search);
+
+        if(lead.firstname)
+         return lead.firstname.includes(this.search);
+
       });
       if (r.length > 0) {
         return r;
       } else {
         r = leads.leads.filter(lead => {
           console.log(lead);
-          return lead.last_name.includes(this.search);
+          if(lead.last_name)
+          return lead.last_name.includes(this.search); 
+          
+        if(lead.lastname)
+         return lead.lastname.includes(this.search);
         });
       }
       return r;

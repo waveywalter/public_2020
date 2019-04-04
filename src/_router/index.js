@@ -141,20 +141,6 @@ export const router = new Router({
         }
       }
     },
-    {
-      path: '/affiliate', component: affiliateHome,
-      children: [
-        { path: '', component: affiliatedashboard },
-        { path: 'myprofile', component: MyProfile }
-      ],
-      beforeEnter: (to, from, next) => {
-        if (user.user.role == 'affiliate') {
-          next();
-        } else {
-          next("/forbidden")
-        }
-      }
-    },
     { path: '/UserProfiles', component: UserProfiles },
     {
       path: '/login', component: LoginPage,
@@ -170,11 +156,16 @@ export const router = new Router({
     {
       path: '/sales', component: salesHome,
       children: [
-        { path: ':root/forms/:fid', component: affiliatespage },
+        //{ path: ':root/forms/:fid', component: affiliatespage },
+        //{ path: ':root/affiliate/forms/:fid', component: affiliatespage },
         { path: 'myprofile', component: MyProfile },
         { path: '', component: SalesDashBoard },
         { path: 'crm/:id?', component: crm },
-        { path: 'affiliate/:id?', component: affiliatespage },
+        { path: 'affiliate/:id?', component: affiliatespage,
+        children: [
+          {path: 'forms/:fid?', component: affiliatespage}
+        ]
+      },
 //        { path: 'applicant/:id?', component: applicationspage },
         { path: ':root/:id?', component: applicationspage },
         { path: '/crmpage', component: crmpage },
@@ -197,6 +188,7 @@ export const router = new Router({
       path: '/affiliate', component: affiliateHome,
       children: [
         { path: '', component: affiliatedashboard },
+        {path: 'forms/:fid?', component: affiliatedashboard},
         { path: '/affiliate/:formtype/:id', component: affiliatedashboard },
         { path: 'myprofile', component: MyProfile }
       ],

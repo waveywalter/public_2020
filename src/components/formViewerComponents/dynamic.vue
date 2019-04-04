@@ -157,6 +157,7 @@ watch: {
           })
           console.log("WATCHCHCHCH")
            this.$store.state.form.current_signed_form = status[0].id
+  
            console.log(this.$store)
         this.unsent = true 
         console.log(status[0])
