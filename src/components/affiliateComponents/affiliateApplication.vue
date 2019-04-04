@@ -16,7 +16,6 @@
 </style>
 <template>
 
-
                                 <!-- Nav tabs -->
                               <div class="vtabs">
   
@@ -71,8 +70,7 @@
             <uploader :afid='afid'></uploader>
         </div>
     </div>
-  </div>
-  
+</div>
 </template>
 <script>
 import viewer from '../formViewerComponents/formViewer'
@@ -90,7 +88,7 @@ export default{
         if(this.$root._route.params.id){
             console.log("LOAD DATA")
           //  this.$state.store
-          this.$store.state.users.afid = this.$root._route.params.id  
+        //  this.$store.state.users.afid = this.$root._route.params.id  
         }
             this.getFormsHtml()
         },
