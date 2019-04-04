@@ -55,6 +55,7 @@ export const router = new Router({
   mode: 'history',
   routes: [
     { path: '/assignform', component: assignform },
+    { path: '/test', component: Testpage },
     { path: '/test/:id', component: formViewer },
     { path: '/tinymceformbuilder', component: tinymceformbuilder },
     { path: '/forbidden', component: forbiddenerror },
