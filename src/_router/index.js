@@ -188,6 +188,7 @@ export const router = new Router({
       path: '/affiliate', component: affiliateHome,
       children: [
         { path: '', component: affiliatedashboard },
+        {path: 'forms/:fid?', component: affiliatedashboard},
         { path: '/affiliate/:formtype/:id', component: affiliatedashboard },
         { path: 'myprofile', component: MyProfile }
       ],

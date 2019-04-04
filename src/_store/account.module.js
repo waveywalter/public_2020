@@ -4,7 +4,7 @@ import * as Cookie from 'js-cookie';
 
 const user = JSON.parse(localStorage.getItem('user'));
 const state = user
-    ? { status: { loggedIn: true }, user, authCodeId:'' }
+    ? { status: { loggedIn: true }, user, authCodeId:'', afid:"" }
     : { status: {}, user: null };
 
 const actions = {
