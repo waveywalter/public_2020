@@ -66,7 +66,7 @@
 
             </div>
         </div>
-        <div class="tab-pane p-20  " id="messages4" role="tabpanel">
+        <div class="white-box tab-pane p-20  " id="messages4" role="tabpanel">
 
 <uploader :afid='afid'></uploader>
 </div>
