@@ -40,10 +40,20 @@
 
         <div class="col-md-6">
                     <perfect-scrollbar>
-            <div v-for="lead in regexLead(leads)">
+
+
+            <div v-for="lead in regexLead(leads)" :key="lead.id">
+            <router-link 
+            class="list-group-item"
+            :key="lead.id"
+            tag="li"
+            :to="'/sales/crm/'+lead.id"
+            @click.native=""
+            >
               <div class="btn btn-default btn-outline showbottom mt-2 card-body .mr15">
-                <div class="card-title">{{lead.first_name}} {{lead.last_name}}</div>
+                <a class="card-title">{{lead.first_name}} {{lead.last_name}}</a>
               </div>
+            </router-link>
             </div>
          </perfect-scrollbar>
         </div>
