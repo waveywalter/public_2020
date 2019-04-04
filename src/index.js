@@ -66,7 +66,10 @@ import Vuetify,{
     VCardText,
     VCardActions,
     VSpacer,
-    VBtn
+    VBtn,
+    VLayout,
+    VContainer,
+    VSubheader
 
 
   } from 'vuetify/lib'
@@ -96,7 +99,10 @@ Vue.use(Vuetify, {
     VCardText,
     VCardActions,
     VSpacer,
-    VBtn
+    VBtn,
+    VLayout,
+    VContainer,
+    VSubheader,
 
 
 
