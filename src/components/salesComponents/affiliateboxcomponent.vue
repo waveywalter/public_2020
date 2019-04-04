@@ -2,7 +2,11 @@
   <div class="col-md-4">
     <div class="white-box">
     <h3 class="box-title">Current Affiliates</h3>
-      <perfect-scrollbar>
+
+
+      <scrolly class="foo">
+      <scrolly-viewport>
+   
        <div class="">
         <div class="white-box ml-5 ">
                       
@@ -242,7 +246,13 @@
               </div>-->
             </div>
           </div> 
-        </perfect-scrollbar>
+
+      </scrolly-viewport>
+  <scrolly-bar axis="y"></scrolly-bar>
+  <scrolly-bar axis="x"></scrolly-bar>
+</scrolly>
+
+
       </div>
     </div>
   </div>
@@ -257,6 +267,8 @@ import applicationslist from "./applicationslist";
 import affiliatelist from "./affiliatelist";
 import imageupload from "../layoutComponents/imageUpload";
 import affiliateApplication from "../affiliateComponents/affiliateApplication";
+import { Scrolly, ScrollyViewport, ScrollyBar } from 'vue-scrolly';
+
 
 //import AffiliateRegView from '../salesComponents/jottComponents/v5/pages/AffiliateRegView.vue';
 
@@ -1809,7 +1821,10 @@ export default {
   components: {
     applicationslist,
     affiliatelist,
-    affiliateApplication
+    affiliateApplication,
+     Scrolly,
+    ScrollyViewport,
+    ScrollyBar
   }
 };
 
@@ -1822,6 +1837,12 @@ Array.prototype.last = function() {
 };
 </script>
 <style scoped>
+
+.foo{
+  width: 100%;
+  height:300px;
+}
+
 .apps .list-group-item {
   display: flex;
   justify-content: space-between;
