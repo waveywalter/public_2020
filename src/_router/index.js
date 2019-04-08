@@ -154,8 +154,9 @@ export const router = new Router({
       }
     },
     { path: '/register', component: RegisterPage },
-    {
-      path: '/sales', component: salesHome,
+
+
+    {path: '/sales', component: salesHome,
       children: [
         //{ path: ':root/forms/:fid', component: affiliatespage },
         //{ path: ':root/affiliate/forms/:fid', component: affiliatespage },
@@ -178,7 +179,7 @@ export const router = new Router({
         { path: '/affiliateregistrationpage', component: affiliateregistrationpage }
       ],
       beforeEnter: (to, from, next) => {
-        if (user.user.role == 'sales') {
+        if (user.user.role == 'sales'|| user.user.role == 'humanResource') {
           next();
         } else {
           next("/forbidden")
@@ -201,16 +202,29 @@ export const router = new Router({
         }
       }
     },
-    {
-      path: '/humanResource', component: humanResourceHome,
+    
+    {path: '/humanResource', component: humanResourceHome,
       children: [
-        { path: '', component: HrDashBoard },
         { path: 'myprofile', component: MyProfile },
-        { path: 'hrforms', component: adminForms }
+        { path: '', component: HrDashBoard },
+        { path: 'hrforms', component: adminForms },
+        { path: 'crm/:id?', component: crm },
+        { path: 'affiliate/:id?', component: affiliatespage,
+        children: [
+          {path: 'forms/:fid?', component: affiliatespage}
+        ]
+      }
+        
       ],
       beforeEnter: (to, from, next) => {
-        next()
-
+        // userService.checkrole().then(res => res.json()).then(roleMapping => {
+        //   if ((user.user.role == "humanResource") && roleMapping.id) {
+        //     next();
+        //   } else {
+        //     next("/forbidden")
+        //   }
+        // });
+        next();
       }
     },
     {

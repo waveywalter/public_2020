@@ -17,7 +17,7 @@
     </div>
 
 
-    <div
+    <!-- <div
       v-if="modalopen"
       class="modal fade bs-example-modal-sm show"
       tabindex="-1"
@@ -53,7 +53,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
 
   </div>
@@ -111,12 +111,22 @@ export default {
 };
 </script>
 <style >
+.fas {
+    font-weight: 900;
+    float: right;
+}
 .minw125 {
   min-width: 125px;
   display: inline-block;
+  width:100%;
 }
 .mr15 {
   margin-right: 15px;
+  text-align: left;
+  width: 100%;
+  }
+.list-group-item {
+  border: 0px !important;
 }
 .list-group-item,
 .list-group-item:first-child,
@@ -129,5 +139,8 @@ export default {
 .ti-close {
   cursor: pointer;
   float: right;
+}
+.apps {
+  float: left !important;
 }
 </style>
