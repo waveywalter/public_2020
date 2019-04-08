@@ -45,7 +45,7 @@
         <div class="tab-pane p-20 " v-bind:class="{'active': formtab }" id="profile4" role="tabpanel">
             <div class="lfloat">
 
-                <div v-if="role=='sales'" class="formlist list-group">
+                <div v-if="role=='sales' || role=='humanResource'" class="formlist list-group">
                     <div v-for="(form,index) in forms_list">
                         <router-link :to="'/sales/affiliate/'+afid+'/forms/'+form.id" :key="'fskl'+index"
                             v-if="form.status!='signed' ">
@@ -60,9 +60,8 @@
                     <div v-for="(form,index) in forms_list">
                         <router-link :to="'/affiliate/forms/'+form.id" :key="index" v-if="form.status!='signed' ">
 
-                            <span style="margin-right:10px" v-on:click="formloader(form.id)"
-                                :value="form.id">{{form.FormTitle}}</span>
-
+           <a class="list-group-item" style="margin-right:10px" v-on:click="formloader(form.id)"
+                                :value="form.id">{{form.FormTitle}}</a>
                         </router-link>
                     </div>
                 </div>
