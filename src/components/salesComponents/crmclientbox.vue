@@ -71,6 +71,18 @@ div::-webkit-scrollbar-thumb {
   border-radius: 10%;
 }
 
+div::-ms-scrollbar {
+    width: 0.6em;
+}
+ 
+div::-ms-scrollbar-track {
+    -ms-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.075);
+}
+ 
+div::-ms-scrollbar-thumb {
+  background-color: red;
+  border-radius: 10%;
+}
 
 .mr15 {
   margin-right: 15px;

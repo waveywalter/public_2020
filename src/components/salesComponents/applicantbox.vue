@@ -4,7 +4,7 @@
     <div class="white-box">
       <h3 class="box-title">Current Applicants</h3>
       <div class="">
-          <div class="ml-5 max50 ">
+          <div class="ml-5">
 
 
     <v-layout column justify-center align-center>
@@ -19,7 +19,7 @@
         column
         align-center
         justify-center
-        style="height: 1000px"
+        style="height: 900px"
       >
 
             <div id="app-wrapper" :key="listkey" >
@@ -1631,6 +1631,9 @@ Array.prototype.last = function() {
 };
 </script>
 <style scoped>
+
+
+
 .apps .list-group-item {
   display: flex;
   justify-content: space-between;
@@ -1790,7 +1793,7 @@ iframe {
   max-width: 250px;
 }
 .meter > div {
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
 }
 .vtabs .tabs-vertical {
   width: 150px;

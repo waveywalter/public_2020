@@ -2,8 +2,6 @@
   <div class="col-md-4">
     <div class="white-box">
     <h3 class="box-title">Current Affiliates</h3>
-
-   
        <div class="">
         <div class="ml-5 ">
           
@@ -20,7 +18,7 @@
         column
         align-center
         justify-center
-        style="height: 1000px"
+        style="height: 900px"
       >
 
             <div id="app-wrapper" :key="listkey" >
@@ -46,15 +44,10 @@
                 </div>
               </div>
             </div>
-
-
       </v-layout>
     </v-container>
-
-
             </div>
           </div>
-
       </div>
     </div>
 </template>
