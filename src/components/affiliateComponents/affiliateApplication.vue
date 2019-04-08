@@ -67,7 +67,7 @@
                 </div>
                 <div>
                     <h3>Form Description/Details/Usage</h3>
-                    <viewer :user="user" :fid="fid" :phtml="thtml"></viewer>
+                    <viewer :user="user" :fid="fid" :phtml="thtml"> </viewer>
                 </div>
             </div>
         </div>
