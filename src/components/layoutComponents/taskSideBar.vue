@@ -20,7 +20,7 @@
                     <div class="task-data">
                       <label for="inputSchedule">
                         <span class="mainText">{{task.title}}</span>
-                      </label>
+                      </label> 
                       <p class="subText" v-html="`<a href='`+returnUrl(task.content)+`'>View Lead</a>`"></p>
                       <p class="subText">Created: {{task.date_created | moment("dddd, MMMM Do YYYY h:mm ")}}</p>
                       <p class="subText">Due By: {{task.due_date | moment("dddd, MMMM Do YYYY h:mm ")}}</p>

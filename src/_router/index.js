@@ -209,14 +209,8 @@ export const router = new Router({
         { path: 'hrforms', component: adminForms }
       ],
       beforeEnter: (to, from, next) => {
-        userService.checkrole().then(res => res.json()).then(roleMapping => {
-          console.log(roleMapping.id)
-          if ((user.user.role == "humanResource") && roleMapping.id) {
-            next();
-          } else {
-            next("/forbidden")
-          }
-        });
+        next()
+
       }
     },
     {
