@@ -19,7 +19,7 @@
     </v-layout>
     <v-container
       id="scroll-target"
-      style="max-height: 300px"
+      style="max-height: 525px"
       class="scroll-y"
     >
       <v-layout
@@ -97,7 +97,7 @@ div::-ms-scrollbar-thumb {
 }
 .ps {
   position: relative;
-  height: 300px;
+  height: 525px;
 }
 </style>
 

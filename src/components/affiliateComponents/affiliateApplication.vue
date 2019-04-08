@@ -67,8 +67,12 @@
                 </div>
                 <div>
                     <h3>Form Description/Details/Usage</h3>
+<<<<<<< HEAD
                     
                     <viewer :user="user" :fid="fid" :phtml="thtml"></viewer>
+=======
+                    <viewer :user="user" :fid="fid" :phtml="thtml"> </viewer>
+>>>>>>> 23007929c129bba927d3482d4b5da5622340408e
                 </div>
             </div>
         </div>

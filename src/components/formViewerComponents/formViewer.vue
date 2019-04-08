@@ -1,8 +1,8 @@
 <template>
     <div>
 
-<dynamic :user="user" :fid="fid" ref="dynamic" v-bind:template="chtml[0]"></dynamic> 
 
+<dynamic :user="user" :fid="fid" ref="dynamic" v-bind:template="chtml[0]"></dynamic> 
     </div>
 </template>
 <script>

@@ -173,6 +173,8 @@ watch: {
           let new_html = this.template.FormContent.replace(/\<input/g ,"<input disabled ")
            new_html = new_html.replace("[employee.name]" , pf+" "+pl)
           html ="<div class='former'><h3>Already Signed</h3> <button class='btn btn-default' v-on:click='print'>Print</button>"+
+          "<button class='btn btn-success' v-on:click='approve_form'>Approve</button>"+
+          "<button class='btn btn-danger ' v-on:click='deny_form'>Deny</button>"+
           "<div id='printarea'><h3 >"+this.template.FormTitle+"</h3>"+
           new_html+"<div class='error' v-if='error_on'>{{error}}</div>"+
           "<div>Signed By:"+pf+' '+pl+"</div>"+
