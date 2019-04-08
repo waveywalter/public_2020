@@ -67,6 +67,7 @@
                 </div>
                 <div>
                     <h3>Form Description/Details/Usage</h3>
+                    
                     <viewer :user="user" :fid="fid" :phtml="thtml"></viewer>
                 </div>
             </div>
@@ -90,7 +91,13 @@ export default{
     name:"affiliateApplication",
     props:["affiliateId"],
     mounted(){
-        console.log(this.user)
+        console.log(this.$store.state)
+       if(this.$store.state.account.user.user.role=="affiliate"){
+           console.log("IT A AFFILAITE DUH")
+           this.$store.state.apps.currentAffiliate = {"name":"Fool"}
+           console.log(this.$store.state)
+           console.log("AFFILAITRE UPDATESD")
+       }
         if(this.$root._route.params.id){
             console.log("LOAD DATA")
           //  this.$state.store
@@ -120,6 +127,7 @@ export default{
             }),
            ...mapActions("form", ["getformbyid", "updateform","getforms", "deleteform","attachUserToForm","getUserForms"]),
            formloader(e){
+               console.log("HER WE GOOOOOOOOOOOOOOOO")
                console.log(e)
                 this.$store.state.account.formid = e
                 this.$store.state.users.current = this.user
@@ -128,7 +136,8 @@ export default{
                this.getFormHtml(e)               
                 },
            getFormHtml(id){
- 
+               console.log("GET FORM HTMLLLLLLLLLLLLLLLLL")
+               console.log(this.html)
                     let currentf = this.html.filter(form=>{return form.id==id })
                     this.formDisplay=true
                     this.thtml = currentf

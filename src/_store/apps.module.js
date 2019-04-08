@@ -2,7 +2,8 @@ const state = {
     id:'',
     application: {},
     list:[],
-    wholelist:[]
+    wholelist:[],
+    currentAffiliate:{}
 };
 
 const actions = {
