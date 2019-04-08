@@ -94,9 +94,7 @@ export default{
         console.log(this.$store.state)
        if(this.$store.state.account.user.user.role=="affiliate"){
            console.log("IT A AFFILAITE DUH")
-           this.$store.state.apps.currentAffiliate = {"name":"Fool"}
-           console.log(this.$store.state)
-           console.log("AFFILAITRE UPDATESD")
+           this.$store.state.apps.currentAffiliate = this.$store.state.account.user.user
        }
         if(this.$root._route.params.id){
             console.log("LOAD DATA")
