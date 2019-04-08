@@ -163,7 +163,7 @@
 }
 .ps {
   position: relative;
-  height: 500px;
+  height: 525px;
   width: 100%;
 }
 .ps__rail-x:hover > .ps__thumb-x,
@@ -173,7 +173,6 @@
   height: 11px !important;
 }
 .todo {
-  max-height: 565.29px;
 }
 .rightsidebar {
   right: 22px;
@@ -198,7 +197,7 @@ let user = JSON.parse(localStorage.getItem("user"));
 console.log(user);
 var newNote = document.createElement("span");
 export default {
-  name: "SideBar",
+  name: "Taskbox",
   methods:{
         returnUrl(text){
       console.log(typeof text)
