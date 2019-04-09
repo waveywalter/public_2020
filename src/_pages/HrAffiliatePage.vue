@@ -2,19 +2,19 @@
     <div>
         <div id="page-wrapper">
                   <div class="container-fluid">
-        <affiliateApplication/>
+        <hraffiliateApplication/>
         </div>
         </div>
         </div>
 </template>
 
 <script>
-import affiliateApplication from '../components/affiliateComponents/affiliateApplication'
+import hraffiliateApplication from '../components/hrComponents/hraffiliateApplication'
 
     export default {
-        name: "affiliatespage",
+        name: "Hraffiliatespage",
         components: {
-            affiliateApplication
+            hraffiliateApplication
         }
     }
 

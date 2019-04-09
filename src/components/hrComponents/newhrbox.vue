@@ -42,7 +42,8 @@
                     </div>
                   </div>
                   <h4 class="card-title">Affiliates</h4>
-                  <affiliatelist></affiliatelist>
+                  <!-- <affiliatelist></affiliatelist> -->
+                  <hraffiliatelist></hraffiliatelist>
                 </div>
               </div>
             </div>
@@ -60,9 +61,10 @@
 import axiosApi from "axios";
 import $ from "jquery";
 import applicationslist from "../salesComponents/applicationslist";
-import affiliatelist from "../salesComponents/affiliatelist";
+// import affiliatelist from "../salesComponents/affiliatelist";
 import imageupload from "../layoutComponents/imageUpload";
 import affiliateApplication from "../affiliateComponents/affiliateApplication";
+import hraffiliatelist from "./hraffiliatelist"
 
 //import AffiliateRegView from '../salesComponents/jottComponents/v5/pages/AffiliateRegView.vue';
 
@@ -1614,7 +1616,7 @@ export default {
 
   components: {
     applicationslist,
-    affiliatelist,
+    hraffiliatelist,
     affiliateApplication
   }
 };
