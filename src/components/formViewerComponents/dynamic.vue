@@ -25,6 +25,10 @@ methods:{
   print(){
     this.$htmlToPaper('printarea');
   },
+  approve_form(){
+  },
+  deny_form(){
+  },
   sendAuth(){
 
       console.log("Verfiy auth code and alert status")
