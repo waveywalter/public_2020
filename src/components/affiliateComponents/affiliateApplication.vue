@@ -13,26 +13,41 @@
 .lfloat {
     display: flex;
 }
+.highlight {
+  background:#03a9f3!important;
+}
+
 </style>
 <template>
 
-                                <!-- Nav tabs -->
-<div class="vtabs">
+<div class="row"> 
+    <div class="col-sm-12">
+<div class="container-fluid">
+    <div id="exampleBasic" class="wizard">
+        <ul class="wizard-steps" role="tablist">
+            
+<li class="nav-item" @click="selected = 1" :class="{highlight:selected == 1}"> <a class="nav-link" v-bind:class="{'active show': !formtab }" data-toggle="tab" href="#home4" role="tab"aria-selected="true"> 
+<h4><span>1</span>Step</h4> </a> </li>
 
-    <ul class="nav nav-tabs tabs-vertical" role="tablist">
-        <li class="nav-item"> <a class="nav-link" v-bind:class="{'active show': !formtab }" data-toggle="tab" href="#home4" role="tab"
-                aria-selected="true"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span
-                    class="hidden-xs-down">Profile Details</span> </a> </li>
-        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#practice4" role="tab"
-                aria-selected="false"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span
-                    class="hidden-xs-down">Practice Details</span> </a> </li>
-        <li class="nav-item"> <a class="nav-link" v-bind:class="{'active show': formtab }" data-toggle="tab" href="#profile4"
-                role="tab" aria-selected="false"><span class="hidden-sm-up"><i class="ti-user"></i></span> <span
-                    class="hidden-xs-down">Forms</span></a> </li>
-        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#messages4" role="tab"
-                aria-selected="false"><span class="hidden-sm-up"><i class="ti-email"></i></span> <span
-                    class="hidden-xs-down">Uploads</span></a> </li>
-    </ul>
+
+<li class="nav-item" @click="selected = 2" :class="{highlight:selected == 2}"> <a class="nav-link" data-toggle="tab" href="#practice4" role="tab" aria-selected="false"> 
+<h4><span>2</span>Step</h4> </a> </li>
+
+
+<li class="nav-item" @click="selected = 3" :class="{highlight:selected == 3}"> <a class="nav-link" v-bind:class="{'active show': formtab }" data-toggle="tab" href="#profile4" role="tab" aria-selected="false"><span class="hidden-sm-up"><i class="ti-user"></i></span> 
+<h4><span>3</span>Step</h4> </a> </li>
+
+<li class="nav-item" @click="selected = 4" :class="{highlight:selected == 4}"> <a class="nav-link" data-toggle="tab" href="#messages4" role="tab" aria-selected="false"><span class="hidden-sm-up"><i class="ti-email"></i></span> 
+<h4><span>4</span>Step</h4> </a> </li>
+
+        </ul>
+</div>
+
+
+
+
+
+
     <!-- Tab panes -->
     <div class="tab-content">
         <div class="tab-pane" v-bind:class="{'active': !formtab }" id="home4" role="tabpanel">
@@ -76,6 +91,9 @@
         </div>
     </div>
 </div>
+</div>
+</div>
+  
   
 </template>
 <script>
@@ -201,7 +219,8 @@ export default{
                 FormTitle:"",
                 thtml:'',
                 forms:'',
-                formtab: false
+                formtab: false,
+                selected:undefined
               //  user:this.users,
                     }   
                 },

@@ -76,7 +76,6 @@
         </div>
     </div>
 </div>
-  
 </template>
 <script>
 import viewer from '../formViewerComponents/formViewer'
