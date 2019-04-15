@@ -10,13 +10,30 @@ export const formService = {
     getforms,
     deleteform,
     attachUserToForm,
-    getFormsByUser
+    getFormsByUser,
+    addFormToRole,
+    getRoles
 };
   const baseURL="https://2020i.site/api";
 //const baseURL="http://localhost:3000/api";
 //const baseURL = 'https://google.com'
 function loco(){
     console.log('loco') 
+}
+function getRoles(){   
+     const requestOptions = {
+    method: 'GET',
+    headers: authHeader()
+};
+    return fetch(baseURL+'/Roles/', requestOptions).then(handleResponse);
+}
+function addFormToRole(fid,rid){
+    console.log(fid,rid)
+    const requestOptions = {
+        method: 'PUT',
+        headers: authHeader()
+    };
+    return fetch(baseURL+'/Roles/'+fid+'/forms/rel/'+rid, requestOptions).then(handleResponse);
 }
 
 function saveform(formdata) {
@@ -113,7 +130,14 @@ function getFormsByUser(id,toekn){
 function attachUserToForm(data){
     console.log(data)
     data.status = false
-    fetch(baseURL+'/wsers/'+data.userId+'/signedforms',{
+    data.meta = {}
+    data.userId = data.userid
+    data.wserId = data.userid
+    data.signedformId = data.formId
+
+
+
+ return   fetch(baseURL+'/wsers/'+data.userid+'/signedforms',{
         method:"POST",
         headers: {...authHeader(), 'Content-Type': 'application/json' },
         body: JSON.stringify(data)   

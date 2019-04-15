@@ -6,7 +6,7 @@
         :key="user.id"
         tag="li"
         :to="'/sales/affiliate/'+user.id"
-        @click.native=""
+        @click.native="$store.state.apps.currentAffiliate=user"
       >
         <div class=" btn btn-default btn-outline showbottom mr15 minw125">
           <a>{{user.firstname}} {{user.lastname}}</a>

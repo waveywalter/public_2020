@@ -1,11 +1,11 @@
 <template>
 <form ref="form" @submit.prevent="handleSubmit">
           <div>
-              <label>User</label>
-          <select id="userList" v-if="users.items" v-model="data.userId">
-            <option >Select an Employee</option>
-            <option v-for="wser in users.items" :key="wser.id" v-bind:value="wser.id">
-              {{wser.firstname}} {{wser.lastname}}
+              <label>Select Role</label>
+          <select id="userList" v-if="roles" v-model="data.roleId">
+            <option >Select a Role</option>
+            <option v-for="role in roles" :key="role.id" v-bind:value="role.id" >
+              {{role.name}}
             </option>
           </select>
           </div>
@@ -16,13 +16,13 @@
                  <input :data-attr="allform.id" type="checkbox" :name="allform.name" v-on:click="updateData">
                  <span class="checkmark"></span>
                  <label :for="allform.name">{{allform.FormTitle}}</label>
-                 <a :href="'/admin/adminforms/?formid='+allform.id">Edit</a>
+                <!-- <a :href="'/admin/adminforms/?formid='+allform.id">Edit</a>
                  <!-- <a :href="'/'+{{url()}}+'/adminforms/?formid='+allform.id">Edit</a> -->
                  <!-- <router-link :to="'/admin/adminforms/?formid='+allform.id">Edit</router-link> -->
                </li>
              </ul>
           </div> 
-          <button type="submit">Attach Form To User</button>
+          <button type="submit">Attach Forms To Role</button>
           </form>
 
           </template>
@@ -59,8 +59,9 @@ export default {
     return {
       data: {
         userId:'',
-        formId:'',
-        meta:{}
+        formIds:[],
+        meta:{},
+        data:{}
       }
     };
   },
@@ -68,6 +69,7 @@ export default {
     ...mapState({
       account: state => state.account,
       users: state => state.users.all,
+       roles: state => state.form.roles,
       ...mapState("form", ["allforms", "formdata","userForms"]), 
           })
   },
@@ -77,6 +79,7 @@ export default {
   created() {
     this.getAllUsers({ });
     this.getforms({ });
+    this.getRoles()
    
     //this.attachUserToForm({})
   },
@@ -95,17 +98,37 @@ export default {
       deleteUser: "delete",
       update: "update",
      }),
-      ...mapActions("form", ["getformbyid", "updateform","getforms", "deleteform","attachUserToForm","getUserForms"]),
+      ...mapActions("form", ["getformbyid", "updateform","getforms", "deleteform","attachUserToForm","getUserForms","getRoles","addFormToRole"]),
       updateData(e){
+        let rid = e.target.attributes[1].value;
+        console.log(e)
+        console.log(this.$refs)
+        let mid = this.data.formIds
+        if(this.data.formIds.includes(rid)){
+          this.data.formIds = mid.filter(form=>{form!=rid})
 
-        this.data.formId = e.target.attributes[1].value
-        this.data.userId = this.$refs.form[0].value
+        }
+        else{
+          this.data.formIds.push(rid)
+        }
+        //this.data.roleId = e.target.attributes[1].value
+       // this.data.formId = this.$refs.form[0].value
 
        
       },
-      handleSubmit(e){
+    async  handleSubmit(e){
         //post to website clear form
-        this.attachUserToForm(this.data)
+  console.log(this.data)
+  await this.data.formIds.map(id=>{
+    let data = {
+        formId:id,
+        roleId:this.data.roleId,
+        meta:{}
+    }
+    this.addFormToRole(data)
+  })
+
+        //this.addFormToRole(this.data)
         e.target.reset()
       }
   },

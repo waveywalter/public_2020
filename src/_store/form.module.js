@@ -7,7 +7,9 @@ const state = {
    allforms:{},
    formdata:null,
    userForms:[],
-   current_signed_form:""
+   current_signed_form:"",
+   signed_form:"",
+   roles:[]
 };
 
 const actions = {
@@ -26,6 +28,16 @@ const actions = {
     //             }
     //         );
     // },
+    getRoles({ dispatch, commit }){
+            formService.getRoles().then(roles=>{
+                commit("getRolesSuccess",roles)
+            })
+    },
+    addFormToRole({ dispatch, commit },data){
+        console.log("ADD FORMMMMMMM")
+        console.log(data)
+        formService.addFormToRole(data.roleId,data.formId)
+    },
     updateform({ dispatch, commit }, formdata) {    
         formService.updateform(formdata)
             .then(
@@ -87,7 +99,11 @@ const actions = {
             );
     },
     attachUserToForm({commit},data){
-        formService.attachUserToForm(data)
+
+        formService.attachUserToForm(data).then(res=>{
+            commit("attachUserSuccess",res.id)
+            //state.signed_form = res.id
+        })
         console.log(data)
     },
     getUserForms({commit},id){
@@ -103,6 +119,12 @@ const actions = {
 };
 
 const mutations = {
+    attachUserSuccess(state,form_id){
+        state.signed_form = form_id
+    },
+    getRolesSuccess(state,roles){
+        state.roles = roles
+    },
     getUserFormsSuccess(state,userForms){
         state.userForms = userForms
     },

@@ -1,6 +1,7 @@
 <script>
 import Vue from 'vue'
 import printer from "vue-printer";
+import { mapState, mapActions } from "vuex";
 var staticRenderFns = [];
 export default {
   name:"dynamic",
@@ -18,10 +19,13 @@ data() {
       error_on:false,
       formID:'',
       formAuthed:false,
-      printer_off:true
+      printer_off:true,
+      sucka:''
+ 
     };
   },
 methods:{
+   ...mapActions("form", ["attachUserToForm","getUserForms"]),
   print(){
     this.$htmlToPaper('printarea');
   },
@@ -30,15 +34,18 @@ methods:{
       console.log("Verfiy auth code and alert status")
       let code= this.authcode;
       let formid = this.$store.state.account.formid;
-      let sformid = this.$store.state.form.current_signed_form
-      let userid = this.user[0].id;
+      let sformid = this.$store.state.form.signed_form
+      this.sucka = this.$store.state.form.signed_form
+      let userid = this.$store.state.apps.currentAffiliate.id;
       let authDetails ={
           formid:formid,
           userid:userid,
           code:code
       }
       let _this = this
- 
+ console.log(this)
+console.log(this.sucka)
+
      fetch('/api/verifyauthcode',{
           method:"POST",
            headers: { 'Content-Type': 'application/json' },
@@ -96,13 +103,18 @@ methods:{
               }
               console.log(d)
           //STORE AUTH META DATA WITH FORM
-        fetch('/api/wsers/'+this.user[0].id+'/signedforms/'+sformid+'?access_token='+this.$store.state.account.user.id,{
+          
+    fetch('/api/wsers/'+userid+'/signedforms/'+this.sucka+'?access_token='+this.$store.state.account.user.id,{
                     method:"PUT",
            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(d)   
-        }).then(res=>console.log(res))  
-
-
+        }).then(res=>{
+          console.log("RESUBMIT WITH CORRECT ID")
+          console.log(res)
+          
+          })  
+      //user.id and token
+    this.getUserForms(this.$store.state.apps.currentAffiliate.id)
            }
         //store results with form
 
@@ -111,15 +123,18 @@ methods:{
          // this.unsent = false
           }) 
   },
+  approve_form(){},
+  deny_form(){},
   getAuth(){
       console.log(this)
       let authDetails = {
-          userid:this.user[0].id,
+          userid:this.$store.state.apps.currentAffiliate.id,
           formId:this.$store.state.account.formid,
           //change formid to clicked value
-          phone:this.user[0].phone,
-          email:this.user[0].email,
-          url:this.$route.path
+          phone:this.$store.state.apps.currentAffiliate.phone,
+          email:this.$store.state.apps.currentAffiliate.email,
+          url:this.$route.path,
+       
       };
       
       console.log("HIT API GET AUTHCODE SENT - SWITCH BUTTON TO SUBMIT")
@@ -128,7 +143,17 @@ methods:{
             method:"POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(authDetails)
-      }).then(res=>{console.log(res);return res.json()}).then(json=>{console.log(json);this.$store.state.account.authCodeId=json.id;console.log(this.$store.state)})
+      }).then(handleResponse).then(json=>{
+          console.log(json);
+          this.$store.state.account.authCodeId=json.id;
+          console.log(this.$store.state)
+               let data = {
+        formId:this.template.id,
+        userid:this.$store.state.apps.currentAffiliate.id
+      }
+      this.attachUserToForm(data)
+          
+          })
       this.unsent= false;
       //save auth id to user model
       //this.$store.state.account.user.authCodeId = 
@@ -156,16 +181,19 @@ watch: {
           return form
           })
           console.log("WATCHCHCHCH")
+          console.log(status)
+      if(status.length !=0){
            this.$store.state.form.current_signed_form = status[0].id
   
            console.log(this.$store)
-        this.unsent = true 
+        //this.unsent = true 
         console.log(status[0])
         this.formAuthed = false;
-        if(status[0].status==true){
-          console.log("CUREENT USER")
+       if(status[0].status==true){
+          console.log("CUREENT AFFILATE")
           console.log(this.user)
-          let p = this.user[0];
+          console.log(this.$store.state.apps.currentAffiliate)
+          let p = this.$store.state.apps.currentAffiliate;
           let pf = p.firstname;
           let pl = p.lastname;
           let pp = p.phone;
@@ -185,8 +213,15 @@ watch: {
           "</div></div>"
          // this.unsent = false
           this.formAuthed = true
-        }
-        var res = Vue.compile(html);
+          }
+       
+      }
+      else{
+        this.formAuthed = false;
+        this.unsent=true
+      }
+ 
+       var res = Vue.compile(html);
         this.templateRender = res.render;
         // staticRenderFns belong into $options, 
         // appearantly
@@ -201,7 +236,7 @@ watch: {
           staticRenderFns.push(res.staticRenderFns[i]);
           this.$options.staticRenderFns.push(res.staticRenderFns[i])
         }
-      }
+        }
       }
     }
   },
@@ -209,6 +244,23 @@ watch: {
 String.prototype.capitalize = function() {
  return this.charAt(0).toUpperCase() + this.slice(1);
     }
+
+function handleResponse(response) {
+    console.log(response)
+    return response.text().then(text => {
+        const data = text && JSON.parse(text);
+        if (!response.ok) {
+            
+            if (response.status === 401) {
+                alert("Permission Error.");
+            }
+            const error = (data && data.message) || response.statusText;
+            return Promise.reject(error);
+        }
+        return data;
+    });
+
+}
 </script>
 <style>
 div#printarea {

@@ -22,16 +22,16 @@
     <ul class="nav nav-tabs tabs-vertical" role="tablist">
         <li class="nav-item"> <a class="nav-link" v-bind:class="{'active show': !formtab }" data-toggle="tab" href="#home4" role="tab"
                 aria-selected="true"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span
-                    class="hidden-xs-down">Profile Details</span> </a> </li>
+                    class="hidden-xs-down">Step 1</span> </a> </li>
         <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#practice4" role="tab"
                 aria-selected="false"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span
-                    class="hidden-xs-down">Practice Details</span> </a> </li>
+                    class="hidden-xs-down">Step 2</span> </a> </li>
         <li class="nav-item"> <a class="nav-link" v-bind:class="{'active show': formtab }" data-toggle="tab" href="#profile4"
                 role="tab" aria-selected="false"><span class="hidden-sm-up"><i class="ti-user"></i></span> <span
-                    class="hidden-xs-down">Forms</span></a> </li>
+                    class="hidden-xs-down">Step 3</span></a> </li>
         <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#messages4" role="tab"
                 aria-selected="false"><span class="hidden-sm-up"><i class="ti-email"></i></span> <span
-                    class="hidden-xs-down">Uploads</span></a> </li>
+                    class="hidden-xs-down">Step 4</span></a> </li>
     </ul>
     <!-- Tab panes -->
     <div class="tab-content">
@@ -67,12 +67,8 @@
                 </div>
                 <div>
                     <h3>Form Description/Details/Usage</h3>
-<<<<<<< HEAD
                     
                     <viewer :user="user" :fid="fid" :phtml="thtml"></viewer>
-=======
-                    <viewer :user="user" :fid="fid" :phtml="thtml"> </viewer>
->>>>>>> 23007929c129bba927d3482d4b5da5622340408e
                 </div>
             </div>
         </div>
@@ -96,6 +92,7 @@ export default{
     props:["affiliateId"],
     mounted(){
         console.log(this.$store.state)
+       
        if(this.$store.state.account.user.user.role=="affiliate"){
            console.log("IT A AFFILAITE DUH")
            this.$store.state.apps.currentAffiliate = this.$store.state.account.user.user
@@ -111,6 +108,8 @@ export default{
             this.getUserForms(this.$store.state.account.afid)
         let urlstring = this.$route.path
         if(urlstring.indexOf("forms") >= 0) this.formtab = true;
+    console.log(this.users,this.affiliateId)
+   
         },
     created(){
         this.getAllUsers({role:"affiliate"})  
@@ -123,6 +122,7 @@ export default{
         }
     },
     methods:{
+ 
             ...mapActions("users", {
       getAllUsers: "getAll",
       deleteUser: "delete"
@@ -133,14 +133,21 @@ export default{
                console.log(e)
                 this.$store.state.account.formid = e
                 this.$store.state.users.current = this.user
-                let rootform = this.$store.state.form.userForms//.filter(form=>{return form.formId==e})
+                console.log(this)
+                this.$store.state.form.current_signed_form = e
+                let g = this.$store.state.form.sfs.filter(form=>form.formId==e)
+                if(g.length>0){
+                this.$store.state.form.signed_form = this.$store.state.form.sfs.filter(form=>form.formId==e)[0].id
+                }
+                let rootform = this.$store.state.apps.currentAffiliate.forms//.filter(form=>{return form.formId==e})
                 this.$store.state.form.current_signed_form = rootform[0].id;
                this.getFormHtml(e)               
                 },
            getFormHtml(id){
                console.log("GET FORM HTMLLLLLLLLLLLLLLLLL")
+               console.log(this)
                console.log(this.html)
-                    let currentf = this.html.filter(form=>{return form.id==id })
+                    let currentf = this.forms_list.filter(form=>{return form.id==id })
                     this.formDisplay=true
                     this.thtml = currentf
                     return currentf
@@ -197,7 +204,14 @@ export default{
             return this.$store.state.account.user.user.role
         },
          forms_list :{
-                get:function(){ return this.html },
+                get:function(){
+                    console.log("FORM LIST") 
+                    console.log(this.users)
+                    console.log(this.$store.state.users.all.items)
+                    console.log(this.afid)
+                    this.$store.state.apps.currentAffiliate = this.user[0]
+                    return this.$store.state.apps.currentAffiliate.forms
+                     },
                 set:function(value){
                     this.forms_list = value
                 }
