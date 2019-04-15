@@ -100,7 +100,7 @@ display:flex;}
   <div>
   <div class="leadHolder">
 
-  <div v-for="lead in regexLead(leads)" class="card col-lg-3 col-md-6">
+  <div v-for="lead in regexLead(leads)" class="white-box card col-lg-3 col-md-6">
     <div :class="'card-body basic  '+lead.status">
     <div class="card-title"> {{lead.first_name}} {{lead.last_name}} 
      <v-icon v-if="lead.type==='therapist'">face</v-icon><v-icon v-if="lead.type==='medical_professional'">local_hospital</v-icon><v-icon v-if="lead.type==='social_worker'">public</v-icon>
@@ -109,9 +109,9 @@ display:flex;}
                   View
                 </router-link>      
     </div>
-    <div> {{lead.phone}} </div>
-    <div> {{lead.email}} </div>
-    <div> {{lead.type}} </div>
+    <div><i class="fa fa-phone"></i> {{lead.phone}} </div>
+    <div><i class="fa fa-envelope"></i> {{lead.email}} </div>
+    <div><i class="fa fa-user"></i> {{lead.type}} </div>
     <div> {{lead.notes}} </div>
    <!-- <button class="btn btn-primary">Convert to Applicant</button> -->
    </div>
@@ -176,57 +176,59 @@ display:flex;}
      </div>
     <div>
       <div><h3>Tasks</h3>
-      <ul class="list-task todo-list list-group m-b-0" data-role="tasklist">
-                                        <li class="list-group-item" data-role="task">
-                                                                                          <v-checkbox
-                                                      v-model="checkbox"
-                                                      :label="`Checkbox 1: ${checkbox.toString()}`"
-                                                      ></v-checkbox>
-                                            <div class="custom-control custom-checkbox">
-    
-                                                <label class="custom-control-label" for="customCheck" v-on:click="checkbox = !checkbox" v-bind:class="{'task-done':checkbox}">
-                                                <span class="badge badge-pill badge-primary float-right">1 week </span>
-                                                </label>
-                                            </div>
-        
-                                        </li>
-                                        <li class="list-group-item" data-role="task">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                                <label class="custom-control-label" for="customCheck1">
-                                                    <span>Lorem Ipsum is simply dummy text of the printing</span><span class="badge badge-pill badge-primary float-right">1 week </span>
-                                                </label>
-                                            </div>
-                                            <div class="item-date"> 26 jun 2017</div>
-                                        </li>
-                                        <li class="list-group-item" data-role="task">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck2">
-                                                <label class="custom-control-label" for="customCheck2">
-                                                    <span>Give Purchase report to</span> <span class="badge badge-pill badge-info float-right">Yesterday</span>
-                                                </label>
-                                            </div>
-        
-                                        </li>
-                                        <li class="list-group-item" data-role="task">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck3">
-                                                <label class="custom-control-label" for="customCheck3">
-                                                    <span>Lorem Ipsum is simply dummy text of the printing </span> <span class="badge badge-pill badge-warning float-right">2 weeks</span>
-                                                </label>
-                                            </div>
-                                            <div class="item-date"> 26 jun 2017</div>
-                                        </li>
-                                        <li class="list-group-item" data-role="task">
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck4">
-                                                <label class="custom-control-label" for="customCheck4">
-                                                    <span>Give Purchase report to</span> <span class="badge badge-pill badge-info float-right">Yesterday</span>
-                                                </label>
-                                            </div>
-             
-                                        </li>
-                                    </ul>
+      <div class="white-box">
+<ul class="list-task todo-list list-group m-b-0" data-role="tasklist">
+        <li class="list-group-item" data-role="task">
+       <v-checkbox
+        v-model="checkbox"
+        :label="`Checkbox 1: ${checkbox.toString()}`"
+        ></v-checkbox>
+            <div class="custom-control custom-checkbox">
+
+                <label class="custom-control-label" for="customCheck" v-on:click="checkbox = !checkbox" v-bind:class="{'task-done':checkbox}">
+                <!-- <span class="badge badge-pill badge-primary float-right">1 week </span> -->
+                </label>
+            </div>
+
+        </li>
+        <li class="list-group-item" data-role="task">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                <label class="custom-control-label" for="customCheck1">
+                    <span>Lorem Ipsum is simply dummy text of the printing</span><span class="badge badge-pill badge-primary float-right">1 week </span>
+                </label>
+            </div>
+            <div class="item-date"> 26 jun 2017</div>
+        </li>
+        <li class="list-group-item" data-role="task">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="customCheck2">
+                <label class="custom-control-label" for="customCheck2">
+                    <span>Give Purchase report to</span> <span class="badge badge-pill badge-info float-right">Yesterday</span>
+                </label>
+            </div>
+
+        </li>
+        <li class="list-group-item" data-role="task">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="customCheck3">
+                <label class="custom-control-label" for="customCheck3">
+                    <span>Lorem Ipsum is simply dummy text of the printing </span> <span class="badge badge-pill badge-warning float-right">2 weeks</span>
+                </label>
+            </div>
+            <div class="item-date"> 26 jun 2017</div>
+        </li>
+        <li class="list-group-item" data-role="task">
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="customCheck4">
+                <label class="custom-control-label" for="customCheck4">
+                    <span>Give Purchase report to</span> <span class="badge badge-pill badge-info float-right">Yesterday</span>
+                </label>
+            </div>
+
+        </li>
+    </ul>
+    </div>                    
        <v-pagination
       v-model="page3"
       :length="tasks.length/5"
