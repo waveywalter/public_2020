@@ -47,6 +47,7 @@ import affiliateregistration from '../components/salesComponents/AffiliateRegist
 import affiliatespage from '../_pages/affiliatespage'
 import applicationspage from '../_pages/applicationspage'
 import hraffiliatespage from '../_pages/HrAffiliatePage'
+import ahhaform from '../_pages/ahhaform'
 
 
 Vue.use(Router);
@@ -55,6 +56,7 @@ let user = JSON.parse(localStorage.getItem('user'));
 export const router = new Router({
   mode: 'history',
   routes: [
+    { path: '/ahhaform', component: ahhaform },
     { path: '/assignform', component: assignform },
     { path: '/test', component: Testpage },
     { path: '/test/:id', component: formViewer },
@@ -127,6 +129,26 @@ export const router = new Router({
         } else {
           next("/forbidden")
         }
+      }
+    },
+    {
+      path: '/admin', component: adminHome,
+      children: [
+        { path: 'myprofile', component: MyProfile },
+        { path: '', component: AdminDashBoard },
+        // { path: 'createAdmin', component: createadmin },
+        { path: 'adminforms', component: adminForms },
+
+      ],
+      beforeEnter: (to, from, next) => {
+        userService.checkrole().then(res => res.json()).then(roleMapping => {
+          console.log(roleMapping.id)
+          if ((user.user.role == "admin") && roleMapping.id) {
+            next();
+          } else {
+            next("/forbidden")
+          }
+        });
       }
     },
     {
@@ -228,26 +250,7 @@ export const router = new Router({
         next();
       }
     },
-    {
-      path: '/admin', component: adminHome,
-      children: [
-        { path: '', component: AdminDashBoard },
-        { path: 'myprofile', component: MyProfile },
-        // { path: 'createAdmin', component: createadmin },
-        { path: 'adminforms', component: adminForms },
 
-      ],
-      beforeEnter: (to, from, next) => {
-        userService.checkrole().then(res => res.json()).then(roleMapping => {
-          console.log(roleMapping.id)
-          if ((user.user.role == "admin") && roleMapping.id) {
-            next();
-          } else {
-            next("/forbidden")
-          }
-        });
-      }
-    },
     { path: '/facilities', component: facilities },
 
     // otherwise redirect to home
@@ -257,7 +260,7 @@ export const router = new Router({
 
 router.beforeEach((to, from, next) => {
 
-  const publicPages = ['/', '/login', '/register', '/test'];
+  const publicPages = ['/', '/login', '/register', '/test', '/ahhaform'];
   const authRequired = !publicPages.includes(to.path);
   const loggedIn = localStorage.getItem('user');
 

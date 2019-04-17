@@ -23,13 +23,13 @@
                         <span class="hide-menu">Admin Dashboard</span>
                       </router-link>
                     </li>
-                    <li> <a href="javascript:void(0);" class="waves-effect"><i class="linea-icon linea-basic fa-fw " data-icon="7"></i> <span class="hide-menu "> Components <span class="fa arrow"></span></span></a>
+                    <li> <a href="#" class="waves-effect"><i class="linea-icon linea-basic fa-fw " data-icon="7"></i> <span class="hide-menu "> Components <span class="fa arrow"></span></span></a>
                         <ul class="nav nav-second-level">
                             <li> <router-link to="/admin/createAdmin">Create User </router-link> </li>
                             <li> <router-link to="/tinymceformbuilder">Build Form</router-link> </li>
                             <li> <router-link to="/assignform"> Assign Form</router-link> </li>
                             <li> <router-link to="/admin/adminforms/">Edit Form </router-link> </li>
-                            <li> <a href="eliteadmin/eliteadmin-hospital/index.html">Account</a> </li>
+                            <!-- <li> <a href="eliteadmin/eliteadmin-hospital/index.html">Account</a> </li> -->
                         </ul>
                     </li>
                     <li>
@@ -38,26 +38,26 @@
                         <span class="hide-menu">Responsibilities<span class="fa arrow"></span></span>
                       </a>
                         <ul class="nav nav-second-level">
-                            <li><a href="eliteadmin/eliteadmin-dark/chat.html">Today</a></li>
-                            <li><a href="javascript:void(0)" class="waves-effect">Daily<span class="fa arrow"></span></a>
+                            <li><a href="#">Today</a></li>
+                            <li><a href="#" class="waves-effect">Daily<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
-                                    <li> <a href="eliteadmin/eliteadmin-dark/inbox.html">Mail box</a></li>
-                                    <li> <a href="eliteadmin/eliteadmin-dark/inbox-detail.html">Inbox detail</a></li>
-                                    <li> <a href="eliteadmin/eliteadmin-dark/compose.html">Compose mail</a></li>
+                                    <li> <a href="#">Mail box</a></li>
+                                    <li> <a href="#">Inbox detail</a></li>
+                                    <li> <a href="#">Compose mail</a></li>
                                 </ul>
                             </li>
                             <li><a href="javascript:void(0)" class="waves-effect">Monthley<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
-                                    <li> <a href="eliteadmin/eliteadmin-dark/eliteadmin/eliteadmin-dark/eliteadmin/eliteadmin-dark/contact.html">Contact1</a></li>
-                                    <li> <a href="eliteadmin/eliteadmin-dark/eliteadmin/eliteadmin-dark/contact2.html">Contact2</a></li>
-                                    <li> <a href="eliteadmin/eliteadmin-dark/contact-detail.html">Contact Detail</a></li>
+                                    <li> <a href="#">Contact1</a></li>
+                                    <li> <a href="#">Contact2</a></li>
+                                    <li> <a href="#">Contact Detail</a></li>
                                 </ul>
                             </li>
                             <li><a href="javascript:void(0)" class="waves-effect">Compliance<span class="fa arrow"></span></a>
                                 <ul class="nav nav-third-level">
-                                    <li> <a href="eliteadmin/eliteadmin-dark/eliteadmin/eliteadmin-dark/eliteadmin/eliteadmin-dark/contact.html">ACA</a></li>
-                                    <li> <a href="eliteadmin/eliteadmin-dark/eliteadmin/eliteadmin-dark/contact2.html">Joint Comission</a></li>
-                                    <li> <a href="eliteadmin/eliteadmin-dark/contact-detail.html">HEPPA</a></li>
+                                    <li> <a href="#">ACA</a></li>
+                                    <li> <a href="#">Joint Comission</a></li>
+                                    <li> <a href="#">HEPPA</a></li>
                                 </ul>
                             </li>
                         </ul>
@@ -67,10 +67,10 @@
                         <span class="hide-menu">Learning<span class="fa arrow"></span> </span>
                       </a>
                         <ul class="nav nav-second-level">
-                            <li><a href="eliteadmin/eliteadmin-dark/cards.html">Training Overview</a></li>
-                            <li><a href="eliteadmin/eliteadmin-dark/cards.html">Online Training</a></li>
-                            <li><a href="eliteadmin/eliteadmin-dark/cards.html">Hippa Training</a></li>
-                            <li><a href="eliteadmin/eliteadmin-dark/cards.html">ACA Training</a></li>
+                            <li><a href="#">Training Overview</a></li>
+                            <li><a href="#">Online Training</a></li>
+                            <li><a href="#">Hippa Training</a></li>
+                            <li><a href="#">ACA Training</a></li>
                         </ul>
                     </li>
                     <li>
