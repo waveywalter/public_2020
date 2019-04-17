@@ -118,7 +118,7 @@ import { mapState, mapActions } from "vuex";
 import VeeValidate from "vee-validate";
 
 export default {
-  name: "NewAffiliateform",
+  name: "ahhaform",
 
 
   data() {
