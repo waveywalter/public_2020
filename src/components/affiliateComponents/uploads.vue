@@ -1,35 +1,34 @@
 <template>
-    <div id="uploads">
-                 <div grid-list-md v-for="type in upload" class="uploads">
- 
-                        <button color="" class="black--text btn btn-default" loaders v-on:click="openFileDialog(type)">
-                          {{type.capitalize()}}
-                        <i class="icon-arrow-up-circle"></i>
-                          <input type="file" :id="type" style="display:none" v-on:change="onFileChange">
-                        </button>
+<div id="uploads">
+<div grid-list-md v-for="type in upload" class="uploads">
+
+<button color="" class="black--text btn btn-default" loaders v-on:click="openFileDialog(type)">
+<i class="icon-arrow-up-circle"></i>
+<input type="file" :id="type" style="display:none" v-on:change="onFileChange">
+</button>
 
 
+</div>
+            <div>
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item" v-for="type in upload"> <a class="nav-link" v-on:click="showTabs(type)" data-toggle="tab" :href="'#up'+type" role="tab" aria-selected="false"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span class="hidden-xs-down">{{type}}</span></a> </li>
+</ul>
+    
+</div>
+
+<div class="tab-content tabcontent-border">
+        <div  role="tabpanel" class="tab-pane uppers ploads" v-for="(type,index) in upload" :id="'up'+type">
+            <div class="p-20 sammy" >
+                {{uploaded(type)}}
+                                <iframe v-if="uploaded(type)" :src="'/api/containers/'+afid+'/download/'+type+'.pdf#zoom=100'" /></iframe>
+                                <div v-if="!uploaded(type)"><h3>Document Not Uploaded</h3></div>
                 </div>
-                                        <div>
-        <ul class="nav nav-tabs" role="tablist">
-                                    <li class="nav-item" v-for="type in upload"> <a class="nav-link" v-on:click="showTabs(type)" data-toggle="tab" :href="'#up'+type" role="tab" aria-selected="false"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span class="hidden-xs-down">{{type}}</span></a> </li>
-        </ul>
-                                
-                            </div>
+        </div>
 
-                            <div class="tab-content tabcontent-border">
-                                    <div  role="tabpanel" class="tab-pane uppers ploads" v-for="(type,index) in upload" :id="'up'+type">
-                                        <div class="p-20 sammy" >
-                                            {{uploaded(type)}}
-                                                         <iframe v-if="uploaded(type)" :src="'/api/containers/'+afid+'/download/'+type+'.pdf#zoom=100'" /></iframe>
-                                                         <div v-if="!uploaded(type)"><h3>Document Not Uploaded</h3></div>
-                                           </div>
-                                    </div>
-      
-                                </div>
-   
-                            
     </div>
+
+
+</div>
 </template>
 <script>
 import Vue from 'vue'
@@ -39,7 +38,7 @@ export default {
     props:["afid"],
     data(){
             return {
-            upload:["resume","license","insurance","ces"]
+            upload:["resume","license","insurance","ces","headshot"]
             };
      },
     mounted(){

@@ -46,6 +46,7 @@ import affiliateregistrationpage from '../_pages/affiliateregistrationpage'
 import affiliateregistration from '../components/salesComponents/AffiliateRegistration'
 import affiliatespage from '../_pages/affiliatespage'
 import applicationspage from '../_pages/applicationspage'
+import hraffiliatespage from '../_pages/HrAffiliatePage'
 
 
 Vue.use(Router);
@@ -205,8 +206,14 @@ export const router = new Router({
       path: '/humanResource', component: humanResourceHome,
       children: [
         { path: '', component: HrDashBoard },
-        { path: 'myprofile', component: MyProfile },
-        { path: 'hrforms', component: adminForms }
+        { path: 'hrforms', component: adminForms },
+        { path: 'crm/:id?', component: crm },
+        { path: '/hr/affiliate/:id?', component: hraffiliatespage,
+        children: [
+          {path: 'forms/:fid?', component: hraffiliatespage}
+        ]
+      }
+        
       ],
       beforeEnter: (to, from, next) => {
         next()

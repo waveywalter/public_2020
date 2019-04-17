@@ -13,41 +13,26 @@
 .lfloat {
     display: flex;
 }
-.highlight {
-  background:#03a9f3!important;
-}
-
 </style>
 <template>
 
-<div class="row"> 
-    <div class="col-sm-12">
-<div class="container-fluid">
-    <div id="exampleBasic" class="wizard">
-        <ul class="wizard-steps" role="tablist">
-            
-<li class="nav-item" @click="selected = 1" :class="{highlight:selected == 1}"> <a class="nav-link" v-bind:class="{'active show': !formtab }" data-toggle="tab" href="#home4" role="tab"aria-selected="true"> 
-<h4><span>1</span>Step</h4> </a> </li>
+                                <!-- Nav tabs -->
+<div class="vtabs">
 
-
-<li class="nav-item" @click="selected = 2" :class="{highlight:selected == 2}"> <a class="nav-link" data-toggle="tab" href="#practice4" role="tab" aria-selected="false"> 
-<h4><span>2</span>Step</h4> </a> </li>
-
-
-<li class="nav-item" @click="selected = 3" :class="{highlight:selected == 3}"> <a class="nav-link" v-bind:class="{'active show': formtab }" data-toggle="tab" href="#profile4" role="tab" aria-selected="false"><span class="hidden-sm-up"><i class="ti-user"></i></span> 
-<h4><span>3</span>Step</h4> </a> </li>
-
-<li class="nav-item" @click="selected = 4" :class="{highlight:selected == 4}"> <a class="nav-link" data-toggle="tab" href="#messages4" role="tab" aria-selected="false"><span class="hidden-sm-up"><i class="ti-email"></i></span> 
-<h4><span>4</span>Step</h4> </a> </li>
-
-        </ul>
-</div>
-
-
-
-
-
-
+    <ul class="nav nav-tabs tabs-vertical" role="tablist">
+        <li class="nav-item"> <a class="nav-link" v-bind:class="{'active show': !formtab }" data-toggle="tab" href="#home4" role="tab"
+                aria-selected="true"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span
+                    class="hidden-xs-down">Profile Details</span> </a> </li>
+        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#practice4" role="tab"
+                aria-selected="false"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span
+                    class="hidden-xs-down">Practice Details</span> </a> </li>
+        <li class="nav-item"> <a class="nav-link" v-bind:class="{'active show': formtab }" data-toggle="tab" href="#profile4"
+                role="tab" aria-selected="false"><span class="hidden-sm-up"><i class="ti-user"></i></span> <span
+                    class="hidden-xs-down">Forms</span></a> </li>
+        <li class="nav-item"> <a class="nav-link" data-toggle="tab" href="#messages4" role="tab"
+                aria-selected="false"><span class="hidden-sm-up"><i class="ti-email"></i></span> <span
+                    class="hidden-xs-down">Uploads</span></a> </li>
+    </ul>
     <!-- Tab panes -->
     <div class="tab-content">
         <div class="tab-pane" v-bind:class="{'active': !formtab }" id="home4" role="tabpanel">
@@ -62,7 +47,7 @@
 
                 <div v-if="role=='sales' || role=='humanResource'" class="formlist list-group">
                     <div v-for="(form,index) in forms_list">
-                        <router-link :to="'/sales/affiliate/'+afid+'/forms/'+form.id" :key="'fskl'+index"
+                        <router-link :to="'/hr/affiliate/'+afid+'/forms/'+form.id" :key="'fskl'+index"
                             v-if="form.status!='signed' ">
 
                             <a class="list-group-item" style="margin-right:10px" v-on:click="formloader(form.id)"
@@ -82,8 +67,7 @@
                 </div>
                 <div>
                     <h3>Form Description/Details/Usage</h3>
-                    
-                    <viewer :user="user" :fid="fid" :phtml="thtml"></viewer>
+                    <viewer :user="user" :fid="fid" :phtml="thtml"> </viewer>
                 </div>
             </div>
         </div>
@@ -92,29 +76,20 @@
         </div>
     </div>
 </div>
-</div>
-</div>
-  
-  
 </template>
 <script>
 import viewer from '../formViewerComponents/formViewer'
-import affiliateformfields from './affiliateformfields';
-import practicefields from './practicefields';
-import forms from './forms.vue';
-import uploader from './uploads';
+import affiliateformfields from '../affiliateComponents/affiliateformfields';
+import practicefields from '../affiliateComponents/practicefields';
+import forms from '../affiliateComponents/forms';
+import uploader from '../affiliateComponents/uploads';
 import { authHeader } from '../../_helpers';
 import { mapState, mapActions } from "vuex";
 export default{
-    name:"affiliateApplication",
+    name:"HraffiliateApplication",
     props:["affiliateId"],
     mounted(){
-        console.log(this.$store.state)
-       
-       if(this.$store.state.account.user.user.role=="affiliate"){
-           console.log("IT A AFFILAITE DUH")
-           this.$store.state.apps.currentAffiliate = this.$store.state.account.user.user
-       }
+        console.log(this.user)
         if(this.$root._route.params.id){
             console.log("LOAD DATA")
           //  this.$state.store
@@ -126,8 +101,6 @@ export default{
             this.getUserForms(this.$store.state.account.afid)
         let urlstring = this.$route.path
         if(urlstring.indexOf("forms") >= 0) this.formtab = true;
-    console.log(this.users,this.affiliateId)
-   
         },
     created(){
         this.getAllUsers({role:"affiliate"})  
@@ -140,32 +113,22 @@ export default{
         }
     },
     methods:{
- 
             ...mapActions("users", {
       getAllUsers: "getAll",
       deleteUser: "delete"
             }),
            ...mapActions("form", ["getformbyid", "updateform","getforms", "deleteform","attachUserToForm","getUserForms"]),
            formloader(e){
-               console.log("HER WE GOOOOOOOOOOOOOOOO")
                console.log(e)
                 this.$store.state.account.formid = e
                 this.$store.state.users.current = this.user
-                console.log(this)
-                this.$store.state.form.current_signed_form = e
-                let g = this.$store.state.form.sfs.filter(form=>form.formId==e)
-                if(g.length>0){
-                this.$store.state.form.signed_form = this.$store.state.form.sfs.filter(form=>form.formId==e)[0].id
-                }
-                let rootform = this.$store.state.apps.currentAffiliate.forms//.filter(form=>{return form.formId==e})
+                let rootform = this.$store.state.form.userForms//.filter(form=>{return form.formId==e})
                 this.$store.state.form.current_signed_form = rootform[0].id;
                this.getFormHtml(e)               
                 },
            getFormHtml(id){
-               console.log("GET FORM HTMLLLLLLLLLLLLLLLLL")
-               console.log(this)
-               console.log(this.html)
-                    let currentf = this.forms_list.filter(form=>{return form.id==id })
+ 
+                    let currentf = this.html.filter(form=>{return form.id==id })
                     this.formDisplay=true
                     this.thtml = currentf
                     return currentf
@@ -222,14 +185,7 @@ export default{
             return this.$store.state.account.user.user.role
         },
          forms_list :{
-                get:function(){
-                    console.log("FORM LIST") 
-                    console.log(this.users)
-                    console.log(this.$store.state.users.all.items)
-                    console.log(this.afid)
-                    this.$store.state.apps.currentAffiliate = this.user[0]
-                    return this.$store.state.apps.currentAffiliate.forms
-                     },
+                get:function(){ return this.html },
                 set:function(value){
                     this.forms_list = value
                 }
@@ -244,8 +200,7 @@ export default{
                 FormTitle:"",
                 thtml:'',
                 forms:'',
-                formtab: false,
-                selected:undefined
+                formtab: false
               //  user:this.users,
                     }   
                 },
