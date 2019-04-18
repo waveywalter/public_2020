@@ -9,6 +9,12 @@
 
 
 </div>
+        <div class="row float-right">
+<div class="checkbox checkbox-primary checkbox-circle">
+    <input id="checkbox-9" type="checkbox">
+    <label for="checkbox-9"> Approved </label>
+</div>
+</div>
             <div>
 <ul class="nav nav-tabs" role="tablist">
         <li class="nav-item" v-for="type in upload"> <a class="nav-link" v-on:click="showTabs(type)" data-toggle="tab" :href="'#up'+type" role="tab" aria-selected="false"><span class="hidden-sm-up"><i class="ti-home"></i></span> <span class="hidden-xs-down">{{type}}</span></a> </li>
@@ -26,6 +32,8 @@
         </div>
 
     </div>
+
+
 
 
 </div>

@@ -1,7 +1,12 @@
 <template>
     <div>
 
-
+        <div class="row float-right">
+<div class="checkbox checkbox-primary checkbox-circle">
+    <input id="checkbox-9" type="checkbox">
+    <label for="checkbox-9"> Approved </label>
+</div>
+</div>
 <dynamic :user="user" :fid="fid" ref="dynamic" v-bind:template="chtml[0]"></dynamic> 
     </div>
 </template>

@@ -1,5 +1,7 @@
 <template>
+
    <div class="card">
+       
                             <div class="card-body p-b-0">
                                 <h4 class="card-title">Read and Sign these forms.</h4>
   

@@ -4,9 +4,20 @@
        <div class="hide">{{cuser}}</div>
         <form>
         <div class="white-box form-body form-material">
+                    <div class="row float-right">
+<div class="checkbox checkbox-primary checkbox-circle">
+    <input id="checkbox-9" type="checkbox">
+    <label for="checkbox-9"> Approved </label>
+</div>
+</div>
    
                                         <h3 class="box-title">Person Info</h3>
-                                       
+
+                                       <div class="col-lg-2 col-sm-4 col-xs-12">
+
+
+                                </div>
+
                                         <hr class="m-t-0 m-b-40">
                                         <div class="row">
                                             <div class="col-md-6">

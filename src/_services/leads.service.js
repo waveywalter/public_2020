@@ -19,8 +19,8 @@ Future - Add authentication to LB4 API
 
 ////////////////////////////////////////////////////*/
 
-const baseURL="http://localhost:3000/api";
-//const baseURL="https://2020i.site/api2";
+//const baseURL="http://localhost:3000/api";
+const baseURL="https://2020i.site/api2";
 //const baseURL = 'https://google.com'
 function getAllTask(filter){
     console.log("ALL TASK")
