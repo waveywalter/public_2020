@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import VeeValidate from 'vee-validate';
 import PerfectScrollbar from 'vue2-perfect-scrollbar'
+import ToggleButton from 'vue-js-toggle-button'
+Vue.use(ToggleButton)
 
 
 import 'vue2-perfect-scrollbar/dist/vue2-perfect-scrollbar.css'

@@ -4,10 +4,11 @@
       <div class="white-box form-body form-material">
 
                   <div class="row float-right">
-<div class="checkbox checkbox-primary checkbox-circle">
-    <input id="checkbox-9" type="checkbox">
-    <label for="checkbox-9"> Approved </label>
+        <div class="row float-right">
+<toggle-button :value="false" color="green" :sync="true" :width="120" :labels="{checked: 'Approved!', unchecked: 'Click to Approve'}" />
+
 </div>
+
 </div>
 
         <h3 class="box-title">Address</h3>

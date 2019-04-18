@@ -2,10 +2,8 @@
     <div>
 
         <div class="row float-right">
-<div class="checkbox checkbox-primary checkbox-circle">
-    <input id="checkbox-9" type="checkbox">
-    <label for="checkbox-9"> Approved </label>
-</div>
+<toggle-button :value="false" color="green" :sync="true" :width="120" :labels="{checked: 'Approved!', unchecked: 'Click to Approve'}" />
+
 </div>
 <dynamic :user="user" :fid="fid" ref="dynamic" v-bind:template="chtml[0]"></dynamic> 
     </div>
