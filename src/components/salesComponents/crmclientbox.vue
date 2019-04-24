@@ -9,7 +9,6 @@
             <h1 class="text-warning pt-5">{{count}}</h1>
           </div>
         </div>
-
         <div class="col-md-8">
 
 
@@ -41,14 +40,8 @@
                 </div>
               </router-link>
             </div>
-
-
-
       </v-layout>
     </v-container>
-
-
-
         </div>
       </div>
     </div>
@@ -133,12 +126,13 @@ export default {
       root: this.$root._route.params.root,
       components: ["NewAffiliateform", "NewLeadForm"],
       currentTab: {
-        tabname: "NewLeadForm"
+      tabname: "NewLeadForm",
+
       },
       search: "",
       view: "ListView",
       vlead: {},
-      title: ""
+      title: "",
     };
   },
   mounted() {
@@ -185,7 +179,6 @@ export default {
         r = leads.leads.filter(lead => {
           console.log(lead);
           if (lead.last_name) return lead.last_name.includes(this.search);
-
           if (lead.lastname) return lead.lastname.includes(this.search);
         });
       }

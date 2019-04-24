@@ -2,12 +2,8 @@
   <div class="col-md-4">
     <div class="white-box">
     <h3 class="box-title">Current Affiliates</h3>
-
-   
        <div class="">
         <div class="ml-5 ">
-          
-
     <v-layout column justify-center align-center>
     </v-layout>
     <v-container
@@ -16,13 +12,11 @@
       class="scroll-y"
     >
       <v-layout
-        v-scroll:#scroll-target="onScroll"
         column
         align-center
         justify-center
         style="height: 900px"
       >
-
             <div id="app-wrapper" :key="listkey" >
               <div>
                 <div class="">
@@ -66,11 +60,9 @@ import imageupload from "../layoutComponents/imageUpload";
 import affiliateApplication from "../affiliateComponents/affiliateApplication";
 import hraffiliatelist from "./hraffiliatelist"
 
-//import AffiliateRegView from '../salesComponents/jottComponents/v5/pages/AffiliateRegView.vue';
 
 export default {
       name:"applicantbox",
-
   data() {
     return {
       //  signature:[["Accident Reporting Procedure",1,1],['Authorization-Background Screening',1,0],['CDCFactSheet VaccineInfoSign Sheet',1,0],
@@ -129,9 +121,6 @@ export default {
     },
     capproved: {
       get: function(e) {
-        console.log("get approved");
-        console.log(e);
-        console.log(this);
         if (!this.$store.state.apps.application.approved) {
           this.capproved = "0";
         } else if (
@@ -153,7 +142,6 @@ export default {
         } else {
           e = "0";
         }
-        console.log("set approved");
         this.$store.state.apps.application.approved = e;
         return "Set Resume";
       }
@@ -174,413 +162,267 @@ export default {
     },
     cs8: {
       get: function(e) {
-        console.log("get cs8");
-        console.log(e);
-        console.log(this);
         return this.$store.state.apps.application.s8;
       },
       set: function(e) {
-        console.log(e);
-        console.log("set cs8");
         this.$store.state.apps.application.s8 = e;
         return "Set Resume";
       }
     },
     cs7: {
       get: function(e) {
-        console.log("get cs7");
-        console.log(e);
-        console.log(this);
         return this.$store.state.apps.application.s7;
       },
       set: function(e) {
-        console.log(e);
-        console.log("set cs7");
         this.$store.state.apps.application.s7 = e;
         return "Set Resume";
       }
     },
     cs6: {
       get: function(e) {
-        console.log("get cs6");
-        console.log(e);
-        console.log(this);
         return this.$store.state.apps.application.s6;
       },
       set: function(e) {
-        console.log(e);
-        console.log("set cs6");
         this.$store.state.apps.application.s6 = e;
         return "Set Resume";
       }
     },
     cs5: {
       get: function(e) {
-        console.log("get cs5");
-        //console.log(e);
-        //console.log(this)
-        console.log(this.$store.state);
         return this.$store.state.apps.application.s5;
       },
       set: function(e) {
-        console.log(e);
-        console.log("set cs5");
         this.$store.state.apps.application.s5 = e;
         return "Set Resume";
       }
     },
     cs4: {
       get: function(e) {
-        console.log("get cs4");
-        console.log(e);
-        console.log(this);
         return this.$store.state.apps.application.s4;
       },
       set: function(e) {
-        console.log(e);
-        console.log("set cs4");
         this.$store.state.apps.application.s4 = e;
         return "Set Resume";
       }
     },
     cs3: {
       get: function(e) {
-        console.log("get cs3");
-        console.log(e);
-        console.log(this);
         return this.$store.state.apps.application.s3;
       },
       set: function(e) {
-        console.log(e);
-        console.log("set cs3");
         this.$store.state.apps.application.s3 = e;
         return "Set Resume";
       }
     },
     cs2: {
       get: function(e) {
-        console.log("get cs2");
-        console.log(e);
-        console.log(this);
         return this.$store.state.apps.application.s2;
       },
       set: function(e) {
-        console.log(e);
-        console.log("set cs2");
         this.$store.state.apps.application.s2 = e;
         return "Set Resume";
       }
     },
     cs1: {
       get: function(e) {
-        console.log("get cs1");
-        console.log(e);
-        console.log(this);
         return this.$store.state.apps.application.s1;
       },
       set: function(e) {
-        console.log(e);
-        console.log("set cs1");
         this.$store.state.apps.application.s1 = e;
         return "Set Resume";
       }
     },
     capp: {
       get: function(e) {
-        console.log("cresume");
-        console.log(e);
-        console.log(this);
         return this.$store.state.apps.application.visible;
       },
       set: function(e) {
-        console.log(e);
-        console.log("set reusme");
         this.$store.state.apps.application.visible = e;
         return "Set Resume";
       }
     },
     crole: {
       get: function(e) {
-        console.log("cresume");
-        console.log(e);
-        console.log(this);
         return this.$store.state.apps.application.role;
       },
       set: function(e) {
-        console.log(e);
-        console.log("set reusme");
         this.$store.state.apps.application.role = e;
         return "Set Resume";
       }
     },
     cid: {
       get: function(e) {
-        console.log("cresume");
-        console.log(e);
-        console.log(this);
         return this.$store.state.apps.application.id;
       },
       set: function(e) {
-        console.log(e);
-        console.log("set id");
         this.$store.state.apps.application.id = e;
         return "Set Resume";
       }
     },
     cresume: {
       get: function(e) {
-        console.log("cresume");
-        console.log(e);
-        console.log(this);
         return this.$store.state.apps.application.resume;
       },
       set: function(e) {
-        console.log(e);
-        console.log("set reusme");
         this.$store.state.apps.application.resume = e;
         return "Set Resume";
       }
     },
     clicense: {
       get: function(e) {
-        console.log("clicense");
-        console.log(e);
-        console.log(this);
         return this.$store.state.apps.application.license;
       },
       set: function(e) {
-        console.log(e);
-        console.log("set id");
         this.$store.state.apps.application.license = e;
         return "Set License";
       }
     },
     cliability: {
       get: function(e) {
-        console.log("cinsurance");
-        console.log(e);
-        console.log(this);
         return this.$store.state.apps.application.liability;
       },
       set: function(e) {
-        console.log(e);
-        console.log("set insurance");
         this.$store.state.apps.application.liability = e;
         return "Set Insuramce";
       }
     },
     cces: {
       get: function(e) {
-        console.log("cces");
-        console.log(e);
-        console.log(this);
         return this.$store.state.apps.application.ces;
       },
       set: function(e) {
-        console.log(e);
-        console.log("set ces");
         this.$store.state.apps.application.ces = e;
         return "Set CES";
       }
     },
     csign9: {
       get: function(e) {
-        console.log("csign9");
-        console.log(e);
-        console.log(this);
         return this.$store.state.apps.application.sign9;
       },
       set: function(e) {
-        console.log(e);
-        console.log("set sign9");
         this.$store.state.apps.application.sign9 = e;
         return "Set Email";
       }
     },
     csign8: {
       get: function(e) {
-        console.log("csign8");
-        console.log(e);
-        console.log(this);
         return this.$store.state.apps.application.sign8;
       },
       set: function(e) {
-        console.log(e);
-        console.log("set sign8");
         this.$store.state.apps.application.sign8 = e;
         return "Set Email";
       }
     },
     csign7: {
       get: function(e) {
-        console.log("csign7");
-        console.log(e);
-        console.log(this);
         return this.$store.state.apps.application.sign7;
       },
       set: function(e) {
-        console.log(e);
-        console.log("set sign7");
         this.$store.state.apps.application.sign7 = e;
         return "Set Email";
       }
     },
     csign6: {
       get: function(e) {
-        console.log("csign6");
-        console.log(e);
-        console.log(this);
         return this.$store.state.apps.application.sign6;
       },
       set: function(e) {
-        console.log(e);
-        console.log("set sign6");
         this.$store.state.apps.application.sign6 = e;
         return "Set Email";
       }
     },
     csign5: {
       get: function(e) {
-        console.log("csign5");
-        console.log(e);
-        console.log(this);
         return this.$store.state.apps.application.sign5;
       },
       set: function(e) {
-        console.log(e);
-        console.log("set sign5");
         this.$store.state.apps.application.sign5 = e;
         return "Set Email";
       }
     },
     csign4: {
       get: function(e) {
-        console.log("csign4");
-        console.log(e);
-        console.log(this);
         return this.$store.state.apps.application.sign4;
       },
       set: function(e) {
-        console.log(e);
-        console.log("set sign2");
         this.$store.state.apps.application.sign4 = e;
         return "Set Email";
       }
     },
     csign3: {
       get: function(e) {
-        console.log("csign3");
-        console.log(e);
-        console.log(this);
         return this.$store.state.apps.application.sign3;
       },
       set: function(e) {
-        console.log(e);
-        console.log("set sign2");
         this.$store.state.apps.application.sign3 = e;
         return "Set Email";
       }
     },
     csign1: {
       get: function(e) {
-        console.log("csign1");
-        console.log(e);
-        console.log(this);
         return this.$store.state.apps.application.sign1;
       },
       set: function(e) {
-        console.log(e);
-        console.log("set sign2");
         this.$store.state.apps.application.sign1 = e;
         return "Set Email";
       }
     },
     csign2: {
       get: function(e) {
-        console.log("csign2");
-        console.log(e);
-        console.log(this);
         return this.$store.state.apps.application.sign2;
       },
       set: function(e) {
-        console.log(e);
-        console.log("set sign2");
         this.$store.state.apps.application.sign2 = e;
         return "Set Email";
       }
     },
     cpractice_type: {
       get: function(e) {
-        console.log("ctherpay");
-        console.log(e);
-        console.log(this);
         return this.$store.state.apps.application.practice_type;
       },
       set: function(e) {
-        console.log(e);
-        console.log("set ctherapist ype");
         this.$store.state.apps.application.practice_type = e;
         return "Set Email";
       }
     },
     ctherapist_type: {
       get: function(e) {
-        console.log("ctherpay");
-        console.log(e);
-        console.log(this);
         return this.$store.state.apps.application.therapist_type;
       },
       set: function(e) {
-        console.log(e);
-        console.log("set ctherapist ype");
         this.$store.state.apps.application.therapist_type = e;
         return "Set Email";
       }
     },
     cphone: {
       get: function(e) {
-        console.log("cphone");
-        console.log(e);
-        console.log(this);
         return this.$store.state.apps.application.phone;
       },
       set: function(e) {
-        console.log(e);
-        console.log("set computed name");
         this.$store.state.apps.application.phone = e;
         return "Set Email";
       }
     },
     cssn: {
       get: function(e) {
-        console.log("computed name");
-        //console.log(text);
         return this.$store.state.apps.application.ssn;
       },
       set: function(e) {
-        console.log(e);
-        console.log("set computed name");
         this.$store.state.apps.application.ssn = e;
         return "Set Email";
       }
     },
     caddress: {
       get: function(e) {
-        console.log("computed name");
-        //console.log(text);
         return this.$store.state.apps.application.address;
       },
       set: function(e) {
-        console.log(e);
-        console.log("set computed name");
         this.$store.state.apps.application.address = e;
         return "Set Email";
       }
     },
     cname: {
       get: function(e) {
-        console.log("computed name");
-        //console.log(text);
         return (
           this.$store.state.apps.application.firstname +
           " " +
@@ -588,64 +430,47 @@ export default {
         );
       },
       set: function(e) {
-        console.log(e);
-        console.log("set computed name");
         this.$store.state.apps.application.name = e;
         return "Set Email";
       }
     },
     cemail: {
       get: function() {
-        console.log("computed");
-        //console.log(text);
         return this.$store.state.apps.application.email;
       },
       set: function(e) {
-        console.log(e);
         this.$store.state.apps.application.email = e;
         return "Set Email";
       }
     },
     caddress: {
       get: function() {
-        console.log("computed");
-        //console.log(text);
         return this.$store.state.apps.application.address;
       },
       set: function(e) {
-        console.log(e);
         this.$store.state.apps.application.address = e;
         return "Set Email";
       }
     },
     ctype: {
       get: function() {
-        console.log("computed");
-        //console.log(text);
         return this.$store.state.apps.application.type;
       },
       set: function(e) {
-        console.log(e);
         this.$store.state.apps.application.type = e;
         return "Set Email";
       }
     },
     progress: {
       get: function(e) {
-        console.log("get progress");
-        console.log(e);
-        console.log(this);
         return this.$store.state.apps.application.progress;
       },
       set: function(e) {
-        console.log(e);
-        console.log("set progress");
         this.$store.state.apps.application.progress = e;
         return "Set Resume";
       }
     }
   },
-
   methods: {
     showmain(test) {
       console.log("SHOWWWWWW", test);
@@ -732,7 +557,6 @@ export default {
           flag = "ces";
           break;
       }
-
       if (
         this.$store.state.apps.application[flag] == "" ||
         this.$store.state.apps.application[flag] == 0
@@ -747,7 +571,6 @@ export default {
       let r = "sign" + m;
       let s = "s" + m;
       let sprev = "s" + (m - 1);
-
       if (m > 1) {
         if (
           (this.$store.state.apps.application[r] == "" ||
@@ -758,7 +581,6 @@ export default {
           return true;
         }
       } else if (m == 1) {
-        console.log("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM" + m);
         if (
           (this.$store.state.apps.application[r] == "" ||
             this.$store.state.apps.application[r] == undefined) &&
@@ -807,7 +629,6 @@ export default {
             },
             body: JSON.stringify(data)
           }).then(response => {});
-
           // this.$store.commit('increment')
         }
       } else {
@@ -867,7 +688,6 @@ export default {
     iframeShow(n) {
       let l = n + 1;
       let r = "s" + l;
-
       return true;
     },
     iframeShowNext(n) {
@@ -897,11 +717,6 @@ export default {
       let r = n + 1;
       let k = "s" + r;
       let j = "sign" + r;
-
-      console.log("BUTTTONNNNNNNNNNNNNNNNNNNNNNNNNNNNSSSSSSSSSSSSSSS");
-      console.log(k);
-      console.log(this.$store.state.apps.application[k]);
-      console.log(this.$store.state.apps.application[j]);
       //if(this.$store.state.apps.application[k]==0 && this.$store.state.apps.application[j].length==0){return false}
       //if(this.$store.state.apps.application[k]==0 && this.$store.state.apps.application[j].length>0){return true}
       //if(this.$store.state.apps.application[k]==1 && this.$store.state.apps.application[j].length==0){return false}
@@ -1044,12 +859,10 @@ export default {
               window.sessionStorage.progress = 1;
             }
           });
-
           window.sessionStorage.progress = this.progress;
         });
       } else if (this.progress > 0 && this.progress <= 9) {
         console.log(window);
-
         //window.sessionStorage.progress = this.progress;
         //send to db
         let id = this.cid;
@@ -1064,7 +877,6 @@ export default {
         data.practice_type = this.cpractice_type;
         data.jwt = this.cjwt;
         data.progress = this.progress;
-
         //data.sign1 = this.csign1;
         //data.links = this.clinks;
         fetch("https://2020i.site/api/createnew/contracts/" + id, {
@@ -1098,7 +910,6 @@ export default {
             // this.csign9 = app.sign9;
             this.progress = app.progress;
           });
-
           // this.$store.commit('increment')
           window.sessionStorage.progress = this.progress;
         });
@@ -1123,7 +934,6 @@ export default {
       if (mode == "Uploaded") {
         switch (n) {
           case 0:
-            console.log("0000000000000000000000000000000000000");
             dt.resume = "0";
             break;
           case 1:
@@ -1141,7 +951,6 @@ export default {
         let s = "s" + v;
         let sid = s + "id";
         let sign = "sign" + v;
-        console.log(s, sid, sign);
         dt[s] = 0;
         dt[sid] = "";
         dt[sign] = "";
@@ -1167,13 +976,10 @@ export default {
       }
     },
     filterApp(txt) {
-      console.log("filterApp2");
       if (txt != "") {
         fetch("https://2020i.site/api/applications")
           .then(response => response.json())
           .then(json => {
-            console.log(json);
-
             // this.$store.state.app.application.list =[];
             let list = json.filter(item => {
               console.log(item);
@@ -1191,19 +997,14 @@ export default {
               }
             });
             this.$store.state.apps.list = list;
-            console.log(this.$store.state.apps.list);
           });
       } else {
-        console.log("NO TXT FILTERRRRRRRRRRRRR");
         fetch("https://2020i.site/api/applications")
           .then(response => response.json())
           .then(json => {
-            console.log(json);
-
             // this.$store.state.app.application.list =[];
             let list = json;
             this.cfilterlist = list;
-            console.log(this.$store.state.apps.list);
           });
       }
     },
@@ -1222,10 +1023,8 @@ export default {
       return this[link];
     },
     approveApp(boo) {
-      console.log("HIT API and APPROVE APPLICATION");
       let st = this.$store.state.apps.application;
       st.approved = boo;
-
       let d = Object.entries(st);
       let e = d.map(datar => {
         //console.log(datar)
@@ -1272,46 +1071,26 @@ export default {
       }
     },
     updateId(id) {
-      console.log("UPATEEEEEEEEEEEEEE");
       this.cid = id;
       this.getrecord(id);
     },
     checkContractStatus() {
-      console.log("Hit API - Get APP and check for signing");
-      console.log(this);
       let i = this.$store.state.apps.application.id;
       fetch("/api/applications/" + i).then(response => {
-        console.log(response);
         response.text().then(text => {
           let a = JSON.parse(text);
-
           let s = "s1";
           let t = a[s];
-          console.log(this.$store.state.apps.application[s]);
-          console.log(a[s]);
           this.$store.state.apps.application;
-
           if (a[s] != this.$store.state.apps.application[s]) {
             clearInterval(this.clock);
             //if they are not equal then document has been signed .
-
             this.$store.state.apps.application = a;
           }
         });
       });
     },
-    log() {
-      console.log("LOGGGGGGGG");
-    },
-    iframeloaded(e) {
-      console.log("IFRAME LOADED");
-      console.log(this);
-      console.log($("iframe")[0].attributes);
-      // console.log($('iframe')[0].attributes.cname.nodeValue)
-      console.log($("iframe")[0].attributes.csigned.nodeValue);
-    },
     getState() {
-      console.log("GET STATEEEEEEE");
       let id = this.cid;
       if (id != undefined) {
         fetch("https://2020i.site/api/applications/" + id, {
@@ -1339,7 +1118,6 @@ export default {
       return false;
     },
     getrecord(id) {
-      console.log("RECORDSSSSSSSSSSSSSSSSSSSSSSS");
       // window.sessionStorage.id = id;
       this.cid = id;
       if (id != undefined) {
@@ -1350,7 +1128,6 @@ export default {
           .then(response => response.json())
           .then(json => {
             console.log(json);
-
             this.$store.state.apps.application = json;
             //this.$store.state.apps.application.visible = this.visible(1);
             if (json.s1 == 0) {
@@ -1358,11 +1135,9 @@ export default {
               //check to see if signed start interval check
               this.clock = setInterval(this.checkContractStatus, 7000);
             } else {
-              console.log("Signed");
               //update ui
               clearInterval(this.clock);
             }
-            console.log(this);
           });
         //this.getState();
       }
@@ -1379,8 +1154,6 @@ export default {
       return "error";
     },
     bon() {
-      console.log("BONNNNNNNNNNNNNNNNNNNNNNNNNNNN");
-      console.log(this.cresume, this.cliability, this.cces, this.clicense);
       if (
         this.cresume == 1 &&
         this.cliability == 1 &&
@@ -1430,31 +1203,20 @@ export default {
       }
     },
     openFileDialog(type) {
-      console.log("FILE DIALOG");
-      console.log(type);
-
       document.getElementById("upload-" + type).click();
     },
     openDownloadDialog(a, b, c) {
-      console.log("DOWNLAOD DIALOG");
       let url = "/static/" + a[0].toLowerCase().replace(/ /g, "") + ".pdf";
-      console.log(url);
-
       document.getElementById(url).click();
     },
     onFileChange(e) {
-      console.log("FILE CHANGE");
       const formData = new FormData();
       var self = this;
-
-      console.log(e.target.id.split(" "));
-
       let pre = e.target.id
         .split("-")[1]
         .split(".")
         .last()
         .toLowerCase();
-      console.log(pre);
       if (pre == "resume") {
         this.cresume = "1";
       }
@@ -1470,31 +1232,22 @@ export default {
       var files = e.target.files || e.dataTransfer.files;
       if (files.length > 0) {
         for (var i = 0; i < files.length; i++) {
-          console.log(files[i]);
           let suf = files[i].name.split(".").last();
-          console.log(suf);
           formData.append("file", files[i], pre + "." + suf);
         }
       }
-      console.log(formData);
       this.$store.state.apps.application[pre] = "1";
-      console.log("CONTAINERSSSSSSSSSSSSSSSSSSS");
       fetch("https://2020i.site/api/containers/" + this.cid + "/upload", {
         method: "POST", // *GET, POST, PUT, DELETE, etc.
-
         redirect: "follow", // manual, *follow, error
         referrer: "no-referrer", // no-referrer, *client
         body: formData // body data type must match "Content-Type" header
       }).then(response => {
-        console.log(response.json());
         //mark as uploaded
         let data = {};
-        console.log(this.$store.state);
         data = this.$store.state.apps.application;
         //data.sign1 = this.csign1;
         //data.links = this.clinks;
-        console.log("UPDATE APPLICATIONNNNNNNNNNNNNNNNN");
-        console.log(data);
         fetch("https://2020i.site/api/applications/" + data.id, {
           method: "PATCH",
           headers: {
@@ -1505,25 +1258,20 @@ export default {
         }).then(response => {
           //update upload status
         });
-
         //this.$store.commit('increment')
         // window.sessionStorage.progress = this.progress;
       }); // parses response to JSON */
     },
     uploadFile() {
-      console.log("FILE UPLOAD");
       var self = this;
       axios
         .post("URL", self.formData)
         .then(function(response) {
-          console.log(response);
         })
         .catch(function(error) {
-          console.log(error);
         });
     },
     getType(type) {
-      console.log(this);
       return this[type];
     },
     next() {
@@ -1555,46 +1303,32 @@ export default {
           return f;
         }
       });
-      //   console.log(b);
       return b;
     },
     buildinput([edata, ...rest]) {
       let html;
-      //     console.log("Edata");
-      //      console.log(edata);
-      //    console.log(rest);
       if (rest[0] == "input") {
         html = '<input type="text" placeholder="' + edata.capitalize() + '"/>';
       }
       return html;
     },
     appsubmitted() {
-      console.log("appsubmitted");
       this.getApps();
     }
   },
   mounted: function() {
-    console.log(this);
-
     $("iframe").on("load", function() {
       console.log("IFRAME LOADED");
     });
-
     let id;
-    console.log(this);
-    console.log(this.$route);
-
-    console.log("DEFINEDDDDDD ..............");
     id = this.$route.params.id;
     this.$store.state.id = this.$route.params.id;
 
     let vp = this;
-    console.log(id);
     //if(this.$store.state.apps.application.role=="admin"){
     if (true) {
       this.getApps();
     }
-
     if (id != undefined) {
       fetch("https://2020i.site/api/applications/" + id, {
         method: "GET",
@@ -1604,7 +1338,6 @@ export default {
         .then(json => {
           console.log(json);
           this.$store.state.apps.application = json;
-
           if (this.$store.state.apps.application.s1 == 0) {
             this.clock = setInterval(this.checkContractStatus, 7000);
           }
@@ -1613,26 +1346,20 @@ export default {
         });
     }
   },
-
   components: {
     applicationslist,
     hraffiliatelist,
     affiliateApplication
   }
 };
-
 String.prototype.capitalize = function() {
   return this.charAt(0).toUpperCase() + this.slice(1);
 };
-
 Array.prototype.last = function() {
   return this[this.length - 1];
 };
 </script>
 <style scoped>
-
-
-
 .apps .list-group-item {
   display: flex;
   justify-content: space-between;
@@ -1759,11 +1486,6 @@ iframe {
 .meter > div {
   display: flex;
 }
-/*.meter > div > span {
-    flex-basis: 100px;;
-}
-.max50{min-width:50vw;max-width:60vw;}
-.max6{flex-basis:1000px} */
 .profile-details {
   margin: 0px 15px;
 }

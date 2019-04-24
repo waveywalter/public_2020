@@ -2,21 +2,18 @@
   <div class="col-md-4">
     <div class="white-box todo">
       <h3 class="box-title">To Do List</h3>
-
       <div class="row">
         <perfect-scrollbar>
           <div class="col-sm-12 col-xs-12">
             <ul class="list-task list-group" data-role="tasklist">
               <div class="taskBox">
                 <li class="list-group-item" data-role="task" v-for="task in ctasklist">
-
                      <div class="wrapper">
                     <div class="font-icon">
                       <i class="fas fa-phone">
                         <span class="line"></span>
                       </i>
                     </div>
-
                     <div class="task-data">
                       <label for="inputSchedule">
                         <span class="mainText">{{task.title}}</span>
@@ -30,59 +27,20 @@
                         <i @click.stop="dialog=true" class="fas fa-calendar-o"></i>
                       </div>
                     </div>
-
                     <div class="right-side">
                       <i class="fa fa-file-text"></i>
                       <i class="fa fa-trash-o"></i>
                     </div>
                   </div>
-
-                   <!--                 <div class="wrapper">
-                    <div class="font-icon">
-                      <i class="fas fa-warning (alias)">
-                        <span class="line"></span>
-                      </i>
-                    </div>
-                    <div class="task-data">
-                      <label for="inputSchedule">
-                        <span class="mainText">Schedule meeting</span>
-                      </label>
-                      <p class="subText">Call Renee Michaels at 1pm</p>
-                     <div class="wrapper">
-                    <div class="font-icon">
-                      <i class="fas fa-comments">
-                        <span class="line"></span>
-                      </i>
-                    </div>
-                    <div class="task-data">
-                      <label for="inputSchedule">
-                        <span class="mainText">Schedule meeting</span>
-                      </label>
-                      <p class="subText">Call Renee Michaels at 1pm</p>
-                      <div class="bottom-cal">
-                        <i @click.stop="dialog=true" class="fas fa-calendar"></i>
-                        <i @click.stop="dialog=true" class="fas fa-calendar-o"></i>
-                      </div>
-                    </div>
-                    <div class="right-side">
-                      <i class="fa fa-file-text"></i>
-                      <i class="fa fa-trash-o"></i>
-                    </div>
-                  </div> -->
-
                 </li>
               </div>
             </ul>
           </div>
-
-
  <div class="text-xs-center">
     <v-dialog
     v-model="dialog"
       width="500"
     >
-
-
       <v-card>
         <v-card-title
           class="headline grey lighten-2"
@@ -90,7 +48,6 @@
         >
           Change Date
         </v-card-title>
-
         <v-card-text>
     <v-sheet height="300">
         <v-calendar
@@ -101,9 +58,7 @@
           color="primary"
         ></v-calendar>
       </v-sheet> </v-card-text>
-
         <v-divider></v-divider>
-
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn
@@ -117,9 +72,6 @@
       </v-card>
     </v-dialog>
   </div>
-
-
-
         </perfect-scrollbar>
       </div>
     </div>
@@ -189,18 +141,14 @@
     justify-content: space-evenly;
 }
 </style>
-
-
 <script>
 import { mapState, mapActions } from "vuex";
 let user = JSON.parse(localStorage.getItem("user"));
-console.log(user);
 var newNote = document.createElement("span");
 export default {
   name: "Taskbox",
   methods:{
         returnUrl(text){
-      console.log(typeof text)
       return text.slice(12)
     },
   },
