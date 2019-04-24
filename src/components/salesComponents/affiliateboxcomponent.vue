@@ -1166,7 +1166,7 @@ export default {
     filterApp(txt) {
       console.log("filterApp2");
       if (txt != "") {
-        fetch("https://2020i.site/api/applications")
+        fetch("https://2020i.site/api/applications?filter[offset]=0&filter[limit]=10&filter[skip]=0&filter[where][approved]=1")
           .then(response => response.json())
           .then(json => {
             console.log(json);
@@ -1192,7 +1192,7 @@ export default {
           });
       } else {
         console.log("NO TXT FILTERRRRRRRRRRRRR");
-        fetch("https://2020i.site/api/applications")
+        fetch("https://2020i.site/api/applications?filter[offset]=0&filter[limit]=10&filter[skip]=0&filter[where][approved]=1")
           .then(response => response.json())
           .then(json => {
             console.log(json);

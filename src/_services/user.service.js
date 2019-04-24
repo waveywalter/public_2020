@@ -94,6 +94,9 @@ function checkrole() {
 }
 
 function update(user) {
+    if(user.userId==undefined)
+    user.userId = user.id
+
     const requestOptions = {
         method: 'PATCH',
         headers: { ...authHeader(), 'Content-Type': 'application/json' },

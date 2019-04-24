@@ -3,7 +3,7 @@
 
                 <div class="col-md-4">
                     <div class="white-box">
-                        <h3 class="box-title m-b-0">New Affiliate Form</h3>
+                        <h3 class="box-title m-b-0">New Lead/Patient/Applicant Form</h3>
                         <div class="row">
                             <div class="col-sm-12 col-xs-12">
 
@@ -94,7 +94,7 @@
 </div>
 <div class="radio radio-warning">
     <input v-model="app.userType" type="radio" name="radio" id="affiliate" value="affiliate">
-    <label for="radio2"> Affiliate </label>
+    <label for="radio2"> Applicant </label>
 </div>
 
 

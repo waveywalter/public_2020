@@ -107,7 +107,7 @@ console.log(this.sucka)
               }
               console.log(d)
           //STORE AUTH META DATA WITH FORM
-          
+          console.log("it is getting ehre")
     fetch('/api/wsers/'+userid+'/signedforms/'+this.sucka+'?access_token='+this.$store.state.account.user.id,{
                     method:"PUT",
            headers: { 'Content-Type': 'application/json' },

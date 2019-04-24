@@ -7,8 +7,7 @@
           <div class="ml-5">
 
 
-    <v-layout column justify-center align-center>
-    </v-layout>
+
     <v-container
       id="scroll-target"
       style="max-height: 300px"
@@ -17,8 +16,7 @@
       <v-layout
         v-scroll:#scroll-target="onScroll"
         column
-        align-center
-        justify-center
+    
         style="height: 900px"
       >
 
@@ -28,6 +26,7 @@
                   <div class="row">
                     <div class="col-xl-12">
                       <div class="form-group">
+                       
                         <label for="exampleInputEmail1">Filter Applications</label>
                         <input
                           type="text"
@@ -1170,7 +1169,7 @@ export default {
     filterApp(txt) {
       console.log("filterApp2");
       if (txt != "") {
-        fetch("https://2020i.site/api/applications")
+        fetch("https://2020i.site/api/applications?filter[offset]=0&filter[limit]=100&filter[skip]=0&filter[where][approved]=1")
           .then(response => response.json())
           .then(json => {
             console.log(json);
@@ -1196,14 +1195,14 @@ export default {
           });
       } else {
         console.log("NO TXT FILTERRRRRRRRRRRRR");
-        fetch("https://2020i.site/api/applications")
+        fetch("https://2020i.site/api/applications?filter[offset]=0&filter[limit]=100&filter[skip]=0&filter[where][approved]=1")
           .then(response => response.json())
           .then(json => {
             console.log(json);
 
             // this.$store.state.app.application.list =[];
             let list = json;
-            this.cfilterlist = list;
+            this.cfilterlist = list.filter(app=>app.approved!=1);
             console.log(this.$store.state.apps.list);
           });
       }

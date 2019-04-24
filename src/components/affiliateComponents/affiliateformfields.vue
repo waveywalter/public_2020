@@ -4,8 +4,8 @@
        <div class="hide">{{cuser}}</div>
         <form>
         <div class="white-box form-body form-material">
-   
-                                        <h3 class="box-title">Person Info</h3>
+                                          
+                                        <h3 class="box-title">Personal Info</h3>
                                        
                                         <hr class="m-t-0 m-b-40">
                                         <div class="row">
@@ -57,55 +57,38 @@
                                                 <div class="form-group row">
                                                     <label class="control-label text-right col-md-3">Gender</label>
                                                     <div class="col-md-9">
-                                                        <select class="form-control custom-select">
-                                                            <option value="">Male</option>
-                                                            <option value="">Female</option>
+                                                        
+                                                        <select class="form-control custom-select" v-model="sex">
+                                                            <option value="" disabled>Choose One</option>
+                                                            <option value="male" selected>Male</option>
+                                                            <option value="female">Female</option>
                                                         </select>
                                                         <small class="form-control-feedback"> Select your gender. </small> </div>
                                                 </div>
                                             </div>
-                                            <!--/span-->
                                             <div class="col-md-6">
                                                 <div class="form-group row">
-                                                    <label class="control-label text-right col-md-3">Date of Birth</label>
+                                                    <label class="control-label text-right col-md-3">Therapist Type</label>
                                                     <div class="col-md-9">
-                                                        <input type="date" class="form-control" placeholder="dd/mm/yyyy">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!--/span-->
-                                        </div>
-                                        <!--/row-->
-                                        <div class="row">
-                                            <div class="col-md-6">
-                                                <div class="form-group row">
-                                                    <label class="control-label text-right col-md-3">Category</label>
-                                                    <div class="col-md-9">
-                                                        <select class="form-control custom-select" data-placeholder="Choose a Category" tabindex="1">
-                                                            <option value="Category 1">Category 1</option>
-                                                            <option value="Category 2">Category 2</option>
-                                                            <option value="Category 3">Category 5</option>
-                                                            <option value="Category 4">Category 4</option>
+                                                        <select class="form-control custom-select" data-placeholder="Therapist Type" tabindex="1" v-model="ttype">
+                                                            <option value="" disabled>SELECT ONE</option>
+                                                            <option value="Category 1" selected>ASTN MF</option>
+                                                            <option value="Category 2">QSWD TH</option>
+                                                            <option value="Category 3">LKMN ID</option>
+                                                            <option value="Category 4">SDC VGB</option>
                                                         </select>
                                                     </div>
                                                 </div>
                                             </div>
                                             <!--/span-->
-                                            <div class="col-md-6">
-                                                <div class="form-group row">
-                                                    <label class="control-label text-right col-md-3">Approved for Payment</label>
-                                                    <div class="col-md-9">
-                                                        <div class="custom-control custom-radio">
-                                                            <input type="radio" id="customRadio3" name="member" class="custom-control-input" disabled>
-                                                            <label class="custom-control-label" for="customRadio3">Yes</label>
-                                                        </div>
-                                                        <div class="custom-control custom-radio">
-                                                            <input type="radio" id="customRadio4" name="member" class="custom-control-input"  disabled>
-                                                            <label class="custom-control-label" for="customRadio4">No</label>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            
+                                            <!--/span-->
+                                        </div>
+                                        <!--/row-->
+                                        <div class="row">
+                                            
+                                            <!--/span-->
+       
                                             <!--/span-->
                                         </div>
  
@@ -121,15 +104,33 @@ import { mapState, mapActions } from "vuex";
     export default {
         name: "affiliateformfields",
         props :["afid",'user'],
-                data(){
+         data(){
             return{
-                
+                complete:function(){
+                    if(this.firstname!='' && this.lastname !='' && this.phone!='' && this.email !='' && this.sex!='' && this.ttype!=''){
+                       console.log("COMPLETE 1")
+                       console.log(this._self.$parent.$refs)
+                        //this.$store.state.apps.currentStep=2;
+                      //this.$parent.selected = 2
+                     // this._self.$parent.$refs.second.click();
+                        return true
+                    }
+                    return false
+                },
+                sex:'male',
+           //     email:'',
+                ttype:'Category 1',
+           //     phone:'',
+            //    firstname:'',
+            //    lastname:'',
                 
             }
         },
             created(){
                 console.log("CURRENT USERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR")
+        if(this.$store.state.account.user.user.role=="sales"){        
         this.getAllUsers({role:"affiliate"})
+        }
         this.$store.state.users.current = this.user
         // this.getUserForms(this.afid)
        

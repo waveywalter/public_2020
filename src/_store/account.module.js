@@ -8,11 +8,10 @@ const state = user
     : { status: {}, user: null };
 
 const actions = {
-    loco(){console.log("LOCOOOOOOOOOOOOOOO9")},
     login({ dispatch, commit }, { username, password }) {
         localStorage.removeItem('sessionMsg');
         commit('loginRequest', { username });
-        console.log("LOGINNNNNNNNNNNNNNNNNN")
+     
         userService.login(username, password)
             .then(
                 user => {
@@ -27,10 +26,10 @@ const actions = {
             );
     },
     authGoogle(){
-        alert("SSsS")
+        
     },
     update({ dispatch, commit }, userInfo ) {
-    
+        console.log(userInfo)
         userService.update(userInfo)
             .then(
                 user => {

@@ -1,10 +1,12 @@
 <template>
 <div id="uploads">
+   <div> {{complete}}</div>
 <div grid-list-md v-for="type in upload" class="uploads">
 
 <button color="" class="black--text btn btn-default" loaders v-on:click="openFileDialog(type)">
 <i class="icon-arrow-up-circle"></i>
 <input type="file" :id="type" style="display:none" v-on:change="onFileChange">
+{{type}}
 </button>
 
 
@@ -20,8 +22,8 @@
         <div  role="tabpanel" class="tab-pane uppers ploads" v-for="(type,index) in upload" :id="'up'+type">
             <div class="p-20 sammy" >
                 {{uploaded(type)}}
-                                <iframe v-if="uploaded(type)" :src="'/api/containers/'+afid+'/download/'+type+'.pdf#zoom=100'" /></iframe>
-                                <div v-if="!uploaded(type)"><h3>Document Not Uploaded</h3></div>
+                                <iframe v-if="uploaded(type.toLowerCase())" :src="'/api/containers/'+afid+'/download/'+type.toLowerCase()+'.pdf#zoom=100'" /></iframe>
+                                <div v-if="!uploaded(type.toLowerCase(0))"><h3>Document Not Uploaded</h3></div>
                 </div>
         </div>
 
@@ -33,12 +35,13 @@
 <script>
 import Vue from 'vue'
 import pdf from 'vue-pdf'
+import { mapState, mapActions } from "vuex";
 export default {
     name:"uploader",
     props:["afid"],
     data(){
             return {
-            upload:["resume","license","insurance","ces","headshot"]
+            upload:["Resume","License","Insurance","1099"]
             };
      },
     mounted(){
@@ -48,74 +51,87 @@ export default {
         pdf    
         },
     computed: {
+        complete:{
+            get:function(){
+                        
+                if(this.$store.state.apps.currentAffiliate.resume && this.$store.state.apps.currentAffiliate.license && this.$store.state.apps.currentAffiliate.insurance &&  this.$store.state.apps.currentAffiliate['1099']){
+                    this.$store.state.apps.currentStep=5;
+                    
+                    this.$parent.superComplete = true;
+                    this.$parent.selected = 5;
+                    return true
+                }
+                return false
+            },
+            set:function(){}
+        }
         },
     methods: {
+         ...mapActions("account", ["update"]),
         uploaded(type){
-          //  console.log("UPLADED TYPE")
+ 
             let u ={};
-          //  console.log(this.$store.state.users.all.items)
-          //  console.log(this.$store.state.account.user.user)
-            if(this.$store.state.users.all.items!=undefined){
-            if(this.$store.state.users.all.items.length!=undefined){
-            let us = this.$store.state.users.all.items.filter(user=>{return user.id==this.afid})
-             u = us[0]
-            
-            }
 
-                }            else{
+            if(this.$store.state.account.user.user.role=="sales"){
+           
+
+            //let us = this.$store.state.users.all.items.filter(user=>{return user.id==this.afid})
+             u = this.$store.state.apps.currentAffiliate;
+            
+            
+
+                }
+            else{
                u = this.$store.state.account.user.user;  
 
             }
-            //console.log(u)
+
             if(u)
             if (u[type]==1){
                     return true
             }
-
-           // console.log(u)
             return false
             
         },
         showTabs(type){
             let list = document.getElementsByClassName("ploads");
-            list.forEach((ele)=>{
-                    ele.classList.remove("active");
-                })
+    
             document.getElementById("up"+type).classList.add("active");
         },
         openFileDialog(type) {
-             //   console.log('FILE DIALOG')
-//                console.log(type);
-
                 document.getElementById(type).click();
         },
         onFileChange(e) {
-  //              console.log('FILE CHANGE')
+                
                 const formData = new FormData();
                 var self = this;
                 let pre = e.target.id.split(" ").last().toLowerCase();
                 var files = e.target.files || e.dataTransfer.files;       
                 if(files.length > 0){
                     for(var i = 0; i< files.length; i++){
-                  console.log(files[i])
+                  
                   let suf = files[i].name.split(".").last();
-                  console.log(suf);
+                 
                     formData.append("file", files[i], pre+'.'+suf);
                 }
                 } 
-                console.log(formData);  
+                  
                 this.$store.state[pre] = 1;
                 fetch('https://2020i.site/api/containers/'+this.$store.state.account.user.user.id+'/upload', {
                 method: 'POST', // *GET, POST, PUT, DELETE, etc.
- 
                 redirect: "follow", // manual, *follow, error
                 referrer: "no-referrer", // no-referrer, *client
                 body: formData, // body data type must match "Content-Type" header
                   })
-                .then(response =>{console.log( response.json())
+                .then(response =>{
                 //mark as uploaded
 
-        
+                //get user add new form and save
+                let u = this.$store.state.apps.currentAffiliate
+                
+                u[pre] = 1;
+                this.update(u)
+                u.userId = u.id
        
             
                 } ); // parses response to JSON */

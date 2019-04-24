@@ -1,6 +1,5 @@
 <template>
   <div class="white-box ml-5 max50 flexor">
-    {{this.$root._route.params.root}}
     <div v-if="this.$root._route.params.root=='applicant'">
       <div class="thumbs">
         <h3>
@@ -65,21 +64,7 @@
           <div id="Signed" class="tab-pane">
             <div class="vtabs">
               <ul class="nav nav-tabs tabs-vertical" role="tablist">
-                <li class="nav-item" v-for="(docs,n) in signature">
-                  <a
-                    v-bind:class="{active:isActive(n)}"
-                    class="nav-link"
-                    data-toggle="tab"
-                    :href="'#'+docs[0].split(' ')[0]"
-                    role="tab"
-                    aria-selected="true"
-                  >
-                    <span class="hidden-sm-up">
-                      <i class="ti-home"></i>
-                    </span>
-                    <span class="hidden-xs-down">{{docs[0].split(' ')[0].substring(0,14)}}</span>
-                  </a>
-                </li>
+                
               </ul>
 
               <div class="tab-content">
@@ -222,7 +207,7 @@
       </div>
     </div>
     <div v-if="this.$root._route.params.root=='applicant'">
-      <div class>
+      <div class="hide">
         <div>
           <span>Admission Agreement</span>
           <i class="ti-check" v-if="cs1==1"></i>
@@ -1351,7 +1336,7 @@ export default {
     filterApp(txt) {
       console.log("filterApp2");
       if (txt != "") {
-        fetch("https://2020i.site/api/applications")
+        fetch("https://2020i.site/api/applications?filter[offset]=0&filter[limit]=10&filter[skip]=0&filter[where][approved]=1")
           .then(response => response.json())
           .then(json => {
             console.log(json);
@@ -1377,7 +1362,7 @@ export default {
           });
       } else {
         console.log("NO TXT FILTERRRRRRRRRRRRR");
-        fetch("https://2020i.site/api/applications")
+        fetch("https://2020i.site/api/applications?filter[offset]=0&filter[limit]=10&filter[skip]=0&filter[where][approved]=1")
           .then(response => response.json())
           .then(json => {
             console.log(json);
