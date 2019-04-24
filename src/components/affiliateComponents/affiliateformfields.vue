@@ -4,9 +4,19 @@
        <div class="hide">{{cuser}}</div>
         <form>
         <div class="white-box form-body form-material">
-                                          
-                                        <h3 class="box-title">Personal Info</h3>
-                                       
+                    <div class="row float-right">
+
+<toggle-button :value="false" color="green" :sync="true" :width="120" :labels="{checked: 'Approved!', unchecked: 'Click to Approve'}" />
+
+</div>
+   
+                                        <h3 class="box-title">Person Info</h3>
+
+                                       <div class="col-lg-2 col-sm-4 col-xs-12">
+
+
+                                </div>
+
                                         <hr class="m-t-0 m-b-40">
                                         <div class="row">
                                             <div class="col-md-6">
@@ -214,6 +224,7 @@ import { mapState, mapActions } from "vuex";
       getAllUsers: "getAll",
       deleteUser: "delete"
     })},
+    
         components: {
 
         }

@@ -1,6 +1,10 @@
 <template>
     <div>
 
+        <div class="row float-right">
+<toggle-button :value="false" color="green" :sync="true" :width="120" :labels="{checked: 'Approved!', unchecked: 'Click to Approve'}" />
+
+</div>
 <dynamic :user="user" :fid="fid" ref="dynamic" v-bind:template="chtml[0]"></dynamic> 
     </div>
 </template>
