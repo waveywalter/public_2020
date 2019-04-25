@@ -5,14 +5,10 @@
 
                   <div class="row float-right">
         <div class="row float-right">
-<toggle-button :value="false" color="green" :sync="true" :width="120" :labels="{checked: 'Approved!', unchecked: 'Click to Approve'}" />
-
+<toggle-button v-if="role === 'sales'" :value="false" color="green" :sync="true" :width="120" :labels="{checked: 'Approved!', unchecked: 'Click to Approve'}" />
 </div>
-
 </div>
-
         <h3 class="box-title">Address</h3>
-
         <hr class="m-t-0 m-b-40">
         <!--/row-->
         <div class="row">
@@ -88,6 +84,10 @@
   </div>
 </template>
 <script>
+let user = JSON.parse(localStorage.getItem('user'));
+console.log()
+
+
  export default {
         name: "practicefields",
                 data(){
@@ -106,9 +106,13 @@
                 city:'c',
                 state:'d',
                 zip:'33609',
+                role:this.$store.state.account.user.user.role
             }
+           
         },
-        components: {}
+        components: {
+
+        }
 };
 </script>
 <style scoped>

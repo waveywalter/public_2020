@@ -12,7 +12,7 @@
 
 </div>
         <div class="row float-right">
-<toggle-button :value="false" color="green" :sync="true" :width="120" :labels="{checked: 'Approved!', unchecked: 'Click to Approve'}" />
+<toggle-button v-if="role === 'sales'" :value="false" color="green" :sync="true" :width="120" :labels="{checked: 'Approved!', unchecked: 'Click to Approve'}" />
 
 </div>
             <div>
@@ -47,11 +47,14 @@ export default {
     props:["afid"],
     data(){
             return {
-            upload:["Resume","License","Insurance","1099"]
-            };
-     },
-    mounted(){
+            upload:["Resume","License","Insurance","1099"],
+                            role:this.$store.state.account.user.user.role
 
+            };
+            
+     },
+     
+    mounted(){
         },
     components:{
         pdf    
@@ -83,21 +86,16 @@ export default {
 
             //let us = this.$store.state.users.all.items.filter(user=>{return user.id==this.afid})
              u = this.$store.state.apps.currentAffiliate;
-            
-            
-
                 }
             else{
                u = this.$store.state.account.user.user;  
-
             }
-
             if(u)
             if (u[type]==1){
                     return true
             }
             return false
-            
+
         },
         showTabs(type){
             let list = document.getElementsByClassName("ploads");
