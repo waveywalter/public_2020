@@ -2,7 +2,7 @@
     <div>
 
         <div class="row float-right">
-<toggle-button :value="false" color="green" :sync="true" :width="120" :labels="{checked: 'Approved!', unchecked: 'Click to Approve'}" />
+<toggle-button v-if="role === 'sales'" :value="false" color="green" :sync="true" :width="120" :labels="{checked: 'Approved!', unchecked: 'Click to Approve'}" />
 
 </div>
 <dynamic :user="user" :fid="fid" ref="dynamic" v-bind:template="chtml[0]"></dynamic> 
@@ -18,6 +18,8 @@ export default {
         data(){
             return {
                 html:"<div>Initializing</div>",
+                                role:this.$store.state.account.user.user.role
+
             };
         },
         mounted(){
