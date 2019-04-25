@@ -9,6 +9,7 @@
       class="scroll-y"
     >
       <v-layout
+        data-app
         column    
         style="height: 900px"
       >          <div class="col-sm-12 col-xs-12">

@@ -10,10 +10,6 @@
           </div>
         </div>
         <div class="col-md-8">
-
-
-
-          
     <v-layout column justify-center align-center>
     </v-layout>
     <v-container
@@ -157,7 +153,6 @@ export default {
     opentab() {
       var url = window.location.href.split("#");
       var ctab = url[1] ? url[1] : "NewAffiliateform";
-      Vue.set(this.currentTab, "tabname", ctab);
     },
     regexLead(leads) {
       let r = leads.leads.filter(lead => {
