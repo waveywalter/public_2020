@@ -29,7 +29,7 @@
         <div v-if="superComplete && role=='sales'"><v-btn>Approve & Send to HR</v-btn> </div>
 <div class="container-fluid">
     <div id="exampleBasic" class="wizard">
-        {{$store.state.apps.currentStep}}{{superComplete}}{{selected}}
+        
         <ul class="wizard-steps" role="tablist">
             
 <li class="nav-item col-sm-2" v-if="$store.state.apps.currentStep>0" @click="selected = 1" :class="{highlight:selected >= 1}"> <a class="nav-link"  data-toggle="tab" href="#home4" role="tab"aria-selected="true"> 
@@ -213,24 +213,22 @@ export default{
                 }),
            ...mapActions("form", ["getformbyid", "updateform","getforms", "deleteform","attachUserToForm","getUserForms"]),
            formloader(e){
-               console.log("HER WE GOOOOOOOOOOOOOOOO")
-               console.log(e)
+               
                 this.$store.state.account.formid = e
                 this.$store.state.users.current = this.user
-                console.log(this)
+                
                 this.$store.state.form.current_signed_form = e
-                let g = this.$store.state.form.sfs.filter(form=>form.formId==e)
+                let g = this.$store.state.form.userForms.filter(form=>form.formId==e)
+             
                 if(g.length>0){
-                this.$store.state.form.signed_form = this.$store.state.form.sfs.filter(form=>form.formId==e)[0].id
+                this.$store.state.form.signed_form = this.$store.state.form.userForms.filter(form=>form.formId==e)[0].id
                 }
                 let rootform = this.$store.state.apps.currentAffiliate.forms//.filter(form=>{return form.formId==e})
                 this.$store.state.form.current_signed_form = rootform[0].id;
                this.getFormHtml(e)               
                 },
            getFormHtml(id){
-               console.log("GET FORM HTMLLLLLLLLLLLLLLLLL")
-               console.log(this)
-               console.log(this.html)
+
                     let currentf = this.forms_list.filter(form=>{return form.id==id })
                     this.formDisplay=true
                     this.thtml = currentf
@@ -238,23 +236,18 @@ export default{
                     return "<div>Help</div>"
                 },
            async getFormsHtml(){
-               console.log("AFFFDASHHHHHHHHHHHHH")
+             
                 //forms users already signed
                    let sfs = this.$store.state.account.user.user.signedforms;
                    // forms user is supposed to sign
                         let ssfs = this.$store.state.account.user.user.forms;
-                        this.$store.state.form.sfs = ssfs;
+                        this.$store.state.form.sfs = this.$store.state.form.userForms;
                        if(this.$store.state.account.user.user.role=="sales"){
-                        ssfs = await fetch('https://2020i.site/api/wsers/'+this.afid  +'/signedforms?',{
-                            method:"GET",
-                            headers: { ...authHeader(), 'Content-Type': 'application/json' },   
-                        })
-                        .then(res=>res.json()).then(json=>{return json})
+                        ssfs =this.$store.state.form.userForms
                             this.$store.state.form.sfs = ssfs                       
                             }
-                        console.log('GETGORMS HTML TEST')
-                       console.log(this)
-                       console.log(ssfs)
+                        
+              
                     let fs = await   fetch('https://2020i.site/api/Forms?filter[where][FormType]=affiliate').then(res=>res.json()).then(json=>{return json})
                             let userforms = fs.filter(form=>{
                             return ssfs.filter(signedform=>{return form.id===signedform.formId})[0]
@@ -262,29 +255,16 @@ export default{
                          if(this.$store.state.account.user.user.role=="affiliate"){
                         userforms = this.$store.state.account.user.user.forms
                          }
-                        console.log("GET FORMS HTML")
-                        console.log(userforms)
-                        console.log(ssfs)
+                        
                         this.html = userforms
                         
               },
            openFileDialog(type) {
-                console.log('FILE DIALOG')
-                console.log(type);
-
             document.getElementById(type).click();
            },    
         
         },
     computed:{
-       /* superComplete:{
-            get:function(){
-                return false
-            },
-            set:function(v){
-                this.superComplete = v
-            }
-        }, */
         currentAffiliate : {
           get:function(){
             if(this.$store.state.account.user.user.role=="affiliate"){
@@ -334,7 +314,7 @@ export default{
            get:function(){ 
                
                if(this.currentAffiliate){
-                   console.log(this.forms_list)
+                   
             let fl  = [];
             if(this.forms_list!=undefined){
              fl = this.forms_list.map(form=>{return form.id})

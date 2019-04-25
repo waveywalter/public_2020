@@ -22,7 +22,7 @@ self.addEventListener('install', function(event) {
 
 //If any fetch fails, it will show the offline page.
 //Maybe this should be limited to HTML documents?
-self.addEventListener('fetch', function(event) {
+/*self.addEventListener('fetch', function(event) {
   //console.log(event.request)
   //console.log("FETCHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH")
   event.respondWith(
@@ -34,7 +34,7 @@ self.addEventListener('fetch', function(event) {
     }
   ));
 });
-
+*/
 //This is a event that can be fired from your page to tell the SW to update the offline page
 self.addEventListener('refreshOffline', function(response) {
   return caches.open('pwabuilder-offline').then(function(cache) {

@@ -108,7 +108,6 @@
 <script>
 import { mapState, mapActions } from "vuex";
 let user = JSON.parse(localStorage.getItem('user'));
-console.log(user)
 
 export default {
     name: "SideBar",

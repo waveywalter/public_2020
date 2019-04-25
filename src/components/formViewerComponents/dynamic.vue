@@ -35,7 +35,7 @@ methods:{
   },
   sendAuth(){
 
-      console.log("Verfiy auth code and alert status")
+    
       let code= this.authcode;
       let formid = this.$store.state.account.formid;
       let sformid = this.$store.state.form.signed_form
@@ -47,15 +47,14 @@ methods:{
           code:code
       }
       let _this = this
- console.log(this)
-console.log(this.sucka)
+
 
      fetch('/api/verifyauthcode',{
           method:"POST",
            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(authDetails)         
       }).then(res=>res.text()).then(data=>{
-          console.log(_this)
+        
           if(data=="No Bueno"){
               this.authcode=''
                           this.error = "Not Authenticated"
@@ -80,7 +79,7 @@ console.log(this.sucka)
           "<div> Auth Details</div>"+
           "</div></div>";
         var res = Vue.compile(y);
-			console.log(res)
+		
         this.templateRender = res.render;
         
         // staticRenderFns belong into $options, 
@@ -98,23 +97,21 @@ console.log(this.sucka)
         }
             //this.$parent.html = '<div>You have signed this form. Click here to print. Click here to download.</div>';
             this.formAuthed = true
-            console.log(data)
+           
             data = JSON.parse(data)
           let d = {
               status:data.status,
               meta:data.meta,
               signed_date:data.signed_date
               }
-              console.log(d)
-          //STORE AUTH META DATA WITH FORM
-          console.log("it is getting ehre")
+              
+    
     fetch('/api/wsers/'+userid+'/signedforms/'+this.sucka+'?access_token='+this.$store.state.account.user.id,{
                     method:"PUT",
            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(d)   
         }).then(res=>{
-          console.log("RESUBMIT WITH CORRECT ID")
-          console.log(res)
+
           
           })  
       //user.id and token
@@ -123,14 +120,14 @@ console.log(this.sucka)
         //store results with form
 
 
-          console.log(data)
+         
          // this.unsent = false
           }) 
   },
   approve_form(){},
   deny_form(){},
   getAuth(){
-      console.log(this)
+      
       let authDetails = {
           userid:this.$store.state.apps.currentAffiliate.id,
           formId:this.$store.state.account.formid,
@@ -141,16 +138,15 @@ console.log(this.sucka)
        
       };
       
-      console.log("HIT API GET AUTHCODE SENT - SWITCH BUTTON TO SUBMIT")
-      console.log(authDetails)
+
       fetch('/api/createauthandsend',{
             method:"POST",
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(authDetails)
       }).then(handleResponse).then(json=>{
-          console.log(json);
+  
           this.$store.state.account.authCodeId=json.id;
-          console.log(this.$store.state)
+     
                let data = {
         formId:this.template.id,
         userid:this.$store.state.apps.currentAffiliate.id
@@ -175,28 +171,24 @@ watch: {
 	template:{
       immediate: true, // makes the watcher fire on first render, too.
       handler() {
-        console.log("SWITCH ID")
+      
         if(this.template){
  
-     
+          
         let html = "<div class='former'> <h3>"+this.template.FormTitle+"</h3>"+this.template.FormContent+"<div class='error' v-if='error_on'>{{error}}</div></div>"
-        let status = this.$store.state.form.userForms.filter((form)=>{
-          console.log(form.formId,this.template.id);this.formID=this.template.id; if (form.formId==this.template.id)
+        let status = this.$store.state.apps.currentAffiliate.signedforms.filter((form)=>{
+          this.formID=this.template.id; if (form.formId==this.template.id)
           return form
           })
-          console.log("WATCHCHCHCH")
-          console.log(status)
+
       if(status.length !=0){
            this.$store.state.form.current_signed_form = status[0].id
   
-           console.log(this.$store)
-        //this.unsent = true 
-        console.log(status[0])
+           
+
         this.formAuthed = false;
        if(status[0].status==true){
-          console.log("CUREENT AFFILATE")
-          console.log(this.user)
-          console.log(this.$store.state.apps.currentAffiliate)
+
           let p = this.$store.state.apps.currentAffiliate;
           let pf = p.firstname;
           let pl = p.lastname;
@@ -250,7 +242,7 @@ String.prototype.capitalize = function() {
     }
 
 function handleResponse(response) {
-    console.log(response)
+    
     return response.text().then(text => {
         const data = text && JSON.parse(text);
         if (!response.ok) {

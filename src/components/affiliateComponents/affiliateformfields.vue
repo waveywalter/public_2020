@@ -4,19 +4,9 @@
        <div class="hide">{{cuser}}</div>
         <form>
         <div class="white-box form-body form-material">
-                    <div class="row float-right">
-
-<toggle-button :value="false" color="green" :sync="true" :width="120" :labels="{checked: 'Approved!', unchecked: 'Click to Approve'}" />
-
-</div>
-   
-                                        <h3 class="box-title">Person Info</h3>
-
-                                       <div class="col-lg-2 col-sm-4 col-xs-12">
-
-
-                                </div>
-
+                                          
+                                        <h3 class="box-title">Personal Info</h3>
+                                       
                                         <hr class="m-t-0 m-b-40">
                                         <div class="row">
                                             <div class="col-md-6">
@@ -137,7 +127,7 @@ import { mapState, mapActions } from "vuex";
             }
         },
             created(){
-                console.log("CURRENT USERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR")
+            
         if(this.$store.state.account.user.user.role=="sales"){        
         this.getAllUsers({role:"affiliate"})
         }
@@ -162,8 +152,7 @@ import { mapState, mapActions } from "vuex";
             }, */
             firstname:{
                     get: function () {
-                        console.log("FIRDT")
-                        console.log(this.user)
+   
                         if(this.user[0]){
                         this.$store.state.users.current = this.user
                         return this.user[0].firstname
@@ -175,10 +164,9 @@ import { mapState, mapActions } from "vuex";
                     this.user[0].firstname= newValue
                 }           
             },
-             lastname:{
+            lastname:{
                     get: function () {
-                        console.log("LAST")
-                        console.log(this)
+    
                         if(this.user[0])
                         return this.user[0].lastname
 
@@ -191,8 +179,7 @@ import { mapState, mapActions } from "vuex";
             },
             phone:{
                     get: function () {
-                        console.log("FIRDT")
-                        console.log(this.user)
+ 
                         if(this.user[0])
                         return this.user[0].phone
 
@@ -203,10 +190,9 @@ import { mapState, mapActions } from "vuex";
                     this.user[0].phone= newValue
                 }           
             },
-             email:{
+            email:{
                     get: function () {
-                        console.log("LAST")
-                        console.log(this)
+          
                         if(this.user[0])
                         return this.user[0].email
 
@@ -224,7 +210,6 @@ import { mapState, mapActions } from "vuex";
       getAllUsers: "getAll",
       deleteUser: "delete"
     })},
-    
         components: {
 
         }

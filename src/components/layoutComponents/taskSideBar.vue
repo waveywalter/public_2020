@@ -194,7 +194,6 @@
 <script>
 import { mapState, mapActions } from "vuex";
 let user = JSON.parse(localStorage.getItem("user"));
-console.log(user);
 var newNote = document.createElement("span");
 export default {
   name: "Taskbox",
