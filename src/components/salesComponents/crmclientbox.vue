@@ -3,13 +3,13 @@
     <div class="white-box">
       <h3 class="box-title">Client List</h3>
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-2">
           <div class="icons pt-4">
             <i class="icon-people text-info"></i>
             <h1 class="text-warning pt-5">{{count}}</h1>
           </div>
         </div>
-        <div class="col-md-8">
+        <div class="col-md-10 pl-5">
     <v-layout column justify-center align-center>
     </v-layout>
     <v-container
@@ -17,11 +17,7 @@
       style="max-height: 525px"
       class="scroll-y"
     >
-      <v-layout
-        column
-      >
-
-
+      <v-layout column>
             <div v-for="lead in regexLead(leads)" :key="lead.id">
               <router-link
                 class="list-group-item"
@@ -30,7 +26,7 @@
                 :to="'/sales/crm/'+lead.id"
                 @click.native
               >
-                <div class="btn btn-default btn-outline showbottom mt-2 card-body .mr15">
+                <div class="btn btn-default btn-outline showbottom mt-2 card-body mr15">
                   <a class="card-title">{{lead.first_name}} {{lead.last_name}}</a>
                 </div>
               </router-link>
@@ -53,20 +49,16 @@ div::-webkit-scrollbar {
 div::-webkit-scrollbar-track {
     -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.075);
 }
- 
 div::-webkit-scrollbar-thumb {
   background-color: red;
   border-radius: 10%;
 }
-
 div::-ms-scrollbar {
     width: 0.6em;
 }
- 
 div::-ms-scrollbar-track {
     -ms-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.075);
 }
- 
 div::-ms-scrollbar-thumb {
   background-color: red;
   border-radius: 10%;
