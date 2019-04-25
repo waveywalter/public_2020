@@ -14,7 +14,6 @@
       class="scroll-y"
     >
       <v-layout
-        v-scroll:#scroll-target="onScroll"
         column
         align-center
         justify-center
@@ -755,7 +754,6 @@ export default {
           return true;
         }
       } else if (m == 1) {
-        console.log("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM" + m);
         if (
           (this.$store.state.apps.application[r] == "" ||
             this.$store.state.apps.application[r] == undefined) &&
@@ -1508,7 +1506,6 @@ export default {
       }); // parses response to JSON */
     },
     uploadFile() {
-      console.log("FILE UPLOAD");
       var self = this;
       axios
         .post("URL", self.formData)
@@ -1537,7 +1534,6 @@ export default {
       //  let html = form.map(function(currentValue, index, arr){
       //  console.log(currentValue);
       let html = form.join("");
-      console.log(html);
       return this["frame" + index];
       //  });
     },
@@ -1547,7 +1543,6 @@ export default {
         //  console.log(currentValue);
         if (currentValue[1] == "input") {
           let f = that.buildinput(currentValue);
-          console.log(f);
           let r = "What";
           return f;
         }
@@ -1578,10 +1573,6 @@ export default {
     });
 
     let id;
-    console.log(this);
-    console.log(this.$route);
-
-    console.log("DEFINEDDDDDD ..............");
     id = this.$route.params.id;
     this.$store.state.id = this.$route.params.id;
 

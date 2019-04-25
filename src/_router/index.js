@@ -142,7 +142,6 @@ export const router = new Router({
       ],
       beforeEnter: (to, from, next) => {
         userService.checkrole().then(res => res.json()).then(roleMapping => {
-          console.log(roleMapping.id)
           if ((user.user.role == "admin") && roleMapping.id) {
             next();
           } else {
@@ -239,14 +238,7 @@ export const router = new Router({
       ],
       beforeEnter: (to, from, next) => {
         next()
-        // userService.checkrole().then(res => res.json()).then(roleMapping => {
-        //   console.log(roleMapping.id)
-        //   if ((user.user.role == "humanResource") && roleMapping.id) {
-        //     next();
-        //   } else {
-        //     next("/forbidden")
-        //   }
-        // });
+ 
       }
     },
 

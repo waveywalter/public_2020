@@ -111,8 +111,6 @@ export default {
     listlength: function() {
       if (this.appfilter != "") {
         let ar = this.$store.state.apps.list.filter(item => {
-          console.log("ITEMMMSSSSSSSSSS");
-          console.log(item);
           return item.email == this.appfilter;
         });
         return ar.length;
@@ -134,7 +132,6 @@ export default {
         return this.$store.state.apps.application.approved;
       },
       set: function(e) {
-        console.log(e);
         if (!e) {
           e = "0";
         } else if (e == 1 || e == "1") {
@@ -148,14 +145,9 @@ export default {
     },
     cs9: {
       get: function(e) {
-        console.log("get cs9");
-        console.log(e);
-        console.log(this);
         return this.$store.state.apps.application.s9;
       },
       set: function(e) {
-        console.log(e);
-        console.log("set cs9");
         this.$store.state.apps.application.s9 = e;
         return "Set Resume";
       }
@@ -473,7 +465,6 @@ export default {
   },
   methods: {
     showmain(test) {
-      console.log("SHOWWWWWW", test);
       if (test == undefined) {
         return true;
       }
@@ -496,15 +487,7 @@ export default {
       }
       return false;
     },
-    documentUpload(doctitle, n) {
-      console.log(
-        "Upload Docs to Document API and Update Application",
-        doctitle,
-        n
-      );
-    },
     rejectUpload(doctitle, n) {
-      console.log("REJCT DOWNLAOD", doctitle, n);
       let flag = "resume";
       switch (doctitle) {
         case "Resume":
@@ -527,7 +510,6 @@ export default {
       this[flag] = "0";
       this.capproved = "0";
       this.update();
-      console.log(this);
       let mm = this.cid;
       fetch(
         "https://2020i.site/api/containers/" +
@@ -541,7 +523,6 @@ export default {
       );
     },
     uploadshow(n, notch) {
-      console.log("show " + notch);
       let flag = "resume";
       switch (notch) {
         case "Resume":
@@ -611,14 +592,9 @@ export default {
       return false;
     },
     sendDocs(n) {
-      console.log("SENDOCSSSSSSSSSSSSSSS");
-      console.log(n);
       if (parseInt(n) == 0) {
         let l = "s1";
-        console.log(l);
-        console.log(this.$store.state.apps.application[l]);
         if (this.$store.state.apps.application[l] == 0) {
-          console.log("Empty .. Please create and send");
           let data = this.$store.state.apps.application;
           // dont email link - create docs with send through emailas yes - may require new API route
           fetch("https://2020i.site/api/create/newcontract/" + this.cid, {
@@ -632,20 +608,16 @@ export default {
           // this.$store.commit('increment')
         }
       } else {
-        console.log("send next document for signing");
         //Send link through email
         let req = {};
         req.sender = "webmaster@thewaveint.com";
         req.name = this.cname;
         req.subject = "Document Rejected Please Resign";
         //req.progress = (n+1);
-        console.log(n);
         let l = "s" + n;
-        console.log(l);
         let data = this.$store.state.apps.application;
         let d = Object.entries(data);
         let e = d.map(datar => {
-          //console.log(datar)
           if (datar[1] == null) {
             if (datar[0] == "links" || datar[0] == "contacts") {
               this.$store.state.apps.application[datar[0]] = [];
@@ -657,10 +629,7 @@ export default {
           }
           return datar[1];
         });
-        console.log(this.$store.state.apps.application);
-        console.log(this.$store.state.apps.application[l]);
         if (this.$store.state.apps.application[l] == 1) {
-          console.log("Empty .. Please create and send");
           // dont email link - create docs with send through emailas yes - may require new API route
           fetch("https://2020i.site/api/sendandcreate/contracts/" + this.cid, {
             method: "POST",
@@ -696,13 +665,6 @@ export default {
       let r = "s" + l;
       let p = "s" + k;
       let signnext = "sign" + l;
-      console.log("SENDNESXTTTTTTT");
-      console.log(signnext);
-      console.log(
-        this.$store.state.apps.application[p],
-        this.$store.state.apps.application[p],
-        this.$store.state.apps.application[signnext]
-      );
       if (
         l <= this.signature.length &&
         this.$store.state.apps.application[p] == 1 &&
@@ -717,9 +679,6 @@ export default {
       let r = n + 1;
       let k = "s" + r;
       let j = "sign" + r;
-      //if(this.$store.state.apps.application[k]==0 && this.$store.state.apps.application[j].length==0){return false}
-      //if(this.$store.state.apps.application[k]==0 && this.$store.state.apps.application[j].length>0){return true}
-      //if(this.$store.state.apps.application[k]==1 && this.$store.state.apps.application[j].length==0){return false}
       return true;
     },
     testRejection(num) {
@@ -772,7 +731,6 @@ export default {
       //update application with new profile details
       let data = Object.entries(this.$store.state.apps.application);
       data.forEach((key, value) => {
-        console.log(key, value);
         if (key[0] == "type") {
           value = value.toString();
         }
@@ -780,7 +738,6 @@ export default {
           this.$store.statea.apps.application[key[0]] = "";
         }
       });
-      console.log(JSON.stringify(this.$store.state.apps.application));
       fetch("/api/applications/" + this.$store.state.apps.application.id, {
         method: "PATCH",
         headers: { "Content-Type": "application/json; charset=utf-8" },
@@ -798,7 +755,6 @@ export default {
         }).then(response => {
           response.text().then(text => {
             let application = JSON.parse(text);
-            console.log(application);
             //console.log(text)
             //var decoded = jwt.verify(text, 'shhhhhh');
             //console.log(decoded.foo)
@@ -819,7 +775,6 @@ export default {
                   name: this.$store.state.apps.application.id
                 })
               }).then(response => {
-                console.log(response);
               });
             } else {
               let json = application;
@@ -862,7 +817,6 @@ export default {
           window.sessionStorage.progress = this.progress;
         });
       } else if (this.progress > 0 && this.progress <= 9) {
-        console.log(window);
         //window.sessionStorage.progress = this.progress;
         //send to db
         let id = this.cid;
@@ -887,9 +841,7 @@ export default {
           },
           body: JSON.stringify(data)
         }).then(response => {
-          console.log(response);
           response.text().then(text => {
-            console.log(text);
             let app = JSON.parse(text);
             //console.log(app);
             //var decoded = jwt.verify(text, 'shhhhhh');
@@ -929,8 +881,6 @@ export default {
     rejectApp(mode, n) {
       let dt = this.$store.state.apps.application;
       dt.approved = "0";
-      console.log("REJECT APP");
-      console.log(mode, n);
       if (mode == "Uploaded") {
         switch (n) {
           case 0:
@@ -982,11 +932,9 @@ export default {
           .then(json => {
             // this.$store.state.app.application.list =[];
             let list = json.filter(item => {
-              console.log(item);
               if (item) {
                 let em = item.email;
                 if (em == txt) {
-                  console.log(txt, em);
                   return {
                     firstname: item.firstname,
                     lastname: item.lastname,
@@ -1039,7 +987,6 @@ export default {
         }
         return datar[1];
       });
-      console.log(this.cs1, st.approved);
       if (st.approved == true) {
         let req = {};
         req.approved = "1";
@@ -1049,7 +996,6 @@ export default {
         req.password = "2020affiliate";
         req.username = "affiliate" + req.firstname;
         req.role = "affiliate";
-        console.log("SIGNEDDDDDDDDDDDDDDD");
         fetch(
           "/api/applications/approve/" + this.$store.state.apps.application.id,
           {
@@ -1099,13 +1045,11 @@ export default {
         })
           .then(response => response.json())
           .then(json => {
-            console.log(json);
             this.$store.state = json;
           });
       }
     },
     showProgress() {
-      console.log(this.progress);
       if (this.progress <= 10) {
         return true;
       }
@@ -1127,11 +1071,9 @@ export default {
         })
           .then(response => response.json())
           .then(json => {
-            console.log(json);
             this.$store.state.apps.application = json;
             //this.$store.state.apps.application.visible = this.visible(1);
             if (json.s1 == 0) {
-              console.log("Not Signed");
               //check to see if signed start interval check
               this.clock = setInterval(this.checkContractStatus, 7000);
             } else {
@@ -1165,12 +1107,6 @@ export default {
       return true;
     },
     upstatus(type) {
-      console.log(
-        type
-          .split(" ")
-          .last()
-          .toLowerCase()
-      );
       if (type == "") {
       }
       return this.$store.state[
@@ -1181,16 +1117,10 @@ export default {
       ];
     },
     ctype(text) {
-      console.log(text);
     },
     validate() {
       //send code to db and get back resposne
       this.$store.commit("increment");
-    },
-    register(e) {
-      console.log(
-        "register application and create contract, embed contract in view, Wyndal can ask for code from Applicant"
-      );
     },
     embed() {
       return "https://esignatures.io/sign_contracts/bc65bf7f-9cf6-4c0d-a57e-b7d68399ef30?embedded=yes";
@@ -1288,7 +1218,6 @@ export default {
       //  let html = form.map(function(currentValue, index, arr){
       //  console.log(currentValue);
       let html = form.join("");
-      console.log(html);
       return this["frame" + index];
       //  });
     },
@@ -1298,7 +1227,6 @@ export default {
         //  console.log(currentValue);
         if (currentValue[1] == "input") {
           let f = that.buildinput(currentValue);
-          console.log(f);
           let r = "What";
           return f;
         }
@@ -1318,7 +1246,6 @@ export default {
   },
   mounted: function() {
     $("iframe").on("load", function() {
-      console.log("IFRAME LOADED");
     });
     let id;
     id = this.$route.params.id;
@@ -1336,7 +1263,6 @@ export default {
       })
         .then(response => response.json())
         .then(json => {
-          console.log(json);
           this.$store.state.apps.application = json;
           if (this.$store.state.apps.application.s1 == 0) {
             this.clock = setInterval(this.checkContractStatus, 7000);
