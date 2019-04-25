@@ -16,8 +16,6 @@
 </template>
 
 <script>
-import TopHeader from "../layoutComponents/TopHeader";
-import HrSideBar from "./HrSideBar";
 import NewHrBox from "./newhrbox"
 import Vue from "vue";
 
@@ -41,8 +39,6 @@ export default {
     }
   },
   components: {
-    TopHeader,
-    HrSideBar,
     NewHrBox
   }
 };
