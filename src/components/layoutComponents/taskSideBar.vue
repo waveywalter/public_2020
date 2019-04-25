@@ -12,7 +12,8 @@
         data-app
         column    
         style="height: 900px"
-      >          <div class="col-sm-12 col-xs-12">
+      >          
+      <div class="col-sm-12 col-xs-12">
             <ul class="list-task list-group" data-role="tasklist">
               <div class="taskBox">
                 <li class="list-group-item" data-role="task" v-for="task in ctasklist">
