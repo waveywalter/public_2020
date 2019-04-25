@@ -22,7 +22,6 @@
       class="scroll-y"
     >
       <v-layout
-       
         column
       >
 
@@ -139,7 +138,6 @@ export default {
     this.opentab();
     let filter = {};
     filter.name = null;
-    
     this.getLeads(filter);
   },
 
@@ -152,13 +150,9 @@ export default {
           startPos = position;
         };
         var geoError = function(error) {
-         
         };
         navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
       };
-    },
-    filterApp() {
-      
     },
     opentab() {
       var url = window.location.href.split("#");
@@ -166,9 +160,7 @@ export default {
     //  Vue.set(this.currentTab, "tabname", ctab);
     },
     regexLead(leads) {
-     
       let r = leads.leads.filter(lead => {
-        
         if (lead.first_name) return lead.first_name.includes(this.search);
 
         if (lead.firstname) return lead.firstname.includes(this.search);
@@ -177,7 +169,6 @@ export default {
         return r;
       } else {
         r = leads.leads.filter(lead => {
-     
           if (lead.last_name) return lead.last_name.includes(this.search);
           if (lead.lastname) return lead.lastname.includes(this.search);
         });

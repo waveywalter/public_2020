@@ -3,8 +3,15 @@
     <div class="white-box todo">
       <h3 class="box-title">To Do List</h3>
       <div class="row">
-        <perfect-scrollbar>
-          <div class="col-sm-12 col-xs-12">
+   <v-container
+      id="scroll-target"
+      style="max-height: 525px"
+      class="scroll-y"
+    >
+      <v-layout
+        column    
+        style="height: 900px"
+      >          <div class="col-sm-12 col-xs-12">
             <ul class="list-task list-group" data-role="tasklist">
               <div class="taskBox">
                 <li class="list-group-item" data-role="task" v-for="task in ctasklist">
@@ -72,8 +79,9 @@
       </v-card>
     </v-dialog>
   </div>
-        </perfect-scrollbar>
-      </div>
+      </v-layout>
+    </v-container>
+          </div>
     </div>
   </div>
 </template>

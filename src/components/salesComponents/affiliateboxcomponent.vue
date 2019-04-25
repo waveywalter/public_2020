@@ -146,7 +146,6 @@ export default {
  
 
     let id;
-
     id = this.$route.params.id;
     this.$store.state.id = this.$route.params.id;
 

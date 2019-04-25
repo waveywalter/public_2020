@@ -14,12 +14,9 @@
       class="scroll-y"
     >
       <v-layout
-        
-        column
-    
+        column    
         style="height: 900px"
       >
-
             <div id="app-wrapper" :key="listkey" >
               <div>
                 <div class="">
@@ -100,20 +97,15 @@ export default {
   methods: {
  
     filterApp(txt) {
-      console.log("filterApp2");
       if (txt != "") {
         fetch("https://2020i.site/api/applications?filter[offset]=0&filter[limit]=100&filter[skip]=0&filter[where][approved]=1")
           .then(response => response.json())
           .then(json => {
-            console.log(json);
-
             // this.$store.state.app.application.list =[];
             let list = json.filter(item => {
-              console.log(item);
               if (item) {
                 let em = item.email;
                 if (em == txt) {
-                  console.log(txt, em);
                   return {
                     firstname: item.firstname,
                     lastname: item.lastname,
@@ -124,19 +116,14 @@ export default {
               }
             });
             this.$store.state.apps.list = list;
-            console.log(this.$store.state.apps.list);
           });
       } else {
-        console.log("NO TXT FILTERRRRRRRRRRRRR");
         fetch("https://2020i.site/api/applications?filter[offset]=0&filter[limit]=100&filter[skip]=0&filter[where][approved]=1")
           .then(response => response.json())
           .then(json => {
-            console.log(json);
-
             // this.$store.state.app.application.list =[];
             let list = json;
             this.cfilterlist = list.filter(app=>app.approved!=1);
-            console.log(this.$store.state.apps.list);
           });
       }
     },

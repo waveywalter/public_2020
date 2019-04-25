@@ -77,7 +77,7 @@ export default {
         id: "",
         FormTitle: "",
         FormContent: "",
-        FormType: ""
+        FormType: "",
       },
       loadform: true
     };

@@ -18,7 +18,6 @@ export const formService = {
 //const baseURL="http://localhost:3000/api";
 //const baseURL = 'https://google.com'
 function loco(){
-    console.log('loco') 
 }
 function getRoles(){   
      const requestOptions = {
@@ -28,24 +27,20 @@ function getRoles(){
     return fetch(baseURL+'/Roles/', requestOptions).then(handleResponse);
 }
 function addFormToRole(fid,rid){
-    console.log(fid,rid)
     const requestOptions = {
         method: 'PUT',
         headers: authHeader()
     };
     return fetch(baseURL+'/Roles/'+fid+'/forms/rel/'+rid, requestOptions).then(handleResponse);
 }
-
 function saveform(formdata) {
     const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formdata)
     };
-
     return fetch(baseURL+'/Forms', requestOptions).then(handleResponse);
 }
-
 function updateform(formdata) {
     const requestOptions = {
         method: 'PATCH',
@@ -61,10 +56,8 @@ function getformbyid(id) {
         method: 'GET',
         headers: authHeader()
     };
-
     return fetch(baseURL+'/Forms/'+id, requestOptions).then(handleResponse);
 }
-
 function getforms(filter) {
     let filterpara = ' '
     if("FormType" in filter) filterpara = '{"where":{"FormType":"'+ filter.FormType +'"}}';
@@ -74,23 +67,18 @@ function getforms(filter) {
     };
     return fetch(baseURL+'/Forms?filter='+filterpara, requestOptions).then(handleResponse);
 }
-
 // prefixed function name with underscore because delete is a reserved word in javascript
 function deleteform(id) {
     const requestOptions = {
         method: 'DELETE',
         headers: authHeader()
     };
-
     return fetch(baseURL+'/Forms/'+id, requestOptions).then(handleResponse);
 }
-
 function handleResponse(response) {
-    console.log(response)
     return response.text().then(text => {
         const data = text && JSON.parse(text);
         if (!response.ok) {
-            
             if (response.status === 401) {
                 alert("Permission Error.");
             }
@@ -99,9 +87,7 @@ function handleResponse(response) {
         }
         return data;
     });
-
 }
-
 function handleLogoutResponse(response) {
     return response.text().then(text => {
         const data = text && JSON.parse(text);
@@ -115,29 +101,19 @@ function handleLogoutResponse(response) {
     });
 
 }
-
 function getFormsByUser(id,toekn){
-    console.log("GETFORMSSSSSSSSS")
-    console.log(toekn)
-    console.log(id)
     return fetch(baseURL+'/wsers/'+id+'/signedforms?access_token='+toekn,{
         method:"GET",
         headers: { ...authHeader(), 'Content-Type': 'application/json' },  
     }).then(handleResponse)
-
 }
-
 function attachUserToForm(data){
-    console.log(data)
     data.status = false
     data.meta = {}
     data.userId = data.userid
     data.wserId = data.userid
     data.signedformId = data.formId
-
-
-
- return   fetch(baseURL+'/wsers/'+data.userid+'/signedforms',{
+ return fetch(baseURL+'/wsers/'+data.userid+'/signedforms',{
         method:"POST",
         headers: {...authHeader(), 'Content-Type': 'application/json' },
         body: JSON.stringify(data)   
