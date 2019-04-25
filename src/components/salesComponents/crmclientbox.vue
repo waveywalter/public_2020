@@ -22,7 +22,7 @@
       class="scroll-y"
     >
       <v-layout
-        v-scroll:#scroll-target="onScroll"
+       
         column
       >
 
@@ -139,7 +139,7 @@ export default {
     this.opentab();
     let filter = {};
     filter.name = null;
-    console.log(filter);
+    
     this.getLeads(filter);
   },
 
@@ -152,23 +152,23 @@ export default {
           startPos = position;
         };
         var geoError = function(error) {
-          console.log("Error occurred. Error code: " + error.code);
+         
         };
         navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
       };
     },
     filterApp() {
-      console.log("filterApp");
+      
     },
     opentab() {
       var url = window.location.href.split("#");
       var ctab = url[1] ? url[1] : "NewAffiliateform";
-      Vue.set(this.currentTab, "tabname", ctab);
+    //  Vue.set(this.currentTab, "tabname", ctab);
     },
     regexLead(leads) {
-      console.log(leads.leads);
+     
       let r = leads.leads.filter(lead => {
-        console.log(lead);
+        
         if (lead.first_name) return lead.first_name.includes(this.search);
 
         if (lead.firstname) return lead.firstname.includes(this.search);
@@ -177,7 +177,7 @@ export default {
         return r;
       } else {
         r = leads.leads.filter(lead => {
-          console.log(lead);
+     
           if (lead.last_name) return lead.last_name.includes(this.search);
           if (lead.lastname) return lead.lastname.includes(this.search);
         });

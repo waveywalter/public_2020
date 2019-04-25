@@ -435,7 +435,10 @@ export default{
       tokens:'',
       note_filter:"",
       currentTask:'',
-          selected2: []
+          selected2: [],
+          start:'',
+          end:'',
+          type:''
       
     
     }
@@ -451,50 +454,43 @@ export default{
           })
   },
   mounted(){
-      console.log("MMMMMMMMMMMMMMMMMMMMMMMMMMMMMM")
-    console.log(this.$auth)
+   
    this.gtoken = this.$auth.getToken()
    this.tokens = JSON.parse(this.$auth.storage.getItem("tokens"))
-   console.log(this.$route.params.id)
+
    if(this.$route.params.id!=undefined){
      this.loadLead()
      }
    },
   created() {
-      console.log("CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC")
+    
     this.getLeads({});
-    console.log(this.leads.leads)
     if(this.$route.params.id != undefined){
     this.view = 'LeadView'
     let _this = this;
     //fetch("https://2020i.site/api2/leads/"+this.$route.params.id).then(res=>{return res.json()}).then(json=>{console.log(json);_this.loadLead(json)})
     this.getLeadById(this.$route.params.id)
     
-   //console.log(this)
-   //let ls  = this.leads.leads.filter(lead=>{return lead.id==this.$route.params.id})
- //console.log(ls)
-    
+
    }
     this.getAllTask();
   },
   components: {
   },
   methods: {
-    test(e){
-      console.log(e)
-    },
+
     taskDone(){
       
       this.selected2.includes('meeting') ? this.selected2.splice(this.selected2.indexOf('meeting'), 1) : this.selected2.push('meeting');
-      console.log(this.selected2)
+  
     },
                 goBack(){
                 this.$router.go(-1)
-                console.log(this)
+            
                 this.view="ListView"
             },
     completeTask(id){
-        console.log(id)
+    
       fetch('/api2/tasks/'+id,{
         method:"PATCH",
         headers: { 'Content-Type': 'application/json' },
@@ -504,7 +500,7 @@ export default{
       let g = this.currentLead;
       g.filter = {};
       this.getNotes(g);
-      console.log("RELAD SCREEEEENNNNNNNN")
+    
     },
       jsUcfirst(string) 
 {
@@ -515,7 +511,7 @@ export default{
           return ''
       },
       newtest(text){
-          console.log(text)
+        
           if(text==="new"){return true}
           if(text==="pre_affiliate"){return true}
           if(text==="potential_patient"){return true}
@@ -529,7 +525,7 @@ export default{
       let note ={};
       note.title = this.title;
       note.text = this.notetext
-      console.log(this.vlead)
+     
       let data = {};
       note.date_created = new Date()
       data.note = note;
@@ -542,7 +538,7 @@ export default{
       let note ={};
       note.title = this.title;
       note.text = this.notetext
-      console.log(this.vlead)
+ 
       let data = {};
       note.date_created = new Date()
       data.task = note;
@@ -552,23 +548,22 @@ export default{
      this.createTask(data)
     },
     changeLead(lead){
-      console.log("CHANGE LEAD")
-      console.log(lead)
+
       this.getLeadById(lead.id) 
       this.loadLead()
       
     },
     loadLead(){
-        console.log("LUXXXXXXXXXXXXXXXXXXXXX")
+     
     
       this.view = 'LeadView'
       this.vlead = this.currentLead
       let filter = {"name":null}
       let d  = {};
       d.filter = filter;
-      console.log(this.currentLead)
+     
       d.id = this.$route.params.id
-      console.log(d)
+
       this.getNotes(d)
       //this.getEmails(lead)
     },
@@ -581,18 +576,18 @@ export default{
       this.view="ListView"
     },
     regexLead(leads){
-      console.log( leads.leads)
-      let r = leads.leads.filter(lead=>{console.log(lead);return lead.first_name.includes(this.search) })
+      
+      let r = leads.leads.filter(lead=>{return lead.first_name.includes(this.search) })
       if(r.length>0){
         return r
       }
       else{
-        r =leads.leads.filter(lead=>{console.log(lead);return lead.last_name.includes(this.search) })
+        r =leads.leads.filter(lead=>{return lead.last_name.includes(this.search) })
       }
       return r
     },
     filterLeads(name){
-      console.log(name)
+   
       return 
     },
     ...mapActions("leads", {

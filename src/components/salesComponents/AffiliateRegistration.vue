@@ -206,21 +206,10 @@
         </div>
       </div>
     </div>
-    <div v-if="this.$root._route.params.root=='applicant'">
-      <div class="hide">
-        <div>
-          <span>Admission Agreement</span>
-          <i class="ti-check" v-if="cs1==1"></i>
-          <br>
-        </div>
-      </div>
-    </div>
+
     <div v-if="this.$root._route.params.root=='affiliate'">
       <div class>
-        <div>
-          <i class="ti-check" v-if="cs1==1"></i>
-          <br>
-        </div>Wowo
+
         <affiliateApplication :afid="this.$root._route.params.id"></affiliateApplication>
       </div>
     </div>
@@ -286,8 +275,7 @@ export default {
     listlength: function() {
       if (this.appfilter != "") {
         let ar = this.$store.state.apps.list.filter(item => {
-          console.log("ITEMMMSSSSSSSSSS");
-          console.log(item);
+
           return item.email == this.appfilter;
         });
         return ar.length;
@@ -296,9 +284,7 @@ export default {
     },
     capproved: {
       get: function(e) {
-        console.log("get approved");
-        console.log(e);
-        console.log(this);
+
         if (!this.$store.state.apps.application.approved) {
           this.capproved = "0";
         } else if (
@@ -312,7 +298,7 @@ export default {
         return this.$store.state.apps.application.approved;
       },
       set: function(e) {
-        console.log(e);
+    
         if (!e) {
           e = "0";
         } else if (e == 1 || e == "1") {
@@ -325,329 +311,7 @@ export default {
         return "Set Resume";
       }
     },
-    cs9: {
-      get: function(e) {
-        console.log("get cs9");
-        console.log(e);
-        console.log(this);
-        return this.$store.state.apps.application.s9;
-      },
-      set: function(e) {
-        console.log(e);
-        console.log("set cs9");
-        this.$store.state.apps.application.s9 = e;
-        return "Set Resume";
-      }
-    },
-    cs8: {
-      get: function(e) {
-        console.log("get cs8");
-        console.log(e);
-        console.log(this);
-        return this.$store.state.apps.application.s8;
-      },
-      set: function(e) {
-        console.log(e);
-        console.log("set cs8");
-        this.$store.state.apps.application.s8 = e;
-        return "Set Resume";
-      }
-    },
-    cs7: {
-      get: function(e) {
-        console.log("get cs7");
-        console.log(e);
-        console.log(this);
-        return this.$store.state.apps.application.s7;
-      },
-      set: function(e) {
-        console.log(e);
-        console.log("set cs7");
-        this.$store.state.apps.application.s7 = e;
-        return "Set Resume";
-      }
-    },
-    cs6: {
-      get: function(e) {
-        console.log("get cs6");
-        console.log(e);
-        console.log(this);
-        return this.$store.state.apps.application.s6;
-      },
-      set: function(e) {
-        console.log(e);
-        console.log("set cs6");
-        this.$store.state.apps.application.s6 = e;
-        return "Set Resume";
-      }
-    },
-    cs5: {
-      get: function(e) {
-        console.log("get cs5");
-        //console.log(e);
-        //console.log(this)
-        console.log(this.$store.state);
-        return this.$store.state.apps.application.s5;
-      },
-      set: function(e) {
-        console.log(e);
-        console.log("set cs5");
-        this.$store.state.apps.application.s5 = e;
-        return "Set Resume";
-      }
-    },
-    cs4: {
-      get: function(e) {
-        console.log("get cs4");
-        console.log(e);
-        console.log(this);
-        return this.$store.state.apps.application.s4;
-      },
-      set: function(e) {
-        console.log(e);
-        console.log("set cs4");
-        this.$store.state.apps.application.s4 = e;
-        return "Set Resume";
-      }
-    },
-    cs3: {
-      get: function(e) {
-        console.log("get cs3");
-        console.log(e);
-        console.log(this);
-        return this.$store.state.apps.application.s3;
-      },
-      set: function(e) {
-        console.log(e);
-        console.log("set cs3");
-        this.$store.state.apps.application.s3 = e;
-        return "Set Resume";
-      }
-    },
-    cs2: {
-      get: function(e) {
-        console.log("get cs2");
-        console.log(e);
-        console.log(this);
-        return this.$store.state.apps.application.s2;
-      },
-      set: function(e) {
-        console.log(e);
-        console.log("set cs2");
-        this.$store.state.apps.application.s2 = e;
-        return "Set Resume";
-      }
-    },
-    cs1: {
-      get: function(e) {
-        console.log("get cs1");
-        console.log(e);
-        console.log(this);
-        return this.$store.state.apps.application.s1;
-      },
-      set: function(e) {
-        console.log(e);
-        console.log("set cs1");
-        this.$store.state.apps.application.s1 = e;
-        return "Set Resume";
-      }
-    },
-    capp: {
-      get: function(e) {
-        console.log("cresume");
-        console.log(e);
-        console.log(this);
-        return this.$store.state.apps.application.visible;
-      },
-      set: function(e) {
-        console.log(e);
-        console.log("set reusme");
-        this.$store.state.apps.application.visible = e;
-        return "Set Resume";
-      }
-    },
-    crole: {
-      get: function(e) {
-        console.log("cresume");
-        console.log(e);
-        console.log(this);
-        return this.$store.state.apps.application.role;
-      },
-      set: function(e) {
-        console.log(e);
-        console.log("set reusme");
-        this.$store.state.apps.application.role = e;
-        return "Set Resume";
-      }
-    },
-    cid: {
-      get: function(e) {
-        console.log("cresume");
-        console.log(e);
-        console.log(this);
-        return this.$store.state.apps.application.id;
-      },
-      set: function(e) {
-        console.log(e);
-        console.log("set id");
-        this.$store.state.apps.application.id = e;
-        return "Set Resume";
-      }
-    },
-    cresume: {
-      get: function(e) {
-        console.log("cresume");
-        console.log(e);
-        console.log(this);
-        return this.$store.state.apps.application.resume;
-      },
-      set: function(e) {
-        console.log(e);
-        console.log("set reusme");
-        this.$store.state.apps.application.resume = e;
-        return "Set Resume";
-      }
-    },
-    clicense: {
-      get: function(e) {
-        console.log("clicense");
-        console.log(e);
-        console.log(this);
-        return this.$store.state.apps.application.license;
-      },
-      set: function(e) {
-        console.log(e);
-        console.log("set id");
-        this.$store.state.apps.application.license = e;
-        return "Set License";
-      }
-    },
-    cliability: {
-      get: function(e) {
-        console.log("cinsurance");
-        console.log(e);
-        console.log(this);
-        return this.$store.state.apps.application.liability;
-      },
-      set: function(e) {
-        console.log(e);
-        console.log("set insurance");
-        this.$store.state.apps.application.liability = e;
-        return "Set Insuramce";
-      }
-    },
-    cces: {
-      get: function(e) {
-        console.log("cces");
-        console.log(e);
-        console.log(this);
-        return this.$store.state.apps.application.ces;
-      },
-      set: function(e) {
-        console.log(e);
-        console.log("set ces");
-        this.$store.state.apps.application.ces = e;
-        return "Set CES";
-      }
-    },
-    csign9: {
-      get: function(e) {
-        console.log("csign9");
-        console.log(e);
-        console.log(this);
-        return this.$store.state.apps.application.sign9;
-      },
-      set: function(e) {
-        console.log(e);
-        console.log("set sign9");
-        this.$store.state.apps.application.sign9 = e;
-        return "Set Email";
-      }
-    },
-    csign8: {
-      get: function(e) {
-        console.log("csign8");
-        console.log(e);
-        console.log(this);
-        return this.$store.state.apps.application.sign8;
-      },
-      set: function(e) {
-        console.log(e);
-        console.log("set sign8");
-        this.$store.state.apps.application.sign8 = e;
-        return "Set Email";
-      }
-    },
-    csign7: {
-      get: function(e) {
-        console.log("csign7");
-        console.log(e);
-        console.log(this);
-        return this.$store.state.apps.application.sign7;
-      },
-      set: function(e) {
-        console.log(e);
-        console.log("set sign7");
-        this.$store.state.apps.application.sign7 = e;
-        return "Set Email";
-      }
-    },
-    csign6: {
-      get: function(e) {
-        console.log("csign6");
-        console.log(e);
-        console.log(this);
-        return this.$store.state.apps.application.sign6;
-      },
-      set: function(e) {
-        console.log(e);
-        console.log("set sign6");
-        this.$store.state.apps.application.sign6 = e;
-        return "Set Email";
-      }
-    },
-    csign5: {
-      get: function(e) {
-        console.log("csign5");
-        console.log(e);
-        console.log(this);
-        return this.$store.state.apps.application.sign5;
-      },
-      set: function(e) {
-        console.log(e);
-        console.log("set sign5");
-        this.$store.state.apps.application.sign5 = e;
-        return "Set Email";
-      }
-    },
-    csign4: {
-      get: function(e) {
-        console.log("csign4");
-        console.log(e);
-        console.log(this);
-        return this.$store.state.apps.application.sign4;
-      },
-      set: function(e) {
-        console.log(e);
-        console.log("set sign2");
-        this.$store.state.apps.application.sign4 = e;
-        return "Set Email";
-      }
-    },
-    csign3: {
-      get: function(e) {
-        console.log("csign3");
-        console.log(e);
-        console.log(this);
-        return this.$store.state.apps.application.sign3;
-      },
-      set: function(e) {
-        console.log(e);
-        console.log("set sign2");
-        this.$store.state.apps.application.sign3 = e;
-        return "Set Email";
-      }
-    },
+  
     csign1: {
       get: function(e) {
         console.log("csign1");

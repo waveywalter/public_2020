@@ -93,12 +93,12 @@ export default {
     };
   },
   mounted() {
-    this.opentab();
+    
     let filter = {};
     filter.name = null;
-    console.log(filter);
+
     this.getLeads(filter);
-    console.log(this.$refs.testcrm);
+
 
     // this.$refs.slimtest1.style.color = '#6c95d2';
     // this.$refs.slimtest1.style.size = '10px';
