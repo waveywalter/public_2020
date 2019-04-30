@@ -34,9 +34,10 @@
                           placeholder="Enter Email Address"
                         >
                       </div>
-                      
-                  <h4 class="card-title">Applications</h4>
-                  <applicationslist></applicationslist>
+                      <h4 class="card-title">Applications</h4>
+                      <applicationslist></applicationslist>
+                    </div>
+                  </div>
                 </div>
               </div>
 
