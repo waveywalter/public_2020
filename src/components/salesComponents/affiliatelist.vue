@@ -9,9 +9,9 @@
         @click.native="$store.state.apps.currentAffiliate=user"
       >
         <div class=" btn btn-default btn-outline showbottom mr15 minw125">
-          <a>{{user.firstname}} {{user.lastname}}</a>
+          <a>{{user.firstname}} {{user.lastname}}
                   <span class="ti-close" v-on:click="openmodal(user.id)"></span>
-
+            </a>
         </div>
       </router-link>
     </div>
@@ -111,6 +111,12 @@ export default {
 };
 </script>
 <style >
+a {
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+    width: 100%;
+    display: inline-block;
+}
 .fas {
     font-weight: 900;
     float: right;

@@ -9,8 +9,9 @@
         @click.native="updateId(apps.id)"
       >
         <div class=" btn btn-default btn-outline showbottom mr15 minw125">
-          <a>{{apps.firstname}} {{apps.lastname}}</a>
+          <a>{{apps.firstname}} {{apps.lastname}}
           <i class="fas fa-phone"></i>
+          </a>
         </div>
         <!-- <span class="ti-close" v-on:click="openmodal(apps.id)"></span> -->
       </router-link>
@@ -703,6 +704,12 @@ Array.prototype.last = function() {
 };
 </script>
 <style >
+a {
+    background-color: transparent;
+    -webkit-text-decoration-skip: objects;
+    width: 100%;
+    display: inline-block;
+}
 .fas {
     font-weight: 900;
     float: right;
