@@ -59,7 +59,6 @@
               </div>
               <span>{{ errors.first("phone")}}</span>
             </div>
-
             <div class="form-group">
               <label for="exampleInputEmail1">Email address</label>
               <div class="input-group">
@@ -123,13 +122,11 @@ export default {
   name: "NewAffiliateform",
   data() {
     return {
-      // errors: [],
       app: {
         first_name: "",
         last_name: "",
         firstname: app.first_name,
         lastname: app.last_name,
-
         phone: "",
         type: "",
         email: "",
@@ -150,15 +147,10 @@ export default {
     ...mapActions("account", ["register"]),
     ...mapActions({ clearAlert: "alert/clear" }),
     handleSubmit(e) {
-      console.log("HANDLEDDDDDDDDDDDDDD");
       this.submitted = true;
       this.$validator.validate().then(valid => {
-        console.log("VALIDDDDDDDDDDDDDDDDDD");
         if (valid) {
-          console.log("VALIDDDDDDDDDDDDDDDDDD2222");
           // register applicant in with email
-          console.log("Send Application to api");
-          console.log(this.userType);
         }
         if (this.app.userType == "affiliate") {
           //check what value is in box
@@ -180,7 +172,6 @@ export default {
         email: this.app.email,
         phone: this.app.phone
       };
-
       fetch("https://2020i.site/api/register", {
         method: "POST",
         headers: { "Content-Type": "application/json; charset=utf-8" },
@@ -198,7 +189,6 @@ export default {
               name: application.id
             })
           }).then(response => {
-            console.log(response);
           });
           this.app.first_name = "";
           this.app.last_name = "";
@@ -209,7 +199,6 @@ export default {
           this.$nextTick(() => {
             this.$validator.reset();
           });
-
           fetch("https://2020i.site/api/create/newcontract/" + application.id, {
             method: "POST",
             headers: {
