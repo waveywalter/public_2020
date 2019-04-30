@@ -1,4 +1,3 @@
-
 <template>
 <div ref="crm" id="page-wrapper">
 <div v-if="view==='ListView'" class="container-fluid"> 
@@ -19,7 +18,6 @@
     <div><i class="fa fa-envelope"></i> {{lead.email}} </div>
     <div><i class="fa fa-user"></i> {{lead.type}} </div>
     <div> {{lead.notes}} </div>
-   <!-- <button class="btn btn-primary">Convert to Applicant</button> -->
    </div>
    </div>
   </div>
@@ -65,7 +63,7 @@
         <div>{{note.content}}</div>
       </div>
     </div>
-    <div  class="hidden">
+    <div class="hidden">
       <div><h3>Emails</h3>
        <v-pagination
       v-model="page2"
@@ -74,7 +72,6 @@
       </div>  
 
          <div class="email" v-for="email in emails">
-
         <h4>{{email.subject}}</h4>
         <div>{{email.date_created | moment("dddd, MMMM Do YYYY")}}</div>
         <div>{{email.message}}</div>
@@ -85,21 +82,17 @@
       <div class="white-box">
 <ul class="list-task todo-list list-group m-b-0" data-role="tasklist">
         <li class="list-group-item" data-role="task">
-       <v-checkbox
-        v-model="checkbox"
-        :label="`Checkbox 1: ${checkbox.toString()}`"
-        ></v-checkbox>
+       <v-checkbox v-model="checkbox" :label="`Checkbox 1: ${checkbox.toString()}`">
+        </v-checkbox>
             <div class="custom-control custom-checkbox">
-
                 <label class="custom-control-label" for="customCheck" v-on:click="checkbox = !checkbox" v-bind:class="{'task-done':checkbox}">
                 <!-- <span class="badge badge-pill badge-primary float-right">1 week </span> -->
                 </label>
             </div>
-
         </li>
         <li class="list-group-item" data-role="task">
             <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                <input type="checkbox" class="custom-control-input" id="customCheck1"> 
                 <label class="custom-control-label" for="customCheck1">
                     <span>Lorem Ipsum is simply dummy text of the printing</span><span class="badge badge-pill badge-primary float-right">1 week </span>
                 </label>
@@ -113,7 +106,6 @@
                     <span>Give Purchase report to</span> <span class="badge badge-pill badge-info float-right">Yesterday</span>
                 </label>
             </div>
-
         </li>
         <li class="list-group-item" data-role="task">
             <div class="custom-control custom-checkbox">
@@ -131,21 +123,15 @@
                     <span>Give Purchase report to</span> <span class="badge badge-pill badge-info float-right">Yesterday</span>
                 </label>
             </div>
-
         </li>
     </ul>
     </div>                    
-       <v-pagination
-      v-model="page3"
-      :length="tasks.length/5"
-      v-if="tasks.length>6"
-       ></v-pagination>
+       <v-pagination v-model="page3":length="tasks.length/5" v-if="tasks.length>6">
+       </v-pagination>
       </div>  
-   
          <div class="email" v-for="task in tasks">
          <div class="flexible"><div class="mainc">
         <h5><v-icon v-if="task.type=='phone_call'" class="blueg">phone</v-icon> {{task.title}}</h5>
-        
         <div>Created: {{task.date_created | moment("dddd, MMMM Do YYYY")}}</div>
         <div>Due Date: {{task.due_date | moment("dddd, MMMM Do YYYY")}}</div>
         <div><v-icon v-if="task.status=='new'" class="blueg">fiber_new</v-icon><v-icon v-if="task.status=='complete'" class="blueg">cloud_done</v-icon></div>
@@ -155,16 +141,13 @@
            <v-icon v-on:click="message_modal==true?message_modal=false:message_modal=true">message</v-icon>
            <v-icon @click.stop="dialog=true">calendar_today</v-icon>
         </div>
-           
            </div>
            </div>
                    <div class="heightless"><div v-if="message_modal" class="spiel">
-  <div  class="">
+  <div class="">
                     <div class="white-box todo">
-                        <h3 class="box-title">To Do List</h3>
-                                      
+                        <h3 class="box-title">To Do List</h3>          
                         <div class="row">
-                       
                             <div class="col-sm-12 col-xs-12">
                         <ul class="list-task list-group" data-role="tasklist">
                             <li class="list-group-item" data-role="task" :class="{'task-done':selected2.includes('meeting')}" >
@@ -179,18 +162,14 @@
                                     <label for="inputCall"> <span>Give Purchase report</span> <span class="label label-danger">Today</span> </label>
                                 </div>
                             </li>
-            
-                                
                             <li class="list-group-item" data-role="task">
                                 <div class="checkbox checkbox-info">
                                     <input type="checkbox" id="inputBook" name="inputCheckboxesBook">
                                     <label for="inputBook"> <span>Book flight for holiday</span> </label>
                                 </div>
                             </li>
-         
                         </ul>
                     </div>
-               
                 </div>
                 </div>
                 </div>
@@ -202,20 +181,11 @@
    </div>
   </div>
   <div class="text-xs-center">
-    <v-dialog
-    v-model="dialog"
-      width="500"
-    >
-
-
+    <v-dialog v-model="dialog" width="500">
       <v-card>
-        <v-card-title
-          class="headline grey lighten-2"
-          primary-title
-        >
+        <v-card-title class="headline grey lighten-2" primary-title>
           Change Date
         </v-card-title>
-
         <v-card-text>
     <v-sheet height="300">
         <v-calendar
@@ -226,16 +196,10 @@
           color="primary"
         ></v-calendar>
       </v-sheet> </v-card-text>
-
         <v-divider></v-divider>
-
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn
-            color="primary"
-            flat
-            @click="dialog = false"
-          >
+          <v-btn color="primary" flat @click="dialog = false">
             I accept
           </v-btn>
         </v-card-actions>
@@ -268,7 +232,6 @@
 </div>
 </div>
 </div>
-
 </div>
 <div class="modal-backdrop fade show"></div>
 </div>
@@ -302,12 +265,14 @@
 </div>
 </div>
 </div>
-
 </div>
 <div class="modal-backdrop fade show"></div>
 </div>
 </div>
 </template>
+
+
+
 <script>
 import { mapState, mapActions } from "vuex";
 
@@ -345,8 +310,6 @@ export default{
           start:'',
           end:'',
           type:''
-      
-    
     }
   },
   computed: {

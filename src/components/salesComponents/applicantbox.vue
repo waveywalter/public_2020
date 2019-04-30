@@ -3,51 +3,36 @@
   <div class="col-md-4">
     <div class="white-box">
       <h3 class="box-title">Current Applicants</h3>
-      <div class="">
-          <div class="ml-5">
-
-
-
-    <v-container
-      id="scroll-target"
-      style="max-height: 300px"
-      class="scroll-y"
-    >
-      <v-layout
-        column    
-        style="height: 900px"
-      >
-            <div id="app-wrapper"  >
-              <div>
-                <div class="">
-                  <div class="row">
-                    <div class="col-xl-12">
-                      <div class="form-group">
-                       
-                        <label for="exampleInputEmail1">Filter Applications</label>
-                        <input
-                          type="text"
-                          v-model="appfilter"
-                          v-on:blur="filterApp(appfilter)"
-                          class="form-control"
-                          id="exampleInputEmail1"
-                          placeholder="Enter Email Address"
-                        >
+      <div class>
+        <div class="ml-5">
+          <v-container id="scroll-target" style="max-height: 300px" class="scroll-y">
+            <v-layout column style="height: 900px">
+              <div id="app-wrapper">
+                <div>
+                  <div class>
+                    <div class="row">
+                      <div class="col-xl-12">
+                        <div class="form-group">
+                          <label for="exampleInputEmail1">Filter Applications</label>
+                          <input
+                            type="text"
+                            v-model="appfilter"
+                            v-on:blur="filterApp(appfilter)"
+                            class="form-control"
+                            id="exampleInputEmail1"
+                            placeholder="Enter Email Address"
+                          >
+                        </div>
+                        <h4 class="card-title">Applications</h4>
+                        <applicationslist></applicationslist>
                       </div>
-                      <h4 class="card-title">Applications</h4>
-                      <applicationslist></applicationslist>
                     </div>
                   </div>
                 </div>
               </div>
-
-
-            </div>
-
-      </v-layout>
-    </v-container>
-
-          </div>
+            </v-layout>
+          </v-container>
+        </div>
       </div>
     </div>
   </div>
@@ -60,16 +45,14 @@ import applicationslist from "./applicationslist";
 import { mapState, mapActions } from "vuex";
 
 export default {
-      name:"applicantbox",
+  name: "applicantbox",
 
   data() {
     return {
-      
-      appfilter: "",
- 
+      appfilter: ""
     };
   },
- 
+
   computed: {
     list: function() {
       return this.$store.state.apps.list;
@@ -77,37 +60,30 @@ export default {
   },
 
   methods: {
-  ...mapActions("apps", ["getApps"]),
+    ...mapActions("apps", ["getApps"]),
     filterApp(txt) {
-
       let list = this.list.filter(item => {
-              
-              if (item) {
-                let em = item.email;
-                console.log(em,txt)
-                if (em == txt) {
-                 console.log("EQUALITY")
-                  return {
-                    firstname: item.firstname,
-                    lastname: item.lastname,
-                    email: item.email,
-                    id: item.id
-                  };
-                }
-              }
-            });
-            if(list.length==0){
-              this.$store.state.apps.list = this.$store.state.apps.wholelist
-            }
-            else{
-            this.$store.state.apps.list = list;
-            }
-    },
-  
+        if (item) {
+          let em = item.email;
+          if (em == txt) {
+            return {
+              firstname: item.firstname,
+              lastname: item.lastname,
+              email: item.email,
+              id: item.id
+            };
+          }
+        }
+      });
+      if (list.length == 0) {
+        this.$store.state.apps.list = this.$store.state.apps.wholelist;
+      } else {
+        this.$store.state.apps.list = list;
+      }
+    }
   },
   components: {
-    applicationslist,
-  
+    applicationslist
   }
 };
 
@@ -120,9 +96,6 @@ Array.prototype.last = function() {
 };
 </script>
 <style scoped>
-
-
-
 .apps .list-group-item {
   display: flex;
   justify-content: space-between;
