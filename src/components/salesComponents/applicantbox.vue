@@ -34,6 +34,8 @@
                           placeholder="Enter Email Address"
                         >
                       </div>
+                      <h4 class="card-title">Applications</h4>
+                      <applicationslist></applicationslist>
                     </div>
                   </div>
                   <h4 class="card-title">Applications</h4>
@@ -71,8 +73,8 @@ export default {
   },
  
   computed: {
-    list:function(){
-      return this.$store.state.apps.list
+    list: function() {
+      return this.$store.state.apps.list;
     }
   },
 

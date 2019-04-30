@@ -29,7 +29,6 @@
                         <p
                           class="subText"
                         >Due By: {{task.due_date | moment("dddd, MMMM Do YYYY h:mm ")}}</p>
-
                         <div class="bottom-cal">
                           <i @click.stop="dialog=true" class="fas fa-calendar"></i>
                           <i @click.stop="dialog=true" class="fas fa-calendar-o"></i>
@@ -73,6 +72,7 @@
     </div>
   </div>
 </template>
+
 <style scoped>
 .wrapper {
   display: grid;
