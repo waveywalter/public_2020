@@ -10,29 +10,24 @@
           </div>
         </div>
         <div class="col-md-10 pl-5">
-    <v-layout column justify-center align-center>
-    </v-layout>
-    <v-container
-      id="scroll-target"
-      style="max-height: 525px"
-      class="scroll-y"
-    >
-      <v-layout column>
-            <div v-for="lead in regexLead(leads)" :key="lead.id">
-              <router-link
-                class="list-group-item"
-                :key="lead.id"
-                tag="li"
-                :to="'/sales/crm/'+lead.id"
-                @click.native
-              >
-                <div class="btn btn-default btn-outline showbottom mt-2 card-body mr15">
-                  <a class="card-title">{{lead.first_name}} {{lead.last_name}}</a>
-                </div>
-              </router-link>
-            </div>
-      </v-layout>
-    </v-container>
+          <v-layout column justify-center align-center></v-layout>
+          <v-container id="scroll-target" style="max-height: 525px" class="scroll-y">
+            <v-layout column>
+              <div v-for="lead in regexLead(leads)" :key="lead.id">
+                <router-link
+                  class="list-group-item"
+                  :key="lead.id"
+                  tag="li"
+                  :to="'/sales/crm/'+lead.id"
+                  @click.native
+                >
+                  <div class="btn btn-default btn-outline showbottom mt-2 card-body mr15">
+                    <a class="card-title">{{lead.first_name}} {{lead.last_name}}</a>
+                  </div>
+                </router-link>
+              </div>
+            </v-layout>
+          </v-container>
         </div>
       </div>
     </div>
@@ -40,24 +35,22 @@
 </template>
 
 <style scroped>
-
-
 div::-webkit-scrollbar {
-    width: 0.6em;
+  width: 0.6em;
 }
- 
+
 div::-webkit-scrollbar-track {
-    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.075);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.075);
 }
 div::-webkit-scrollbar-thumb {
   background-color: red;
   border-radius: 10%;
 }
 div::-ms-scrollbar {
-    width: 0.6em;
+  width: 0.6em;
 }
 div::-ms-scrollbar-track {
-    -ms-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.075);
+  -ms-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.075);
 }
 div::-ms-scrollbar-thumb {
   background-color: red;
@@ -111,19 +104,13 @@ export default {
   data() {
     return {
       root: this.$root._route.params.root,
-      components: ["NewAffiliateform", "NewLeadForm"],
-      currentTab: {
-      tabname: "NewLeadForm",
-
-      },
       search: "",
       view: "ListView",
       vlead: {},
-      title: "",
+      title: ""
     };
   },
   mounted() {
-    this.opentab();
     let filter = {};
     filter.name = null;
     this.getLeads(filter);
@@ -137,14 +124,9 @@ export default {
         var geoSuccess = function(position) {
           startPos = position;
         };
-        var geoError = function(error) {
-        };
+        var geoError = function(error) {};
         navigator.geolocation.getCurrentPosition(geoSuccess, geoError);
       };
-    },
-    opentab() {
-      var url = window.location.href.split("#");
-      var ctab = url[1] ? url[1] : "NewAffiliateform";
     },
     regexLead(leads) {
       let r = leads.leads.filter(lead => {
