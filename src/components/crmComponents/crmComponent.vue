@@ -1,98 +1,4 @@
-<style>
-.card-body {
-    flex: 1 1 auto;
-    padding: 1.25rem;
-}.spiel {
-    position: relative;
-    left: 133px;
-    background-color: white;
-    width: 400px;
-    top: -82px;
-    padding: 10px;
-    border-radius:5px;
-}
-i{
-  cursor:pointer
-}
-.heightless{height:0;width:0;}
-.email,.note {
-    background-color: white;
-    color: black;
-    padding: 0px 10px;
-    margin-bottom:10px;
-    border: 0px solid rgba(0,0,0,.4);
-    border-radius: 4px;
-}
-.card {
-    margin: 20px;
-    cursor:pointer;
-    display:inline-block;
-    vertical-align:top;
-    
-}
-.view {
-    float: right;
-    background-color: #3c4452;
-    padding: 2px 6px;
-    border-radius: 3px;
-    
-}
-li {
-    list-style-image: none;
-    list-style: none;
-}
-.col-md-6{
-float:none;
-padding:0;
 
-}
-.flexible {
-    display: flex;
-}
-.potential_affiliate,.pre_affiliate,.new{
-  background-color: #607D8B;
-    color:white;
-}
-div#meta {
-    width: -webkit-fill-available;
-}
-.modal-open .modal {
-    overflow-x: hidden;
-    overflow-y: auto;
-}
-#meta .flexible > div{
-  width:33%;
-  padding:10px;
-}
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 1050;
-    display: none;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    outline: 0;
-}
-.card-body.basic.potential_affiliate{
-    color:white;
-}
-.fade {
-    transition: opacity .15s linear;
-}
-.card.lead{
-  height:fit-content;
-}
-.mainc{
-  width:80% !important
-}
-.newness {
-    color: red !important;
-}
-.icons{flex-direction:column;
-display:flex;}
-</style>
 <template>
 <div ref="crm" id="page-wrapper">
 <div v-if="view==='ListView'" class="container-fluid"> 
@@ -612,3 +518,99 @@ export default{
 };
 
 </script>
+
+<style>
+.card-body {
+    flex: 1 1 auto;
+    padding: 1.25rem;
+}.spiel {
+    position: relative;
+    left: 133px;
+    background-color: white;
+    width: 400px;
+    top: -82px;
+    padding: 10px;
+    border-radius:5px;
+}
+i{
+  cursor:pointer
+}
+.heightless{height:0;width:0;}
+.email,.note {
+    background-color: white;
+    color: black;
+    padding: 0px 10px;
+    margin-bottom:10px;
+    border: 0px solid rgba(0,0,0,.4);
+    border-radius: 4px;
+}
+.card {
+    margin: 20px;
+    cursor:pointer;
+    display:inline-block;
+    vertical-align:top;
+    
+}
+.view {
+    float: right;
+    background-color: #3c4452;
+    padding: 2px 6px;
+    border-radius: 3px;
+    
+}
+li {
+    list-style-image: none;
+    list-style: none;
+}
+.col-md-6{
+float:none;
+padding:0;
+
+}
+.flexible {
+    display: flex;
+}
+.potential_affiliate,.pre_affiliate,.new{
+  background-color: #607D8B;
+    color:white;
+}
+div#meta {
+    width: -webkit-fill-available;
+}
+.modal-open .modal {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+#meta .flexible > div{
+  width:33%;
+  padding:10px;
+}
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1050;
+    display: none;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    outline: 0;
+}
+.card-body.basic.potential_affiliate{
+    color:white;
+}
+.fade {
+    transition: opacity .15s linear;
+}
+.card.lead{
+  height:fit-content;
+}
+.mainc{
+  width:80% !important
+}
+.newness {
+    color: red !important;
+}
+.icons{flex-direction:column;
+display:flex;}
+</style>
