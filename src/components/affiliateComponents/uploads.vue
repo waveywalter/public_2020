@@ -121,7 +121,7 @@ export default {
                 } 
                   
                 this.$store.state[pre] = 1;
-                fetch('https://2020i.site/api/containers/'+this.$store.state.account.user.user.id+'/upload', {
+                fetch('https://2020i.site/api/containers/'+this.$store.state.apps.currentAffiliate.id+'/upload', {
                 method: 'POST', // *GET, POST, PUT, DELETE, etc.
                 redirect: "follow", // manual, *follow, error
                 referrer: "no-referrer", // no-referrer, *client

@@ -184,6 +184,7 @@ export default{
     name:"affiliateApplication",
     props:["affiliateId"],
     mounted(){
+        this.getforms({filter:"affiliate"});
              this.getFormsHtml()
              if(this.$store.state.account.user.user.role=="sales"){
                 this.getUserForms(this.afid)
@@ -247,8 +248,14 @@ export default{
                             this.$store.state.form.sfs = ssfs                       
                             }
                         
-              
-                    let fs = await   fetch('https://2020i.site/api/Forms?filter[where][FormType]=affiliate').then(res=>res.json()).then(json=>{return json})
+                let fs =[]
+                if(this.allforms){
+                   fs = this.allforms
+                }else{
+                      fs = [];
+                }
+                   // let fss = await   fetch('https://2020i.site/api/Forms?filter[where][FormType]=affiliate').then(res=>res.json()).then(json=>{return json})
+                    console.log(fs)
                             let userforms = fs.filter(form=>{
                             return ssfs.filter(signedform=>{return form.id===signedform.formId})[0]
                         })
@@ -339,6 +346,7 @@ export default{
         ...mapState({
         account: state => state.account,
         users: state => state.users.all,
+        allforms:state=>state.form.allforms.items
         }),
         ...mapState('form', ['userForms']),
         user:{

@@ -61,7 +61,7 @@ import applicationslist from "./applicationslist";
 import affiliatelist from "./affiliatelist";
 import imageupload from "../layoutComponents/imageUpload";
 import affiliateApplication from "../affiliateComponents/affiliateApplication";
-
+import { mapState, mapActions } from "vuex";
 
 //import AffiliateRegView from '../salesComponents/jottComponents/v5/pages/AffiliateRegView.vue';
 
@@ -95,7 +95,7 @@ export default {
   },
 
   methods: {
-
+    ...mapActions("apps", ["getApps"]),
     filterApp(txt) {
       
       if (txt != "") {
@@ -137,41 +137,18 @@ export default {
           });
       }
     },
-    getApps() {
-      this.$store.commit("apps/getApps");
-    },
+
    
   },
   mounted: function() {
- 
-
     let id;
     id = this.$route.params.id;
-    this.$store.state.id = this.$route.params.id;
-
-    let vp = this;
-  
-    //if(this.$store.state.apps.application.role=="admin"){
-    if (true) {
       this.getApps();
-    }
+    
 
     if (id != undefined) {
-      fetch("https://2020i.site/api/applications/" + id, {
-        method: "GET",
-        headers: { "Content-Type": "application/json; charset=utf-8" }
-      })
-        .then(response => response.json())
-        .then(json => {
-          
-          this.$store.state.apps.application = json;
+      this.getApp(id)
 
-          if (this.$store.state.apps.application.s1 == 0) {
-            this.clock = setInterval(this.checkContractStatus, 7000);
-          }
-          //this.$state.store = json;
-          // this.$store.replaceState(json)
-        });
     }
   },
 

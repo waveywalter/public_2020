@@ -163,82 +163,14 @@ export default {
         
       },
 ...mapState("alert", ["message", "type"]),
-...mapActions("account", ["register"]),  
-...mapActions("leads", ["createLead"]),  
+...mapState("apps", ["wholelist", "list"]),
+ 
   },
   methods: {
-        checkroute(){
-      if(this.$root._route.params.id && this.$root._route.params.root!='crm'){
-        return true
-      }
-    },
-        getrecord(id){
-      console.log('RECORDSSSSSSSSSSSSSSSSSSSSSSS')
-     // window.sessionStorage.id = id;
-      
-      if(id!=undefined){
-       fetch('https://2020i.site/api/applications/'+id,{method:"GET",headers:{"Content-Type": "application/json; charset=utf-8",}}).then(response=>response.json()).then(json=>{console.log(json)
- 
-        
-        this.$store.state.apps.application = json;
-        if(json.s1==0){
-          console.log("Not Signed")
-          //check to see if signed start interval check
-          this.clock = setInterval(this.checkContractStatus,7000);
-
-        }
-        else{
-          console.log("Signed")
-          //update ui
-          clearInterval(this.clock)
-        }
-      console.log(this)
-      }
-        )
-        //this.getState();
-      }
-
-      },
-        checkContractStatus(){
-        console.log("Hit API - Get APP and check for signing");
-        console.log(this);
-        let i = this.$store.state.apps.application.id;
-        fetch('/api/applications/'+i).then(response=>{
-              console.log(response);
-              response.text().then(text=>{
-              
-
-              let a = JSON.parse(text);
-              
-                let s = 's1';
-                let t = a[s];
-                console.log(this.$store.state[s])
-                console.log(a[s]);
-                this.$store.state.apps.application
-
-                if(a[s]!=this.$store.state.apps.application[s] ){
-                  
-                  clearInterval(this.clock)
-                  //if they are not equal then document has been signed .
-                
-                this.$store.state.apps.application = a;
-               
-                }
-   
-
-              
-              })
-        })
-      },
-        updateId(id){
-      console.log("UPATEEEEEEEEEEEEEE")
-      this.cid = id;
-      this.getrecord(id);
-     },
-    test(){
-      console.log("TESTTTTTTTTTTTTTTTTTTTTTT")
-    },
-    ...mapActions("account", ["register"]),
+    ...mapActions("account", ["register"]),  
+...mapActions("leads", ["createLead"]),  
+...mapActions("apps", ["getApps"]), 
+     ...mapActions("account", ["register"]),
     ...mapActions({ clearAlert: "alert/clear" }),
     handleSubmit(e) {
       console.log("HANDLEDDDDDDDDDDDDDD")

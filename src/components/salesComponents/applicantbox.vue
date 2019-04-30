@@ -24,7 +24,7 @@
                     <div class="col-xl-12">
                       <div class="form-group">
                        
-                        <label for="exampleInputEmail1">Filter Applications</label>
+                        <label for="exampleInputEmail1">Filter Applications - 1</label>
                         <input
                           type="text"
                           v-model="appfilter"
@@ -62,7 +62,7 @@ import applicationslist from "./applicationslist";
 import affiliatelist from "./affiliatelist";
 import imageupload from "../layoutComponents/imageUpload";
 import affiliateApplication from "../affiliateComponents/affiliateApplication";
-
+import { mapState, mapActions } from "vuex";
 //import AffiliateRegView from '../salesComponents/jottComponents/v5/pages/AffiliateRegView.vue';
 
 export default {
@@ -74,7 +74,7 @@ export default {
       //      ['Confidentiality Statement-Contractor',1,0],['Part-Time-PerDiemStaffOrientationPacket',1,0],
       //      ['Profl Code of Ethics & Standards of Conduct',1,0],['Sexual Harrassment Policy- Contractors',1,0],['TB Status Review',1,0],['Admission Agreement',1,0]],
       signature: [["Admission Agreement", 1, 0]],
-      list: [],
+      
       appfilter: "",
       //sections:["Profile Details","Signed Documents","Uploaded Documents","Emergency Contacts"],
       //sections:["Profile Details","Signed Documents","Uploaded Documents"],
@@ -91,21 +91,23 @@ export default {
   },
   props: ["afid"],
   computed: {
-  
+    list:function(){
+      return this.$store.state.apps.list
+    }
   },
 
   methods: {
- 
+  ...mapActions("apps", ["getApps"]),
     filterApp(txt) {
-      if (txt != "") {
-        fetch("https://2020i.site/api/applications?filter[offset]=0&filter[limit]=100&filter[skip]=0&filter[where][approved]=1")
-          .then(response => response.json())
-          .then(json => {
-            // this.$store.state.app.application.list =[];
-            let list = json.filter(item => {
+      console.log("FILTER")
+  console.log(this.list)
+  let list = this.list.filter(item => {
+              
               if (item) {
                 let em = item.email;
+                console.log(em,txt)
                 if (em == txt) {
+                 console.log("EQUALITY")
                   return {
                     firstname: item.firstname,
                     lastname: item.lastname,
@@ -116,16 +118,6 @@ export default {
               }
             });
             this.$store.state.apps.list = list;
-          });
-      } else {
-        fetch("https://2020i.site/api/applications?filter[offset]=0&filter[limit]=100&filter[skip]=0&filter[where][approved]=1")
-          .then(response => response.json())
-          .then(json => {
-            // this.$store.state.app.application.list =[];
-            let list = json;
-            this.cfilterlist = list.filter(app=>app.approved!=1);
-          });
-      }
     },
   
   },
