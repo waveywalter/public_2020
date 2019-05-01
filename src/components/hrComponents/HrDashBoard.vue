@@ -8,6 +8,8 @@
           </div>
 
 <NewHrBox></NewHrBox>
+<HrNewPosition></HrNewPosition>
+<NewEmployee></NewEmployee>
 
         </div>
       </div>
@@ -18,6 +20,8 @@
 <script>
 import NewHrBox from "./newhrbox"
 import Vue from "vue";
+import HrNewPosition from "./HrNewPosition";
+import NewEmployee from "./NewEmployee"
 
 export default {
   name: "HrDashBoard",
@@ -39,7 +43,9 @@ export default {
     }
   },
   components: {
-    NewHrBox
+    NewHrBox,
+    HrNewPosition,
+    NewEmployee
   }
 };
 </script>
