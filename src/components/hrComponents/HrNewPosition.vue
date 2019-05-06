@@ -6,24 +6,17 @@
       <div class="row">
         <div class="col-sm-12 col-xs-12">
           <form ref="form" @submit.prevent="handleSubmit">
+
             <div class="form-group mt-5">
-              <label for="exampleInputuname">Position</label>
-              <div class="input-group">
-                <input
-                  v-model="app.first_name"
-                  type="text"
-                  v-validate="'required'"
-                  class="form-control"
-                  placeholder="Position"
-                  name="first_name"
-                  v-on:change="clearAlert"
-                >
-                <div class="input-group-addon">
-                  <i class="ti-user"></i>
-                </div>
-              </div>
-              <span>{{ errors.first("firstname")}}</span>
+              <label>Employee</label>
+              <select class="form-control">
+                <option>--Select Employee--</option>
+                <option>India</option>
+                <option>Sri Lanka</option>
+                <option>USA</option>
+              </select>
             </div>
+
             <div class="form-group mt-5">
               <label for="exampleInputuname">Title</label>
               <div class="input-group">
@@ -41,6 +34,7 @@
               </div>
               <span>{{ errors.first("lastname")}}</span>
             </div>
+            
             <div class="form-group mt-5">
               <label for="exampleInputuname">Salary</label>
               <div class="input-group">
@@ -57,6 +51,7 @@
               </div>
               <span>{{ errors.first("phone")}}</span>
             </div>
+
             <input type="file" class="hidden" accept="image/*">
             <div class="text-right">
               <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Submit</button>
@@ -143,8 +138,7 @@ export default {
               nameConflict: "makeUnique",
               name: application.id
             })
-          }).then(response => {
-          });
+          }).then(response => {});
           this.app.first_name = "";
           this.app.last_name = "";
           this.app.type = "";

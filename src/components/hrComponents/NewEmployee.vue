@@ -57,6 +57,26 @@
               </div>
               <span>{{ errors.first("phone")}}</span>
             </div>
+
+            <div class="form-group mt-5">
+              <label>Gender</label>
+              <select class="form-control">
+                <option>--Select Position--</option>
+                <option>Male</option>
+                <option>Female</option>
+              </select>
+            </div>
+            
+            <div class="form-group mt-5">
+              <label>Position</label>
+              <select class="form-control">
+                <option>--Select Position--</option>
+                <option>India</option>
+                <option>Sri Lanka</option>
+                <option>USA</option>
+              </select>
+            </div>
+            
             <input type="file" class="hidden" accept="image/*">
             <div class="text-right">
               <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">Submit</button>
