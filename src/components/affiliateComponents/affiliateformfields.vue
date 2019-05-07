@@ -216,5 +216,9 @@ import { mapState, mapActions } from "vuex";
     }
 </script>
 <style scoped>
+.form-material .form-control, .form-material .form-control.focus, .form-material .form-control:focus {
+
+    color: #96a2b4;
+}
 
 </style>

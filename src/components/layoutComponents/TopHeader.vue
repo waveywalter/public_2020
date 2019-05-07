@@ -31,28 +31,28 @@
     <div data-v-0f0d4343="" class="notify" v-if="taskcount>0"><span data-v-0f0d4343="" class="heartbit"></span><span data-v-0f0d4343="" class="point"></span></div></a>
 
 <div class="modal fade bs-example-modal-sm show" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" style="display: block; padding-right: 17px;" aria-modal="true" v-if="alltasklist">
-                                    <div class="modal-dialog modal-sm">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h4 class="modal-title" id="mySmallModalLabel">Open Task List</h4>
-                                                <button type="button" class="close" data-dismiss="modal" @click="alltasklist=false" aria-hidden="true">×</button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <div>
-                                                    <ul class="list-group">
-                                                        <li class="list-item" v-for="task in $store.state.leads.alltask.filter(task=>{return task.status=='new'})">
-                                                           <router-link class="newtask view " :key="task.id"  tag="li" :to="'/sales/crm/'+task.leadId" @click.native="loadLead(task)">
-                  {{task.title}}
-                </router-link> 
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                 </div>
-                                        </div>
-                                        <!-- /.modal-content -->
-                                    </div>
-                                    <!-- /.modal-dialog -->
-                                </div>
+<div class="modal-dialog modal-sm">
+<div class="modal-content">
+<div class="modal-header">
+    <h4 class="modal-title" id="mySmallModalLabel">Open Task List</h4>
+    <button type="button" class="close" data-dismiss="modal" @click="alltasklist=false" aria-hidden="true">×</button>
+</div>
+<div class="modal-body">
+    <div>
+        <ul class="list-group">
+            <li class="list-group-item" v-for="task in $store.state.leads.alltask.filter(task=>{return task.status=='new'}).slice(0,10)">
+                <router-link class="newtask view " :key="task.id"  tag="li" :to="'/sales/crm/'+task.leadId" @click.native="loadLead(task)">
+{{task.title}}
+</router-link> 
+            </li>
+        </ul>
+    </div>
+        </div>
+</div>
+<!-- /.modal-content -->
+</div>
+<!-- /.modal-dialog -->
+</div>
   </li>    
   <li class="dropdown">
     <a class="dropdown-toggle waves-effect waves-light" data-toggle="dropdown" href="#" @click.prevent="logout()"> <i class=" icon-logout"></i> Logout</a>
