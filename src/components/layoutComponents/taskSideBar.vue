@@ -75,15 +75,9 @@
 
 <style scoped>
 .wrapper {
-  display: flex;
-  grid-gap: 10px;
-  grid-template-columns: 50px 200px 50px;
+  display: grid;
   border-style: solid;
   border-width: 1px;
-  margin-bottom: 20px;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  padding-left: 2px;
   background-color: #3c4452;
   padding: 10px;
 }
