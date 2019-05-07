@@ -39,9 +39,10 @@
 </div>
 <div class="modal-body">
     <div>
-        <ul class="list-group">
-            <li class="list-group-item" v-for="task in $store.state.leads.alltask.filter(task=>{return task.status=='new'}).slice(0,10)">
-                <router-link class="newtask view " :key="task.id"  tag="li" :to="'/sales/crm/'+task.leadId" @click.native="loadLead(task)">
+        <ul class="feeds">
+
+            <li class="" v-for="task in $store.state.leads.alltask.filter(task=>{return task.status=='new'}).slice(0,10)">
+                <router-link  class="newtask view " :key="task.id"  tag="li" :to="'/sales/crm/'+task.leadId" @click.native="loadLead(task)">
 {{task.title}}
 </router-link> 
             </li>
