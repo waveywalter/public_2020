@@ -5,7 +5,7 @@
       <h3 class="box-title">Current Applicants</h3>
       <div class>
         <div class="ml-5">
-          <v-container id="scroll-target" style="max-height: 300px" class="scroll-y">
+          <v-container id="scroll-target" style="max-height: 525px" class="scroll-y">
             <v-layout column style="height: 900px">
               <div id="app-wrapper">
                 <div>

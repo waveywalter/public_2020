@@ -10,7 +10,9 @@
       >
         <div class=" btn btn-default btn-outline showbottom mr15 minw125">
           <a>{{user.firstname}} {{user.lastname}}
-                  <span class="ti-close" v-on:click="openmodal(user.id)"></span>
+                  <span class="" v-on:click="openmodal(user.id)"></span>
+                            <i class="fas fa-caret-right"></i>
+
             </a>
         </div>
       </router-link>

@@ -18,17 +18,15 @@
 
           <div class="row">
             <NewAffiliateform/>
-            <!-- <Createlead/> -->
-            <taskSideBar></taskSideBar>
-            <crmclientbox></crmclientbox>
+             <applicantbox/>
+            <affiliateBoxcomponent/>
           </div>
 
           <div class="row">
-            <applicantbox/>
-            <affiliateBoxcomponent/>
-
+            <taskSideBar></taskSideBar>
+            <crmclientbox></crmclientbox>
           </div>
-          
+        
         </div>
       </div>
     </div>

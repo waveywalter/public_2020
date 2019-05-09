@@ -1,5 +1,5 @@
 <template>
-  <div class="col-md-4">
+  <div class="col-md-8">
     <div class="white-box">
       <h3 class="box-title">Client List</h3>
       <div class="row">
@@ -22,7 +22,7 @@
                   @click.native
                 >
                   <div class="btn btn-default btn-outline showbottom mt-2 card-body mr15">
-                    <a class="card-title">{{lead.first_name}} {{lead.last_name}}</a>
+                    <a class="card-title">{{lead.first_name}} {{lead.last_name}}<i class="fas fa-caret-right"></i></a>
                   </div>
                 </router-link>
               </div>
@@ -35,7 +35,7 @@
 </template>
 
 <style scroped>
-div::-webkit-scrollbar {
+/* div::-webkit-scrollbar {
   width: 0.6em;
 }
 
@@ -55,7 +55,7 @@ div::-ms-scrollbar-track {
 div::-ms-scrollbar-thumb {
   background-color: red;
   border-radius: 10%;
-}
+} */
 
 .mr15 {
   margin-right: 15px;

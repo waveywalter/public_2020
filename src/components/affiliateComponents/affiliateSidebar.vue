@@ -5,7 +5,7 @@
                     <div class="dropdown user-pro-body">
                         <div><img v-bind:src=imagepath alt="user-img" class="img-circle"></div> <a href="#" class="dropdown-toggle u-dropdown" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{user.user.username}}<span class="caret"></span></a>
                         <ul class="dropdown-menu animated flipInY">
-                            <li><router-link to="/admin/myprofile"><i class="ti-user"></i> My Profile</router-link></li>
+                            <li><router-link v-bind:to="'/'+user.user.role+'/myprofile'"><i class="ti-user"></i> My Profile</router-link></li>
                             <li><a href="#"><i class="ti-wallet"></i> My Balance</a></li>
                             <li><a href="#"><i class="ti-email"></i> Inbox</a></li>
                             <li role="separator" class="divider"></li>

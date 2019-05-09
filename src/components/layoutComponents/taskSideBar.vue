@@ -11,7 +11,7 @@
                   <li class="list-group-item" data-role="task" v-for="task in ctasklist">
                     <div class="wrapper">
                       <div class="font-icon">
-                        <i class="fas fa-phone">
+                        <i class="fa fa-circle-o">
                           <span class="line"></span>
                         </i>
                       </div>
@@ -23,22 +23,24 @@
                           class="subText"
                           v-html="`<a href='`+returnUrl(task.content)+`'>View Lead</a>`"
                         ></p>
-                        <p
+                        <!-- <p
                           class="subText"
-                        >Created: {{task.date_created | moment("dddd, MMMM Do YYYY h:mm ")}}</p>
-                        <p
+                        >Created: {{task.date_created | moment("dddd, MMMM Do YYYY h:mm ")}}</p> -->
+                        <!-- <p
                           class="subText"
-                        >Due By: {{task.due_date | moment("dddd, MMMM Do YYYY h:mm ")}}</p>
-                        <div class="bottom-cal">
+                        >Due By: {{task.due_date | moment("dddd, MMMM Do YYYY h:mm ")}}</p> -->
+                        <!-- <div class="bottom-cal">
                           <i @click.stop="dialog=true" class="fas fa-calendar"></i>
                           <i @click.stop="dialog=true" class="fas fa-calendar-o"></i>
-                        </div>
+                        </div> -->
                       </div>
                       <div class="right-side">
-                        <i class="fa fa-file-text"></i>
+                        <!-- <i class="fa fa-file-text"></i> -->
                         <i class="fa fa-trash-o"></i>
                       </div>
                     </div>
+                                      <hr>
+
                   </li>
                 </div>
               </ul>
@@ -74,16 +76,19 @@
 </template>
 
 <style scoped>
+label {
+    width: 300px;
+}
 .wrapper {
   display: grid;
-  border-style: solid;
+  /* border-style: solid;
   border-width: 1px;
-  background-color: #3c4452;
-  padding: 10px;
+  background-color: #3c4452; */
+  /* padding: 10px; */
 }
 .font-icon {
   float: left;
-  font-size: 30px;
+  font-size: 12px;
   margin-right: 10px;
   color: dodgerblue;
   grid-column: 1;

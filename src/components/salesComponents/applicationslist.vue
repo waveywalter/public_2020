@@ -10,7 +10,7 @@
       >
         <div class=" btn btn-default btn-outline showbottom mr15 minw125">
           <a>{{apps.firstname}} {{apps.lastname}}
-          <i class="fas fa-phone"></i>
+          <i class="fas fa-caret-right"></i>
           </a>
         </div>
         <!-- <span class="ti-close" v-on:click="openmodal(apps.id)"></span> -->
