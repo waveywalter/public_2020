@@ -12,7 +12,7 @@
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "googleapi-get-email": "^1.0.3",
-    "googleapis": "^37.2.0",
+    "googleapis": "^39.1.0",
     "jquery": "^3.3.1",
     "js-cookie": "^2.2.0",
     "loopback-connector-mongodb": "^3.9.2",
