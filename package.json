@@ -8,7 +8,7 @@
     "axios": "^0.18.0",
     "babel-polyfill": "^6.26.0",
     "bootstrap": "^4.1.3",
-    "bootstrap-vue": "^2.0.0-rc.11",
+    "bootstrap-vue": "^2.0.0-rc.12",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "googleapi-get-email": "^1.0.3",
