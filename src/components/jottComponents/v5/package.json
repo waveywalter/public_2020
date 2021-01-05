@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@types/jquery": "^3.3.28",
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "babel-polyfill": "^6.23.0",
     "compression": "^1.6.2",
     "cross-env": "^5.0.0",
